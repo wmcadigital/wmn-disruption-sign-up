@@ -1,0 +1,7 @@
+.formWrapper {
+  background-color: white;
+
+  @media all and (max-width: 767px) {
+    margin: 0 -0.75rem;
+  }
+}
