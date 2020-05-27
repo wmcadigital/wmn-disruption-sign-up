@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Autocomplete from '../autocomplete/Autocomplete';
 
 function AddService() {
   return (
     <div className="wmnds-col-1 wmnds-col-md-3-4">
-      AddService
+      <Autocomplete />
     </div>
-  )
+  );
 }
 
-export default AddService
+export default AddService;
