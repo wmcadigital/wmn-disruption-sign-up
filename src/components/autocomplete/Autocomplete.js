@@ -4,10 +4,10 @@ import React from 'react';
 // import { ModeContext } from 'globalState/ModeContext';
 
 // Import components
-import BusAutoComplete from './BusAutocomplete';
+import ServiceAutoComplete from './ServiceAutocomplete';
 
-const AutoComplete = () => {
-
+const AutoComplete = (props) => {
+  const { service, setTriggered } = props;
   // Do a switch on the mode, then return the component related to that
   const autoCompleteToShow = () => {
     // This is used as a template html for the title of the autocomplete box. It changes depending on the mode
@@ -21,8 +21,8 @@ const AutoComplete = () => {
 
     return (
       <div className="wmnds-grid">
-        {autoCompleteTitle('Search for a service')}
-        <BusAutoComplete />
+        {autoCompleteTitle(`Search for a ${service} service`)}
+        <ServiceAutoComplete type={service} setTriggered={setTriggered} />
       </div>
     );
   };

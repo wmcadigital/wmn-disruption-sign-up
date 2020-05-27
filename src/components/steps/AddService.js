@@ -1,10 +1,49 @@
-import React from 'react';
+/* eslint-disable react/button-has-type */
+import React, { useState } from 'react';
 import Autocomplete from '../autocomplete/Autocomplete';
+import Icon from '../Icon';
 
 function AddService() {
+  const [triggered, setTriggered] = useState(null);
+
+  const onButtonClick = (e, type) => {
+    e.preventDefault();
+    setTriggered(type);
+  };
+
   return (
     <div className="wmnds-col-1 wmnds-col-md-3-4">
-      <Autocomplete />
+      <h3 className="wmnds-fe-question">Add a service</h3>
+      <p>
+        You can sign up to as many services as you would like You will receive
+        an automatic email update for each disruption
+      </p>
+      {triggered !== null ? (
+        <Autocomplete service={triggered} setTriggered={setTriggered} />
+      ) : (
+        <>
+          <button
+            className="wmnds-btn wmnds-col-1 wmnds-col-sm-auto wmnds-m-r-lg wmnds-m-t-md"
+            onClick={(e) => onButtonClick(e, 'bus')}
+          >
+            Add bus service
+            <Icon
+              className="wmnds-btn__icon wmnds-btn__icon--right"
+              iconName="general-chevron-right"
+            />
+          </button>
+          {/* <button
+            className="wmnds-btn wmnds-col-1 wmnds-col-sm-auto wmnds-m-r-lg wmnds-m-t-md"
+            onClick={(e) => onButtonClick(e, 'tram')}
+          >
+            Add tram service
+            <Icon
+              className="wmnds-btn__icon wmnds-btn__icon--right"
+              iconName="general-chevron-right"
+            />
+          </button> */}
+        </>
+      )}
     </div>
   );
 }

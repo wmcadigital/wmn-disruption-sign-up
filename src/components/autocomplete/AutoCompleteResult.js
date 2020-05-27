@@ -5,11 +5,9 @@ import React from 'react';
 
 const BusAutoCompleteResult = (props) => {
   const { result, handleKeyDown } = props || {};
-
-
   const updateSelectedService = () => {
     // Reset selected disruption ID from map (if any)
-console.log('updating');
+    console.log('updating');
   };
   // Return service with the above disruption logic, replace type and iconName with correc icon and class depending on disruption type
   return (

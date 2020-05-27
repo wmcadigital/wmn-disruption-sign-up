@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 
@@ -10,16 +10,21 @@ import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/p
 import Icon from '../Icon';
 import BusAutoCompleteResult from './AutoCompleteResult';
 
-const BusAutoComplete = () => {
+const BusAutoComplete = (props) => {
+  const { setTriggered, type } = props;
+
   const [loading, setLoading] = useState(false); // Set loading state for spinner
   const [errorInfo, setErrorInfo] = useState(); // Placeholder to set error messaging
   const [searchResults, setSearchResults] = useState();
-  const [busNumber, setBusNumber] = useState();
+  const [lineNumber, setLineNumber] = useState();
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
 
   const updateQuery = (query) => {
-    setBusNumber(query);
+    setLineNumber(query);
+  };
+  const handleCancel = () => {
+    setTriggered(null);
   };
 
   useEffect(() => {
@@ -27,10 +32,10 @@ const BusAutoComplete = () => {
     const source = axios.CancelToken.source(); // Set source of cancelToken
     // If autocomplete has query
     const { REACT_APP_API_HOST, REACT_APP_API_KEY } = process.env; // Destructure env vars
-    if (busNumber) {
+    if (lineNumber) {
       setLoading(true); // Update loading state to true as we are hitting API
       axios
-        .get(`${REACT_APP_API_HOST}/bus/v1/service?q=${busNumber}`, {
+        .get(`${REACT_APP_API_HOST}/${type}/v1/service?q=${lineNumber}`, {
           headers: {
             'Ocp-Apim-Subscription-Key': REACT_APP_API_KEY,
           },
@@ -60,7 +65,7 @@ const BusAutoComplete = () => {
       mounted = false; // Set mounted back to false on unmount
       source.cancel(); // cancel the request
     };
-  }, [busNumber]);
+  }, [lineNumber, type]);
 
   // Function for handling keyboard/keydown events (controls the up/down arrow on autocomplete results)
   const handleKeyDown = ({ keyCode, target }) => {
@@ -94,7 +99,6 @@ const BusAutoComplete = () => {
       }
     }
   };
-  console.log(searchResults);
   return (
     <>
       <div
@@ -111,7 +115,7 @@ const BusAutoComplete = () => {
           name="busSearch"
           placeholder="Search for a service"
           className="wmnds-fe-input wmnds-autocomplete__input wmnds-col-1"
-          value={busNumber || ''}
+          value={lineNumber || ''}
           onChange={(e) => updateQuery(e.target.value)}
           aria-label="Search for a service"
           debounceTimeout={600}
@@ -131,6 +135,13 @@ const BusAutoComplete = () => {
           ))}
         </ul>
       )}
+      <button
+        type="button"
+        className="wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-md"
+        onClick={() => handleCancel()}
+      >
+        Cancel
+      </button>
     </>
   );
 };
