@@ -1,13 +1,20 @@
-import React from 'react';
-// import { AutoCompleteContext } from 'globalState';
-// Import components
-// Import styles
+import React, { useContext } from 'react';
+import { FormContext } from '../../FormContext';
 
 const BusAutoCompleteResult = (props) => {
-  const { result, handleKeyDown } = props || {};
-  const updateSelectedService = () => {
-    // Reset selected disruption ID from map (if any)
-    console.log('updating');
+  const { result, handleKeyDown, type, handleCancel } = props || {};
+  const [formState, formDispatch] = useContext(FormContext);
+  console.log(result);
+  const updateSelectedService = (serviceId, routeName, serviceNumber) => {
+    const shouldUpdate = formState[type].indexOf(serviceId) < 0;
+    if (shouldUpdate) {
+      const dispatchName = `SET_SERVICES_${type.toUpperCase()}`;
+      formDispatch({
+        type: dispatchName,
+        payload: { serviceId, routeName, serviceNumber },
+      });
+      handleCancel();
+    }
   };
   // Return service with the above disruption logic, replace type and iconName with correc icon and class depending on disruption type
   return (
@@ -19,9 +26,23 @@ const BusAutoCompleteResult = (props) => {
       role="button"
       aria-pressed="false"
       onKeyDown={(e) => handleKeyDown(e)}
-      onClick={() => updateSelectedService()}
+      onClick={() =>
+        updateSelectedService(
+          result.id,
+          result.routes[0].routeName,
+          result.serviceNumber
+        )
+      }
     >
       {/* Right section */}
+      <div
+        className="
+        wmnds-disruption-indicator-medium
+        wmnds-col-auto wmnds-m-r-md 
+        "
+      >
+        {result.serviceNumber}
+      </div>
       <strong className="wmnds-col-auto">{result.routes[0].routeName}</strong>
     </li>
   );

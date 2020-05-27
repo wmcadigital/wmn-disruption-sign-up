@@ -131,6 +131,8 @@ const BusAutoComplete = (props) => {
               key={result.id}
               result={result}
               handleKeyDown={handleKeyDown}
+              type={type}
+              handleCancel={handleCancel}
             />
           ))}
         </ul>

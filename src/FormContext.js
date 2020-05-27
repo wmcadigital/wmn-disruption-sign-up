@@ -9,7 +9,8 @@ export const FormProvider = (props) => {
   const initialState = {
     fullName: '',
     email: '',
-    services: []
+    bus: [],
+    tram: [],
   };
 
   // Set up a reducer so we can change state based on centralised logic here
@@ -32,10 +33,16 @@ export const FormProvider = (props) => {
       }
 
       // Remove the waypoint by the id
-      case 'ADD_FORM_SERVICES': {
+      case 'SET_SERVICES_BUS': {
         return {
           ...state,
-          services: [ ...state.services, action.payload ]
+          bus: [...state.bus, action.payload],
+        };
+      }
+      case 'SET_SERVICES_TRAM': {
+        return {
+          ...state,
+          tram: [...state.tram, action.payload],
         };
       }
 

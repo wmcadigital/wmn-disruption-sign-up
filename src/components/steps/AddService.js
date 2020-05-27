@@ -1,10 +1,14 @@
 /* eslint-disable react/button-has-type */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Autocomplete from '../autocomplete/Autocomplete';
+import { FormContext } from '../../FormContext';
+
 import Icon from '../Icon';
+import Bus from './service/Bus';
 
 function AddService() {
   const [triggered, setTriggered] = useState(null);
+  const [formState, formDispatch] = useContext(FormContext);
 
   const onButtonClick = (e, type) => {
     e.preventDefault();
@@ -22,6 +26,16 @@ function AddService() {
         <Autocomplete service={triggered} setTriggered={setTriggered} />
       ) : (
         <>
+          {formState.bus &&
+            formState.bus.map((busRoute) => {
+              return (
+                <Bus
+                  serviceNumber={busRoute.serviceNumber}
+                  routeName={busRoute.routeName}
+                  key={`${busRoute.id}-${busRoute.routeName}`}
+                />
+              );
+            })}
           <button
             className="wmnds-btn wmnds-col-1 wmnds-col-sm-auto wmnds-m-r-lg wmnds-m-t-md"
             onClick={(e) => onButtonClick(e, 'bus')}
