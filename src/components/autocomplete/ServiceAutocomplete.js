@@ -6,7 +6,7 @@ import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/p
 // import { AutoCompleteContext } from 'globalState';
 
 // Import components
-// import Message from 'components/shared/Message/Message';
+import Message from '../Message';
 import Icon from '../Icon';
 import BusAutoCompleteResult from './AutoCompleteResult';
 
@@ -44,7 +44,14 @@ const BusAutoComplete = (props) => {
         .then((bus) => {
           setLoading(false); // Set loading state to false after data is received
           // If bus.data.services isn't there, then we can't map the results to it, so return null
-          setSearchResults(bus.data.services);
+          if (bus.data.services.length === 0) {
+            setErrorInfo({
+              title: 'No results found',
+              message: 'Apologies, could not find the service.',
+            });
+          } else {
+            setSearchResults(bus.data.services);
+          }
         })
         .catch((error) => {
           if (!axios.isCancel(error)) {
@@ -59,7 +66,6 @@ const BusAutoComplete = (props) => {
           }
         });
     }
-
     // Unmount / cleanup
     return () => {
       mounted = false; // Set mounted back to false on unmount
@@ -124,19 +130,28 @@ const BusAutoComplete = (props) => {
         />
       </div>
       {/* If there is no data.length(results) and the user hasn't submitted a query and the state isn't loading then the user should be displayed with no results message, else show results */}
-      {searchResults && (
-        <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
-          {searchResults.map((result) => (
-            <BusAutoCompleteResult
-              key={result.id}
-              result={result}
-              handleKeyDown={handleKeyDown}
-              type={type}
-              handleCancel={handleCancel}
-            />
-          ))}
-        </ul>
+      {!loading && errorInfo ? (
+        <Message
+          type="error"
+          title={errorInfo.title}
+          message={errorInfo.message}
+        />
+      ) : (
+        searchResults && (
+          <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
+            {searchResults.map((result) => (
+              <BusAutoCompleteResult
+                key={result.id}
+                result={result}
+                handleKeyDown={handleKeyDown}
+                type={type}
+                handleCancel={handleCancel}
+              />
+            ))}
+          </ul>
+        )
       )}
+
       <button
         type="button"
         className="wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-md"

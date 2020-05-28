@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import { FormContext } from '../../FormContext';
 
-const BusAutoCompleteResult = (props) => {
+const AutoCompleteResult = (props) => {
   const { result, handleKeyDown, type, handleCancel } = props || {};
   const [formState, formDispatch] = useContext(FormContext);
-  console.log(result);
   const updateSelectedService = (serviceId, routeName, serviceNumber) => {
     const shouldUpdate = formState[type].indexOf(serviceId) < 0;
     if (shouldUpdate) {
@@ -48,4 +47,4 @@ const BusAutoCompleteResult = (props) => {
   );
 };
 
-export default BusAutoCompleteResult;
+export default AutoCompleteResult;
