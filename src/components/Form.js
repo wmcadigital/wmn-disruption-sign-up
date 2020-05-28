@@ -11,20 +11,28 @@ import style from './Form.module.scss';
 const Form = () => {
   const [formState, formDispatch] = useContext(FormContext);
   const [currentStep, setCurrentStep] = useState('FullName');
-
+  const handleGoBack = () => {
+    if (currentStep === 'Email') {
+      return setCurrentStep('FullName');
+    }
+    if (currentStep === 'AddService') {
+      return setCurrentStep('Email');
+    }
+  };
+  const STEPS = {
+    FullName: <FullName setCurrentStep={setCurrentStep} />,
+    Email: <Email setCurrentStep={setCurrentStep} />,
+    AddService: <AddService setCurrentStep={setCurrentStep} />,
+  };
   return (
     <div className="wmnds-col-1 wmnds-col-md-3-4">
-      {/* <Back /> */}
+      <a onClick={() => handleGoBack()}> Back </a>
       <SectionTitle />
       <div className={`wmnds-p-lg ${style.formWrapper}`}>
-        <form autoComplete="on">
-          <FullName />
-          <Email />
-          <AddService />
-        </form>
+        <form autoComplete="on">{STEPS[currentStep]}</form>
       </div>
     </div>
   );
-}
+};
 
 export default Form;

@@ -1,9 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-function Email() {
+function Email({setCurrentStep}) {
   const { handleSubmit, register, errors } = useForm({ mode: 'onBlur' });
-  const onSubmit = (values) => console.log(values);
+  const onSubmit = () => {
+    setCurrentStep('AddService');
+  }
   return (
     <>
       <fieldset className="wmnds-fe-fieldset">

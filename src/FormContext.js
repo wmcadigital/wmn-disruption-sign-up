@@ -37,8 +37,18 @@ export const FormProvider = (props) => {
         return {
           ...state,
           bus: [...state.bus, action.payload],
+
         };
       }
+
+      case 'RESET_SERVICES_BUS': {
+        return {
+          ...state,
+
+          bus: action.payload,
+        };
+      }
+
       case 'SET_SERVICES_TRAM': {
         return {
           ...state,

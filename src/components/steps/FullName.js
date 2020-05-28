@@ -2,9 +2,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const FullName = () => {
+const FullName = ({setCurrentStep}) => {
   const { handleSubmit, register, errors } = useForm({ mode: 'onBlur' });
-  const onSubmit = (values) => console.log(values);
+  const onSubmit = () => {
+    setCurrentStep('Email');
+  }
 
   return (
     <>
