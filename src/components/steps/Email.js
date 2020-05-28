@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
+import { FormContext } from '../../FormContext';
 
-function Email({setCurrentStep}) {
-  const { handleSubmit, register, errors } = useForm({ mode: 'onBlur' });
-  const onSubmit = () => {
+function Email({ setCurrentStep }) {
+  const [formState, formDispatch] = useContext(FormContext);
+  const { email } = formState;
+  const { handleSubmit, register, errors } = useForm({
+    mode: 'onBlur',
+    defaultValues: {
+      Email: email,
+    },
+  });
+  const onSubmit = (val) => {
     setCurrentStep('AddService');
-  }
+    formDispatch({
+      type: 'UPDATE_FORM_EMAIL',
+      payload: val.Email,
+    });
+  };
   return (
     <>
       <fieldset className="wmnds-fe-fieldset">
@@ -58,5 +71,8 @@ function Email({setCurrentStep}) {
     </>
   );
 }
+Email.propTypes = {
+  setCurrentStep: PropTypes.func.isRequired,
+};
 
 export default Email;

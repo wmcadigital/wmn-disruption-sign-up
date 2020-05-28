@@ -1,12 +1,30 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
+import { FormContext } from '../../FormContext';
 
-const FullName = ({setCurrentStep}) => {
-  const { handleSubmit, register, errors } = useForm({ mode: 'onBlur' });
-  const onSubmit = () => {
+const FullName = ({ setCurrentStep }) => {
+  const [formState, formDispatch] = useContext(FormContext);
+  const { firstName, lastName } = formState;
+  const { handleSubmit, register, errors } = useForm({
+    mode: 'onBlur',
+    defaultValues: {
+      FirstName: firstName || '',
+      LastName: lastName || '',
+    },
+  });
+  const onSubmit = (val) => {
     setCurrentStep('Email');
-  }
+    formDispatch({
+      type: 'UPDATE_CUSTOMER_NAME',
+      payload: val.FirstName,
+    });
+    formDispatch({
+      type: 'UPDATE_CUSTOMER_SURNAME',
+      payload: val.LastName,
+    });
+  };
 
   return (
     <>
@@ -21,7 +39,7 @@ const FullName = ({setCurrentStep}) => {
         {/* wmnds-fe-group--error */}
         <div
           className={`wmnds-fe-groupp ${
-            errors.FirstName  ? 'wmnds-fe-group--error' : ''
+            errors.FirstName ? 'wmnds-fe-group--error' : ''
           }`}
         >
           <label className="wmnds-fe-label" htmlFor="FirstName">
@@ -83,6 +101,10 @@ const FullName = ({setCurrentStep}) => {
       </button>
     </>
   );
+};
+
+FullName.propTypes = {
+  setCurrentStep: PropTypes.func.isRequired,
 };
 
 export default FullName;

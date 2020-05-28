@@ -7,7 +7,8 @@ export const FormProvider = (props) => {
 
   // Set intial state of when
   const initialState = {
-    fullName: '',
+    firstName: '',
+    lastName: '',
     email: '',
     bus: [],
     tram: [],
@@ -20,7 +21,13 @@ export const FormProvider = (props) => {
       case 'UPDATE_CUSTOMER_NAME': {
         return {
           ...state,
-          fullName: action.payload,
+          firstName: action.payload,
+        };
+      }
+      case 'UPDATE_CUSTOMER_SURNAME': {
+        return {
+          ...state,
+          lastName: action.payload,
         };
       }
 
