@@ -4,9 +4,8 @@ import Icon from '../../Icon';
 import style from './Bus.module.scss';
 
 function Bus(props) {
-  const { serviceNumber, routeName, handleRemove } = props;
+  const { serviceNumber, routeName, handleRemove, showRemove } = props;
   const onClick = () => {
-    console.log('remove');
     handleRemove(serviceNumber);
   };
   return (
@@ -18,24 +17,33 @@ function Bus(props) {
         {serviceNumber}
       </div>
       <strong className="wmnds-col-auto">{routeName}</strong>
-      <button
-        type="button"
-        className={style.removeBtn}
-        onClick={() => {
-          onClick();
-        }}
-      >
-        <Icon
-          iconName="general-cross"
-          className={`general-cross ${style.closeIcon}`}
-        />
-      </button>
+      {showRemove && (
+        <button
+          type="button"
+          className={style.removeBtn}
+          onClick={() => {
+            onClick();
+          }}
+        >
+          <Icon
+            iconName="general-cross"
+            className={`general-cross ${style.closeIcon}`}
+          />
+        </button>
+      )}
     </div>
   );
 }
 Bus.propTypes = {
   serviceNumber: PropTypes.string.isRequired,
   routeName: PropTypes.string.isRequired,
+  handleRemove: PropTypes.func,
+  showRemove: PropTypes.bool,
+};
+
+Bus.defaultProps = {
+  handleRemove: () => {},
+  showRemove: false,
 };
 
 export default Bus;

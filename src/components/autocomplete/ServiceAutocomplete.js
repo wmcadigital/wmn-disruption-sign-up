@@ -2,13 +2,12 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 
-// Import contexts
-// import { AutoCompleteContext } from 'globalState';
-
 // Import components
 import Message from '../Message';
 import Icon from '../Icon';
 import BusAutoCompleteResult from './AutoCompleteResult';
+
+import style from './ServiceAutocomplete.module.scss';
 
 const BusAutoComplete = (props) => {
   const { setTriggered, type } = props;
@@ -120,7 +119,7 @@ const BusAutoComplete = (props) => {
           type="text"
           name="busSearch"
           placeholder="Search for a service"
-          className="wmnds-fe-input wmnds-autocomplete__input wmnds-col-1"
+          className="wmnds-fe-input wmnds-autocomplete__input"
           value={lineNumber || ''}
           onChange={(e) => updateQuery(e.target.value)}
           aria-label="Search for a service"
@@ -154,7 +153,7 @@ const BusAutoComplete = (props) => {
 
       <button
         type="button"
-        className="wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-md"
+        className={`wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-xl ${style.wmndsError}`}
         onClick={() => handleCancel()}
       >
         Cancel

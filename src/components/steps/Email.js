@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { FormContext } from '../../FormContext';
+import SectionStepInfo from './SectionStepInfo';
 
 function Email({ setCurrentStep }) {
   const [formState, formDispatch] = useContext(FormContext);
@@ -21,9 +22,10 @@ function Email({ setCurrentStep }) {
   };
   return (
     <>
-      <fieldset className="wmnds-fe-fieldset">
-        <legend className="wmnds-fe-fieldset__legend">
-          <h3 className="wmnds-fe-question">What is your email address?</h3>
+      <SectionStepInfo section="Section 2 of 2" description="About you" />
+      <fieldset className="wmnds-fe-fieldset wmnds-m-b-xl">
+        <legend className="wmnds-fe-fieldset__legend wmnds-col-2-3">
+          <h2 className="">What is your email address?</h2>
           <p>We’ll automatically send disruption alerts to this address</p>
         </legend>
         {/* wmnds-fe-group--error */}

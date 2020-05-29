@@ -2,11 +2,12 @@
 import React, { useState, useContext } from 'react';
 import Autocomplete from '../autocomplete/Autocomplete';
 import { FormContext } from '../../FormContext';
+import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
 import Bus from './service/Bus';
 
-function AddService() {
+function AddService({setCurrentStep}) {
   const [triggered, setTriggered] = useState(null);
   const [formState, formDispatch] = useContext(FormContext);
   const { bus } = formState;
@@ -17,7 +18,7 @@ function AddService() {
   };
 
   const handleSubmit = () => {
-    console.log('next');
+    setCurrentStep('Summary');
   };
 
   const handleRemove = (route) => {
@@ -32,8 +33,8 @@ function AddService() {
 
   return (
     <div className="wmnds-col-1">
-      <h3 className="wmnds-fe-question">Add a service</h3>
-      <p>
+      <h2 className="">Add a service</h2>
+      <p className="wmnds-col-2-3">
         You can sign up to as many services as you would like You will receive
         an automatic email update for each disruption
       </p>
@@ -44,18 +45,23 @@ function AddService() {
           {formState.bus.length > 0 && (
             <h3 className="wmnds-fe-question">Buses</h3>
           )}
-          {formState.bus &&
-            formState.bus.map((busRoute) => {
-              return (
-                <Bus
-                  handleRemove={handleRemove}
-                  serviceNumber={busRoute.serviceNumber}
-                  routeName={busRoute.routeName}
-                  key={`${busRoute.serviceNumber}`}
-                />
-              );
-            })}
-          <hr />
+          <div
+            className={` ${
+              formState.bus.length > 0 ? 'bdr-primary-bottom wmnds-m-b-xl' : ''
+            }`}
+          >
+            {formState.bus &&
+              formState.bus.map((busRoute) => {
+                return (
+                  <Bus
+                    handleRemove={handleRemove}
+                    serviceNumber={busRoute.serviceNumber}
+                    routeName={busRoute.routeName}
+                    key={`${busRoute.serviceNumber}`}
+                  />
+                );
+              })}
+          </div>
           <button
             className="wmnds-btn wmnds-col-1 wmnds-col-sm-auto wmnds-m-r-lg wmnds-m-t-md"
             onClick={(e) => onButtonClick(e, 'bus')}
@@ -63,7 +69,7 @@ function AddService() {
             Add bus service
             <Icon
               className="wmnds-btn__icon wmnds-btn__icon--right"
-              iconName="general-chevron-right"
+              iconName="general-expand"
             />
           </button>
         </div>
@@ -80,5 +86,9 @@ function AddService() {
     </div>
   );
 }
+
+AddService.propTypes = {
+  setCurrentStep: PropTypes.func.isRequired,
+};
 
 export default AddService;
