@@ -68,7 +68,7 @@ function Summary(props) {
           type="button"
           className={`${style.asLink} wmnds-link`}
           onClick={() => {
-            setCurrentStep('AddServices');
+            setCurrentStep('AddService');
           }}
         >
           Change

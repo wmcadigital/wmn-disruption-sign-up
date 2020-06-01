@@ -2,8 +2,8 @@ import React from 'react';
 
 function Success() {
   const alignCenter = {
-    textAlign: "center"
-  }
+    textAlign: 'center',
+  };
   return (
     <div className="wmnds-container-alerts-sign-up">
       <div className="wmnds-grid">
@@ -11,7 +11,10 @@ function Success() {
           <h1>Sign up to email alerts about disruptions</h1>
         </div>
         <div className="wmnds-col-1 wmnds-col-sm-2-3 wmnds-m-b-xl">
-          <div style={alignCenter} className="wmnds-msg-summary wmnds-msg-summary--success-fill ">
+          <div
+            style={alignCenter}
+            className="wmnds-msg-summary wmnds-msg-summary--success-fill "
+          >
             <div className="wmnds-msg-summary__header">
               <h3 className="wmnds-msg-summary__title">Sign up successful</h3>
             </div>
@@ -32,8 +35,8 @@ function Success() {
           </p>
           <p>
             <a href="#" className="wmds-link">
-              What did you think of this service?{' '}
-            </a>
+              What did you think of this service?
+            </a>{' '}
             (takes 30 seconds)
           </p>
         </div>

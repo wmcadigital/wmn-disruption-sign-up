@@ -2,12 +2,13 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { FormContext } from '../../FormContext';
+import Icon from '../Icon';
 
 function Consent(props) {
   const { setCurrentStep } = props;
   const [formContext, formDispatch] = useContext(FormContext);
-  const { terms, email } = formContext;
-  const { handleSubmit, register, errors } = useForm({
+  const { terms } = formContext;
+  const { handleSubmit } = useForm({
     mode: 'onBlur',
   });
   const onSubmit = (val) => {
@@ -24,7 +25,14 @@ function Consent(props) {
   };
   return (
     <div className="style.consent">
-      <h2>Consent</h2>
+      <h2>Consent
+      <Icon
+              className="wmnds-btn__icon wmnds-btn__icon--right"
+              iconName="general-expand"
+            />
+      </h2>
+
+                
       <div className="wmnds-fe-group">
         <fieldset className="wmnds-fe-fieldset">
           <div className="wmnds-fe-checkboxes">
@@ -42,12 +50,10 @@ function Consent(props) {
                 onChange={(e) => onInputChange(e, 'terms')}
               />
               <span className="wmnds-fe-checkboxes__checkmark">
-                <svg className="wmnds-fe-checkboxes__icon">
-                  <use
-                    xlinkHref="$*cdn/img/wmnds-sprite.min.svg#wmnds-general-checkmark"
-                    href="$*cdn/img/wmnds-sprite.min.svg#wmnds-general-checkmark"
-                  />
-                </svg>
+                <Icon
+                  className="wmnds-fe-checkboxes__icon"
+                  iconName="wmnds-general-checkmark"
+                />
               </span>
             </label>
             <label className="wmnds-fe-checkboxes__container">
@@ -58,7 +64,7 @@ function Consent(props) {
                 checked={formContext.agreedToEmail}
                 value="Option 2"
                 type="checkbox"
-                onChange={(e) => onInputChange(e, 'email')}
+                onChange={(e) => onInputChange(e, 'subscribe')}
               />
               <span className="wmnds-fe-checkboxes__checkmark">
                 <svg className="wmnds-fe-checkboxes__icon">
