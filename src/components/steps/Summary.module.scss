@@ -1,0 +1,25 @@
+.summary {
+  .asLink {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  button.asLink  {
+    font-size: 1rem;
+  } 
+  .details {
+    div {
+      // every third
+      &:nth-child(3n) {
+        text-align: right;
+      }
+      // every third - starting from the second child element
+      &:nth-child(3n + 2) {
+        text-align: center;
+      }
+    }
+  }
+}

@@ -7,9 +7,13 @@ export const FormProvider = (props) => {
 
   // Set intial state of when
   const initialState = {
-    fullName: '',
+    firstName: '',
+    lastName: '',
     email: '',
-    services: []
+    bus: [],
+    tram: [],
+    terms: false,
+    subscribe: false,
   };
 
   // Set up a reducer so we can change state based on centralised logic here
@@ -19,7 +23,13 @@ export const FormProvider = (props) => {
       case 'UPDATE_CUSTOMER_NAME': {
         return {
           ...state,
-          fullName: action.payload,
+          firstName: action.payload,
+        };
+      }
+      case 'UPDATE_CUSTOMER_SURNAME': {
+        return {
+          ...state,
+          lastName: action.payload,
         };
       }
 
@@ -32,13 +42,40 @@ export const FormProvider = (props) => {
       }
 
       // Remove the waypoint by the id
-      case 'ADD_FORM_SERVICES': {
+      case 'SET_SERVICES_BUS': {
         return {
           ...state,
-          services: [ ...state.services, action.payload ]
+          bus: [...state.bus, action.payload],
+
         };
       }
 
+      case 'RESET_SERVICES_BUS': {
+        return {
+          ...state,
+
+          bus: action.payload,
+        };
+      }
+
+      case 'SET_SERVICES_TRAM': {
+        return {
+          ...state,
+          tram: [...state.tram, action.payload],
+        };
+      }
+      case 'AGREE_TO_TERMS': {
+        return {
+          ...state,
+          terms: action.payload,
+        };
+      }
+      case 'AGREE_TO_SUBSCRIBE': {
+        return {
+          ...state,
+          subscribe: action.payload,
+        };
+      }
       // Default should return intial state if error
       default:
         return initialState;
