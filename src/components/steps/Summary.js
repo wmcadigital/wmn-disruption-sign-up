@@ -59,10 +59,21 @@ function Summary(props) {
           </div>
         </div>
       </div>
+      <div className="wmnds-m-b-sm wmnds-grid wmnds-grid--justify-between">
+        <h3 className="wmnds-col-1-3">Services added</h3>
+        <button
+          type="button"
+          className={`${style.asLink} wmnds-link`}
+          onClick={() => {
+            setCurrentStep('AddServices');
+          }}
+        >
+          Change
+        </button>
+      </div>
 
-      <h3>Services added</h3>
       <div>
-        {bus.length > 0 && <h3 className="wmnds-fe-question">Buses</h3>}
+        {bus.length > 0 && <p>Buses</p>}
         <div
           className={` ${
             bus.length > 0 ? 'bdr-primary-bottom wmnds-m-b-xl' : ''
