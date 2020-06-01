@@ -1,16 +1,19 @@
 /* eslint-disable react/button-has-type */
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import Autocomplete from '../autocomplete/Autocomplete';
 import { FormContext } from '../../FormContext';
-import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
 import Bus from './service/Bus';
 
-function AddService({setCurrentStep}) {
+function AddService({ setCurrentStep }) {
   const [triggered, setTriggered] = useState(null);
   const [formState, formDispatch] = useContext(FormContext);
   const { bus } = formState;
+  const backgroundColor = {
+    backgroundColor: '#3c1053',
+  };
 
   const onButtonClick = (e, type) => {
     e.preventDefault();
@@ -35,9 +38,9 @@ function AddService({setCurrentStep}) {
     <div className="wmnds-col-1">
       <h2 className="">Add a service</h2>
       <p className="wmnds-col-2-3">
-        You can sign up to as many services as you would like You will receive
-        an automatic email update for each disruption
+        You can sign up to as many services as you would like.
       </p>
+      <p>You will receive an automatic email update for each disruption</p>
       {triggered !== null ? (
         <Autocomplete service={triggered} setTriggered={setTriggered} />
       ) : (
@@ -63,6 +66,7 @@ function AddService({setCurrentStep}) {
               })}
           </div>
           <button
+            style={backgroundColor}
             className="wmnds-btn wmnds-col-1 wmnds-col-sm-auto wmnds-m-r-lg wmnds-m-t-md"
             onClick={(e) => onButtonClick(e, 'bus')}
           >
