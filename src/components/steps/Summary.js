@@ -1,14 +1,17 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FormContext } from '../../FormContext';
+
 import style from './Summary.module.scss';
 import Bus from './service/Bus';
+import Consent from './Consent';
 
 function Summary(props) {
-  const formContext = useContext(FormContext);
-  const { firstName, lastName, email, bus } = formContext[0];
+  const [formContext] = useContext(FormContext);
+  const { firstName, lastName, email, bus } = formContext;
   const { setCurrentStep } = props;
-  // const {}
+
   return (
     <div className={`wmnds-col-1 ${style.summary}`}>
       <h2>Check your answers before signing up to email alerts</h2>
@@ -38,7 +41,7 @@ function Summary(props) {
           </div>
         </div>
       </div>
-      <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-sm">
+      <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
         <div
           className={`wmnds-m-b-sm wmnds-grid wmnds-grid--justify-between wmnds-col-1 ${style.details}`}
         >
@@ -92,6 +95,7 @@ function Summary(props) {
             })}
         </div>
       </div>
+      <Consent setCurrentStep={setCurrentStep} />
     </div>
   );
 }

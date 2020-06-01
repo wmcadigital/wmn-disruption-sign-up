@@ -4,11 +4,12 @@ import FullName from './steps/FullName';
 import Email from './steps/Email';
 import AddService from './steps/AddService';
 import Summary from './steps/Summary';
+import Success from './steps/Success';
 
 import style from './Form.module.scss';
 
 const Form = () => {
-  const [currentStep, setCurrentStep] = useState('FullName');
+  const [currentStep, setCurrentStep] = useState('Success');
   const handleGoBack = () => {
     if (currentStep === 'Email') {
       return setCurrentStep('FullName');
@@ -25,10 +26,11 @@ const Form = () => {
     Email: <Email setCurrentStep={setCurrentStep} />,
     AddService: <AddService setCurrentStep={setCurrentStep} />,
     Summary: <Summary setCurrentStep={setCurrentStep} />,
+    Success: <Success />,
   };
   return (
     <div className="wmnds-col-1 wmnds-col-md-3-4">
-      {currentStep !== 'FullName' ? (
+      {currentStep !== 'FullName' && currentStep !== 'Success' ? (
         <button
           type="button"
           className={`${style.asLink} wmnds-link wmnds-m-b-sm`}
@@ -39,7 +41,11 @@ const Form = () => {
           Back
         </button>
       ) : null}
-      <div className={`wmnds-p-lg ${style.formWrapper}`}>
+      <div
+        className={` ${
+          currentStep !== 'Success' ? `${style.formWrapper} wmnds-p-lg` : ''
+        }`}
+      >
         <form autoComplete="on">{STEPS[currentStep]}</form>
       </div>
     </div>

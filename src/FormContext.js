@@ -12,6 +12,8 @@ export const FormProvider = (props) => {
     email: '',
     bus: [],
     tram: [],
+    terms: false,
+    email: false,
   };
 
   // Set up a reducer so we can change state based on centralised logic here
@@ -62,7 +64,18 @@ export const FormProvider = (props) => {
           tram: [...state.tram, action.payload],
         };
       }
-
+      case 'AGREE_TO_TERMS': {
+        return {
+          ...state,
+          terms: action.payload,
+        };
+      }
+      case 'AGREE_TO_EMAIL': {
+        return {
+          ...state,
+          email: action.payload,
+        };
+      }
       // Default should return intial state if error
       default:
         return initialState;
