@@ -1,28 +1,51 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 import { FormContext } from '../../FormContext';
 import Icon from '../Icon';
+
+const apiUrl = 'https://rtccdisruptions6zqwajo6s.azurewebsites.net/api/SignUp';
 
 function Consent(props) {
   const { setCurrentStep } = props;
   const [formContext, formDispatch] = useContext(FormContext);
-  const { terms } = formContext;
+  const [dataToSend, setDataToSend] = useState({});
+  const { terms, firstName, lastName, email, bus } = formContext;
   const { handleSubmit } = useForm({
     mode: 'onBlur',
   });
-  const onSubmit = (val) => {
-    console.log(val);
-    setCurrentStep('Success');
+  const onSubmit = () => {
+    axios.post(apiUrl, dataToSend).then(
+      (response) => {
+        console.log(response);
+        setCurrentStep('Success');
+      },
+      (error) => {
+        setCurrentStep('Error');
+      }
+    );
   };
   const onInputChange = (e, tp) => {
-    console.log('formContext[type]', formContext[tp]);
     const type = tp.toUpperCase();
     formDispatch({
       type: `AGREE_TO_${type}`,
       payload: !formContext[tp],
     });
   };
+
+  useEffect(() => {
+    const LineId = bus.map((service) => {
+      return service.serviceId;
+    });
+    const Name = `${firstName} ${lastName}`;
+    setDataToSend({
+      Name,
+      Email: email,
+      LineId,
+    });
+  }, [bus, email, firstName, lastName, terms]);
+
   return (
     <div className="style.consent">
       <h2>
@@ -38,7 +61,12 @@ function Consent(props) {
           <div className="wmnds-fe-checkboxes">
             <label className="wmnds-fe-checkboxes__container">
               I have read the
-              <a href="https://www.wmca.org.uk/policies" target="_blank" title="Read our Privacy Policy">
+              <a
+                href="https://www.wmca.org.uk/policies"
+                target="_blank"
+                title="Read our Privacy Policy"
+                rel="noopener noreferrer"
+              >
                 Privacy Policy
               </a>
               and agree to be emailed about disruptions.
