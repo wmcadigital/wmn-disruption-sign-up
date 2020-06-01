@@ -24,7 +24,7 @@ function Email({ setCurrentStep }) {
     <>
       <SectionStepInfo section="Section 2 of 2" description="About you" />
       <fieldset className="wmnds-fe-fieldset wmnds-m-b-xl">
-        <legend className="wmnds-fe-fieldset__legend wmnds-col-2-3">
+        <legend className="wmnds-fe-fieldset__legend  wmnds-col-1 wmnds-md-2-5">
           <h2 className="">What is your email address?</h2>
           <p>We’ll automatically send disruption alerts to this address</p>
         </legend>

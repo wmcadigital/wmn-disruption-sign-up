@@ -31,8 +31,8 @@ const FullName = ({ setCurrentStep }) => {
     <>
       <SectionStepInfo section="Section 1 of 2" description="About you" />
       <fieldset className="wmnds-fe-fieldset wmnds-m-b-xl">
-        <legend className="wmnds-fe-fieldset__legend wmnds-col-2-3">
-          <h2 className="">What is your name?</h2>
+        <legend className="wmnds-fe-fieldset__legend wmnds-col-1 wmnds-md-2-5">
+          <h2>What is your name?</h2>
           <p>
             We’ll use this information to personalise your email notifications
             so they aren’t marked as spam.

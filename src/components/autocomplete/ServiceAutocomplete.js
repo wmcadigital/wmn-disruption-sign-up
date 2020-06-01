@@ -106,60 +106,60 @@ const BusAutoComplete = (props) => {
   };
   return (
     <>
-      {/* <div className="wmnds-m-b-xl wmnds-col-1"> */}
-      <div
-        className={`wmnds-autocomplete wmnds-grid ${
-          loading ? 'wmnds-is--loading' : ''
-        }`}
-      >
-        <div className="wmnds-col-2-5">
-          <Icon
-            iconName="general-search"
-            className="wmnds-autocomplete__icon"
-          />
-          <div className="wmnds-loader" role="alert" aria-live="assertive">
-            <p className="wmnds-loader__content">Content is loading...</p>
+      <div className="wmnds-m-b-xl wmnds-col-1">
+        <div
+          className={`wmnds-autocomplete wmnds-grid ${
+            loading ? 'wmnds-is--loading' : ''
+          }`}
+        >
+          <div className="wmnds-sm-1 wmnds-md-2-5">
+            <Icon
+              iconName="general-search"
+              className="wmnds-autocomplete__icon"
+            />
+            <div className="wmnds-loader" role="alert" aria-live="assertive">
+              <p className="wmnds-loader__content">Content is loading...</p>
+            </div>
+            <DebounceInput
+              type="text"
+              name="busSearch"
+              placeholder="Search for a service"
+              className="wmnds-fe-input wmnds-autocomplete__input"
+              value={lineNumber || ''}
+              onChange={(e) => updateQuery(e.target.value)}
+              aria-label="Search for a service"
+              debounceTimeout={600}
+              onKeyDown={(e) => handleKeyDown(e)}
+              inputRef={debounceInput}
+            />
           </div>
-          <DebounceInput
-            type="text"
-            name="busSearch"
-            placeholder="Search for a service"
-            className="wmnds-fe-input wmnds-autocomplete__input"
-            value={lineNumber || ''}
-            onChange={(e) => updateQuery(e.target.value)}
-            aria-label="Search for a service"
-            debounceTimeout={600}
-            onKeyDown={(e) => handleKeyDown(e)}
-            inputRef={debounceInput}
-          />
         </div>
-      </div>
 
-      {/* If there is no data.length(results) and the user hasn't submitted a query and the state isn't loading then the user should be displayed with no results message, else show results */}
-      {!loading && errorInfo ? (
-        <Message
-          type="error"
-          title={errorInfo.title}
-          message={errorInfo.message}
-        />
-      ) : (
-        searchResults && (
-          <div className="wmnds-col-2-5">
-            <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
-              {searchResults.map((result) => (
-                <BusAutoCompleteResult
-                  key={result.id}
-                  result={result}
-                  handleKeyDown={handleKeyDown}
-                  type={type}
-                  handleCancel={handleCancel}
-                />
-              ))}
-            </ul>
-          </div>
-        )
-      )}
-      {/* </div> */}
+        {/* If there is no data.length(results) and the user hasn't submitted a query and the state isn't loading then the user should be displayed with no results message, else show results */}
+        {!loading && errorInfo ? (
+          <Message
+            type="error"
+            title={errorInfo.title}
+            message={errorInfo.message}
+          />
+        ) : (
+          searchResults && (
+            <div className="wmnds-sm-1 wmnds-md-2-5">
+              <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
+                {searchResults.map((result) => (
+                  <BusAutoCompleteResult
+                    key={result.id}
+                    result={result}
+                    handleKeyDown={handleKeyDown}
+                    type={type}
+                    handleCancel={handleCancel}
+                  />
+                ))}
+              </ul>
+            </div>
+          )
+        )}
+      </div>
       <button
         type="button"
         className={`wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-xl ${style.wmndsError}`}
