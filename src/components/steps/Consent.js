@@ -25,26 +25,25 @@ function Consent(props) {
   };
   return (
     <div className="style.consent">
-      <h2>Consent
-      <Icon
-              className="wmnds-btn__icon wmnds-btn__icon--right"
-              iconName="general-expand"
-            />
+      <h2>
+        Consent
+        <Icon
+          className="wmnds-btn__icon wmnds-btn__icon--right"
+          iconName="general-expand"
+        />
       </h2>
 
-                
       <div className="wmnds-fe-group">
         <fieldset className="wmnds-fe-fieldset">
           <div className="wmnds-fe-checkboxes">
             <label className="wmnds-fe-checkboxes__container">
               I have read the
-              <a href="#" target="_blank" title="Read our Privacy Policy">
+              <a href="https://www.wmca.org.uk/policies" target="_blank" title="Read our Privacy Policy">
                 Privacy Policy
               </a>
               and agree to be emailed about disruptions.
               <input
                 className="wmnds-fe-checkboxes__input"
-                checked
                 value="Option 1"
                 type="checkbox"
                 onChange={(e) => onInputChange(e, 'terms')}
@@ -52,27 +51,8 @@ function Consent(props) {
               <span className="wmnds-fe-checkboxes__checkmark">
                 <Icon
                   className="wmnds-fe-checkboxes__icon"
-                  iconName="wmnds-general-checkmark"
+                  iconName="general-checkmark"
                 />
-              </span>
-            </label>
-            <label className="wmnds-fe-checkboxes__container">
-              I agree to be emailed by West Midlands Combined Authority about
-              any research opportunities.
-              <input
-                className="wmnds-fe-checkboxes__input"
-                checked={formContext.agreedToEmail}
-                value="Option 2"
-                type="checkbox"
-                onChange={(e) => onInputChange(e, 'subscribe')}
-              />
-              <span className="wmnds-fe-checkboxes__checkmark">
-                <svg className="wmnds-fe-checkboxes__icon">
-                  <use
-                    xlinkHref="$*cdn/img/wmnds-sprite.min.svg#wmnds-general-checkmark"
-                    href="$*cdn/img/wmnds-sprite.min.svg#wmnds-general-checkmark"
-                  />
-                </svg>
               </span>
             </label>
           </div>
