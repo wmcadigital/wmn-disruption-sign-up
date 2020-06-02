@@ -9,7 +9,7 @@ function Bus(props) {
     handleRemove(serviceNumber);
   };
   return (
-    <div className={`${style.serviceWrapper} wmnds-m-b-md`}>
+    <div className={`${style.serviceWrapper}`}>
       <div
         className={`wmnds-disruption-indicator-medium
         wmnds-col-auto wmnds-m-r-md`}
@@ -31,6 +31,7 @@ function Bus(props) {
           />
         </button>
       )}
+      
     </div>
   );
 }

@@ -25,7 +25,7 @@ function Consent(props) {
         setInProgress(false);
       },
       (error) => {
-        console.log(error)
+        console.log(error);
         setCurrentStep('Error');
       }
     );
@@ -48,23 +48,24 @@ function Consent(props) {
       Email: email,
       LineId,
     });
+    setInProgress(false);
   }, [bus, email, firstName, lastName, terms]);
 
   return (
     <div className="style.consent">
-      <h2>
+      <h3>
         Consent
         <Icon
           className="wmnds-btn__icon wmnds-btn__icon--right"
           iconName="general-expand"
         />
-      </h2>
+      </h3>
 
       <div className="wmnds-fe-group">
-        <fieldset className="wmnds-fe-fieldset">
+        <fieldset className="wmnds-fe-fieldset wmnds-m-b-xl">
           <div className="wmnds-fe-checkboxes">
             <label className="wmnds-fe-checkboxes__container">
-              I have read the
+              I have read the{' '}
               <a
                 href="https://www.wmca.org.uk/policies"
                 target="_blank"
@@ -72,7 +73,7 @@ function Consent(props) {
                 rel="noopener noreferrer"
               >
                 Privacy Policy
-              </a>
+              </a>{' '}
               and agree to be emailed about disruptions.
               <input
                 className="wmnds-fe-checkboxes__input"
@@ -89,16 +90,14 @@ function Consent(props) {
             </label>
           </div>
         </fieldset>
-        {terms && (
-          <button
-            disabled={inProgress ? 'disabled' : ''}
-            type="button"
-            className="wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-md"
-            onClick={handleSubmit(onSubmit)}
-          >
-            Accept and sign up
-          </button>
-        )}
+        <button
+          disabled={inProgress || !terms ? 'disabled' : ''}
+          type="button"
+          className="wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-md"
+          onClick={handleSubmit(onSubmit)}
+        >
+          Accept and sign up
+        </button>
       </div>
     </div>
   );

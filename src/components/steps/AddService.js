@@ -58,11 +58,7 @@ function AddService({ setCurrentStep }) {
               <h4 className="wmnds-fe-question">Busses</h4>
             </>
           )}
-          <div
-            className={` ${
-              hasSelectedBuses > 0 ? 'bdr-primary-bottom wmnds-m-b-xl' : ''
-            }`}
-          >
+          <div className={` ${hasSelectedBuses ? 'wmnds-m-b-xl' : ''}`}>
             {formState.bus &&
               formState.bus.map((busRoute) => {
                 return (
@@ -76,6 +72,7 @@ function AddService({ setCurrentStep }) {
                 );
               })}
           </div>
+
           <button
             style={backgroundColor}
             className="wmnds-btn wmnds-col-1 wmnds-col-sm-auto wmnds-col-md-1-2 wmnds-m-r-lg wmnds-m-t-md"
@@ -89,7 +86,7 @@ function AddService({ setCurrentStep }) {
           </button>
         </div>
       )}
-      {hasSelectedBuses > 0 && (
+      {hasSelectedBuses && triggered === null && (
         <button
           type="button"
           className="wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-md"

@@ -10,7 +10,7 @@ function Email({ setCurrentStep }) {
   const { handleSubmit, register, errors } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      Email: email,
+      Email: email || '',
     },
   });
   const onSubmit = (val) => {
@@ -34,18 +34,18 @@ function Email({ setCurrentStep }) {
             errors.Email ? 'wmnds-fe-group--error' : ''
           }`}
         >
-          <label className="wmnds-fe-label" htmlFor="FirstName">
+          <label className="wmnds-fe-label" htmlFor="Email">
             Email address, for example name@example.com
           </label>
           {errors.Email && (
             <span className="wmnds-fe-error-message">
-              {errors.Email.message}
+              {errors.Email && 'Enter your email address'}
             </span>
           )}
           <div className="wmnds-col-1 wmnds-col-md-2-5">
             <input
               ref={register({
-                required: 'Enter yor email address',
+                required: true,
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                   message: 'invalid email address',
