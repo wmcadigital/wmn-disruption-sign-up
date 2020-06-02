@@ -11,17 +11,20 @@ function Consent(props) {
   const { setCurrentStep } = props;
   const [formContext, formDispatch] = useContext(FormContext);
   const [dataToSend, setDataToSend] = useState({});
+  const [inProgress, setInProgress] = useState(false);
   const { terms, firstName, lastName, email, bus } = formContext;
   const { handleSubmit } = useForm({
     mode: 'onBlur',
   });
   const onSubmit = () => {
+    setInProgress(true);
     axios.post(apiUrl, dataToSend).then(
       (response) => {
-        console.log(response);
         setCurrentStep('Success');
+        setInProgress(false);
       },
       (error) => {
+        console.log(error)
         setCurrentStep('Error');
       }
     );
@@ -87,6 +90,7 @@ function Consent(props) {
         </fieldset>
         {terms && (
           <button
+            disabled={inProgress ? 'disabled' : ''}
             type="button"
             className="wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-md"
             onClick={handleSubmit(onSubmit)}

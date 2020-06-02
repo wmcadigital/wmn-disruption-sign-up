@@ -47,7 +47,7 @@ const FullName = ({ setCurrentStep }) => {
           <label className="wmnds-fe-label" htmlFor="FirstName">
             First Name
           </label>
-          <div className="wmnds-col-1 wmnds-col-sm-1-2 wmnds-m-b-lg">
+          <div className="wmnds-col-1 wmnds-col-md-1-2 wmnds-m-b-lg">
             <input
               ref={register({ required: true, maxLength: 20 })}
               className={`wmnds-fe-input ${
