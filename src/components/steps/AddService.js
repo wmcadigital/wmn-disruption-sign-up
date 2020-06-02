@@ -69,7 +69,7 @@ function AddService({ setCurrentStep }) {
           </div>
           <button
             style={backgroundColor}
-            className="wmnds-btn wmnds-col-1 wmnds-col-sm-auto wmnds-m-r-lg wmnds-m-t-md"
+            className="wmnds-btn wmnds-col-1 wmnds-col-sm-auto wmnds-col-md-1-2 wmnds-m-r-lg wmnds-m-t-md"
             onClick={(e) => onButtonClick(e, 'bus')}
           >
             Add bus service

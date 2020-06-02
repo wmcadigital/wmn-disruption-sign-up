@@ -42,7 +42,7 @@ function Email({ setCurrentStep }) {
               {errors.Email.message}
             </span>
           )}
-          <div className="wmnds-col-1 wmnds-col-sm-1-2">
+          <div className="wmnds-col-1 wmnds-col-md-2-5">
             <input
               ref={register({
                 required: 'Enter yor email address',
