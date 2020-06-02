@@ -22,7 +22,7 @@ function Email({ setCurrentStep }) {
   };
   return (
     <>
-      <SectionStepInfo section="Section 2 of 2" description="About you" />
+      <SectionStepInfo section="Section 1 of 2" description="About you" />
       <fieldset className="wmnds-fe-fieldset wmnds-m-b-xl">
         <legend className="wmnds-fe-fieldset__legend  wmnds-col-1 wmnds-md-2-5">
           <h2 className="">What is your email address?</h2>
@@ -37,7 +37,12 @@ function Email({ setCurrentStep }) {
           <label className="wmnds-fe-label" htmlFor="FirstName">
             Email address, for example name@example.com
           </label>
-          <div className="wmnds-col-1 wmnds-col-sm-1-2">
+          {errors.Email && (
+            <span className="wmnds-fe-error-message">
+              {errors.Email.message}
+            </span>
+          )}
+          <div className="wmnds-col-1 wmnds-col-md-2-5">
             <input
               ref={register({
                 required: 'Enter yor email address',
@@ -55,11 +60,6 @@ function Email({ setCurrentStep }) {
               inputMode="text"
               spellCheck="false"
             />
-            {errors.Email && (
-              <span className="wmnds-fe-error-message">
-                {errors.Email.message}
-              </span>
-            )}
           </div>
         </div>
       </fieldset>

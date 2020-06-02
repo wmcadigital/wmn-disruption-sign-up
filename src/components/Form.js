@@ -10,7 +10,7 @@ import Error from './steps/Error';
 import style from './Form.module.scss';
 
 const Form = () => {
-  const [currentStep, setCurrentStep] = useState('FullName');
+  const [currentStep, setCurrentStep] = useState('Success');
   const handleGoBack = () => {
     if (currentStep === 'Email') {
       return setCurrentStep('FullName');

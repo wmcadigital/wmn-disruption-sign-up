@@ -21,17 +21,18 @@ function Success() {
           </div>
         </div>
 
-        <div className="wmnds-col-1 wmnds-col-sm-3-5">
+        <div className="wmnds-col-1 wmnds-col-md-3-5">
           <p>
             We have sent you an email asking you to confirm your subscription.
           </p>
           <h3>What happens next</h3>
           <p>
-            You will receive an email asking you to confirm your subscription.
-            Once you have confirmed, you will start to receive automatic
-            disruption alerts. Unsubscribe at any time using the links in the
-            footer of the email. Add more bus and tram services by starting this
-            process again.
+            You need to confirm your subscription before you start to receive
+            automatic alerts about disruption.
+          </p>
+          <p>
+            You can unsubscribe at any time using the links in the footer of the
+            email.
           </p>
           <p>
             <a
