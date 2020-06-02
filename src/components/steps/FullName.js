@@ -47,6 +47,11 @@ const FullName = ({ setCurrentStep }) => {
           <label className="wmnds-fe-label" htmlFor="FirstName">
             First Name
           </label>
+          {errors.FirstName && (
+            <span className="wmnds-fe-error-message">
+              Enter your first name
+            </span>
+          )}
           <div className="wmnds-col-1 wmnds-col-md-1-2 wmnds-m-b-lg">
             <input
               ref={register({ required: true, maxLength: 20 })}
@@ -59,11 +64,6 @@ const FullName = ({ setCurrentStep }) => {
               inputMode="text"
               spellCheck="false"
             />
-            {errors.FirstName && (
-              <span className="wmnds-fe-error-message">
-                Enter your first name
-              </span>
-            )}
           </div>
         </div>
         <div
@@ -74,6 +74,9 @@ const FullName = ({ setCurrentStep }) => {
           <label className="wmnds-fe-label" htmlFor="LastName">
             Last Name
           </label>
+          {errors.LastName && (
+            <span className="wmnds-fe-error-message">Enter your last name</span>
+          )}
           <div className="wmnds-col-1 wmnds-col-sm-1-2">
             <input
               ref={register({ required: true, maxLength: 20 })}
@@ -86,11 +89,6 @@ const FullName = ({ setCurrentStep }) => {
               inputMode="text"
               spellCheck="false"
             />
-            {errors.LastName && (
-              <span className="wmnds-fe-error-message">
-                Enter your last name
-              </span>
-            )}
           </div>
         </div>
       </fieldset>

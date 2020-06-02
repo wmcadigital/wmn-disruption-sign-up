@@ -37,6 +37,11 @@ function Email({ setCurrentStep }) {
           <label className="wmnds-fe-label" htmlFor="FirstName">
             Email address, for example name@example.com
           </label>
+          {errors.Email && (
+            <span className="wmnds-fe-error-message">
+              {errors.Email.message}
+            </span>
+          )}
           <div className="wmnds-col-1 wmnds-col-sm-1-2">
             <input
               ref={register({
@@ -55,11 +60,6 @@ function Email({ setCurrentStep }) {
               inputMode="text"
               spellCheck="false"
             />
-            {errors.Email && (
-              <span className="wmnds-fe-error-message">
-                {errors.Email.message}
-              </span>
-            )}
           </div>
         </div>
       </fieldset>
