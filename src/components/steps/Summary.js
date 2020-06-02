@@ -63,7 +63,7 @@ function Summary(props) {
         </div>
       </div>
       <div
-        className={`wmnds-m-b-xl wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}
+        className={`wmnds-m-b-sm wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}
       >
         <h3 className="wmnds-col-1-3">Services added</h3>
         <button
@@ -77,8 +77,8 @@ function Summary(props) {
         </button>
       </div>
 
-      <div>
-        {bus.length > 0 && <p>Buses</p>}
+      <div className={style.busses}>
+        {bus.length > 0 && <h4>Buses</h4>}
         <div
           className={` ${
             bus.length > 0 ? 'bdr-primary-bottom wmnds-m-b-xl' : ''

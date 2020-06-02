@@ -11,7 +11,6 @@ import SectionStepInfo from './SectionStepInfo';
 function AddService({ setCurrentStep }) {
   const [triggered, setTriggered] = useState(null);
   const [formState, formDispatch] = useContext(FormContext);
-  const [isSelectingServices, setIsSelectingServices] = useState(false);
   const { bus } = formState;
   const [hasSelectedBuses, setHasSelectedBuses] = useState(false);
   const backgroundColor = {
@@ -21,7 +20,6 @@ function AddService({ setCurrentStep }) {
   const onButtonClick = (e, type) => {
     e.preventDefault();
     setTriggered(type);
-    setIsSelectingServices(true);
   };
 
   const handleSubmit = () => {
@@ -40,7 +38,6 @@ function AddService({ setCurrentStep }) {
 
   useEffect(() => {
     setHasSelectedBuses(bus.length > 0);
-    setIsSelectingServices(false);
   }, [bus]);
 
   return (
@@ -89,7 +86,7 @@ function AddService({ setCurrentStep }) {
           </button>
         </div>
       )}
-      {hasSelectedBuses > 0 && !isSelectingServices && (
+      {hasSelectedBuses > 0 && triggered === null && (
         <button
           type="button"
           className="wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-md"
