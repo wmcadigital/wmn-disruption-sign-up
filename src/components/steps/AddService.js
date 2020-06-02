@@ -17,9 +17,6 @@ function AddService({ setCurrentStep }) {
   const backgroundColor = {
     backgroundColor: '#3c1053',
   };
-  const borderBottom = {
-    borderBottom: '1px solid #f3f2f1',
-  };
 
   const onButtonClick = (e, type) => {
     e.preventDefault();
@@ -77,7 +74,6 @@ function AddService({ setCurrentStep }) {
                   />
                 );
               })}
-            {/* {hasSelectedBuses && <hr />} */}
           </div>
 
           <button

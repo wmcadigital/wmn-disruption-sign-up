@@ -10,7 +10,7 @@ import Error from './steps/Error';
 import style from './Form.module.scss';
 
 const Form = () => {
-  const [currentStep, setCurrentStep] = useState('Summary');
+  const [currentStep, setCurrentStep] = useState('FullName');
   const handleGoBack = () => {
     if (currentStep === 'Email') {
       return setCurrentStep('FullName');
@@ -50,7 +50,14 @@ const Form = () => {
           currentStep !== 'Success' ? `${style.formWrapper} wmnds-p-lg` : ''
         }`}
       >
-        <form autoComplete="on">{STEPS[currentStep]}</form>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+          autoComplete="on"
+        >
+          {STEPS[currentStep]}
+        </form>
       </div>
     </div>
   );
