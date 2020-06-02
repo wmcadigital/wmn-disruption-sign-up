@@ -11,17 +11,20 @@ import SectionStepInfo from './SectionStepInfo';
 function AddService({ setCurrentStep }) {
   const [triggered, setTriggered] = useState(null);
   const [formState, formDispatch] = useContext(FormContext);
-  const [isSelectingServices, setIsSelectingServices] = useState(false)
+  const [isSelectingServices, setIsSelectingServices] = useState(false);
   const { bus } = formState;
   const [hasSelectedBuses, setHasSelectedBuses] = useState(false);
   const backgroundColor = {
     backgroundColor: '#3c1053',
   };
+  const borderBottom = {
+    borderBottom: '1px solid #f3f2f1',
+  };
 
   const onButtonClick = (e, type) => {
     e.preventDefault();
     setTriggered(type);
-    setIsSelectingServices(true)
+    setIsSelectingServices(true);
   };
 
   const handleSubmit = () => {
@@ -40,7 +43,7 @@ function AddService({ setCurrentStep }) {
 
   useEffect(() => {
     setHasSelectedBuses(bus.length > 0);
-    setIsSelectingServices(false)
+    setIsSelectingServices(false);
   }, [bus]);
 
   return (
@@ -61,11 +64,7 @@ function AddService({ setCurrentStep }) {
               <h4 className="wmnds-fe-question">Busses</h4>
             </>
           )}
-          <div
-            className={` ${
-              hasSelectedBuses > 0 ? 'bdr-primary-bottom wmnds-m-b-xl' : ''
-            }`}
-          >
+          <div className={` ${hasSelectedBuses ? 'wmnds-m-b-xl' : ''}`}>
             {formState.bus &&
               formState.bus.map((busRoute) => {
                 return (
@@ -78,7 +77,9 @@ function AddService({ setCurrentStep }) {
                   />
                 );
               })}
+            {/* {hasSelectedBuses && <hr />} */}
           </div>
+
           <button
             style={backgroundColor}
             className="wmnds-btn wmnds-col-1 wmnds-col-sm-auto wmnds-col-md-1-2 wmnds-m-r-lg wmnds-m-t-md"
