@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FormContext } from '../../FormContext';
 import Icon from '../Icon';
 
+
 const apiUrl = 'https://rtccdisruptions6zqwajo6s.azurewebsites.net/api/SignUp';
 
 function Consent(props) {

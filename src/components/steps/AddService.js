@@ -6,6 +6,7 @@ import { FormContext } from '../../FormContext';
 
 import Icon from '../Icon';
 import Bus from './service/Bus';
+import SectionStepInfo from './SectionStepInfo';
 
 function AddService({ setCurrentStep }) {
   const [triggered, setTriggered] = useState(null);
@@ -36,6 +37,7 @@ function AddService({ setCurrentStep }) {
 
   return (
     <div className="wmnds-col-1">
+      <SectionStepInfo section="Section 2 of 2" description="Services" />
       <h2 className="">Add a service</h2>
       <p className="wmnds-col-2-3">
         You can sign up to as many services as you would like.
