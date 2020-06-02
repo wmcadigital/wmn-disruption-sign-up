@@ -17,7 +17,6 @@ function Consent(props) {
   const { handleSubmit } = useForm({
     mode: 'onBlur',
   });
-  console.log('termstermsterms', terms);
   const onSubmit = () => {
     setInProgress(true);
     axios.post(apiUrl, dataToSend).then(

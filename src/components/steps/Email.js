@@ -39,7 +39,7 @@ function Email({ setCurrentStep }) {
           </label>
           {errors.Email && (
             <span className="wmnds-fe-error-message">
-              {errors.Email && 'Enter yor email address'}
+              {errors.Email && 'Enter your email address'}
             </span>
           )}
           <div className="wmnds-col-1 wmnds-col-md-2-5">
