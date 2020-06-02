@@ -15,20 +15,20 @@ function Summary(props) {
   return (
     <div className={`wmnds-col-1 ${style.summary}`}>
       <h2>Check your answers before signing up to email alerts</h2>
-      <p className="wmnds-col-1">
-        You can sign up to as many services as you would like You will receive
-        an automatic email update for each disruption
-      </p>
+      <ul className="wmnds-col-1">
+        <li>You can sign up to as many services as you would like</li>
+        <li>You will receive an automatic email update for each disruption</li>
+      </ul>
       <h3>Personal details</h3>
-      <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-sm">
+      <div className="wmnds-grid wmnds-grid--justify-between">
         <div
-          className={`wmnds-m-b-sm wmnds-grid wmnds-grid--justify-between wmnds-col-1 ${style.details}`}
+          className={`wmnds-grid wmnds-grid--justify-between wmnds-col-1 ${style.details}`}
         >
-          <div className="wmnds-col-1-3 wmnds-p-t-xs wmnds-p-b-xs">
+          <div className="wmnds-col-1-3">
             <strong>Name</strong>
           </div>
-          <div className="wmnds-col-1-3 wmnds-p-t-xs wmnds-p-b-xs">{`${firstName} ${lastName}`}</div>
-          <div className="wmnds-col-1-3 wmnds-p-t-xs wmnds-p-b-xs">
+          <div className="wmnds-col-1-3">{`${firstName} ${lastName}`}</div>
+          <div className="wmnds-col-1-3">
             <button
               type="button"
               className={`${style.asLink} wmnds-link`}
@@ -41,9 +41,9 @@ function Summary(props) {
           </div>
         </div>
       </div>
-      <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
+      <div className="wmnds-grid wmnds-grid--justify-between">
         <div
-          className={`wmnds-m-b-sm wmnds-grid wmnds-grid--justify-between wmnds-col-1 ${style.details}`}
+          className={`wmnds-grid wmnds-grid--justify-between wmnds-col-1 ${style.details}`}
         >
           <div className="wmnds-col-1-3">
             <strong>Contact details</strong>
@@ -62,7 +62,9 @@ function Summary(props) {
           </div>
         </div>
       </div>
-      <div className="wmnds-m-b-sm wmnds-grid wmnds-grid--justify-between">
+      <div
+        className={`wmnds-m-b-xl wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}
+      >
         <h3 className="wmnds-col-1-3">Services added</h3>
         <button
           type="button"
