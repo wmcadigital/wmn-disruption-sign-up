@@ -81,7 +81,7 @@ function Summary(props) {
         {bus.length > 0 && <h4>Buses</h4>}
         <div
           className={` ${
-            bus.length > 0 ? 'bdr-primary-bottom wmnds-m-b-xl' : ''
+            bus.length > 0 ? 'wmnds-m-b-xl' : ''
           }`}
         >
           {bus &&
