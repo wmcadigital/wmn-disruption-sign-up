@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import { FormContext } from '../../FormContext';
+import { FormContextStore } from '../../FormContext';
 import SectionStepInfo from './SectionStepInfo';
 import GenericError from '../GenericError';
 
 function Email({ setCurrentStep }) {
-  const [internalFormState, formDispatch] = useContext(FormContext);
+  const [internalFormState, formDispatch] = useContext(FormContextStore);
   const { email } = internalFormState;
   const { handleSubmit, register, errors } = useForm({
     mode: 'onBlur',
@@ -15,7 +15,6 @@ function Email({ setCurrentStep }) {
     },
   });
   const onSubmit = (val) => {
-    setCurrentStep('AddService');
     formDispatch({
       type: 'UPDATE_FORM_EMAIL',
       payload: val.Email,

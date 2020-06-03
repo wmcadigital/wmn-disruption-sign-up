@@ -1,6 +1,6 @@
 import React, { useReducer, createContext } from 'react';
 
-export const FormContext = createContext(); // Create when context
+export const FormContextStore = createContext(); 
 
 export const FormProvider = (props) => {
   const { children } = props || {};
@@ -14,6 +14,7 @@ export const FormProvider = (props) => {
     tram: [],
     terms: false,
     subscribe: false,
+    currentStep: 1,
   };
 
   // Set up a reducer so we can change state based on centralised logic here
@@ -49,7 +50,6 @@ export const FormProvider = (props) => {
 
         };
       }
-
       case 'RESET_SERVICES_BUS': {
         return {
           ...state,
@@ -76,6 +76,13 @@ export const FormProvider = (props) => {
           subscribe: action.payload,
         };
       }
+      case 'UPDATE_STEP': {
+        return {
+          ...state,
+          currentStep: action.payload,
+        };
+      }
+
       // Default should return intial state if error
       default:
         return initialState;
@@ -87,8 +94,8 @@ export const FormProvider = (props) => {
 
   // Pass state and dispatch in context and make accessible to children it wraps
   return (
-    <FormContext.Provider value={[formState, formDispatch]}>
+    <FormContextStore.Provider value={[formState, formDispatch]}>
       {children}
-    </FormContext.Provider>
+    </FormContextStore.Provider>
   );
 };
