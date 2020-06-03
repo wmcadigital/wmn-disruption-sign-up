@@ -31,6 +31,7 @@ function Bus(props) {
           />
         </button>
       )}
+      
     </div>
   );
 }
