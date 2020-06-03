@@ -1,20 +1,22 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { FormContext } from '../../FormContext';
 import SectionStepInfo from './SectionStepInfo';
+import GenericError from '../GenericError';
 
 const FullName = ({ setCurrentStep }) => {
-  const [formState, formDispatch] = useContext(FormContext);
-  const { firstName, lastName } = formState;
-  const { handleSubmit, register, errors } = useForm({
+  const [internalFormState, formDispatch] = useContext(FormContext);
+  const { firstName, lastName } = internalFormState;
+  const { handleSubmit, register, errors, formState } = useForm({
     mode: 'onBlur',
     defaultValues: {
       FirstName: firstName || '',
       LastName: lastName || '',
     },
   });
+  const { submitCount } = formState;
   const onSubmit = (val) => {
     setCurrentStep('Email');
     formDispatch({
@@ -26,10 +28,12 @@ const FullName = ({ setCurrentStep }) => {
       payload: val.LastName,
     });
   };
-
   return (
     <>
       <SectionStepInfo section="Section 1 of 2" description="About you" />
+      {Object.keys(errors).length > 0 && submitCount > 0 ? (
+        <GenericError />
+      ) : null}
       <fieldset className="wmnds-fe-fieldset wmnds-m-b-xl">
         <legend className="wmnds-fe-fieldset__legend wmnds-col-1">
           <h2>What is your name?</h2>

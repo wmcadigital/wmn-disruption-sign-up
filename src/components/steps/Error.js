@@ -38,27 +38,6 @@ function Error() {
             if you continue to have problems.
           </p>
         </div>
-
-        {/* <div className="wmnds-col-1 wmnds-col-sm-3-5">
-          <h3>Sorry, there is a problem with this service</h3>
-          <p>Try again later.</p>
-          <p>
-            We have not saved your answers. When the service is available, you
-            will have to start again.
-          </p>
-          <p>
-            Contact the{' '}
-            <a
-              href="https://www.wmnetwork.co.uk/get-in-touch/contact-us/"
-              title="Customer Services Team Contact Details"
-              target="_self"
-              className="wmnds-link"
-            >
-              Customer Services team
-            </a>{' '}
-            if you continue to have problems.
-          </p>
-        </div> */}
       </div>
     </div>
   );
