@@ -145,7 +145,6 @@ const BusAutoComplete = (props) => {
           />
         ) : (
           searchResults && (
-
             <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-2-5">
 
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>

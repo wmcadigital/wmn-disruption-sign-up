@@ -5,7 +5,6 @@ import axios from 'axios';
 import { FormContext } from '../../FormContext';
 import Icon from '../Icon';
 
-
 const apiUrl = 'https://rtccdisruptions6zqwajo6s.azurewebsites.net/api/SignUp';
 
 function Consent(props) {
@@ -14,7 +13,7 @@ function Consent(props) {
   const [dataToSend, setDataToSend] = useState({});
   const [inProgress, setInProgress] = useState(false);
   const { terms, firstName, lastName, email, bus } = formContext;
-  const { handleSubmit } = useForm({
+  const { handleSubmit, register, errors } = useForm({
     mode: 'onBlur',
   });
   const onSubmit = () => {
@@ -64,30 +63,45 @@ function Consent(props) {
       <div className="wmnds-fe-group">
         <fieldset className="wmnds-fe-fieldset wmnds-m-b-xl">
           <div className="wmnds-fe-checkboxes">
-            <label className="wmnds-fe-checkboxes__container">
-              I have read the{' '}
-              <a
-                href="https://www.wmca.org.uk/policies"
-                target="_blank"
-                title="Read our Privacy Policy"
-                rel="noopener noreferrer"
-              >
-                Privacy Policy
-              </a>{' '}
-              and agree to be emailed about disruptions.
-              <input
-                className="wmnds-fe-checkboxes__input"
-                value="Option 1"
-                type="checkbox"
-                onChange={(e) => onInputChange(e, 'terms')}
-              />
-              <span className="wmnds-fe-checkboxes__checkmark">
-                <Icon
-                  className="wmnds-fe-checkboxes__icon"
-                  iconName="general-checkmark"
+            <div
+              className={`wmnds-fe-groupp ${
+                errors.Terms ? 'wmnds-fe-group--error' : ''
+              }`}
+            >
+              {errors.Terms && (
+                <span className="wmnds-fe-error-message">
+                  Agree to terms and conditions before continue
+                </span>
+              )}
+              <label className="wmnds-fe-checkboxes__container">
+                I have read the{' '}
+                <a
+                  href="https://www.wmca.org.uk/policies"
+                  target="_blank"
+                  title="Read our Privacy Policy"
+                  rel="noopener noreferrer"
+                >
+                  Privacy Policy
+                </a>{' '}
+                and agree to be emailed about disruptions.
+                <input
+                  ref={register({
+                    required: true,
+                  })}
+                  className="wmnds-fe-checkboxes__input"
+                  value="terms"
+                  name="Terms"
+                  type="checkbox"
+                  onChange={(e) => onInputChange(e, 'terms')}
                 />
-              </span>
-            </label>
+                <span className="wmnds-fe-checkboxes__checkmark">
+                  <Icon
+                    className="wmnds-fe-checkboxes__icon"
+                    iconName="general-checkmark"
+                  />
+                </span>
+              </label>
+            </div>
           </div>
         </fieldset>
         <button

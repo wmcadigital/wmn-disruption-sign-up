@@ -3,10 +3,11 @@ import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { FormContext } from '../../FormContext';
 import SectionStepInfo from './SectionStepInfo';
+import GenericError from '../GenericError';
 
 function Email({ setCurrentStep }) {
-  const [formState, formDispatch] = useContext(FormContext);
-  const { email } = formState;
+  const [internalFormState, formDispatch] = useContext(FormContext);
+  const { email } = internalFormState;
   const { handleSubmit, register, errors } = useForm({
     mode: 'onBlur',
     defaultValues: {
@@ -23,6 +24,7 @@ function Email({ setCurrentStep }) {
   return (
     <>
       <SectionStepInfo section="Section 1 of 2" description="About you" />
+      {Object.keys(errors).length > 0 ? <GenericError /> : null}
       <fieldset className="wmnds-fe-fieldset wmnds-m-b-xl">
         <legend className="wmnds-fe-fieldset__legend wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-2-5">
           <h2 className="">What is your email address?</h2>
