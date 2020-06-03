@@ -12,7 +12,7 @@ import Email from './steps/Email';
 import style from './Form.module.scss';
 
 const Form = () => {
-  const [internalFormState] = useContext(FormContextStore);
+  const [internalFormState, formDataDispatch] = useContext(FormContextStore);
   const methods = useForm({
     mode: 'onBlur',
   }); // Trigger validation onBlur events (config for react hook form lib)
@@ -41,19 +41,23 @@ const Form = () => {
   return (
     <FormContext {...methods}>
       <div className="wmnds-col-1 wmnds-col-md-3-4">
-        {currentStepState !== 'FullName' &&
-        currentStepState !== 'Success' &&
-        currentStepState !== 'Error' ? (
-          <button
-            type="button"
-            className={`${style.asLink} wmnds-link wmnds-m-b-sm`}
-            onClick={() => {
-              handleGoBack();
-            }}
-          >
-            Back
-          </button>
-        ) : null}
+        {/* Show back button if the step is between 1 or 11 */}
+        {currentStep > 1 && currentStep < 3 && (
+          <div className="wmnds-col-1 wmnds-m-b-md">
+            <button
+              type="button"
+              className={`wmnds-link ${style.asLink}`}
+              onClick={() =>
+                formDataDispatch({
+                  type: 'UPDATE_STEP',
+                  payload: currentStep - 1,
+                })
+              }
+            >
+              &lt; Back
+            </button>
+          </div>
+        )}
         <div
           className={` ${
             currentStepState !== 'Success' && currentStepState !== 'Error'
