@@ -8,7 +8,7 @@ function App() {
   const [isFormStarted, setIsFormStarted] = useState(false);
 
   return (
-    <div className="wmnds-container wmnds-p-b-lg wmnds-grid wmnds-p-t-lg">
+    <div className="wmnds-container wmnds-p-b-lg wmnds-grid">
       <Breadcrumb />
       {!isFormStarted ? (
         <Intro setIsFormStarted={setIsFormStarted} />
