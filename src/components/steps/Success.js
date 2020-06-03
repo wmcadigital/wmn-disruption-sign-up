@@ -7,10 +7,10 @@ function Success() {
   return (
     <div className="wmnds-container-alerts-sign-up">
       <div className="wmnds-grid">
-        <div className="wmnds-col-1 wmnds-col-sm-2-3">
+        <div className="wmnds-col-1 wmnds-col-lg-2-3">
           <h1>Sign up to email alerts about disruptions</h1>
         </div>
-        <div className="wmnds-col-1 wmnds-col-sm-2-3 wmnds-m-b-xl">
+        <div className="wmnds-col-1 wmnds-col-lg-2-3 wmnds-m-b-xl">
           <div
             style={alignCenter}
             className="wmnds-msg-summary wmnds-msg-summary--success-fill "
@@ -21,7 +21,7 @@ function Success() {
           </div>
         </div>
 
-        <div className="wmnds-col-1 wmnds-col-md-3-5">
+        <div className="wmnds-col-1 wmnds-col-lg-3-5">
           <p>
             We have sent you an email asking you to confirm your subscription.
           </p>
