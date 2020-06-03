@@ -1,9 +1,6 @@
 import React from 'react';
 
 function Error() {
-  const alignCenter = {
-    textAlign: 'center',
-  };
   return (
     <div className="wmnds-container-alerts-sign-up">
       <div className="wmnds-grid">

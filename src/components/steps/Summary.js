@@ -79,16 +79,7 @@ function Summary(props) {
 
       <div className={style.busses}>
         {bus.length > 0 && <h4>Buses</h4>}
-<<<<<<< HEAD
-        <div
-          className={` ${
-            bus.length > 0 ? 'bdr-primary-bottom wmnds-m-b-xl' : ''
-          }`}
-        >
-=======
         <div className={` ${bus.length > 0 ? 'wmnds-m-b-xl' : ''}`}>
-
->>>>>>> master
           {bus &&
             bus.map((busRoute) => {
               return (

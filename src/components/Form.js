@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import FullName from './steps/FullName';
 import Email from './steps/Email';
@@ -10,11 +10,8 @@ import Error from './steps/Error';
 import style from './Form.module.scss';
 
 const Form = () => {
-<<<<<<< HEAD
-  const [currentStep, setCurrentStep] = useState('Error');
-=======
   const [currentStep, setCurrentStep] = useState('FullName');
->>>>>>> master
+
   const handleGoBack = () => {
     if (currentStep === 'Email') {
       return setCurrentStep('FullName');
