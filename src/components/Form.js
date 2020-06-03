@@ -48,7 +48,9 @@ const Form = () => {
       ) : null}
       <div
         className={` ${
-          currentStep !== 'Success' ? `${style.formWrapper} wmnds-p-lg` : ''
+          currentStep !== 'Success' && currentStep !== 'Error'
+            ? `${style.formWrapper} wmnds-p-lg`
+            : ''
         }`}
       >
         <form
