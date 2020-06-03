@@ -9,7 +9,7 @@ import Error from './steps/Error';
 
 import style from './Form.module.scss';
 
-const Form = ({ SetCurrentStepBreadcrumbs }) => {
+const Form = () => {
   const [currentStep, setCurrentStep] = useState('FullName');
   const handleGoBack = () => {
     if (currentStep === 'Email') {
@@ -30,10 +30,6 @@ const Form = ({ SetCurrentStepBreadcrumbs }) => {
     Success: <Success />,
     Error: <Error />,
   };
-
-  useEffect(() => {
-    SetCurrentStepBreadcrumbs(currentStep);
-  }, [SetCurrentStepBreadcrumbs, currentStep]);
 
   return (
     <div className="wmnds-col-1 wmnds-col-md-3-4">

@@ -54,8 +54,8 @@ function AddService({ setCurrentStep }) {
         <div>
           {hasSelectedBuses && (
             <>
-              <h3 className="wmnds-fe-question">Services added</h3>
-              <h4 className="wmnds-fe-question">Busses</h4>
+              <h3>Services added</h3>
+              <h4>Buses</h4>
             </>
           )}
           <div className={` ${hasSelectedBuses ? 'wmnds-m-b-xl' : ''}`}>
