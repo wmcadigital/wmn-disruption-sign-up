@@ -10,7 +10,7 @@ import Error from './steps/Error';
 import style from './Form.module.scss';
 
 const Form = () => {
-  const [currentStep, setCurrentStep] = useState('FullName');
+  const [currentStep, setCurrentStep] = useState('Error');
   const handleGoBack = () => {
     if (currentStep === 'Email') {
       return setCurrentStep('FullName');
@@ -47,7 +47,9 @@ const Form = () => {
       ) : null}
       <div
         className={` ${
-          currentStep !== 'Success' ? `${style.formWrapper} wmnds-p-lg` : ''
+          currentStep !== 'Success' && currentStep !== 'Error'
+            ? `${style.formWrapper} wmnds-p-lg`
+            : ''
         }`}
       >
         <form
