@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import FullName from './steps/FullName';
 import Email from './steps/Email';
@@ -9,7 +9,7 @@ import Error from './steps/Error';
 
 import style from './Form.module.scss';
 
-const Form = () => {
+const Form = ({ SetCurrentStepBreadcrumbs }) => {
   const [currentStep, setCurrentStep] = useState('FullName');
   const handleGoBack = () => {
     if (currentStep === 'Email') {
@@ -30,6 +30,11 @@ const Form = () => {
     Success: <Success />,
     Error: <Error />,
   };
+
+  useEffect(() => {
+    SetCurrentStepBreadcrumbs(currentStep);
+  }, [SetCurrentStepBreadcrumbs, currentStep]);
+
   return (
     <div className="wmnds-col-1 wmnds-col-md-3-4">
       {currentStep !== 'FullName' &&
