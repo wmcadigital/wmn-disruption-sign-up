@@ -11,7 +11,6 @@ import style from './Form.module.scss';
 
 const Form = () => {
   const [currentStep, setCurrentStep] = useState('FullName');
-
   const handleGoBack = () => {
     if (currentStep === 'Email') {
       return setCurrentStep('FullName');
