@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 
@@ -9,9 +10,7 @@ import BusAutoCompleteResult from './AutoCompleteResult';
 
 import style from './ServiceAutocomplete.module.scss';
 
-const BusAutoComplete = (props) => {
-  const { setTriggered, type } = props;
-
+const BusAutoComplete = ({ mode, setMode }) => {
   const [loading, setLoading] = useState(false); // Set loading state for spinner
   const [errorInfo, setErrorInfo] = useState(); // Placeholder to set error messaging
   const [searchResults, setSearchResults] = useState();
@@ -22,19 +21,21 @@ const BusAutoComplete = (props) => {
   const updateQuery = (query) => {
     setLineNumber(query);
   };
+
   const handleCancel = () => {
-    setTriggered(null);
+    setMode(null);
   };
 
   useEffect(() => {
     let mounted = true; // Set mounted to true (used later to make sure we don't do events as component is unmounting)
+
     const source = axios.CancelToken.source(); // Set source of cancelToken
     // If autocomplete has query
     const { REACT_APP_API_HOST, REACT_APP_API_KEY } = process.env; // Destructure env vars
     if (lineNumber) {
       setLoading(true); // Update loading state to true as we are hitting API
       axios
-        .get(`${REACT_APP_API_HOST}/${type}/v1/service?q=${lineNumber}`, {
+        .get(`${REACT_APP_API_HOST}/${mode}/v1/service?q=${lineNumber}`, {
           headers: {
             'Ocp-Apim-Subscription-Key': REACT_APP_API_KEY,
           },
@@ -70,7 +71,7 @@ const BusAutoComplete = (props) => {
       mounted = false; // Set mounted back to false on unmount
       source.cancel(); // cancel the request
     };
-  }, [lineNumber, type]);
+  }, [lineNumber, mode]);
 
   // Function for handling keyboard/keydown events (controls the up/down arrow on autocomplete results)
   const handleKeyDown = ({ keyCode, target }) => {
@@ -151,7 +152,7 @@ const BusAutoComplete = (props) => {
                     key={result.id}
                     result={result}
                     handleKeyDown={handleKeyDown}
-                    type={type}
+                    type={mode}
                     handleCancel={handleCancel}
                   />
                 ))}
@@ -169,6 +170,11 @@ const BusAutoComplete = (props) => {
       </button>
     </>
   );
+};
+
+BusAutoComplete.propTypes = {
+  mode: PropTypes.string.isRequired,
+  setMode: PropTypes.func.isRequired,
 };
 
 export default BusAutoComplete;

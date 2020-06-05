@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // Import components
-import ServiceAutoComplete from './ServiceAutocomplete';
+import BusAutoComplete from './BusAutoComplete';
 
 const AutoComplete = ({ mode, setMode }) => {
   // Do a switch on the mode, then return the component related to that
@@ -17,13 +18,18 @@ const AutoComplete = ({ mode, setMode }) => {
     return (
       <div className="wmnds-grid">
         {autoCompleteTitle(`Search for a ${mode} service`)}
-        <ServiceAutoComplete type={mode} setMode={setMode} />
+        <BusAutoComplete mode={mode} setMode={setMode} />
       </div>
     );
   };
 
   // Render the correct component based on logic in switch statement above
   return <>{autoCompleteToShow()}</>;
+};
+
+AutoComplete.propTypes = {
+  mode: PropTypes.string.isRequired,
+  setMode: PropTypes.func.isRequired,
 };
 
 export default AutoComplete;
