@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { FormDataContext } from '../../globalState/FormDataContext';
+import { FormDataContext } from 'globalState/FormDataContext';
 
 const AutoCompleteResult = (props) => {
   const { result, handleKeyDown, type, handleCancel } = props || {};
   const [formState, formDispatch] = useContext(FormDataContext);
+
   const updateSelectedService = (serviceId, routeName, serviceNumber) => {
     const shouldUpdate = formState[type].indexOf(serviceId) < 0;
     if (shouldUpdate) {

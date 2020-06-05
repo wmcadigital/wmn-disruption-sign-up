@@ -3,8 +3,8 @@ import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 
 // Import components
-import Message from '../Message';
-import Icon from '../Icon';
+import Message from '../../../Message';
+import Icon from '../../../Icon';
 import BusAutoCompleteResult from './AutoCompleteResult';
 
 import style from './ServiceAutocomplete.module.scss';
@@ -113,7 +113,6 @@ const BusAutoComplete = (props) => {
           }`}
         >
           <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-2-5">
-
             <Icon
               iconName="general-search"
               className="wmnds-autocomplete__icon"
@@ -146,7 +145,6 @@ const BusAutoComplete = (props) => {
         ) : (
           searchResults && (
             <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-2-5">
-
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
                 {searchResults.map((result) => (
                   <BusAutoCompleteResult

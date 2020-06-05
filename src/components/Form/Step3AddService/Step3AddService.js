@@ -1,17 +1,15 @@
 /* eslint-disable react/button-has-type */
-import React, { useState, useContext, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useRef } from 'react';
 // Import custom hooks
 import useStepLogic from 'components/Form/useStepLogic';
 // Import components
-import Autocomplete from '../../autocomplete/Autocomplete';
-import { FormDataContext } from '../../../globalState/FormDataContext';
+import Autocomplete from './autocomplete/Autocomplete';
 
 import Icon from '../../Icon';
 import Bus from './service/Bus';
 import SectionStepInfo from '../../steps/SectionStepInfo';
 
-function Step3AddService({ setCurrentStep }) {
+function Step3AddService() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const {
     register,
@@ -94,9 +92,5 @@ function Step3AddService({ setCurrentStep }) {
     </div>
   );
 }
-
-Step3AddService.propTypes = {
-  setCurrentStep: PropTypes.func.isRequired,
-};
 
 export default Step3AddService;

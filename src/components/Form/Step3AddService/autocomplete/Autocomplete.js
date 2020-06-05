@@ -1,8 +1,4 @@
 import React from 'react';
-
-// Import contexts
-// import { ModeContext } from 'globalState/ModeContext';
-
 // Import components
 import ServiceAutoComplete from './ServiceAutocomplete';
 
