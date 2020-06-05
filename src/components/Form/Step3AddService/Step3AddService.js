@@ -8,6 +8,7 @@ import Autocomplete from './autocomplete/Autocomplete';
 import Icon from '../../Icon';
 import Bus from './service/Bus';
 import SectionStepInfo from '../../steps/SectionStepInfo';
+import Button from 'components/shared/Button/Button';
 
 function Step3AddService() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
@@ -21,9 +22,6 @@ function Step3AddService() {
   const [bus, setBus] = useState([]);
   const [triggered, setTriggered] = useState(null);
   const [hasSelectedBuses, setHasSelectedBuses] = useState(false);
-  const backgroundColor = {
-    backgroundColor: '#3c1053',
-  };
 
   const onButtonClick = (e, type) => {
     e.preventDefault();
@@ -43,7 +41,9 @@ function Step3AddService() {
 
   return (
     <div className="wmnds-col-1">
+      {/* Subsection */}
       <SectionStepInfo section="Section 2 of 2" description="Services" />
+
       <h2 className="">Add a service</h2>
       <p className="wmnds-col-2-3">
         You can sign up to as many services as you would like.
@@ -59,6 +59,7 @@ function Step3AddService() {
               <h4>Buses</h4>
             </>
           )}
+
           <div className={` ${hasSelectedBuses ? 'wmnds-m-b-xl' : ''}`}>
             {bus &&
               bus.map((busRoute) => {
@@ -74,19 +75,16 @@ function Step3AddService() {
               })}
           </div>
 
-          <button
-            style={backgroundColor}
-            className="wmnds-btn wmnds-col-1 wmnds-col-sm-auto wmnds-col-md-1-2 wmnds-m-r-lg wmnds-m-t-md"
+          {/* Add bus service button */}
+          <Button
+            btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1 wmnds-col-md-1-2"
             onClick={(e) => onButtonClick(e, 'bus')}
-          >
-            {`Add ${hasSelectedBuses ? 'another' : ''} bus service`}
-            <Icon
-              className="wmnds-btn__icon wmnds-btn__icon--right"
-              iconName="general-expand"
-            />
-          </button>
+            text={`Add ${hasSelectedBuses ? 'another' : ''} bus service`}
+            iconRight="general-expand"
+          />
         </div>
       )}
+
       {/* Continue button */}
       {hasSelectedBuses && triggered === null && { continueButton }}
     </div>
