@@ -3,12 +3,10 @@ import React, { useState, useEffect, useRef } from 'react';
 // Import custom hooks
 import useStepLogic from 'components/Form/useStepLogic';
 // Import components
+import Button from 'components/shared/Button/Button';
 import Autocomplete from './autocomplete/Autocomplete';
-
-import Icon from '../../Icon';
 import Bus from './service/Bus';
 import SectionStepInfo from '../../steps/SectionStepInfo';
-import Button from 'components/shared/Button/Button';
 
 function Step3AddService() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
@@ -20,13 +18,8 @@ function Step3AddService() {
   } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   const [bus, setBus] = useState([]);
-  const [triggered, setTriggered] = useState(null);
+  const [mode, setMode] = useState(null);
   const [hasSelectedBuses, setHasSelectedBuses] = useState(false);
-
-  const onButtonClick = (e, type) => {
-    e.preventDefault();
-    setTriggered(type);
-  };
 
   const handleRemove = (route) => {
     const filtered = bus.filter((busRoute) => {
@@ -49,8 +42,9 @@ function Step3AddService() {
         You can sign up to as many services as you would like.
       </p>
       <p>You will receive an automatic email update for each disruption</p>
-      {triggered !== null ? (
-        <Autocomplete service={triggered} setTriggered={setTriggered} />
+
+      {mode !== null ? (
+        <Autocomplete mode={mode} setMode={setMode} />
       ) : (
         <div>
           {hasSelectedBuses && (
@@ -78,7 +72,7 @@ function Step3AddService() {
           {/* Add bus service button */}
           <Button
             btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1 wmnds-col-md-1-2"
-            onClick={(e) => onButtonClick(e, 'bus')}
+            onClick={() => setMode('bus')}
             text={`Add ${hasSelectedBuses ? 'another' : ''} bus service`}
             iconRight="general-expand"
           />
@@ -86,7 +80,7 @@ function Step3AddService() {
       )}
 
       {/* Continue button */}
-      {hasSelectedBuses && triggered === null && { continueButton }}
+      {hasSelectedBuses && mode === null && { continueButton }}
     </div>
   );
 }

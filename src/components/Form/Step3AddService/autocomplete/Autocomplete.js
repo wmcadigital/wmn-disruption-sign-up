@@ -2,8 +2,7 @@ import React from 'react';
 // Import components
 import ServiceAutoComplete from './ServiceAutocomplete';
 
-const AutoComplete = (props) => {
-  const { service, setTriggered } = props;
+const AutoComplete = ({ mode, setMode }) => {
   // Do a switch on the mode, then return the component related to that
   const autoCompleteToShow = () => {
     // This is used as a template html for the title of the autocomplete box. It changes depending on the mode
@@ -17,8 +16,8 @@ const AutoComplete = (props) => {
 
     return (
       <div className="wmnds-grid">
-        {autoCompleteTitle(`Search for a ${service} service`)}
-        <ServiceAutoComplete type={service} setTriggered={setTriggered} />
+        {autoCompleteTitle(`Search for a ${mode} service`)}
+        <ServiceAutoComplete type={mode} setMode={setMode} />
       </div>
     );
   };
