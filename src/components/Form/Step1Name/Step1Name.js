@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form';
 // Import custom hooks
 import useStepLogic from '../useStepLogic';
 
-import SectionStepInfo from '../SectionStepInfo';
+import SectionStepInfo from '../../steps/SectionStepInfo';
 
 const Step1Name = () => {
   const formRef = useRef();

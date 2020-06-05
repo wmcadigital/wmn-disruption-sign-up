@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Intro from './components/Intro';
 import Form from './components/Form/Form';
 // Import contexts
-import { FormProvider } from './globalState/FormDataContext';
+import { FormDataProvider } from './globalState/FormDataContext';
 import Breadcrumb from './components/Breadcrumb';
 
 function App() {
@@ -14,9 +14,9 @@ function App() {
       {!isFormStarted ? (
         <Intro setIsFormStarted={setIsFormStarted} />
       ) : (
-        <FormProvider>
+        <FormDataProvider>
           <Form />
-        </FormProvider>
+        </FormDataProvider>
       )}
     </div>
   );
