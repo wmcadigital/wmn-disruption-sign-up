@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useRef } from 'react';
 // Import custom hooks
 import useStepLogic from 'components/Form/useStepLogic';
@@ -6,7 +5,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/steps/SectionStepInfo';
 
-const Step1Name = () => {
+function Email() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const {
     register,
@@ -16,13 +15,16 @@ const Step1Name = () => {
   } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   // Labels used on inputs and for validation
-  const fNameLabel = 'First name';
-  const lNameLabel = 'Last name';
-
-  // Logic used to validate fields
-  const fieldValidation = (name) => {
-    return register({ required: `${name} is required` });
-  };
+  const emailLabel = 'Email address';
+  // Logic used to validate the email field
+  const emailRegex = /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches email regex on server
+  const emailValidation = register({
+    required: `${emailLabel} is required`,
+    pattern: {
+      value: emailRegex,
+      message: `Enter an ${emailLabel.toLowerCase()} in the correct format`,
+    },
+  });
 
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
@@ -34,26 +36,17 @@ const Step1Name = () => {
 
       <fieldset className="wmnds-fe-fieldset">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>What is your name?</h2>
-          <p>
-            We’ll use this information to personalise your email
-            <br /> notifications so they aren’t marked as spam.
-          </p>
+          <h2>What is your email address?</h2>
+          <p>We’ll automatically send disruption alerts to this address</p>
         </legend>
 
         <Input
-          className="wmnds-col-1 wmnds-col-sm-2-3 wmnds-col-lg-1-2"
-          name="Firstname"
-          label={fNameLabel}
-          autocomplete="given-name"
-          fieldValidation={fieldValidation(fNameLabel)}
-        />
-        <Input
-          className="wmnds-col-1 wmnds-col-sm-2-3 wmnds-col-lg-1-2"
-          name="LastName"
-          label={lNameLabel}
-          autocomplete="family-name"
-          fieldValidation={fieldValidation(lNameLabel)}
+          className="wmnds-col-sm-1-2"
+          name="Email"
+          label={`${emailLabel}, for example name@example.com`}
+          type="email"
+          autocomplete="email"
+          fieldValidation={emailValidation}
         />
       </fieldset>
 
@@ -61,6 +54,6 @@ const Step1Name = () => {
       {continueButton}
     </form>
   );
-};
+}
 
-export default Step1Name;
+export default Email;

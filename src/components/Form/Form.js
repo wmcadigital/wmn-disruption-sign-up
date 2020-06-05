@@ -5,7 +5,7 @@ import { useForm, FormContext } from 'react-hook-form';
 import { FormDataContext } from 'globalState/FormDataContext';
 // Import components
 import Step1Name from './Step1Name/Step1Name';
-// import Email from '../steps/Email';
+import Step2Email from './Step2Email/Step2Email';
 // Import custom hooks
 import useSubmitForm from './useSubmitForm';
 // Import styling
@@ -53,6 +53,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
           <div className={`wmnds-p-lg ${s.formWrapper}`}>
             {/* Start of form */}
             {currentStep === 1 && <Step1Name />}
+            {currentStep === 2 && <Step2Email />}
           </div>
         </div>
         {/* If in development based on envs then show form debugging */}
