@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { FormContext } from '../../FormContext';
+import { FormContext } from '../../globalState/FormDataContext';
 
 const AutoCompleteResult = (props) => {
   const { result, handleKeyDown, type, handleCancel } = props || {};
@@ -37,7 +37,7 @@ const AutoCompleteResult = (props) => {
       <div
         className="
         wmnds-disruption-indicator-medium
-        wmnds-col-auto wmnds-m-r-md 
+        wmnds-col-auto wmnds-m-r-md
         "
       >
         {result.serviceNumber}

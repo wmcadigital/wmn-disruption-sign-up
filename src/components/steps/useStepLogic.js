@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form';
 // Import components
 import GenericError from '../GenericError';
 // import Button from 'components/shared/Button/Button';
-import { FormContextStore } from '../../FormContext';
+import { FormContextStore } from '../../globalState/FormDataContext';
 
 const useStepLogic = (formRef) => {
   const { register, errors, triggerValidation, getValues } = useFormContext(); // Get useForm methods

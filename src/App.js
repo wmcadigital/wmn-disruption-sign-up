@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Intro from './components/Intro';
 import Form from './components/Form';
-import { FormProvider } from './FormContext';
+// Import contexts
+import { FormProvider } from './globalState/FormDataContext';
 import Breadcrumb from './components/Breadcrumb';
 
 function App() {

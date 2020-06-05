@@ -2,7 +2,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Autocomplete from '../autocomplete/Autocomplete';
-import { FormContext } from '../../FormContext';
+import { FormContext } from '../../globalState/FormDataContext';
 
 import Icon from '../Icon';
 import Bus from './service/Bus';

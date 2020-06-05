@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import { FormContextStore } from '../../FormContext';
+import { FormContextStore } from '../../globalState/FormDataContext';
 import SectionStepInfo from './SectionStepInfo';
 import GenericError from '../GenericError';
 

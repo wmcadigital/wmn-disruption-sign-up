@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { FormContext } from '../../FormContext';
+import { FormContext } from '../../globalState/FormDataContext';
 import Icon from '../Icon';
 
 const apiUrl = 'https://rtccdisruptions6zqwajo6s.azurewebsites.net/api/SignUp';
