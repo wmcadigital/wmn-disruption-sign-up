@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Intro from './components/Intro';
-import Form from './components/Form';
+import Form from './components/Form/Form';
 // Import contexts
 import { FormProvider } from './globalState/FormDataContext';
 import Breadcrumb from './components/Breadcrumb';

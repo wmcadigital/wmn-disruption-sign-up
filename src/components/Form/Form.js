@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useContext } from 'react';
 import { useForm, FormContext } from 'react-hook-form';
-import { FormContextStore } from '../globalState/FormDataContext';
-import Step1Name from './steps/Step1Name/Step1Name';
-import Email from './steps/Email';
+import { FormContextStore } from '../../globalState/FormDataContext';
+import Step1Name from '../steps/Step1Name/Step1Name';
+import Email from '../steps/Email';
 // import AddService from './steps/AddService';
 // import Summary from './steps/Summary';
 // import Success from './steps/Success';
