@@ -1,17 +1,27 @@
 /* eslint-disable react/button-has-type */
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import Autocomplete from '../autocomplete/Autocomplete';
-import { FormContext } from '../../globalState/FormDataContext';
+// Import custom hooks
+import useStepLogic from 'components/Form/useStepLogic';
+// Import components
+import Autocomplete from '../../autocomplete/Autocomplete';
+import { FormDataContext } from '../../../globalState/FormDataContext';
 
-import Icon from '../Icon';
+import Icon from '../../Icon';
 import Bus from './service/Bus';
-import SectionStepInfo from './SectionStepInfo';
+import SectionStepInfo from '../../steps/SectionStepInfo';
 
-function AddService({ setCurrentStep }) {
+function Step3AddService({ setCurrentStep }) {
+  const formRef = useRef(); // Used so we can keep track of the form DOM element
+  const {
+    register,
+    handleSubmit,
+    showGenericError,
+    continueButton,
+  } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+
+  const [bus, setBus] = useState([]);
   const [triggered, setTriggered] = useState(null);
-  const [formState, formDispatch] = useContext(FormContext);
-  const { bus } = formState;
   const [hasSelectedBuses, setHasSelectedBuses] = useState(false);
   const backgroundColor = {
     backgroundColor: '#3c1053',
@@ -22,18 +32,11 @@ function AddService({ setCurrentStep }) {
     setTriggered(type);
   };
 
-  const handleSubmit = () => {
-    setCurrentStep('Summary');
-  };
-
   const handleRemove = (route) => {
     const filtered = bus.filter((busRoute) => {
       return busRoute.serviceNumber !== route;
     });
-    formDispatch({
-      type: 'RESET_SERVICES_BUS',
-      payload: filtered,
-    });
+    setBus(filtered);
   };
 
   useEffect(() => {
@@ -59,8 +62,8 @@ function AddService({ setCurrentStep }) {
             </>
           )}
           <div className={` ${hasSelectedBuses ? 'wmnds-m-b-xl' : ''}`}>
-            {formState.bus &&
-              formState.bus.map((busRoute) => {
+            {bus &&
+              bus.map((busRoute) => {
                 return (
                   <Bus
                     showRemove
@@ -86,21 +89,14 @@ function AddService({ setCurrentStep }) {
           </button>
         </div>
       )}
-      {hasSelectedBuses && triggered === null && (
-        <button
-          type="button"
-          className="wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-md"
-          onClick={() => handleSubmit()}
-        >
-          Continue
-        </button>
-      )}
+      {/* Continue button */}
+      {hasSelectedBuses && triggered === null && { continueButton }}
     </div>
   );
 }
 
-AddService.propTypes = {
+Step3AddService.propTypes = {
   setCurrentStep: PropTypes.func.isRequired,
 };
 
-export default AddService;
+export default Step3AddService;

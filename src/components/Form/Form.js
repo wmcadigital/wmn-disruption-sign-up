@@ -6,6 +6,7 @@ import { FormDataContext } from 'globalState/FormDataContext';
 // Import components
 import Step1Name from './Step1Name/Step1Name';
 import Step2Email from './Step2Email/Step2Email';
+import Step3AddService from './Step3AddService/Step3AddService';
 // Import custom hooks
 import useSubmitForm from './useSubmitForm';
 // Import styling
@@ -54,6 +55,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
             {/* Start of form */}
             {currentStep === 1 && <Step1Name />}
             {currentStep === 2 && <Step2Email />}
+            {currentStep === 3 && <Step3AddService />}
           </div>
         </div>
         {/* If in development based on envs then show form debugging */}

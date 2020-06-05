@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FormContext } from '../../globalState/FormDataContext';
 
 import style from './Summary.module.scss';
-import Bus from './service/Bus';
+import Bus from '../Form/Step3AddService/service/Bus';
 import Consent from './Consent';
 
 function Summary(props) {

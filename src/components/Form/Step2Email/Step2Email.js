@@ -5,7 +5,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/steps/SectionStepInfo';
 
-function Email() {
+const Step2Email = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const {
     register,
@@ -54,6 +54,6 @@ function Email() {
       {continueButton}
     </form>
   );
-}
+};
 
-export default Email;
+export default Step2Email;

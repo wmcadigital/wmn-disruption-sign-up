@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../../Icon';
+import Icon from '../../../Icon';
 import style from './Bus.module.scss';
 
 function Bus(props) {
@@ -31,7 +31,6 @@ function Bus(props) {
           />
         </button>
       )}
-      
     </div>
   );
 }
