@@ -28,6 +28,11 @@ function Step3AddService() {
     setBus(filtered);
   };
 
+  // Logic used to validate fields
+  const fieldValidation = (name) => {
+    return register({ required: `${name} is required` });
+  };
+
   useEffect(() => {
     setHasSelectedBuses(bus.length > 0);
   }, [bus]);
@@ -68,6 +73,13 @@ function Step3AddService() {
                 );
               })}
           </div>
+
+          <input
+            name={bus}
+            type="hidden"
+            ref={fieldValidation}
+            value={bus || ''}
+          />
 
           {/* Add bus service button */}
           <Button
