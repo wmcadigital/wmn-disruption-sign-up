@@ -44,7 +44,7 @@ function Step3AddService() {
       <p>You will receive an automatic email update for each disruption</p>
 
       {mode !== null ? (
-        <Autocomplete mode={mode} setMode={setMode} />
+        <Autocomplete mode={mode} setMode={setMode} setBus={setBus} />
       ) : (
         <div>
           {hasSelectedBuses && (

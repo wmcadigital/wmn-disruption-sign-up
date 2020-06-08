@@ -10,7 +10,7 @@ import BusAutoCompleteResult from './AutoCompleteResult';
 
 import style from './ServiceAutocomplete.module.scss';
 
-const BusAutoComplete = ({ mode, setMode }) => {
+const BusAutoComplete = ({ mode, setMode, setBus }) => {
   const [loading, setLoading] = useState(false); // Set loading state for spinner
   const [errorInfo, setErrorInfo] = useState(); // Placeholder to set error messaging
   const [searchResults, setSearchResults] = useState();
@@ -28,29 +28,37 @@ const BusAutoComplete = ({ mode, setMode }) => {
 
   useEffect(() => {
     let mounted = true; // Set mounted to true (used later to make sure we don't do events as component is unmounting)
-
     const source = axios.CancelToken.source(); // Set source of cancelToken
     // If autocomplete has query
-    const { REACT_APP_API_HOST, REACT_APP_API_KEY } = process.env; // Destructure env vars
     if (lineNumber) {
+      const { REACT_APP_API_HOST, REACT_APP_API_KEY } = process.env; // Destructure env vars
       setLoading(true); // Update loading state to true as we are hitting API
       axios
-        .get(`${REACT_APP_API_HOST}/${mode}/v1/service?q=${lineNumber}`, {
-          headers: {
-            'Ocp-Apim-Subscription-Key': REACT_APP_API_KEY,
-          },
-          cancelToken: source.token, // Set token with API call, so we can cancel this call on unmount
-        })
+        .get(
+          `${REACT_APP_API_HOST}/bus/v1/service?q=${encodeURI(lineNumber)}`,
+          {
+            headers: {
+              'Ocp-Apim-Subscription-Key': REACT_APP_API_KEY,
+            },
+            cancelToken: source.token, // Set token with API call, so we can cancel this call on unmount
+          }
+        )
         .then((bus) => {
           setLoading(false); // Set loading state to false after data is received
           // If bus.data.services isn't there, then we can't map the results to it, so return null
-          if (bus.data.services.length === 0) {
+          autoCompleteDispatch({
+            type: 'UPDATE_DATA',
+            data: bus.data.services || [],
+          }); // Update data state with services returned
+
+          // If there is no bus data and the component is mounted (must be mounted or we will be creating an event on unmounted error)...
+          if (!bus.data.length && mounted) {
+            // if no bus data, set error
             setErrorInfo({
               title: 'No results found',
-              message: 'Apologies, could not find the service.',
+              message:
+                'Make sure you are looking for the right service, and try again.',
             });
-          } else {
-            setSearchResults(bus.data.services);
           }
         })
         .catch((error) => {
@@ -65,13 +73,15 @@ const BusAutoComplete = ({ mode, setMode }) => {
             console.log({ error });
           }
         });
+    } else {
+      setLoading(false);
     }
     // Unmount / cleanup
     return () => {
       mounted = false; // Set mounted back to false on unmount
       source.cancel(); // cancel the request
     };
-  }, [lineNumber, mode]);
+  }, [autoCompleteDispatch, lineNumber, autoCompleteState.selectedService.id]);
 
   // Function for handling keyboard/keydown events (controls the up/down arrow on autocomplete results)
   const handleKeyDown = ({ keyCode, target }) => {
@@ -175,6 +185,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
 BusAutoComplete.propTypes = {
   mode: PropTypes.string.isRequired,
   setMode: PropTypes.func.isRequired,
+  setBus: PropTypes.func.isRequired,
 };
 
 export default BusAutoComplete;
