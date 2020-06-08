@@ -46,10 +46,6 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
         .then((bus) => {
           setLoading(false); // Set loading state to false after data is received
           // If bus.data.services isn't there, then we can't map the results to it, so return null
-          autoCompleteDispatch({
-            type: 'UPDATE_DATA',
-            data: bus.data.services || [],
-          }); // Update data state with services returned
 
           // If there is no bus data and the component is mounted (must be mounted or we will be creating an event on unmounted error)...
           if (!bus.data.length && mounted) {
@@ -81,7 +77,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
       mounted = false; // Set mounted back to false on unmount
       source.cancel(); // cancel the request
     };
-  }, [autoCompleteDispatch, lineNumber, autoCompleteState.selectedService.id]);
+  }, [lineNumber]);
 
   // Function for handling keyboard/keydown events (controls the up/down arrow on autocomplete results)
   const handleKeyDown = ({ keyCode, target }) => {
@@ -164,6 +160,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
                     handleKeyDown={handleKeyDown}
                     type={mode}
                     handleCancel={handleCancel}
+                    setBus={setBus}
                   />
                 ))}
               </ul>

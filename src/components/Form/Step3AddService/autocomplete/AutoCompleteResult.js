@@ -2,17 +2,16 @@ import React, { useContext } from 'react';
 import { FormDataContext } from 'globalState/FormDataContext';
 
 const AutoCompleteResult = (props) => {
-  const { result, handleKeyDown, type, handleCancel } = props || {};
+  const { result, handleKeyDown, type, handleCancel, setBus } = props || {};
   const [formState, formDispatch] = useContext(FormDataContext);
 
   const updateSelectedService = (serviceId, routeName, serviceNumber) => {
     const shouldUpdate = formState[type].indexOf(serviceId) < 0;
     if (shouldUpdate) {
-      const dispatchName = `SET_SERVICES_${type.toUpperCase()}`;
-      formDispatch({
-        type: dispatchName,
-        payload: { serviceId, routeName, serviceNumber },
-      });
+      setBus((prevState) => [
+        ...prevState,
+        { serviceId, routeName, serviceNumber },
+      ]);
       handleCancel();
     }
   };
