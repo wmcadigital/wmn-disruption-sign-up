@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { FormContext } from '../../FormContext';
+import { FormDataContext } from '../../globalState/FormDataContext';
 import Icon from '../Icon';
 
 const apiUrl = 'https://rtccdisruptions6zqwajo6s.azurewebsites.net/api/SignUp';
 
 function Consent(props) {
   const { setCurrentStep } = props;
-  const [formContext, formDispatch] = useContext(FormContext);
+  const [formContext, formDispatch] = useContext(FormDataContext);
   const [dataToSend, setDataToSend] = useState({});
   const [inProgress, setInProgress] = useState(false);
   const { terms, firstName, lastName, email, bus } = formContext;

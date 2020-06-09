@@ -1,0 +1,21 @@
+@import '../../assets/styles/common.scss';
+
+.formWrapper {
+  background-color: white;
+
+  @media all and (max-width: 767px) {
+    margin: 0 -0.75rem;
+  }
+}
+
+.asLink {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+}
+button.asLink {
+  font-size: 1rem;
+  &:before {
+    content: '< ';
+  }
+}

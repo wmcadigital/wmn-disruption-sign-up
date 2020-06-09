@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { FormContext } from '../../FormContext';
+import { FormContext } from '../../globalState/FormDataContext';
 
 import style from './Summary.module.scss';
-import Bus from './service/Bus';
+import Bus from '../shared/transportServiceType/Bus';
 import Consent from './Consent';
 
 function Summary(props) {
