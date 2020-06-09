@@ -35,8 +35,8 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <FormContext {...methods}>
         <div className="wmnds-col-1 wmnds-col-md-3-4 ">
-          {/* Show back button if the step is between 1 or 11 */}
-          {currentStep > 1 && currentStep < 11 && (
+          {/* Show back button if the step is between 1 or 4 */}
+          {currentStep > 1 && currentStep < 4 && (
             <div className="wmnds-col-1 wmnds-m-b-md">
               <button
                 type="button"

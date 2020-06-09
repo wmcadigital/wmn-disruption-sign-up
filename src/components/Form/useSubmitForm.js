@@ -8,38 +8,13 @@ const useSubmitForm = (setFormSubmitStatus) => {
   const [APIErrorMessage, setAPIErrorMessage] = useState(null);
 
   // Destructure values from our formDataState (get all users values)
-  const {
-    BankAccountName,
-    BankAccountNumber,
-    BankAccountSortCode,
-    DateOfBirth,
-    DDReinsatementConsent,
-    DirectDebitNumber,
-    Email,
-    Firstname,
-    Lastname,
-    OneOffPaymentConsent,
-    PhoneNumber,
-    SwiftCardNumber,
-    TravelResumptionDate,
-  } = formDataState.formData;
+  const { Email, Firstname, Lastname } = formDataState.formData;
 
   // Map all destructured vals above to an object we will send to API
   const dataToSend = {
-    BankAccountName,
-    BankAccountNumber,
-    BankAccountSortCode,
-    DateOfBirth,
-    DDReinsatementConsent,
-    DirectDebitNumber,
     Email,
     Firstname,
     Lastname,
-    OneOffPaymentConsent,
-    PhoneNumber,
-    Postcode: '',
-    SwiftCardNumber,
-    TravelResumptionDate,
   };
 
   const handleSubmit = (event) => {
