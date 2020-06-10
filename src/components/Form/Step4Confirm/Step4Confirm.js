@@ -11,11 +11,8 @@ import Button from '../../shared/Button/Button';
 import InputCheckbox from '../../shared/FormElements/Input/InputCheckbox';
 
 function Summary({ setFormSubmitStatus }) {
-  const formRef = useRef();
-  const { register } = useStepLogic(formRef);
-
   // Get handleSubmit fn and isFetching from custom hook which handles submitting data to API (this is used in the last step[4])
-  const { handleSubmit, isFetching, APIErrorMessage } = useSubmitForm(
+  const { handleSubmit, isFetching, APIErrorMessage, register } = useSubmitForm(
     setFormSubmitStatus
   );
 

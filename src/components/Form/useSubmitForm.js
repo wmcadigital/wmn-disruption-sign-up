@@ -5,7 +5,7 @@ import { FormDataContext } from 'globalState/FormDataContext';
 
 const useSubmitForm = (setFormSubmitStatus) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
-  const { triggerValidation, getValues } = useFormContext(); // Get useForm methods
+  const { triggerValidation, getValues, register } = useFormContext(); // Get useForm methods
   const [isFetching, setIsFetching] = useState(false);
   const [APIErrorMessage, setAPIErrorMessage] = useState(null);
   const [isContinuePressed, setIsContinuePressed] = useState(false); // State for tracking if continue has been pressed
@@ -99,6 +99,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     handleSubmit,
     isFetching,
     APIErrorMessage,
+    register,
   };
 };
 
