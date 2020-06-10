@@ -99,7 +99,7 @@ function Summary(props) {
 }
 
 Summary.propTypes = {
-  setCurrentStep: PropTypes.func.isRequired,
+  setCurrentStep: PropTypes.bool.isRequired,
 };
 
 export default Summary;

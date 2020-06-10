@@ -10,6 +10,7 @@ export const FormDataProvider = (props) => {
     currentStep: 1,
     formData: {},
     formRef: '',
+    hasReachedConfirmation: false,
   };
 
   // Set up a reducer so we can change state based on centralised logic here
@@ -18,6 +19,7 @@ export const FormDataProvider = (props) => {
     switch (action.type) {
       // Remove the waypoint by the id
       case 'UPDATE_FORM_DATA': {
+        console.log('UPDATE_FORM_DATA')
         return {
           ...state,
           formData: { ...state.formData, ...action.payload },
@@ -26,6 +28,7 @@ export const FormDataProvider = (props) => {
 
       // Remove the waypoint by the id
       case 'UPDATE_STEP': {
+        console.log('UPDATE_STEP')
         return {
           ...state,
           currentStep: action.payload,
@@ -37,6 +40,13 @@ export const FormDataProvider = (props) => {
         return {
           ...state,
           formRef: action.payload,
+        };
+      }
+      case 'REACHED_CONFIRMATION': {
+        console.log('REACHED_CONFIRMATION')
+        return {
+          ...state,
+          hasReachedConfirmation: action.payload,
         };
       }
 

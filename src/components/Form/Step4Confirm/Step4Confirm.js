@@ -1,20 +1,27 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 // Import custom hooks
 import useSubmitForm from '../useSubmitForm';
-import useStepLogic from '../useStepLogic';
 import SummarySection from './Step4SummarySection';
 import Step4ConsentForm from './Step4ConsentForm';
-// import Consent from '../../steps/Consent';
+import { FormDataContext } from '../../../globalState/FormDataContext';
 import Button from '../../shared/Button/Button';
-import InputCheckbox from '../../shared/FormElements/Input/InputCheckbox';
 
-function Summary({ setFormSubmitStatus }) {
+function Step4Confirm({ setFormSubmitStatus }) {
+  const [formDataState, formDataDispatch] = useContext(FormDataContext);
   // Get handleSubmit fn and isFetching from custom hook which handles submitting data to API (this is used in the last step[4])
-  const { handleSubmit, isFetching, APIErrorMessage, register } = useSubmitForm(
+  const { handleSubmit, isFetching, APIErrorMessage } = useSubmitForm(
     setFormSubmitStatus
   );
+  useEffect(() => {
+    if (formDataState.currentStep === 4) {
+      formDataDispatch({
+        type: 'REACHED_CONFIRMATION',
+        payload: true,
+      });
+    }
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} data-private>
@@ -39,8 +46,8 @@ function Summary({ setFormSubmitStatus }) {
   );
 }
 
-Summary.propTypes = {
-  setFormSubmitStatus: PropTypes.bool.isRequired,
+Step4Confirm.propTypes = {
+  setFormSubmitStatus: PropTypes.func.isRequired,
 };
 
-export default Summary;
+export default Step4Confirm;

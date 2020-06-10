@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useForm, FormContext } from 'react-hook-form';
 // Import contexts
@@ -15,7 +15,6 @@ import s from './Form.module.scss';
 const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
   const { currentStep } = formDataState; // Destructure step from state
-  console.log(formSubmitStatus);
   const methods = useForm({
     mode: 'onBlur',
   }); // Trigger validation onBlur events (config for react hook form lib)
@@ -23,6 +22,8 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   // Show debug options for below (this should be deleted on release)
   const debugStepOptions = [1, 2, 3, 4];
 
+
+  // Run! Like go get some data from an API.
   return (
     <>
       {/* pass all methods into the context */}

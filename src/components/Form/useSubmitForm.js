@@ -25,6 +25,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     // Validation
     const result = await triggerValidation();
     setIsContinuePressed(true);
+    console.log('in use submit', getValues());
     // if no errors
     if (result) {
       formDataDispatch({ type: 'UPDATE_FORM_DATA', payload: getValues() }); // Map to global state
