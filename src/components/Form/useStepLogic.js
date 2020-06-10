@@ -19,6 +19,7 @@ const useStepLogic = (formRef, updateStep) => {
     // if no errors
     if (result) {
       formDataDispatch({ type: 'UPDATE_FORM_DATA', payload: getValues() });
+
       if (updateStep) {
         formDataDispatch({
           type: 'UPDATE_STEP',

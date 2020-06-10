@@ -23,6 +23,10 @@ const Step4ConsentForm = () => {
 
   const checkboxValidation = register({
     required: 'Agree to terms and conditions before continue',
+    validate: {
+      shouldBeTrue: (val) =>
+        val === true || 'Agree to terms and conditions before continue',
+    },
   });
 
   return (
@@ -31,11 +35,10 @@ const Step4ConsentForm = () => {
         name="Terms"
         label="label"
         type="checkbox"
-        value={false}
         fieldValidation={checkboxValidation}
-        onChange={(e) => {
-          handleSubmit(e);
-        }}
+        // onChange={(e) => {
+        //   handleSubmit(e);
+        // }}
       />
     </fieldset>
   );

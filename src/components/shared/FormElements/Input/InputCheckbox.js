@@ -44,11 +44,10 @@ const InputCheckbox = ({ fieldValidation, label, name, onChange }) => {
         and agree to be emailed about disruptions.
         <input
           ref={fieldValidation}
+          defaultValue={formDataState.formData[name]}
           className="wmnds-fe-checkboxes__input"
-          value="terms"
           name="Terms"
           type="checkbox"
-          checked={errors[name] === ''}
           onChange={onChange}
         />
         <span className="wmnds-fe-checkboxes__checkmark">

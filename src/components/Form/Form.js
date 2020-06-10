@@ -8,8 +8,7 @@ import Step1Name from './Step1Name/Step1Name';
 import Step2Email from './Step2Email/Step2Email';
 import Step3AddService from './Step3AddService/Step3AddService';
 import Step4Confirm from './Step4Confirm/Step4Confirm';
-// Import custom hooks
-import useSubmitForm from './useSubmitForm';
+
 // Import styling
 import s from './Form.module.scss';
 
@@ -20,11 +19,6 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   const methods = useForm({
     mode: 'onBlur',
   }); // Trigger validation onBlur events (config for react hook form lib)
-
-  // Get handleSubmit fn and isFetching from custom hook which handles submitting data to API (this is used in the last step[4])
-  const { handleSubmit, isFetching, APIErrorMessage } = useSubmitForm(
-    setFormSubmitStatus
-  );
 
   // Show debug options for below (this should be deleted on release)
   const debugStepOptions = [1, 2, 3, 4];
@@ -58,11 +52,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
             {currentStep === 2 && <Step2Email />}
             {currentStep === 3 && <Step3AddService />}
             {currentStep === 4 && (
-              <Step4Confirm
-                isFetching={isFetching}
-                APIErrorMessage={APIErrorMessage}
-                handleSubmit={handleSubmit}
-              />
+              <Step4Confirm setFormSubmitStatus={setFormSubmitStatus} />
             )}
           </div>
         </div>
