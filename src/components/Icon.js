@@ -6,6 +6,7 @@ import svgSprite from '../assets/svg/svg-sprite.min.svg';
 // So we Ajax the SVG in with a snippet at the bottom of public/index.html
 
 const Icon = ({ className, iconName }) => {
+  console.log(svgSprite);
   return (
     <svg className={className}>
       <use

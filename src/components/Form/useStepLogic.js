@@ -6,7 +6,7 @@ import { FormDataContext } from 'globalState/FormDataContext';
 import GenericError from 'components/shared/Errors/GenericError';
 import Button from 'components/shared/Button/Button';
 
-const useStepLogic = (formRef) => {
+const useStepLogic = (formRef, updateStep) => {
   const { register, errors, triggerValidation, getValues } = useFormContext(); // Get useForm methods
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
   const [isContinuePressed, setIsContinuePressed] = useState(false); // State for tracking if continue has been pressed
@@ -19,10 +19,12 @@ const useStepLogic = (formRef) => {
     // if no errors
     if (result) {
       formDataDispatch({ type: 'UPDATE_FORM_DATA', payload: getValues() });
-      formDataDispatch({
-        type: 'UPDATE_STEP',
-        payload: formDataState.currentStep + 1,
-      });
+      if (updateStep) {
+        formDataDispatch({
+          type: 'UPDATE_STEP',
+          payload: formDataState.currentStep + 1,
+        });
+      }
     }
     // else, errors are true...
     else {
