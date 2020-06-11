@@ -27,7 +27,8 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
   };
 
   useEffect(() => {
-    let mounted = true; // Set mounted to true (used later to make sure we don't do events as component is unmounting)
+    // eslint-disable-next-line no-unused-vars
+    const mounted = true; // Set mounted to true (used later to make sure we don't do events as component is unmounting)
     const source = axios.CancelToken.source(); // Set source of cancelToken
     // If autocomplete has query
     if (lineNumber) {
@@ -46,15 +47,13 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
         .then((bus) => {
           setLoading(false); // Set loading state to false after data is received
           // If bus.data.services isn't there, then we can't map the results to it, so return null
-
-          // If there is no bus data and the component is mounted (must be mounted or we will be creating an event on unmounted error)...
-          if (!bus.data.length && mounted) {
-            // if no bus data, set error
+          if (bus.data.services.length === 0) {
             setErrorInfo({
               title: 'No results found',
-              message:
-                'Make sure you are looking for the right service, and try again.',
+              message: 'Apologies, could not find the service.',
             });
+          } else {
+            setSearchResults(bus.data.services);
           }
         })
         .catch((error) => {

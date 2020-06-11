@@ -8,7 +8,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
   const { triggerValidation, getValues, register } = useFormContext(); // Get useForm methods
   const [isFetching, setIsFetching] = useState(false);
   const [APIErrorMessage, setAPIErrorMessage] = useState(null);
-  const [isContinuePressed, setIsContinuePressed] = useState(false); // State for tracking if continue has been pressed
+  // const [isContinuePressed, setIsContinuePressed] = useState(false); // State for tracking if continue has been pressed
 
   // Destructure values from our formDataState (get all users values)
   const { Email, Firstname, Lastname } = formDataState.formData;
@@ -24,8 +24,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     event.preventDefault(); // Prevent default form submission method
     // Validation
     const result = await triggerValidation();
-    setIsContinuePressed(true);
-    console.log('in use submit', getValues());
+    // setIsContinuePressed(true);
     // if no errors
     if (result) {
       formDataDispatch({ type: 'UPDATE_FORM_DATA', payload: getValues() }); // Map to global state
@@ -87,11 +86,6 @@ const useSubmitForm = (setFormSubmitStatus) => {
           setFormSubmitStatus(false); // Set form status to error
           window.scrollTo(0, 0); // Scroll to top of page
         });
-    }
-    // else, errors are true...
-    else {
-      // window.scrollTo(0, formRef.current.offsetTop); // Scroll to top of form
-      alert('has error');
     }
   };
 

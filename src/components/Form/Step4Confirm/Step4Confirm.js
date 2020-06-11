@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 // Import custom hooks
 import useSubmitForm from '../useSubmitForm';
@@ -21,7 +21,7 @@ function Step4Confirm({ setFormSubmitStatus }) {
         payload: true,
       });
     }
-  }, []);
+  }, [formDataDispatch, formDataState.currentStep]);
 
   return (
     <form onSubmit={handleSubmit} data-private>

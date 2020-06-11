@@ -3,7 +3,7 @@ import { FormDataContext } from 'globalState/FormDataContext';
 
 const AutoCompleteResult = (props) => {
   const { result, handleKeyDown, type, handleCancel, setBus } = props || {};
-  const [formState, formDispatch] = useContext(FormDataContext);
+  const formState = useContext(FormDataContext);
 
   const updateSelectedService = (serviceId, routeName, serviceNumber) => {
     const shouldUpdate = formState[type].indexOf(serviceId) < 0;
