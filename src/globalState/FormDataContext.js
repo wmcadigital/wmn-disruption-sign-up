@@ -34,7 +34,6 @@ export const FormDataProvider = (props) => {
           currentStep: action.payload,
         };
       }
-
       // Used to add the form submission reference(got from API submit) to state
       case 'ADD_FORM_REF': {
         return {
