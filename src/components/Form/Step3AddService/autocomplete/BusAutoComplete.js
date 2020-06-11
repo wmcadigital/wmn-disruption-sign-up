@@ -28,7 +28,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
-    const mounted = true; // Set mounted to true (used later to make sure we don't do events as component is unmounting)
+    let mounted = true; // Set mounted to true (used later to make sure we don't do events as component is unmounting)
     const source = axios.CancelToken.source(); // Set source of cancelToken
     // If autocomplete has query
     if (lineNumber) {

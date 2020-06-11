@@ -35,7 +35,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
             <div className="wmnds-col-1 wmnds-m-b-md">
               <button
                 type="button"
-                className={`wmnds-link ${s.changeBtn}`}
+                className={`wmnds-link ${s.asLink}`}
                 onClick={() =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
