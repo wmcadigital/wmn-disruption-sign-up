@@ -1,13 +1,12 @@
 import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
 // Import custom hooks
 import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import InputCheckbox from '../../shared/FormElements/Input/InputCheckbox';
 
-const Step4ConsentForm = ({checkboxValidationObj}) => {
+const Step4ConsentForm = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const { register, handleSubmit } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { register } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   // Labels used on inputs and for validation
   // const checkBoxLabel = `I have read the${' '}
