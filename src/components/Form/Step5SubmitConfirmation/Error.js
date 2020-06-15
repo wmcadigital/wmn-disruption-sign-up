@@ -7,16 +7,6 @@ function Error() {
         <div className="wmnds-col-1 wmnds-col-sm-2-3">
           <h1>Sign up to email alerts about disruptions</h1>
         </div>
-        {/* <div className="wmnds-col-1 wmnds-col-sm-2-3 wmnds-m-b-xl">
-          <div
-            style={alignCenter}
-            className="wmnds-msg-summary wmnds-msg-summary--error "
-          >
-            <div className="wmnds-msg-summary__header">
-              <h3 className="wmnds-msg-summary__title">Sign up error</h3>
-            </div>
-          </div>
-        </div> */}
         <div className="wmnds-col-1 wmnds-col-md-3-4 wmnds-col-lg-1-2">
           {/* Error message */}
           <h3>Sorry, there is a problem with this service</h3>

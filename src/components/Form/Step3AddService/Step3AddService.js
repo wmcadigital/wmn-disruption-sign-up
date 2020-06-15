@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 import React, { useState, useEffect, useContext } from 'react';
 import Button from 'components/shared/Button/Button';
-import { getNodeText } from '@testing-library/react';
+// import { getNodeText } from '@testing-library/react';
 import { FormDataContext } from '../../../globalState/FormDataContext';
 // Import custom hooks
 // import useStepLogic from 'components/Form/useStepLogic';
@@ -50,11 +50,7 @@ function Step3AddService() {
     });
     formDataDispatch({
       type: 'UPDATE_FORM_DATA',
-      payload: { LineId: busServiceId },
-    });
-    formDataDispatch({
-      type: 'UPDATE_FORM_DATA',
-      payload: { BusServices: bus },
+      payload: { LineId: busServiceId, BusServices: bus },
     });
   }, [bus, formDataDispatch, mode]);
 

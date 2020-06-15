@@ -2,18 +2,20 @@ import React, { useContext } from 'react';
 import { FormDataContext } from 'globalState/FormDataContext';
 
 const AutoCompleteResult = (props) => {
-  const { result, handleKeyDown, type, handleCancel, setBus } = props || {};
-  const formState = useContext(FormDataContext);
+  const { result, handleKeyDown, handleCancel, setBus } = props || {};
+  const [formState] = useContext(FormDataContext);
+
+  console.log('formState.formData', formState);
 
   const updateSelectedService = (serviceId, routeName, serviceNumber) => {
-    // const shouldUpdate = formState.formData[type].indexOf(serviceId) < 0;
-    // if (shouldUpdate) {
-    setBus((prevState) => [
-      ...prevState,
-      { serviceId, routeName, serviceNumber },
-    ]);
-    handleCancel();
-    // }
+    const shouldUpdate = formState.formData.LineId.indexOf(serviceId) < 0;
+    if (shouldUpdate) {
+      setBus((prevState) => [
+        ...prevState,
+        { serviceId, routeName, serviceNumber },
+      ]);
+      handleCancel();
+    }
   };
   // Return service with the above disruption logic, replace type and iconName with correc icon and class depending on disruption type
   return (
