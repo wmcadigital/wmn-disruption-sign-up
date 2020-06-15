@@ -19,7 +19,6 @@ export const FormDataProvider = (props) => {
     switch (action.type) {
       // Remove the waypoint by the id
       case 'UPDATE_FORM_DATA': {
-        console.log('UPDATE_FORM_DATA')
         return {
           ...state,
           formData: { ...state.formData, ...action.payload },
@@ -28,7 +27,6 @@ export const FormDataProvider = (props) => {
 
       // Remove the waypoint by the id
       case 'UPDATE_STEP': {
-        console.log('UPDATE_STEP')
         return {
           ...state,
           currentStep: action.payload,
@@ -42,7 +40,7 @@ export const FormDataProvider = (props) => {
         };
       }
       case 'REACHED_CONFIRMATION': {
-        console.log('REACHED_CONFIRMATION')
+
         return {
           ...state,
           hasReachedConfirmation: action.payload,

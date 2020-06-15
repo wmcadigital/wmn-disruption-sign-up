@@ -5,7 +5,7 @@ import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/p
 
 // Import components
 import Message from '../../../Message';
-import Icon from '../../../Icon-old';
+import Icon from '../../../shared/Icon/Icon';
 import BusAutoCompleteResult from './AutoCompleteResult';
 
 import { FormDataContext } from '../../../../globalState/FormDataContext';
@@ -24,6 +24,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
   const busId = formDataState.formData.LineId;
 
   const updateQuery = (query) => {
+    setErrorInfo(null);
     setLineNumber(query);
   };
 
@@ -93,7 +94,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
 
     // If down arrow pressed and current target is input (we are still in autocomplete debounce) and there are results
     if (target.localName === 'input') {
-      if (keyCode === 40 && searchResults.data.length) {
+      if (keyCode === 40 && searchResults.length) {
         resultsList.current.firstChild.focus(); // Then focus on the first child in results list
       }
     } else {

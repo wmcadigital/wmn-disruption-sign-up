@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import dompurify from 'dompurify';
-import Icon from './Icon-old';
+import Icon from './shared/Icon/Icon';
 
 const { sanitize } = dompurify;
 
@@ -38,15 +38,9 @@ const Message = ({ type, title, message }) => {
 };
 
 Message.propTypes = {
-  type: PropTypes.string,
-  title: PropTypes.string,
-  message: PropTypes.string,
-};
-
-Message.defaultProps = {
-  type: 'success',
-  title: 'Good service',
-  message: 'No incidents reported.',
+  type: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
 };
 
 export default Message;

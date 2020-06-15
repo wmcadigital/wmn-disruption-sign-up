@@ -4,9 +4,6 @@ import { FormDataContext } from 'globalState/FormDataContext';
 const AutoCompleteResult = (props) => {
   const { result, handleKeyDown, handleCancel, setBus } = props || {};
   const [formState] = useContext(FormDataContext);
-
-  console.log('formState.formData', formState);
-
   const updateSelectedService = (serviceId, routeName, serviceNumber) => {
     const shouldUpdate = formState.formData.LineId.indexOf(serviceId) < 0;
     if (shouldUpdate) {
