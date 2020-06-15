@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import Input from 'components/shared/FormElements/Input/Input';
-import SectionStepInfo from 'components/steps/SectionStepInfo';
+import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 
 const Step2Email = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element

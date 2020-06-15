@@ -8,7 +8,7 @@ import { FormDataContext } from '../../../globalState/FormDataContext';
 // Import components
 import Autocomplete from './autocomplete/Autocomplete';
 import Bus from '../../shared/transportServiceType/Bus';
-import SectionStepInfo from '../../steps/SectionStepInfo';
+import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
 
 function Step3AddService() {
   // const formRef = useRef(); // Used so we can keep track of the form DOM element
