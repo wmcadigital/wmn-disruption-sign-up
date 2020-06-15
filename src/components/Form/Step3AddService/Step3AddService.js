@@ -81,7 +81,6 @@ function Step3AddService() {
           <div className={` ${hasSelectedBuses ? 'wmnds-m-b-xl' : ''}`}>
             {bus &&
               bus.map((busRoute) => {
-                console.log('in map:', busRoute);
                 return (
                   <Bus
                     showRemove

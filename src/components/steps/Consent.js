@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { FormDataContext } from '../../globalState/FormDataContext';
-import Icon from '../Icon';
+import Icon from '../Icon-old';
 
 const apiUrl = 'https://rtccdisruptions6zqwajo6s.azurewebsites.net/api/SignUp';
 

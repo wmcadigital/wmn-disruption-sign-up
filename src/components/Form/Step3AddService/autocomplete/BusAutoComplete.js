@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 
 // Import components
 import Message from '../../../Message';
-import Icon from '../../../Icon';
+import Icon from '../../../Icon-old';
 import BusAutoCompleteResult from './AutoCompleteResult';
+
+import { FormDataContext } from '../../../../globalState/FormDataContext';
 
 import style from './ServiceAutocomplete.module.scss';
 
@@ -17,6 +19,9 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
   const [lineNumber, setLineNumber] = useState();
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
+
+  const [formDataState] = useContext(FormDataContext);
+  const busId = formDataState.formData.LineId;
 
   const updateQuery = (query) => {
     setLineNumber(query);
@@ -152,16 +157,21 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
           searchResults && (
             <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-2-5">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
-                {searchResults.map((result) => (
-                  <BusAutoCompleteResult
-                    key={result.id}
-                    result={result}
-                    handleKeyDown={handleKeyDown}
-                    type={mode}
-                    handleCancel={handleCancel}
-                    setBus={setBus}
-                  />
-                ))}
+                {searchResults.map((result) => {
+                  if (busId.indexOf(result.id) < 0) {
+                    // eslint-disable-next-line no-unused-expressions
+                    return (
+                      <BusAutoCompleteResult
+                        key={result.id}
+                        result={result}
+                        handleKeyDown={handleKeyDown}
+                        type={mode}
+                        handleCancel={handleCancel}
+                        setBus={setBus}
+                      />
+                    );
+                  }
+                })}
               </ul>
             </div>
           )

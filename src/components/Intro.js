@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from './Icon';
+import Icon from './Icon-old';
 
 const Intro = ({ setIsFormStarted }) => {
   const handleClick = () => {
