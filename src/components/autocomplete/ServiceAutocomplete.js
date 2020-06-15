@@ -20,6 +20,7 @@ const BusAutoComplete = (props) => {
   const debounceInput = useRef(null);
 
   const updateQuery = (query) => {
+    setErrorInfo(null);
     setLineNumber(query);
   };
   const handleCancel = () => {
