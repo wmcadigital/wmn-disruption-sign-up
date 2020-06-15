@@ -11,7 +11,7 @@ import Icon from '../../Icon/Icon';
 
 const { sanitize } = dompurify;
 
-const InputCheckbox = ({ fieldValidation, label, name, onChange }) => {
+const InputCheckbox = ({ fieldValidation, name, labelValue }) => {
   const [formDataState] = useContext(FormDataContext); // Get the state of form data from FormDataContext
   const { errors } = useFormContext();
   // Set input to render below
@@ -32,23 +32,17 @@ const InputCheckbox = ({ fieldValidation, label, name, onChange }) => {
       )}
 
       <label className="wmnds-fe-checkboxes__container">
-        I have read the{' '}
-        <a
-          href="https://www.wmca.org.uk/policies"
-          target="_blank"
-          title="Read our Privacy Policy"
-          rel="noopener noreferrer"
-        >
-          Privacy Policy
-        </a>{' '}
-        and agree to be emailed about disruptions.
+        <div
+          dangerouslySetInnerHTML={{
+            __html: sanitize(labelValue),
+          }}
+        />
         <input
           ref={fieldValidation}
           defaultValue={formDataState.formData[name]}
           className="wmnds-fe-checkboxes__input"
-          name="Terms"
+          name={name}
           type="checkbox"
-          onChange={onChange}
         />
         <span className="wmnds-fe-checkboxes__checkmark">
           <Icon
@@ -62,23 +56,14 @@ const InputCheckbox = ({ fieldValidation, label, name, onChange }) => {
 };
 
 InputCheckbox.propTypes = {
-  autocomplete: PropTypes.string,
-  className: PropTypes.string,
+  labelValue: PropTypes.string,
   fieldValidation: PropTypes.func,
-  inputmode: PropTypes.string,
-  label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  spellcheck: PropTypes.bool,
-  type: PropTypes.string,
 };
 
 InputCheckbox.defaultProps = {
-  autocomplete: null,
-  className: '',
+  labelValue: null,
   fieldValidation: null,
-  inputmode: 'text',
-  spellcheck: false,
-  type: 'text',
 };
 
 export default InputCheckbox;

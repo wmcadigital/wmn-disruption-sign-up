@@ -9,16 +9,16 @@ const Step4ConsentForm = () => {
   const { register } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   // Labels used on inputs and for validation
-  // const checkBoxLabel = `I have read the${' '}
-  // <a
-  //   href="https://www.wmca.org.uk/policies"
-  //   target="_blank"
-  //   title="Read our Privacy Policy"
-  //   rel="noopener noreferrer"
-  // >
-  //   Privacy Policy
-  // </a>${' '}
-  // and agree to be emailed about disruptions.`
+  const checkBoxLabel = `I have read the${' '}
+  <a
+    href="https://www.wmca.org.uk/policies"
+    target="_blank"
+    title="Read our Privacy Policy"
+    rel="noopener noreferrer"
+  >
+    Privacy Policy
+  </a>${' '}
+  and agree to be emailed about disruptions.`
   // Logic used to validate the email field
   const checkboxValidation = register({
     required: 'Agree to terms and conditions before continue',
@@ -32,9 +32,9 @@ const Step4ConsentForm = () => {
     <fieldset className="wmnds-fe-fieldset" ref={formRef}>
       <InputCheckbox
         name="Terms"
-        label="label"
         type="checkbox"
         fieldValidation={checkboxValidation}
+        labelValue={checkBoxLabel}
       />
     </fieldset>
   );
