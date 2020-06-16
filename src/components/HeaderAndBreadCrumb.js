@@ -32,12 +32,12 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
           </div>
 
           {/* Only show the title in the header if the form is started and we are not on success/error page (formSubmitStatus) */}
-          {/* {isFormStarted && formSubmitStatus === null && ( */}
+          {isFormStarted && formSubmitStatus === null && (
             <h1 className="wmnds-header__title wmnds-col-1 wmnds-col-sm-auto">
-              Reinstate your Direct Debit <br />
-              (COVID-19)
+              Sign up to email alerts
+              <br /> about disruption
             </h1>
-          {/* // )} */}
+          )}
         </div>
       </header>
       <div className="wmnds-container">
@@ -54,7 +54,7 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
           </div>
           <div className="wmnds-col-auto">
             <p className="wmnds-banner-container__text">
-              This is a new service - your
+              This is a new service - your{' '}
               <a
                 href="https://surveys.hotjar.com/s?siteId=264586&surveyId=156448"
                 title="Service feedback survey"
@@ -63,7 +63,7 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
                 rel="noopener noreferrer"
               >
                 feedback
-              </a>
+              </a>{' '}
               will help us to improve it.
             </p>
           </div>

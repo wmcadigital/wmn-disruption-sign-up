@@ -40,7 +40,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
     if (lineNumber) {
       const {
         REACT_APP_AUTOCOMPLETE_API,
-        REACT_APP_AUTOCOMPLETE_KEY,
+        REACT_APP_AUTOCOMPLETE_API_KEY,
       } = process.env; // Destructure env vars
       setLoading(true); // Update loading state to true as we are hitting API
       axios
@@ -50,7 +50,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
           )}`,
           {
             headers: {
-              'Ocp-Apim-Subscription-Key': REACT_APP_AUTOCOMPLETE_KEY,
+              'Ocp-Apim-Subscription-Key': REACT_APP_AUTOCOMPLETE_API_KEY,
             },
             cancelToken: source.token, // Set token with API call, so we can cancel this call on unmount
           }

@@ -3,7 +3,6 @@ import Intro from './components/Intro';
 import Form from './components/Form/Form';
 // Import contexts
 import { FormDataProvider } from './globalState/FormDataContext';
-import Breadcrumb from './components/Breadcrumb';
 import HeaderAndBreadcrumb from './components/HeaderAndBreadCrumb';
 
 function App() {
@@ -21,7 +20,10 @@ function App() {
           <Intro setIsFormStarted={setIsFormStarted} />
         ) : (
           <FormDataProvider>
-            <Form setFormSubmitStatus={setFormSubmitStatus} />
+            <Form
+              setFormSubmitStatus={setFormSubmitStatus}
+              formSubmitStatus={formSubmitStatus}
+            />
           </FormDataProvider>
         )}
       </div>

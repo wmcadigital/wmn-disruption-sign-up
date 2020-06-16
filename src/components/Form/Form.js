@@ -48,7 +48,11 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
               </button>
             </div>
           )}
-          <div className={`wmnds-p-lg ${s.formWrapper}`}>
+          <div
+            className={
+              formSubmitStatus === null ? `${s.formWrapper} wmnds-p-lg ` : ''
+            }
+          >
             {/* Start of form */}
             {currentStep === 1 && <Step1Name />}
             {currentStep === 2 && <Step2Email />}
