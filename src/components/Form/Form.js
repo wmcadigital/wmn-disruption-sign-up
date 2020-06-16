@@ -11,6 +11,8 @@ import Step4Confirm from './Step4Confirm/Step4Confirm';
 import SubmitSuccess from './Step5SubmitConfirmation/Success';
 import SubmitError from './Step5SubmitConfirmation/Error';
 
+import useTrackFormAbandonment from './useTrackFormAbandonment';
+
 // Import styling
 import s from './Form.module.scss';
 
@@ -20,6 +22,8 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   const methods = useForm({
     mode: 'onBlur',
   }); // Trigger validation onBlur events (config for react hook form lib)
+
+  useTrackFormAbandonment(currentStep, formSubmitStatus);
 
   // Show debug options for below (this should be deleted on release)
   const debugStepOptions = [1, 2, 3, 4, 5, 6];
