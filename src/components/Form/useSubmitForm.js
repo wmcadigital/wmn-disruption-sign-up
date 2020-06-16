@@ -12,15 +12,15 @@ const useSubmitForm = (setFormSubmitStatus) => {
   // const [isContinuePressed, setIsContinuePressed] = useState(false); // State for tracking if continue has been pressed
 
   // Destructure values from our formDataState (get all users values)
-  const { Email, Firstname, Lastname, LineId } = formDataState.formData;
+  const { Email, Firstname, LastName, LineId } = formDataState.formData;
 
   // Map all destructured vals above to an object we will send to API
   const dataToSend = {
     Email,
-    Name: Firstname + Lastname,
+    Name: `${Firstname} ${LastName}`,
     LineId,
   };
-
+  // console.log('dataToSend:', dataToSend);
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission method
     // Validation
@@ -52,8 +52,8 @@ const useSubmitForm = (setFormSubmitStatus) => {
           formDataDispatch({ type: 'ADD_FORM_REF', payload }); // Update form state with the form ref received from server
           // Log event to analytics/tag manager
           window.dataLayer.push({
-            event: 'formAbandonment',
-            eventCategory: 'wmn-covid19-directdebit submission: success',
+            event: 'formSuccess',
+            eventCategory: 'wmn-email-alerts-signup: success',
           });
           setIsFetching(false); // set to false as we are done fetching now
           if (payload.Message) {
@@ -81,7 +81,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
           // Log event to analytics/tag manager
           window.dataLayer.push({
             event: 'formAbandonment',
-            eventCategory: 'wmn-covid19-directdebit submission: error',
+            eventCategory: 'wmn-email-alerts-signup: submission: error',
             eventAction: errMsg,
           });
           setIsFetching(false); // set to false as we are done fetching now

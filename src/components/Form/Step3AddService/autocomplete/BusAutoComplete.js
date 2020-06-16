@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
 import React, { useEffect, useState, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
