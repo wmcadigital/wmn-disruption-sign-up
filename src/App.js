@@ -5,6 +5,9 @@ import Form from './components/Form/Form';
 import { FormDataProvider } from './globalState/FormDataContext';
 import HeaderAndBreadcrumb from './components/HeaderAndBreadCrumb';
 
+import SubmitSuccess from './components/Form/Step5SubmitConfirmation/Success';
+import SubmitError from './components/Form/Step5SubmitConfirmation/Error';
+
 function App() {
   const [isFormStarted, setIsFormStarted] = useState(false);
   const [formSubmitStatus, setFormSubmitStatus] = useState(null);
@@ -20,10 +23,16 @@ function App() {
           <Intro setIsFormStarted={setIsFormStarted} />
         ) : (
           <FormDataProvider>
-            <Form
-              setFormSubmitStatus={setFormSubmitStatus}
-              formSubmitStatus={formSubmitStatus}
-            />
+            {isFormStarted && formSubmitStatus === null && (
+              <Form
+                setFormSubmitStatus={setFormSubmitStatus}
+                formSubmitStatus={formSubmitStatus}
+              />
+            )}
+
+            {formSubmitStatus && <SubmitSuccess />}
+
+            {formSubmitStatus === false && <SubmitError />}
           </FormDataProvider>
         )}
       </div>

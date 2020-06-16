@@ -9,9 +9,10 @@ const useTrackFormAbandonment = (currentStep, formSubmitStatus) => {
 
   // This useEffect is used to track form changes and update the fieldsChanged state as the user progresses
   useEffect(() => {
-    const refundForm = document.querySelector('form'); // Get DOM node of form
+    const form = document.querySelector('form'); // Get DOM node of form
     // Function to work out last changed element in form
     const lastChangedEle = (e) => {
+      console.log(e)
       // Update fields changed array with step number and last changed field name i.e. Step1: CustomerType > Step3: CardNumber
       setFieldsChanged([
         ...fieldsChanged,
@@ -19,10 +20,10 @@ const useTrackFormAbandonment = (currentStep, formSubmitStatus) => {
       ]);
     };
     // Listen to changes in form and run above function
-    refundForm.addEventListener('change', lastChangedEle);
+    form.addEventListener('change', lastChangedEle);
     // On unmount, remove listener
     return () => {
-      refundForm.removeEventListener('change', lastChangedEle);
+      form.removeEventListener('change', lastChangedEle);
     };
   }, [currentStep, fieldsChanged]);
 

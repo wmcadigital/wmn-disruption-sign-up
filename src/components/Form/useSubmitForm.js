@@ -63,7 +63,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
             setFormSubmitStatus(true); // Set form status to success
             window.scrollTo(0, 0); // Scroll to top of page
             // set success page
-            setSuccesfullySubitted(true);
+            //setSuccesfullySubitted(true);
           }
         })
         // If formsubmission errors
@@ -90,7 +90,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
           setFormSubmitStatus(false); // Set form status to error
           window.scrollTo(0, 0); // Scroll to top of page
           // set error message
-          setSuccesfullySubitted(false);
+          //setSuccesfullySubitted(false);
         });
     }
   };
