@@ -131,7 +131,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
             loading ? 'wmnds-is--loading' : ''
           }`}
         >
-          <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-2-5">
+          <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-3-5">
             <Icon
               iconName="general-search"
               className="wmnds-autocomplete__icon"
@@ -163,7 +163,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
           />
         ) : (
           searchResults && (
-            <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-2-5">
+            <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-3-5">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
                 {searchResults.map((result) => {
                   if (busId.indexOf(result.id) < 0) {
