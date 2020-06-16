@@ -8,8 +8,6 @@ import Step1Name from './Step1Name/Step1Name';
 import Step2Email from './Step2Email/Step2Email';
 import Step3AddService from './Step3AddService/Step3AddService';
 import Step4Confirm from './Step4Confirm/Step4Confirm';
-import SubmitSuccess from './Step5SubmitConfirmation/Success';
-import SubmitError from './Step5SubmitConfirmation/Error';
 
 import useTrackFormAbandonment from './useTrackFormAbandonment';
 
@@ -26,7 +24,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   useTrackFormAbandonment(currentStep, formSubmitStatus);
 
   // Show debug options for below (this should be deleted on release)
-  const debugStepOptions = [1, 2, 3, 4, 5, 6];
+  const debugStepOptions = [1, 2, 3, 4];
 
   // Run! Like go get some data from an API.
   return (
@@ -64,8 +62,6 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
             {currentStep === 4 && (
               <Step4Confirm setFormSubmitStatus={setFormSubmitStatus} />
             )}
-            {currentStep === 5 && <SubmitSuccess />}
-            {currentStep === 6 && <SubmitError />}
           </div>
         </div>
         {/* If in development based on envs then show form debugging */}

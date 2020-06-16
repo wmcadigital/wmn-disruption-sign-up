@@ -11,12 +11,9 @@ import Button from '../../shared/Button/Button';
 function Step4Confirm({ setFormSubmitStatus }) {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   // Get handleSubmit fn and isFetching from custom hook which handles submitting data to API (this is used in the last step[4])
-  const {
-    handleSubmit,
-    isFetching,
-    APIErrorMessage,
-    succesfullySubitted,
-  } = useSubmitForm(setFormSubmitStatus);
+  const { handleSubmit, isFetching, APIErrorMessage } = useSubmitForm(
+    setFormSubmitStatus
+  );
   useEffect(() => {
     if (formDataState.currentStep === 4) {
       formDataDispatch({
@@ -25,15 +22,6 @@ function Step4Confirm({ setFormSubmitStatus }) {
       });
     }
   }, [formDataDispatch, formDataState.currentStep]);
-
-  useEffect(() => {
-    if (succesfullySubitted !== null) {
-      formDataDispatch({
-        type: 'UPDATE_STEP',
-        payload: succesfullySubitted ? 6 : 5,
-      });
-    }
-  }, [formDataDispatch, succesfullySubitted]);
 
   return (
     <form onSubmit={handleSubmit} data-private>

@@ -8,7 +8,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
   const { triggerValidation, getValues } = useFormContext(); // Get useForm methods
   const [isFetching, setIsFetching] = useState(false);
   const [APIErrorMessage, setAPIErrorMessage] = useState(null);
-  const [succesfullySubitted, setSuccesfullySubitted] = useState(null);
+
   // const [isContinuePressed, setIsContinuePressed] = useState(false); // State for tracking if continue has been pressed
 
   // Destructure values from our formDataState (get all users values)
@@ -17,8 +17,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
   // Map all destructured vals above to an object we will send to API
   const dataToSend = {
     Email,
-    Firstname,
-    Lastname,
+    Name: Firstname + Lastname,
     LineId,
   };
 
@@ -63,7 +62,6 @@ const useSubmitForm = (setFormSubmitStatus) => {
             setFormSubmitStatus(true); // Set form status to success
             window.scrollTo(0, 0); // Scroll to top of page
             // set success page
-            //setSuccesfullySubitted(true);
           }
         })
         // If formsubmission errors
@@ -90,7 +88,6 @@ const useSubmitForm = (setFormSubmitStatus) => {
           setFormSubmitStatus(false); // Set form status to error
           window.scrollTo(0, 0); // Scroll to top of page
           // set error message
-          //setSuccesfullySubitted(false);
         });
     }
   };
@@ -100,7 +97,6 @@ const useSubmitForm = (setFormSubmitStatus) => {
     handleSubmit,
     isFetching,
     APIErrorMessage,
-    succesfullySubitted,
   };
 };
 
