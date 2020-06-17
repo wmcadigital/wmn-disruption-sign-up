@@ -2,6 +2,10 @@
   "name": "wmn-disruption-email-alerts-sign-up-form",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://disruption-sign-up.wmnetwork.co.uk/",
+  "author": "WMCA",
+  "main": "src/index.js",
+  "copyright": "WMCA",
   "dependencies": {
     "@sentry/browser": "^5.17.0",
     "@testing-library/jest-dom": "^4.2.4",
@@ -12,6 +16,7 @@
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-app-polyfill": "^1.0.6",
     "react-debounce-input": "^3.2.2",
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.7.2",
@@ -42,12 +47,14 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie 11"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "ie 11"
     ]
   }
 }
