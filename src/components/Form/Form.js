@@ -16,7 +16,7 @@ import s from './Form.module.scss';
 
 const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
-  const { currentStep } = formDataState; // Destructure step from state
+  const { currentStep, hasReachedConfirmation } = formDataState; // Destructure step from state
   const methods = useForm({
     mode: 'onBlur',
   }); // Trigger validation onBlur events (config for react hook form lib)
@@ -42,7 +42,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
                 onClick={() =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
-                    payload: currentStep - 1,
+                    payload: hasReachedConfirmation ? 4 : currentStep - 1,
                   })
                 }
               >
