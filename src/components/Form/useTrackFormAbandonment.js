@@ -12,7 +12,6 @@ const useTrackFormAbandonment = (currentStep, formSubmitStatus) => {
     const form = document.querySelector('form'); // Get DOM node of form
     // Function to work out last changed element in form
     const lastChangedEle = (e) => {
-      console.log("e.target.name", e.target.name);
       // Update fields changed array with step number and last changed field name i.e. Step1: CustomerType > Step3: CardNumber
       setFieldsChanged([
         ...fieldsChanged,

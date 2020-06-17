@@ -53,7 +53,7 @@ function Step3AddService() {
         <SectionStepInfo section="Section 2 of 2" description="Services" />
         <h2 className="">Add a service</h2>
         <p className="wmnds-col-2-3">
-          You can sign up to as many services as you would like.
+          You can sign up to 10 services at a time.
         </p>
         <p>You will receive an automatic email update for each disruption</p>
         {mode !== null ? (
