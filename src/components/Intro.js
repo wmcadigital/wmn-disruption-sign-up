@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Icon from './shared/Icon/Icon';
 
 const Intro = ({ setIsFormStarted }) => {
@@ -37,5 +38,7 @@ const Intro = ({ setIsFormStarted }) => {
     </>
   );
 };
-
+Intro.propTypes = {
+  setIsFormStarted: PropTypes.func.isRequired,
+};
 export default Intro;

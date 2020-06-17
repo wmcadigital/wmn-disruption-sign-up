@@ -47,7 +47,12 @@ function Step3AddService() {
   }, [bus]);
 
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        return false;
+      }}
+    >
       <div className="wmnds-col-1">
         {/* Subsection */}
         <SectionStepInfo section="Section 2 of 2" description="Services" />
