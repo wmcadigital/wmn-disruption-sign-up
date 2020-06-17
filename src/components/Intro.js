@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from './Icon';
+import Icon from './shared/Icon/Icon';
 
 const Intro = ({ setIsFormStarted }) => {
   const handleClick = () => {
@@ -16,7 +16,7 @@ const Intro = ({ setIsFormStarted }) => {
         <ul>
           <li>
             Sign up to automatic email alerts every time there is a disruption
-            to your bus or tram service
+            to your bus service
           </li>
         </ul>
         <p>This process takes around 5 minutes.</p>

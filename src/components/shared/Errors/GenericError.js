@@ -1,9 +1,9 @@
 import React from 'react';
-import Icon from './shared/Icon/Icon';
+import Icon from '../Icon/Icon';
 
-function GenericError() {
+const GenericError = () => {
   return (
-    <div className="wmnds-msg-summary wmnds-msg-summary--error wmnds-m-t-lg wmnds-m-b-lg">
+    <div className="wmnds-msg-summary wmnds-msg-summary--error wmnds-m-b-lg">
       <div className="wmnds-msg-summary__header">
         <Icon
           iconName="general-warning-triangle"
@@ -17,6 +17,6 @@ function GenericError() {
       </div>
     </div>
   );
-}
+};
 
 export default GenericError;
