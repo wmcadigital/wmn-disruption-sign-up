@@ -33,7 +33,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
       // Start submitting API
       setIsFetching(true); // Set this so we can put loading state on button
       // Go hit the API with the data
-      fetch(process.env.REACT_APP_API_HOST, {
+      fetch(`${process.env.REACT_APP_API_HOST}api/SignUp`, {
         method: 'post',
         body: JSON.stringify(dataToSend),
         headers: {
@@ -43,7 +43,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
         .then((response) => {
           // If the response is successful(200: OK) or error with validation message(400)
           if (response.status === 200 || response.status === 400) {
-            return response.json(); // Return response as json
+            return response.text(); // Return response as json
           }
           throw new Error(response.statusText, response.Message); // Else throw error and go to our catch below
         })
