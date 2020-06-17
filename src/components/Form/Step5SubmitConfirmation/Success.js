@@ -34,6 +34,8 @@ function Success() {
             You can unsubscribe at any time using the links in the footer of the
             email.
           </p>
+          <br />
+          <br />
           <p>
             <a
               href="https://surveys.hotjar.com/s?siteId=264586&surveyId=158470"
