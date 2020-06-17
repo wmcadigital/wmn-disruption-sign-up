@@ -18,7 +18,7 @@ const Step4ConsentForm = () => {
   >
     Privacy Policy
   </a>${' '}
-  and agree to be emailed about disruptions.`
+  and agree to be emailed about disruptions.`;
   // Logic used to validate the email field
   const checkboxValidation = register({
     required: 'Agree to terms and conditions before continue',

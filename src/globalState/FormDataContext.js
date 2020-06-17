@@ -40,7 +40,6 @@ export const FormDataProvider = (props) => {
         };
       }
       case 'REACHED_CONFIRMATION': {
-
         return {
           ...state,
           hasReachedConfirmation: action.payload,

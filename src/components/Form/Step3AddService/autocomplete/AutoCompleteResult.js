@@ -12,8 +12,6 @@ const AutoCompleteResult = (props) => {
         { serviceId, routeName, serviceNumber },
       ]);
       handleCancel();
-    } else {
-      
     }
   };
   // Return service with the above disruption logic, replace type and iconName with correc icon and class depending on disruption type

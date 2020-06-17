@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from './Icon-old';
+import Icon from './shared/Icon/Icon';
 
 function GenericError() {
   return (
