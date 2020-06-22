@@ -25,21 +25,10 @@ function Step3AddService() {
     formDataDispatch({
       type: 'UPDATE_STEP',
       payload: formDataState.hasReachedConfirmation
-        ? 4
+        ? 5
         : formDataState.currentStep + what,
     });
   };
-
-  // useEffect(() => {
-  //   const busServiceId = [];
-  //   bus.map((single) => {
-  //     return busServiceId.push(single.serviceId);
-  //   });
-  //   formDataDispatch({
-  //     type: 'UPDATE_FORM_DATA',
-  //     payload: { LineId: busServiceId, BusServices: bus },
-  //   });
-  // }, [bus, formDataDispatch, mode]);
 
   useEffect(() => {
     setHasSelectedBuses(bus.length > 0);

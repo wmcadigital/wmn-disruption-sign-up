@@ -4,20 +4,22 @@ import { FormDataContext } from 'globalState/FormDataContext';
 const AutoCompleteResult = (props) => {
   const { result, handleKeyDown, handleCancel } = props || {};
   const [formState, formDataDispatch] = useContext(FormDataContext);
-  const { currentStep } = formState;
-  // const [bus, setBus] = useState(formState.formData.BusServices || []);
+  const { currentStep, formData } = formState;
   const updateSelectedService = (busResult) => {
     const { routeName } = busResult.routes[0];
     const { serviceNumber, id } = busResult;
-    const test = formState.formData.BusServices || [];
-    const foo = [...test, { id, routeName, serviceNumber }];
+    const { BusServices } = formData || [];
+    const BusServicesUpdated = [
+      ...BusServices,
+      { id, routeName, serviceNumber },
+    ];
     const busServiceId = [];
-    foo.map((single) => {
+    BusServicesUpdated.map((single) => {
       return busServiceId.push(single.id);
     });
     formDataDispatch({
       type: 'UPDATE_FORM_DATA',
-      payload: { LineId: busServiceId, BusServices: foo },
+      payload: { LineId: busServiceId, BusServices: BusServicesUpdated },
     });
     formDataDispatch({
       type: 'UPDATE_STEP',
@@ -35,14 +37,7 @@ const AutoCompleteResult = (props) => {
       role="button"
       aria-pressed="false"
       onKeyDown={(e) => handleKeyDown(e)}
-      onClick={() =>
-        updateSelectedService(
-          // result.id,
-          // result.routes[0].routeName,
-          // result.serviceNumber,
-          result
-        )
-      }
+      onClick={() => updateSelectedService(result)}
     >
       {/* Right section */}
       <div
