@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { FormDataContext } from '../../../globalState/FormDataContext';
 import Bus from '../../shared/transportServiceType/Bus';
 
-import style from './Step4Confirm.module.scss';
+import style from './Step5Confirm.module.scss';
 
 function Step4SummarySection() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);

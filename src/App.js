@@ -5,8 +5,8 @@ import Form from './components/Form/Form';
 import { FormDataProvider } from './globalState/FormDataContext';
 import HeaderAndBreadcrumb from './components/HeaderAndBreadCrumb';
 
-import SubmitSuccess from './components/Form/Step5SubmitConfirmation/Success';
-import SubmitError from './components/Form/Step5SubmitConfirmation/Error';
+import SubmitSuccess from './components/Form/Step6SubmitConfirmation/Success';
+import SubmitError from './components/Form/Step6SubmitConfirmation/Error';
 
 function App() {
   const [isFormStarted, setIsFormStarted] = useState(false);

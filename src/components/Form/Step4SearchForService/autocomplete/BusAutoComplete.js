@@ -23,7 +23,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
   const debounceInput = useRef(null);
 
   const [formDataState] = useContext(FormDataContext);
-  const busId = formDataState.formData.LineId;
+  const busId = formDataState.formData.LineId || [];
 
   const updateQuery = (query) => {
     setErrorInfo(null);
@@ -166,7 +166,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
             <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-3-5">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
                 {searchResults.map((result) => {
-                  if (busId.indexOf(result.id) < 0) {
+                  if (busId && busId.indexOf(result.id) < 0) {
                     // eslint-disable-next-line no-unused-expressions
                     return (
                       <BusAutoCompleteResult

@@ -2,17 +2,28 @@ import React, { useContext } from 'react';
 import { FormDataContext } from 'globalState/FormDataContext';
 
 const AutoCompleteResult = (props) => {
-  const { result, handleKeyDown, handleCancel, setBus } = props || {};
-  const [formState] = useContext(FormDataContext);
-  const updateSelectedService = (serviceId, routeName, serviceNumber) => {
-    const shouldUpdate = formState.formData.LineId.indexOf(serviceId) < 0;
-    if (shouldUpdate) {
-      setBus((prevState) => [
-        ...prevState,
-        { serviceId, routeName, serviceNumber },
-      ]);
-      handleCancel();
-    }
+  const { result, handleKeyDown, handleCancel } = props || {};
+  const [formState, formDataDispatch] = useContext(FormDataContext);
+  const { currentStep } = formState;
+  // const [bus, setBus] = useState(formState.formData.BusServices || []);
+  const updateSelectedService = (busResult) => {
+    const { routeName } = busResult.routes[0];
+    const { serviceNumber, id } = busResult;
+    const test = formState.formData.BusServices || [];
+    const foo = [...test, { id, routeName, serviceNumber }];
+    const busServiceId = [];
+    foo.map((single) => {
+      return busServiceId.push(single.id);
+    });
+    formDataDispatch({
+      type: 'UPDATE_FORM_DATA',
+      payload: { LineId: busServiceId, BusServices: foo },
+    });
+    formDataDispatch({
+      type: 'UPDATE_STEP',
+      payload: currentStep - 1,
+    });
+    handleCancel();
   };
   // Return service with the above disruption logic, replace type and iconName with correc icon and class depending on disruption type
   return (
@@ -26,9 +37,10 @@ const AutoCompleteResult = (props) => {
       onKeyDown={(e) => handleKeyDown(e)}
       onClick={() =>
         updateSelectedService(
-          result.id,
-          result.routes[0].routeName,
-          result.serviceNumber
+          // result.id,
+          // result.routes[0].routeName,
+          // result.serviceNumber,
+          result
         )
       }
     >
