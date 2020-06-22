@@ -22,7 +22,7 @@ const useStepLogic = (formRef) => {
       formDataDispatch({
         type: 'UPDATE_STEP',
         payload: formDataState.hasReachedConfirmation
-          ? 4
+          ? 5
           : formDataState.currentStep + 1,
       });
     }

@@ -4,13 +4,14 @@ import { FormDataContext } from 'globalState/FormDataContext';
 const AutoCompleteResult = (props) => {
   const { result, handleKeyDown, handleCancel } = props || {};
   const [formState, formDataDispatch] = useContext(FormDataContext);
-  const { currentStep, formData } = formState;
+  const { currentStep } = formState;
+  // const [bus, setBus] = useState(formState.formData.BusServices || []);
   const updateSelectedService = (busResult) => {
     const { routeName } = busResult.routes[0];
     const { serviceNumber, id } = busResult;
-    const { BusServices } = formData || [];
+    const BusService = formState.formData.BusServices || [];
     const BusServicesUpdated = [
-      ...BusServices,
+      ...BusService,
       { id, routeName, serviceNumber },
     ];
     const busServiceId = [];
