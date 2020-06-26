@@ -12,8 +12,6 @@ import BusAutoCompleteResult from './AutoCompleteResult';
 
 import { FormDataContext } from '../../../../globalState/FormDataContext';
 
-import style from './ServiceAutocomplete.module.scss';
-
 const BusAutoComplete = ({ mode, setMode, setBus }) => {
   const [loading, setLoading] = useState(false); // Set loading state for spinner
   const [errorInfo, setErrorInfo] = useState(); // Placeholder to set error messaging
@@ -185,13 +183,6 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
           )
         )}
       </div>
-      <button
-        type="button"
-        className={`wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-xl ${style.wmndsError}`}
-        onClick={() => handleCancel()}
-      >
-        Cancel
-      </button>
     </>
   );
 };

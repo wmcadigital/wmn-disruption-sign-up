@@ -27,7 +27,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   useTrackFormAbandonment(currentStep, formSubmitStatus);
 
   // Show debug options for below (this should be deleted on release)
-  const debugStepOptions = [1, 2, 3, 4, 5, 6];
+  const debugStepOptions = [1, 2, 3, 4, 5, 6, 7];
 
   // Run! Like go get some data from an API.
   return (
@@ -37,7 +37,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
       <FormContext {...methods}>
         <div className="wmnds-col-1 wmnds-col-md-3-4 ">
           {/* Show back button if the step is between 1 or 4 */}
-          {currentStep > 1 && currentStep < 4 && (
+          {currentStep > 1 && currentStep < 5 && (
             <div className="wmnds-col-1 wmnds-m-b-md">
               <button
                 type="button"
@@ -45,7 +45,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
                 onClick={() =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
-                    payload: hasReachedConfirmation ? 4 : currentStep - 1,
+                    payload: hasReachedConfirmation ? 5 : currentStep - 1,
                   })
                 }
               >

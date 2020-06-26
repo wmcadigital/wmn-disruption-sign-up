@@ -18,7 +18,7 @@ function Step4SearchForService() {
       <div className="wmnds-col-1">
         {/* Subsection */}
         <SectionStepInfo section="Section 2 of 2" description="Services" />
-        <h2 className="">Add a service 2</h2>
+        <h2 className="">Add a service</h2>
         <p className="wmnds-col-2-3">
           You can sign up to 10 services at a time.
         </p>
