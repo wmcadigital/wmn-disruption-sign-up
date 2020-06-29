@@ -52,7 +52,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
           formDataDispatch({ type: 'ADD_FORM_REF', payload }); // Update form state with the form ref received from server
           // Log event to analytics/tag manager
           window.dataLayer.push({
-            event: 'formSuccess',
+            event: 'formAbandonment',
             eventCategory: 'wmn-email-alerts-signup: success',
           });
           setIsFetching(false); // set to false as we are done fetching now
