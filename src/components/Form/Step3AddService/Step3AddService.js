@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from 'components/shared/Button/Button';
 // import { getNodeText } from '@testing-library/react';
 import { FormDataContext } from '../../../globalState/FormDataContext';
@@ -12,27 +12,18 @@ import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
 function Step3AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   const [mode, setMode] = useState(null);
-  const [hasSelectedBuses, setHasSelectedBuses] = useState(false);
-  const bus = formDataState.formData.BusServices || [];
+  const { BusServices } = formDataState.formData;
 
   const handleRemove = (route) => {
-    // const filtered = bus.filter((busRoute) => {
-    //   return busRoute.serviceNumber !== route;
-    // });
-    // setBus(filtered);
     formDataDispatch({ type: 'REMOVE_ROUTE', payload: route });
   };
 
-  const getNextStep = (increment) => {
+  const getNextStep = (incrementAmount) => {
     formDataDispatch({
       type: 'UPDATE_STEP',
-      payload: formDataState.currentStep + increment,
+      payload: formDataState.currentStep + incrementAmount,
     });
   };
-
-  // useEffect(() => {
-  //   setHasSelectedBuses(bus.length > 0);
-  // }, [bus]);
 
   return (
     <form
@@ -49,42 +40,42 @@ function Step3AddService() {
           You can sign up to 10 services at a time.
         </p>
         <p>You will receive an automatic email update for each disruption</p>
-        <div>
-          {hasSelectedBuses && (
-            <>
-              <h3>Services added</h3>
-              <h4>Buses</h4>
 
-              <div className="wmnds-m-b-xl">
-                {bus &&
-                  bus.map((busRoute) => {
-                    return (
-                      <Bus
-                        showRemove
-                        handleRemove={handleRemove}
-                        serviceNumber={busRoute.serviceNumber}
-                        routeName={busRoute.routeName}
-                        key={`${busRoute.serviceNumber}`}
-                      />
-                    );
-                  })}
-              </div>
-            </>
-          )}
-          {/* Add bus service button */}
-          <Button
-            btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1 wmnds-col-md-1-2"
-            onClick={() => {
-              setMode('bus');
-              getNextStep(1);
-            }}
-            text={`Add ${hasSelectedBuses ? 'another' : ''} bus service`}
-            iconRight="general-expand"
-          />
-        </div>
+        {/* Show the bus services the user has added */}
+        {BusServices && (
+          <>
+            <h3>Services added</h3>
+            <h4>Buses</h4>
+
+            <div className="wmnds-m-b-xl">
+              {BusServices.map((busRoute) => {
+                return (
+                  <Bus
+                    showRemove
+                    handleRemove={handleRemove}
+                    serviceNumber={busRoute.serviceNumber}
+                    routeName={busRoute.routeName}
+                    key={`${busRoute.serviceNumber}`}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
+
+        {/* Add bus service button */}
+        <Button
+          btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1 wmnds-col-md-1-2"
+          onClick={() => {
+            setMode('bus');
+            getNextStep(1);
+          }}
+          text={`Add ${BusServices ? 'another' : ''} bus service`}
+          iconRight="general-expand"
+        />
 
         {/* Continue button */}
-        {hasSelectedBuses && mode === null && (
+        {BusServices && mode === null && (
           <Button
             btnClass="wmnds-btn wmnds-col-1 wmnds-m-t-md"
             type="submit"
