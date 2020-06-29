@@ -21,10 +21,11 @@ function Step3AddService() {
     });
     setBus(filtered);
   };
-  const getNextStep = (what) => {
+
+  const getNextStep = (increment) => {
     formDataDispatch({
       type: 'UPDATE_STEP',
-      payload: formDataState.currentStep + what,
+      payload: formDataState.currentStep + increment,
     });
   };
 
