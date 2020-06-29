@@ -1,10 +1,7 @@
-/* eslint-disable react/button-has-type */
 import React, { useState, useContext } from 'react';
 import Button from 'components/shared/Button/Button';
 // import { getNodeText } from '@testing-library/react';
 import { FormDataContext } from '../../../globalState/FormDataContext';
-// Import custom hooks
-// import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import Bus from '../../shared/transportServiceType/Bus';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
