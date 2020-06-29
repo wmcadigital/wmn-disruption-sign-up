@@ -12,7 +12,7 @@ import BusAutoCompleteResult from './AutoCompleteResult';
 
 import { FormDataContext } from '../../../../globalState/FormDataContext';
 
-const BusAutoComplete = ({ mode, setMode, setBus }) => {
+const BusAutoComplete = ({ mode, setMode }) => {
   const [loading, setLoading] = useState(false); // Set loading state for spinner
   const [errorInfo, setErrorInfo] = useState(); // Placeholder to set error messaging
   const [searchResults, setSearchResults] = useState();
@@ -173,7 +173,6 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
                         handleKeyDown={handleKeyDown}
                         type={mode}
                         handleCancel={handleCancel}
-                        setBus={setBus}
                       />
                     );
                   }
@@ -190,7 +189,6 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
 BusAutoComplete.propTypes = {
   mode: PropTypes.string.isRequired,
   setMode: PropTypes.func.isRequired,
-  setBus: PropTypes.func.isRequired,
 };
 
 export default BusAutoComplete;

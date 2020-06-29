@@ -12,14 +12,15 @@ import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
 function Step3AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   const [mode, setMode] = useState(null);
-  const [bus, setBus] = useState(formDataState.formData.BusServices || []);
   const [hasSelectedBuses, setHasSelectedBuses] = useState(false);
+  const bus = formDataState.formData.BusServices || [];
 
   const handleRemove = (route) => {
-    const filtered = bus.filter((busRoute) => {
-      return busRoute.serviceNumber !== route;
-    });
-    setBus(filtered);
+    // const filtered = bus.filter((busRoute) => {
+    //   return busRoute.serviceNumber !== route;
+    // });
+    // setBus(filtered);
+    formDataDispatch({ type: 'REMOVE_ROUTE', payload: route });
   };
 
   const getNextStep = (increment) => {
@@ -29,9 +30,9 @@ function Step3AddService() {
     });
   };
 
-  useEffect(() => {
-    setHasSelectedBuses(bus.length > 0);
-  }, [bus]);
+  // useEffect(() => {
+  //   setHasSelectedBuses(bus.length > 0);
+  // }, [bus]);
 
   return (
     <form
@@ -54,7 +55,7 @@ function Step3AddService() {
               <h3>Services added</h3>
               <h4>Buses</h4>
 
-              <div className={` ${hasSelectedBuses ? 'wmnds-m-b-xl' : ''}`}>
+              <div className="wmnds-m-b-xl">
                 {bus &&
                   bus.map((busRoute) => {
                     return (

@@ -5,7 +5,7 @@ const AutoCompleteResult = (props) => {
   const { result, handleKeyDown, handleCancel } = props || {};
   const [formState, formDataDispatch] = useContext(FormDataContext);
   const { currentStep } = formState;
-  // const [bus, setBus] = useState(formState.formData.BusServices || []);
+
   const updateSelectedService = (busResult) => {
     const { routeName } = busResult.routes[0];
     const { serviceNumber, id } = busResult;
@@ -18,14 +18,17 @@ const AutoCompleteResult = (props) => {
     BusServicesUpdated.map((single) => {
       return busServiceId.push(single.id);
     });
+
     formDataDispatch({
       type: 'UPDATE_FORM_DATA',
       payload: { LineId: busServiceId, BusServices: BusServicesUpdated },
     });
+
     formDataDispatch({
       type: 'UPDATE_STEP',
       payload: currentStep - 1,
     });
+
     handleCancel();
   };
   // Return service with the above disruption logic, replace type and iconName with correct icon and class depending on disruption type

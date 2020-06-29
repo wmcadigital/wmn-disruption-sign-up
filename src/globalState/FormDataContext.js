@@ -25,6 +25,19 @@ export const FormDataProvider = (props) => {
         };
       }
 
+      // Remove the bus route from form data
+      case 'REMOVE_ROUTE': {
+        return {
+          ...state,
+          formData: {
+            ...state.formData,
+            BusServices: state.formData.BusServices.filter(
+              (busRoute) => action.payload !== busRoute.serviceNumber
+            ),
+          },
+        };
+      }
+
       // Remove the waypoint by the id
       case 'UPDATE_STEP': {
         return {
