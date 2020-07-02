@@ -12,9 +12,7 @@ import BusAutoCompleteResult from './AutoCompleteResult';
 
 import { FormDataContext } from '../../../../globalState/FormDataContext';
 
-import style from './ServiceAutocomplete.module.scss';
-
-const BusAutoComplete = ({ mode, setMode, setBus }) => {
+const BusAutoComplete = ({ mode, setMode }) => {
   const [loading, setLoading] = useState(false); // Set loading state for spinner
   const [errorInfo, setErrorInfo] = useState(); // Placeholder to set error messaging
   const [searchResults, setSearchResults] = useState();
@@ -23,7 +21,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
   const debounceInput = useRef(null);
 
   const [formDataState] = useContext(FormDataContext);
-  const busId = formDataState.formData.LineId;
+  const busId = formDataState.formData.LineId || [];
 
   const updateQuery = (query) => {
     setErrorInfo(null);
@@ -166,7 +164,7 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
             <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-3-5">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
                 {searchResults.map((result) => {
-                  if (busId.indexOf(result.id) < 0) {
+                  if (busId && busId.indexOf(result.id) < 0) {
                     // eslint-disable-next-line no-unused-expressions
                     return (
                       <BusAutoCompleteResult
@@ -175,7 +173,6 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
                         handleKeyDown={handleKeyDown}
                         type={mode}
                         handleCancel={handleCancel}
-                        setBus={setBus}
                       />
                     );
                   }
@@ -185,13 +182,6 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
           )
         )}
       </div>
-      <button
-        type="button"
-        className={`wmnds-btn wmnds-btn--disabled wmnds-col-1 wmnds-m-t-xl ${style.wmndsError}`}
-        onClick={() => handleCancel()}
-      >
-        Cancel
-      </button>
     </>
   );
 };
@@ -199,7 +189,6 @@ const BusAutoComplete = ({ mode, setMode, setBus }) => {
 BusAutoComplete.propTypes = {
   mode: PropTypes.string.isRequired,
   setMode: PropTypes.func.isRequired,
-  setBus: PropTypes.func.isRequired,
 };
 
 export default BusAutoComplete;

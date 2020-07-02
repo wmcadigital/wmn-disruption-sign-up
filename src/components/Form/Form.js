@@ -7,9 +7,10 @@ import { FormDataContext } from 'globalState/FormDataContext';
 import Step1Name from './Step1Name/Step1Name';
 import Step2Email from './Step2Email/Step2Email';
 import Step3AddService from './Step3AddService/Step3AddService';
-import Step4Confirm from './Step4Confirm/Step4Confirm';
-import SubmitSuccess from './Step5SubmitConfirmation/Success';
-import SubmitError from './Step5SubmitConfirmation/Error';
+import Step4SearchForService from './Step4SearchForService/Step4SearchForService';
+import Step5Confirm from './Step5Confirm/Step5Confirm';
+import SubmitSuccess from './Step6SubmitConfirmation/Success';
+import SubmitError from './Step6SubmitConfirmation/Error';
 
 import useTrackFormAbandonment from './useTrackFormAbandonment';
 
@@ -26,7 +27,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   useTrackFormAbandonment(currentStep, formSubmitStatus);
 
   // Show debug options for below (this should be deleted on release)
-  const debugStepOptions = [1, 2, 3, 4, 5, 6];
+  const debugStepOptions = [1, 2, 3, 4, 5, 6, 7];
 
   // Run! Like go get some data from an API.
   return (
@@ -36,7 +37,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
       <FormContext {...methods}>
         <div className="wmnds-col-1 wmnds-col-md-3-4 ">
           {/* Show back button if the step is between 1 or 4 */}
-          {currentStep > 1 && currentStep < 4 && (
+          {currentStep > 1 && currentStep < 5 && (
             <div className="wmnds-col-1 wmnds-m-b-md">
               <button
                 type="button"
@@ -44,7 +45,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
                 onClick={() =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
-                    payload: hasReachedConfirmation ? 4 : currentStep - 1,
+                    payload: hasReachedConfirmation ? 5 : currentStep - 1,
                   })
                 }
               >
@@ -61,11 +62,13 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
             {currentStep === 1 && <Step1Name />}
             {currentStep === 2 && <Step2Email />}
             {currentStep === 3 && <Step3AddService />}
-            {currentStep === 4 && (
-              <Step4Confirm setFormSubmitStatus={setFormSubmitStatus} />
+            {currentStep === 4 && <Step4SearchForService />}
+            {currentStep === 5 && (
+              <Step5Confirm setFormSubmitStatus={setFormSubmitStatus} />
             )}
-            {currentStep === 5 && <SubmitSuccess />}
-            {currentStep === 6 && <SubmitError />}
+            {/* for testing only */}
+            {currentStep === 6 && <SubmitSuccess />}
+            {currentStep === 7 && <SubmitError />}
           </div>
         </div>
         {/* If in development based on envs then show form debugging */}

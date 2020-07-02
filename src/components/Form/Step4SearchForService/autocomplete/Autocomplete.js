@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Import components
 import BusAutoComplete from './BusAutoComplete';
 
-const AutoComplete = ({ mode, setMode, setBus }) => {
+const AutoComplete = ({ mode, setMode }) => {
   // Do a switch on the mode, then return the component related to that
   const autoCompleteToShow = () => {
     // This is used as a template html for the title of the autocomplete box. It changes depending on the mode
@@ -18,7 +18,7 @@ const AutoComplete = ({ mode, setMode, setBus }) => {
     return (
       <div className="wmnds-grid">
         {autoCompleteTitle(`Search for a ${mode} service`)}
-        <BusAutoComplete mode={mode} setMode={setMode} setBus={setBus} />
+        <BusAutoComplete mode={mode} setMode={setMode} />
       </div>
     );
   };
@@ -30,7 +30,6 @@ const AutoComplete = ({ mode, setMode, setBus }) => {
 AutoComplete.propTypes = {
   mode: PropTypes.string.isRequired,
   setMode: PropTypes.func.isRequired,
-  setBus: PropTypes.func.isRequired,
 };
 
 export default AutoComplete;
