@@ -27,25 +27,10 @@ const Step4ConsentForm = () => {
     }
   });
 
-  // second checkbox
-  const checkBoxLabelForEmailing = `I agree to be emailed by West Midlands Combined Authority about any research opportunities.`;
-
   return (
     <fieldset className="wmnds-fe-fieldset" ref={formRef}>
       <h3 className="wmnds-col-1-3 wmnds-m-t-lg wmnds-m-b-lg">Consent</h3>
-      <InputCheckbox
-        classes="wmnds-m-b-lg"
-        name="Terms"
-        type="checkbox"
-        fieldValidation={checkboxValidation}
-        labelValue={checkBoxLabel}
-      />
-      <InputCheckbox
-        name="Emailing"
-        type="checkbox"
-        fieldValidation={checkboxValidation}
-        labelValue={checkBoxLabelForEmailing}
-      />
+      <InputCheckbox name="Terms" type="checkbox" fieldValidation={checkboxValidation} labelValue={checkBoxLabel} />
     </fieldset>
   );
 };
