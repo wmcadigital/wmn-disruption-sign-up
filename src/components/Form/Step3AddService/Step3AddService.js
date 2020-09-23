@@ -20,9 +20,18 @@ function Step3AddService() {
   const addDirectlyAvailableTram = () => {
     const defTram = { id: '4546', routeName: 'Wolverhampton - Birmingham', serviceNumber: 'MM1' };
     const currentTrams = [defTram];
+
+    const { LineId } = formDataState.formData;
+    let allServicesId = [];
+    if (LineId && LineId.length > 0) {
+      allServicesId = [...LineId, 4546];
+    } else {
+      allServicesId = [4546];
+    }
+
     formDataDispatch({
       type: 'UPDATE_FORM_DATA',
-      payload: { TramServices: currentTrams }
+      payload: { LineId: allServicesId, TramServices: currentTrams }
     });
   };
 
@@ -53,13 +62,13 @@ function Step3AddService() {
 
         {/* Show the bus and tram services the user has added */}
         {((BusServices && BusServices.length > 0) || (TramServices && TramServices.length > 0)) && (
-          <div class="wmnds-m-b-xl wmnds-p-b-lg">
+          <div className="wmnds-m-b-xl wmnds-p-b-lg">
             <h3>Services added</h3>
 
             {/* Show the bus services the user has added */}
             {BusServices && BusServices.length > 0 && (
               <>
-                <h4 class="wmnds-m-b-none">Buses</h4>
+                <h4 className="wmnds-m-b-none">Buses</h4>
                 <div className="wmnds-m-b-lg">
                   {BusServices.map(busRoute => {
                     return (
@@ -79,7 +88,7 @@ function Step3AddService() {
             {/* Show the tram services the user has added */}
             {TramServices && TramServices.length > 0 && (
               <>
-                <h4 class="wmnds-m-b-none">Trams</h4>
+                <h4 className="wmnds-m-b-none">Trams</h4>
                 <div className="wmnds-m-b-lg">
                   {TramServices.map(tramRoute => {
                     return (
@@ -98,7 +107,7 @@ function Step3AddService() {
           </div>
         )}
 
-        <div class="wmnds-grid wmnds-grid--justify-between">
+        <div className="wmnds-grid wmnds-grid--justify-between">
           {/* Add bus service button */}
           <Button
             btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-11-24"

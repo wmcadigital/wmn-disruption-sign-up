@@ -23,9 +23,9 @@ function Step4SummarySection() {
           <li>You will receive an automatic email update for each disruption</li>
         </ul>
 
+        <h3>Personal Details</h3>
         {/* TODO: needs to be replaced by table component */}
         <table className="wmnds-table wmnds-m-b-xl wmnds-table--without-header">
-          <h3>Personal Details</h3>
           <tbody>
             <tr>
               <th scope="row">Name</th>
