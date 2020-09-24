@@ -6,6 +6,7 @@ import { FormDataContext } from '../../../globalState/FormDataContext';
 import Bus from '../../shared/transportServiceType/Bus';
 import Tram from '../../shared/transportServiceType/Tram';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
+import style from './Step3AddService.module.scss';
 
 function Step3AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
@@ -107,10 +108,10 @@ function Step3AddService() {
           </div>
         )}
 
-        <div className="wmnds-grid wmnds-grid--justify-between">
+        <div className={`wmnds-grid wmnds-grid--justify-between ${style.group_buttons}`}>
           {/* Add bus service button */}
           <Button
-            btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-11-24"
+            btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-1-2 wmnds-m-b-sm"
             onClick={() => {
               setMode('bus');
               getNextStep(1);
@@ -118,13 +119,11 @@ function Step3AddService() {
             text={`Add ${BusServices ? 'another' : ''} bus service`}
             iconRight="general-expand"
           />
-
+          <span className="wmnds-m-r-md wmnds-hide-mobile"></span>
           {/* Add tram service button */}
           <Button
-            btnClass={`wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-11-24 ${
-              TramServices ? 'wmnds-btn--disabled' : ''
-            } `}
-            disabled={TramServices && TramServices.length > 0 ? true : false}
+            btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-1-2 wmnds-m-b-sm"
+            disabled={TramServices && TramServices.length > 0}
             onClick={() => {
               setMode('tram');
               addDirectlyAvailableTram();
