@@ -131,15 +131,16 @@ function Step3AddService() {
           />
           <span className="wmnds-m-r-md wmnds-hide-mobile" />
           {/* Add tram service button */}
-          <Button
-            btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-1-2 wmnds-m-b-sm"
-            disabled={TramServices && TramServices.length > 0}
-            onClick={() => {
-              addDirectlyAvailableTram();
-            }}
-            text="Add tram service"
-            iconRight="general-expand"
-          />
+          {(!TramServices || TramServices.length === 0) && (
+            <Button
+              btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-1-2 wmnds-m-b-sm"
+              onClick={() => {
+                addDirectlyAvailableTram();
+              }}
+              text="Add tram service"
+              iconRight="general-expand"
+            />
+          )}
         </div>
 
         {/* Continue button */}
