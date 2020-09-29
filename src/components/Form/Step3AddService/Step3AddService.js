@@ -7,7 +7,6 @@ import Bus from '../../shared/transportServiceType/Bus';
 import Tram from '../../shared/transportServiceType/Tram';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
 import style from './Step3AddService.module.scss';
-import TramAutoComplete from './TramAutoComplete';
 
 function Step3AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
