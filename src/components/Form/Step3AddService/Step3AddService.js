@@ -38,8 +38,6 @@ function Step3AddService() {
       type: 'UPDATE_FORM_DATA',
       payload: { LineId: allServicesId, TramServices: currentTrams },
     });
-
-    return <TramAutoComplete tramId="4546" />;
   };
 
   const handleRemoveTram = (route) => {
