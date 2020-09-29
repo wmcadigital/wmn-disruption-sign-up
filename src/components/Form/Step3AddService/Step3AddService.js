@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Button from 'components/shared/Button/Button';
 // import { getNodeText } from '@testing-library/react';
 import { FormDataContext } from '../../../globalState/FormDataContext';
@@ -7,19 +7,24 @@ import Bus from '../../shared/transportServiceType/Bus';
 import Tram from '../../shared/transportServiceType/Tram';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
 import style from './Step3AddService.module.scss';
+import TramAutoComplete from './TramAutoComplete';
 
 function Step3AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
-  const [mode, setMode] = useState(null);
   const { BusServices } = formDataState.formData;
   const { TramServices } = formDataState.formData;
 
-  const handleRemove = route => {
+  const handleRemove = (route) => {
     formDataDispatch({ type: 'REMOVE_ROUTE', payload: route });
   };
 
   const addDirectlyAvailableTram = () => {
-    const defTram = { id: '4546', routeName: 'Wolverhampton - Birmingham', serviceNumber: 'MM1' };
+    const defTram = {
+      id: '4546',
+      routeName: 'Wolverhampton - Birmingham',
+      serviceNumber: 'MM1',
+    };
+
     const currentTrams = [defTram];
 
     const { LineId } = formDataState.formData;
@@ -32,24 +37,26 @@ function Step3AddService() {
 
     formDataDispatch({
       type: 'UPDATE_FORM_DATA',
-      payload: { LineId: allServicesId, TramServices: currentTrams }
+      payload: { LineId: allServicesId, TramServices: currentTrams },
     });
+
+    return <TramAutoComplete tramId="4546" />;
   };
 
-  const handleRemoveTram = route => {
+  const handleRemoveTram = (route) => {
     formDataDispatch({ type: 'REMOVE_TRAM_ROUTE', payload: route });
   };
 
-  const getNextStep = incrementAmount => {
+  const getNextStep = (incrementAmount) => {
     formDataDispatch({
       type: 'UPDATE_STEP',
-      payload: formDataState.currentStep + incrementAmount
+      payload: formDataState.currentStep + incrementAmount,
     });
   };
 
   return (
     <form
-      onSubmit={e => {
+      onSubmit={(e) => {
         e.preventDefault();
         return false;
       }}
@@ -58,11 +65,16 @@ function Step3AddService() {
         {/* Subsection */}
         <SectionStepInfo section="Section 2 of 2" description="Services" />
         <h2 className="">Add a service</h2>
-        <p className="wmnds-col-2-3">You can sign up to 10 services at a time.</p>
-        <p className="wmnds-m-b-lg">You will receive an automatic email update for each disruption</p>
+        <p className="wmnds-col-2-3">
+          You can sign up to 10 services at a time.
+        </p>
+        <p className="wmnds-m-b-lg">
+          You will receive an automatic email update for each disruption
+        </p>
 
         {/* Show the bus and tram services the user has added */}
-        {((BusServices && BusServices.length > 0) || (TramServices && TramServices.length > 0)) && (
+        {((BusServices && BusServices.length > 0) ||
+          (TramServices && TramServices.length > 0)) && (
           <div className="wmnds-m-b-xl wmnds-p-b-lg">
             <h3>Services added</h3>
 
@@ -71,7 +83,7 @@ function Step3AddService() {
               <>
                 <h4 className="wmnds-m-b-none">Buses</h4>
                 <div className="wmnds-m-b-lg">
-                  {BusServices.map(busRoute => {
+                  {BusServices.map((busRoute) => {
                     return (
                       <Bus
                         showRemove
@@ -91,7 +103,7 @@ function Step3AddService() {
               <>
                 <h4 className="wmnds-m-b-none">Trams</h4>
                 <div className="wmnds-m-b-lg">
-                  {TramServices.map(tramRoute => {
+                  {TramServices.map((tramRoute) => {
                     return (
                       <Tram
                         showRemove
@@ -108,33 +120,34 @@ function Step3AddService() {
           </div>
         )}
 
-        <div className={`wmnds-grid wmnds-grid--justify-between ${style.group_buttons}`}>
+        <div
+          className={`wmnds-grid wmnds-grid--justify-between ${style.group_buttons}`}
+        >
           {/* Add bus service button */}
           <Button
             btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-1-2 wmnds-m-b-sm"
             onClick={() => {
-              setMode('bus');
               getNextStep(1);
             }}
             text={`Add ${BusServices ? 'another' : ''} bus service`}
             iconRight="general-expand"
           />
-          <span className="wmnds-m-r-md wmnds-hide-mobile"></span>
+          <span className="wmnds-m-r-md wmnds-hide-mobile" />
           {/* Add tram service button */}
           <Button
             btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-1-2 wmnds-m-b-sm"
             disabled={TramServices && TramServices.length > 0}
             onClick={() => {
-              setMode('tram');
               addDirectlyAvailableTram();
             }}
-            text={`Add tram service`}
+            text="Add tram service"
             iconRight="general-expand"
           />
         </div>
 
         {/* Continue button */}
-        {((BusServices && BusServices.length > 0) || (TramServices && TramServices.length > 0)) && (
+        {((BusServices && BusServices.length > 0) ||
+          (TramServices && TramServices.length > 0)) && (
           <Button
             btnClass="wmnds-btn wmnds-col-1 wmnds-m-t-md"
             type="submit"

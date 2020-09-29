@@ -11,16 +11,16 @@ function Step4SearchForService() {
   const [mode, setMode] = useState('bus');
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
 
-  const getPreviousStep = incrementAmount => {
+  const getPreviousStep = (incrementAmount) => {
     formDataDispatch({
       type: 'UPDATE_STEP',
-      payload: formDataState.currentStep - incrementAmount
+      payload: formDataState.currentStep - incrementAmount,
     });
   };
 
   return (
     <form
-      onSubmit={e => {
+      onSubmit={(e) => {
         e.preventDefault();
         return false;
       }}
@@ -29,7 +29,9 @@ function Step4SearchForService() {
         {/* Subsection */}
         <SectionStepInfo section="Section 2 of 2" description="Services" />
         <h2 className="">Add a service</h2>
-        <p className="wmnds-col-2-3">You can sign up to 10 services at a time.</p>
+        <p className="wmnds-col-2-3">
+          You can sign up to 10 services at a time.
+        </p>
         <p>You will receive an automatic email update for each disruption</p>
         <Autocomplete mode={mode} setMode={setMode} />
       </div>

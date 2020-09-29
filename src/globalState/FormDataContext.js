@@ -2,7 +2,7 @@ import React, { useReducer, createContext } from 'react';
 
 export const FormDataContext = createContext();
 
-export const FormDataProvider = props => {
+export const FormDataProvider = (props) => {
   const { children } = props || {};
 
   // Set intial state of when
@@ -10,7 +10,7 @@ export const FormDataProvider = props => {
     currentStep: 1,
     formData: {},
     formRef: '',
-    hasReachedConfirmation: false
+    hasReachedConfirmation: false,
   };
 
   // Set up a reducer so we can change state based on centralised logic here
@@ -21,7 +21,7 @@ export const FormDataProvider = props => {
       case 'UPDATE_FORM_DATA': {
         return {
           ...state,
-          formData: { ...state.formData, ...action.payload }
+          formData: { ...state.formData, ...action.payload },
         };
       }
 
@@ -31,8 +31,10 @@ export const FormDataProvider = props => {
           ...state,
           formData: {
             ...state.formData,
-            BusServices: state.formData.BusServices.filter(busRoute => action.payload !== busRoute.serviceNumber)
-          }
+            BusServices: state.formData.BusServices.filter(
+              (busRoute) => action.payload !== busRoute.serviceNumber
+            ),
+          },
         };
       }
 
@@ -42,8 +44,10 @@ export const FormDataProvider = props => {
           ...state,
           formData: {
             ...state.formData,
-            TramServices: state.formData.TramServices.filter(tramRoute => action.payload !== tramRoute.serviceNumber)
-          }
+            TramServices: state.formData.TramServices.filter(
+              (tramRoute) => action.payload !== tramRoute.serviceNumber
+            ),
+          },
         };
       }
 
@@ -51,20 +55,20 @@ export const FormDataProvider = props => {
       case 'UPDATE_STEP': {
         return {
           ...state,
-          currentStep: action.payload
+          currentStep: action.payload,
         };
       }
       // Used to add the form submission reference(got from API submit) to state
       case 'ADD_FORM_REF': {
         return {
           ...state,
-          formRef: action.payload
+          formRef: action.payload,
         };
       }
       case 'REACHED_CONFIRMATION': {
         return {
           ...state,
-          hasReachedConfirmation: action.payload
+          hasReachedConfirmation: action.payload,
         };
       }
 
@@ -78,5 +82,9 @@ export const FormDataProvider = props => {
   const [formState, formDispatch] = useReducer(reducer, initialState);
 
   // Pass state and dispatch in context and make accessible to children it wraps
-  return <FormDataContext.Provider value={[formState, formDispatch]}>{children}</FormDataContext.Provider>;
+  return (
+    <FormDataContext.Provider value={[formState, formDispatch]}>
+      {children}
+    </FormDataContext.Provider>
+  );
 };

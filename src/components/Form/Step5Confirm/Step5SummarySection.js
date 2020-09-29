@@ -7,11 +7,17 @@ import style from './Step5Confirm.module.scss';
 
 function Step4SummarySection() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
-  const { Firstname, LastName, Email, BusServices, TramServices } = formDataState.formData;
-  const setStepInContext = st => {
+  const {
+    Firstname,
+    LastName,
+    Email,
+    BusServices,
+    TramServices,
+  } = formDataState.formData;
+  const setStepInContext = (st) => {
     formDataDispatch({
       type: 'UPDATE_STEP',
-      payload: st
+      payload: st,
     });
   };
   return (
@@ -20,7 +26,9 @@ function Step4SummarySection() {
         <h2>Check your answers before signing up to email alerts</h2>
         <ul className="wmnds-col-1">
           <li>You can sign up to as many services as you would like</li>
-          <li>You will receive an automatic email update for each disruption</li>
+          <li>
+            You will receive an automatic email update for each disruption
+          </li>
         </ul>
 
         <h3>Personal Details</h3>
@@ -61,7 +69,9 @@ function Step4SummarySection() {
         </table>
         {/* TODO: needs to be replaced by table component */}
 
-        <div className={`wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}>
+        <div
+          className={`wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}
+        >
           <h3 className="wmnds-col-1-3">Services added</h3>
           <button
             type="button"
@@ -79,7 +89,7 @@ function Step4SummarySection() {
           {BusServices && BusServices.length > 0 && (
             <div className={` ${BusServices.length > 0 ? 'wmnds-m-b-lg' : ''}`}>
               {BusServices &&
-                BusServices.map(busRoute => {
+                BusServices.map((busRoute) => {
                   return (
                     <Bus
                       serviceNumber={busRoute.serviceNumber}
@@ -96,9 +106,11 @@ function Step4SummarySection() {
         <div className={style.busses}>
           {TramServices && TramServices.length > 0 && <h4>Trams</h4>}
           {TramServices && TramServices.length > 0 && (
-            <div className={` ${TramServices.length > 0 ? 'wmnds-m-b-lg' : ''}`}>
+            <div
+              className={` ${TramServices.length > 0 ? 'wmnds-m-b-lg' : ''}`}
+            >
               {TramServices &&
-                TramServices.map(tramRoute => {
+                TramServices.map((tramRoute) => {
                   return (
                     <Tram
                       serviceNumber={tramRoute.serviceNumber}

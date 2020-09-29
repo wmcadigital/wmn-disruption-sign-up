@@ -25,7 +25,10 @@ function Tram(props) {
             onClick();
           }}
         >
-          <Icon iconName="general-cross" className={`general-cross ${style.closeIcon}`} />
+          <Icon
+            iconName="general-cross"
+            className={`general-cross ${style.closeIcon}`}
+          />
         </button>
       )}
     </div>
@@ -35,12 +38,12 @@ Tram.propTypes = {
   serviceNumber: PropTypes.string.isRequired,
   routeName: PropTypes.string.isRequired,
   handleRemove: PropTypes.func,
-  showRemove: PropTypes.bool
+  showRemove: PropTypes.bool,
 };
 
 Tram.defaultProps = {
   handleRemove: () => {},
-  showRemove: false
+  showRemove: false,
 };
 
 export default Tram;

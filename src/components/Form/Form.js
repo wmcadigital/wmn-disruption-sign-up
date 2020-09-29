@@ -21,7 +21,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
   const { currentStep, hasReachedConfirmation } = formDataState; // Destructure step from state
   const methods = useForm({
-    mode: 'onBlur'
+    mode: 'onBlur',
   }); // Trigger validation onBlur events (config for react hook form lib)
 
   useTrackFormAbandonment(currentStep, formSubmitStatus);
@@ -45,7 +45,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
                 onClick={() =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
-                    payload: hasReachedConfirmation ? 5 : currentStep - 1
+                    payload: hasReachedConfirmation ? 5 : currentStep - 1,
                   })
                 }
               >
@@ -53,13 +53,19 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
               </button>
             </div>
           )}
-          <div className={formSubmitStatus === null ? `${s.formWrapper} wmnds-p-lg ` : ''}>
+          <div
+            className={
+              formSubmitStatus === null ? `${s.formWrapper} wmnds-p-lg ` : ''
+            }
+          >
             {/* Start of form */}
             {currentStep === 1 && <Step1Name />}
             {currentStep === 2 && <Step2Email />}
             {currentStep === 3 && <Step3AddService />}
             {currentStep === 4 && <Step4SearchForService />}
-            {currentStep === 5 && <Step5Confirm setFormSubmitStatus={setFormSubmitStatus} />}
+            {currentStep === 5 && (
+              <Step5Confirm setFormSubmitStatus={setFormSubmitStatus} />
+            )}
             {/* for testing only */}
             {currentStep === 6 && <SubmitSuccess />}
             {currentStep === 7 && <SubmitError />}
@@ -72,7 +78,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
             style={{
               overflowX: 'auto',
               position: 'fixed',
-              right: 0
+              right: 0,
             }}
           >
             <pre>{JSON.stringify(formDataState, null, 2)}</pre>
@@ -80,21 +86,21 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
             <div className="wmnds-col-1">
               Select step: {}
               <select
-                onChange={e =>
+                onChange={(e) =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
-                    payload: +e.target.value
+                    payload: +e.target.value,
                   })
                 }
-                onBlur={e =>
+                onBlur={(e) =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
-                    payload: +e.target.value
+                    payload: +e.target.value,
                   })
                 }
                 value={currentStep}
               >
-                {debugStepOptions.map(option => (
+                {debugStepOptions.map((option) => (
                   <option key={option} value={option}>
                     {option}
                   </option>
@@ -110,11 +116,11 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
 
 Form.propTypes = {
   formSubmitStatus: PropTypes.bool,
-  setFormSubmitStatus: PropTypes.func.isRequired
+  setFormSubmitStatus: PropTypes.func.isRequired,
 };
 
 Form.defaultProps = {
-  formSubmitStatus: null
+  formSubmitStatus: null,
 };
 
 export default Form;
