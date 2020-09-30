@@ -20,7 +20,7 @@ function Step3AddService() {
   const addDirectlyAvailableTram = () => {
     const defTram = {
       id: '4546',
-      routeName: 'Wolverhampton - Birmingham',
+      routeName: 'Birmingham - Wolverhampton',
       serviceNumber: 'MM1',
     };
 
