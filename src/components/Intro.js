@@ -17,7 +17,7 @@ const Intro = ({ setIsFormStarted }) => {
         <ul>
           <li>
             Sign up to automatic email alerts every time there is a disruption
-            to your bus service
+            to your bus and/or tram services
           </li>
         </ul>
         <p>This process takes around 5 minutes.</p>
