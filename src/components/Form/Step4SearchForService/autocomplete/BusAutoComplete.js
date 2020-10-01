@@ -21,7 +21,22 @@ const BusAutoComplete = ({ mode, setMode }) => {
   const debounceInput = useRef(null);
 
   const [formDataState] = useContext(FormDataContext);
+  let BusServices;
+  if (formDataState.formData.BusServices) {
+    BusServices = formDataState.formData.BusServices;
+  } else {
+    BusServices = [];
+  }
   const busId = formDataState.formData.LineId || [];
+
+  const filterResults = () => {
+    if (BusServices.length > 0) {
+      const newResults = searchResults.filter(
+        (result) => !BusServices.some((el) => el.id === result.id)
+      );
+      return newResults;
+    } else return searchResults;
+  };
 
   const updateQuery = (query) => {
     setErrorInfo(null);
@@ -163,7 +178,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
           searchResults && (
             <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-3-5">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
-                {searchResults.map((result) => {
+                {filterResults().map((result) => {
                   if (busId && busId.indexOf(result.id) < 0) {
                     // eslint-disable-next-line no-unused-expressions
                     return (
