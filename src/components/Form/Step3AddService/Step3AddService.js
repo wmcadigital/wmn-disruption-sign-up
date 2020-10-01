@@ -13,8 +13,12 @@ function Step3AddService() {
   const { BusServices } = formDataState.formData;
   const { TramServices } = formDataState.formData;
 
-  const handleRemove = (route) => {
-    formDataDispatch({ type: 'REMOVE_ROUTE', payload: route });
+  const handleRemoveBus = (id) => {
+    formDataDispatch({ type: 'REMOVE_BUS', payload: id });
+  };
+
+  const handleRemoveTram = (id) => {
+    formDataDispatch({ type: 'REMOVE_TRAM', payload: id });
   };
 
   const addDirectlyAvailableTram = () => {
@@ -23,9 +27,7 @@ function Step3AddService() {
       routeName: 'Birmingham - Wolverhampton - Birmingham',
       serviceNumber: 'MM1',
     };
-
     const currentTrams = [defTram];
-
     const { LineId } = formDataState.formData;
     let allServicesId = [];
     if (LineId && LineId.length > 0) {
@@ -38,10 +40,6 @@ function Step3AddService() {
       type: 'UPDATE_FORM_DATA',
       payload: { LineId: allServicesId, TramServices: currentTrams },
     });
-  };
-
-  const handleRemoveTram = (route) => {
-    formDataDispatch({ type: 'REMOVE_TRAM_ROUTE', payload: route });
   };
 
   const getNextStep = (incrementAmount) => {
@@ -84,10 +82,11 @@ function Step3AddService() {
                     return (
                       <Bus
                         showRemove
-                        handleRemove={handleRemove}
+                        handleRemove={handleRemoveBus}
                         serviceNumber={busRoute.serviceNumber}
                         routeName={busRoute.routeName}
-                        key={`${busRoute.serviceNumber}`}
+                        id={busRoute.id}
+                        key={`${busRoute.id}`}
                       />
                     );
                   })}
@@ -107,7 +106,8 @@ function Step3AddService() {
                         handleRemove={handleRemoveTram}
                         serviceNumber={tramRoute.serviceNumber}
                         routeName={tramRoute.routeName}
-                        key={`${tramRoute.serviceNumber}`}
+                        id={tramRoute.id}
+                        key={`${tramRoute.id}`}
                       />
                     );
                   })}
@@ -126,7 +126,9 @@ function Step3AddService() {
             onClick={() => {
               getNextStep(1);
             }}
-            text={`Add ${BusServices ? 'another' : ''} bus service`}
+            text={`Add ${
+              BusServices && BusServices.length > 0 ? 'another' : ''
+            } bus service`}
             iconRight="general-expand"
           />
           <span className="wmnds-m-r-md wmnds-hide-mobile" />

@@ -4,9 +4,9 @@ import Icon from '../Icon/Icon';
 import style from './Tram.module.scss';
 
 function Tram(props) {
-  const { serviceNumber, routeName, handleRemove, showRemove } = props;
+  const { id, serviceNumber, routeName, handleRemove, showRemove } = props;
   const onClick = () => {
-    handleRemove(serviceNumber);
+    handleRemove(id);
   };
   return (
     <div className={`${style.serviceWrapper}`}>

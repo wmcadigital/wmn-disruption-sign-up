@@ -26,26 +26,32 @@ export const FormDataProvider = (props) => {
       }
 
       // Remove the bus route from form data
-      case 'REMOVE_ROUTE': {
+      case 'REMOVE_BUS': {
         return {
           ...state,
           formData: {
             ...state.formData,
             BusServices: state.formData.BusServices.filter(
-              (busRoute) => action.payload !== busRoute.serviceNumber
+              (bus) => action.payload !== bus.id
+            ),
+            LineId: state.formData.LineId.filter(
+              (busId) => action.payload !== busId
             ),
           },
         };
       }
 
       // Remove the bus route from form data
-      case 'REMOVE_TRAM_ROUTE': {
+      case 'REMOVE_TRAM': {
         return {
           ...state,
           formData: {
             ...state.formData,
             TramServices: state.formData.TramServices.filter(
-              (tramRoute) => action.payload !== tramRoute.serviceNumber
+              (tram) => action.payload !== tram.id
+            ),
+            LineId: state.formData.LineId.filter(
+              (tramId) => action.payload !== tramId
             ),
           },
         };

@@ -35,7 +35,9 @@ const BusAutoComplete = ({ mode, setMode }) => {
         (result) => !BusServices.some((el) => el.id === result.id)
       );
       return newResults;
-    } else return searchResults;
+    } else {
+      return searchResults;
+    }
   };
 
   const updateQuery = (query) => {
