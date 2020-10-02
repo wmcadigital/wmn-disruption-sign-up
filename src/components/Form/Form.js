@@ -5,7 +5,11 @@ import { useForm, FormContext } from 'react-hook-form';
 import { FormDataContext } from 'globalState/FormDataContext';
 // Import components
 import Step1Name from './Step1Name/Step1Name';
+import Step2SmsAlert from './Step2SmsAlert/Step2SmsAlert';
+import Step3Phone from './Step3Phone/Step3Phone';
+import Step4SmsConsent from './Step4SmsConsent/Step4SmsConsent';
 import Step5Email from './Step5Email/Step5Email';
+import Step6EmailAlert from './Step6EmailAlert/Step6EmailAlert';
 import Step7AddService from './Step7AddService/Step7AddService';
 import Step8SearchForService from './Step8SearchForService/Step8SearchForService';
 import Step9Confirm from './Step9Confirm/Step9Confirm';
@@ -60,15 +64,19 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
           >
             {/* Start of form */}
             {currentStep === 1 && <Step1Name />}
-            {currentStep === 2 && <Step5Email />}
-            {currentStep === 3 && <Step7AddService />}
-            {currentStep === 4 && <Step8SearchForService />}
-            {currentStep === 5 && (
+            {currentStep === 2 && <Step2SmsAlert />}
+            {currentStep === 3 && <Step3Phone />}
+            {currentStep === 4 && <Step4SmsConsent />}
+            {currentStep === 5 && <Step5Email />}
+            {currentStep === 6 && <Step6EmailAlert />}
+            {currentStep === 7 && <Step7AddService />}
+            {currentStep === 8 && <Step8SearchForService />}
+            {currentStep === 9 && (
               <Step9Confirm setFormSubmitStatus={setFormSubmitStatus} />
             )}
             {/* for testing only */}
-            {currentStep === 6 && <SubmitSuccess />}
-            {currentStep === 7 && <SubmitError />}
+            {currentStep === 10 && <SubmitSuccess />}
+            {currentStep === 11 && <SubmitError />}
           </div>
         </div>
         {/* If in development based on envs then show form debugging */}

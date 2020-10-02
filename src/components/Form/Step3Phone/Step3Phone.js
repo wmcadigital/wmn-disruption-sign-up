@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 // Import custom hooks
 import useStepLogic from 'components/Form/useStepLogic';
 // Import components
-//import Radios from 'components/shared/FormElements/Radios/Radios';
+import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 
-const Step2SmsAlert = () => {
+const Step3Phone = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const {
     register,
@@ -14,10 +14,17 @@ const Step2SmsAlert = () => {
     continueButton,
   } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
-  const radioButtons = [
-    { text: 'Yes', value: '0' },
-    { text: 'No', value: '1' },
-  ];
+  // Labels used on inputs and for validation
+  const phoneLabel = 'Mobile phone number';
+  // Logic used to validate the phone field
+  const phoneRegex = /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches phone regex on server
+  const phoneValidation = register({
+    required: `${phoneLabel} is required`,
+    pattern: {
+      value: phoneRegex,
+      message: `Enter an ${phoneLabel.toLowerCase()} in the correct format`,
+    },
+  });
 
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
@@ -29,21 +36,16 @@ const Step2SmsAlert = () => {
 
       <fieldset className="wmnds-fe-fieldset">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>
-            Would you like to sign up to the SMS service disruptions trial?
-          </h2>
-          <p>
-            We’ll automatically send SMS message alerts straight to your phone.
-          </p>
+          <h2>What is your mobile phone number?</h2>
+          <p>We’ll automatically send disruption alerts to this number.</p>
         </legend>
-        {/*         
-        <Radios
-          name="SMS Alert"
-          label="Would you like to sign up to the SMS service disruptions trial?"
-          radios={radioButtons}
-          fieldValidation=""
+
+        <Input
+          className="wmnds-col-sm-1-2"
+          name="Phone"
+          label={`${phoneLabel}, for example: 07700900090`}
+          type="tel"
         />
-        */}
       </fieldset>
 
       {/* Continue button */}
@@ -52,4 +54,4 @@ const Step2SmsAlert = () => {
   );
 };
 
-export default Step2SmsAlert;
+export default Step3Phone;
