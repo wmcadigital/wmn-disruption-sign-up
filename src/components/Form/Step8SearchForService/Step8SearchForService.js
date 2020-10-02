@@ -7,7 +7,7 @@ import Autocomplete from './autocomplete/Autocomplete';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
 import Button from '../../shared/Button/Button';
 
-function Step4SearchForService() {
+function Step8SearchForService() {
   const [mode, setMode] = useState('bus');
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
 
@@ -47,4 +47,4 @@ function Step4SearchForService() {
   );
 }
 
-export default Step4SearchForService;
+export default Step8SearchForService;

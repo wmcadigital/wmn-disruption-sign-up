@@ -5,12 +5,12 @@ import { useForm, FormContext } from 'react-hook-form';
 import { FormDataContext } from 'globalState/FormDataContext';
 // Import components
 import Step1Name from './Step1Name/Step1Name';
-import Step2Email from './Step2Email/Step2Email';
-import Step3AddService from './Step3AddService/Step3AddService';
-import Step4SearchForService from './Step4SearchForService/Step4SearchForService';
-import Step5Confirm from './Step5Confirm/Step5Confirm';
-import SubmitSuccess from './Step6SubmitConfirmation/Success';
-import SubmitError from './Step6SubmitConfirmation/Error';
+import Step5Email from './Step5Email/Step5Email';
+import Step7AddService from './Step7AddService/Step7AddService';
+import Step8SearchForService from './Step8SearchForService/Step8SearchForService';
+import Step9Confirm from './Step9Confirm/Step9Confirm';
+import SubmitSuccess from './Step10SubmitConfirmation/Success';
+import SubmitError from './Step10SubmitConfirmation/Error';
 
 import useTrackFormAbandonment from './useTrackFormAbandonment';
 
@@ -60,11 +60,11 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
           >
             {/* Start of form */}
             {currentStep === 1 && <Step1Name />}
-            {currentStep === 2 && <Step2Email />}
-            {currentStep === 3 && <Step3AddService />}
-            {currentStep === 4 && <Step4SearchForService />}
+            {currentStep === 2 && <Step5Email />}
+            {currentStep === 3 && <Step7AddService />}
+            {currentStep === 4 && <Step8SearchForService />}
             {currentStep === 5 && (
-              <Step5Confirm setFormSubmitStatus={setFormSubmitStatus} />
+              <Step9Confirm setFormSubmitStatus={setFormSubmitStatus} />
             )}
             {/* for testing only */}
             {currentStep === 6 && <SubmitSuccess />}

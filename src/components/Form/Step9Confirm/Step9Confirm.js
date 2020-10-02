@@ -3,12 +3,12 @@ import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 // Import custom hooks
 import useSubmitForm from '../useSubmitForm';
-import SummarySection from './Step5SummarySection';
-import Step5ConsentForm from './Step5ConsentForm';
+import SummarySection from './Step9SummarySection';
+import Step9ConsentForm from './Step9ConsentForm';
 import { FormDataContext } from '../../../globalState/FormDataContext';
 import Button from '../../shared/Button/Button';
 
-function Step5Confirm({ setFormSubmitStatus }) {
+function Step9Confirm({ setFormSubmitStatus }) {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   // Get handleSubmit fn and isFetching from custom hook which handles submitting data to API (this is used in the last step[4])
   const { handleSubmit, isFetching, APIErrorMessage } = useSubmitForm(
@@ -32,7 +32,7 @@ function Step5Confirm({ setFormSubmitStatus }) {
       <SummarySection />
 
       <div className="wmnds-col-1">
-        <Step5ConsentForm />
+        <Step9ConsentForm />
 
         <Button
           disabled={isFetching}
@@ -46,8 +46,8 @@ function Step5Confirm({ setFormSubmitStatus }) {
   );
 }
 
-Step5Confirm.propTypes = {
+Step9Confirm.propTypes = {
   setFormSubmitStatus: PropTypes.func.isRequired,
 };
 
-export default Step5Confirm;
+export default Step9Confirm;

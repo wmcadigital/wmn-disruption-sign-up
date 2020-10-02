@@ -4,7 +4,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import InputCheckbox from '../../shared/FormElements/Input/InputCheckbox';
 
-const Step4ConsentForm = () => {
+const Step9ConsentForm = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
@@ -41,4 +41,4 @@ const Step4ConsentForm = () => {
   );
 };
 
-export default Step4ConsentForm;
+export default Step9ConsentForm;

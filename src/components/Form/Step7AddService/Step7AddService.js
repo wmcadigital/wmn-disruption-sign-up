@@ -6,9 +6,9 @@ import { FormDataContext } from '../../../globalState/FormDataContext';
 import Bus from '../../shared/transportServiceType/Bus';
 import Tram from '../../shared/transportServiceType/Tram';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
-import style from './Step3AddService.module.scss';
+import style from './Step7AddService.module.scss';
 
-function Step3AddService() {
+function Step7AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   const { BusServices } = formDataState.formData;
   const { TramServices } = formDataState.formData;
@@ -162,4 +162,4 @@ function Step3AddService() {
   );
 }
 
-export default Step3AddService;
+export default Step7AddService;

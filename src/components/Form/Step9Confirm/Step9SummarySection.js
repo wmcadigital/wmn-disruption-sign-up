@@ -3,9 +3,9 @@ import { FormDataContext } from '../../../globalState/FormDataContext';
 import Bus from '../../shared/transportServiceType/Bus';
 import Tram from '../../shared/transportServiceType/Tram';
 
-import style from './Step5Confirm.module.scss';
+import style from './Step9Confirm.module.scss';
 
-function Step4SummarySection() {
+function Step9SummarySection() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   const {
     Firstname,
@@ -128,4 +128,4 @@ function Step4SummarySection() {
   );
 }
 
-export default Step4SummarySection;
+export default Step9SummarySection;
