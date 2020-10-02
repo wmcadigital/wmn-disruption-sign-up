@@ -9,7 +9,7 @@ const Intro = ({ setIsFormStarted }) => {
   return (
     <>
       <h1 className="wmnds-col-1 wmnds-col-lg-3-4">
-        Sign up to email alerts about disruption
+        Sign up to service disruptions alerts
       </h1>
 
       <div className="wmnds-col-1 wmnds-col-md-3-4 wmnds-col-lg-1-2">
@@ -19,6 +19,7 @@ const Intro = ({ setIsFormStarted }) => {
             Sign up to automatic email alerts every time there is a disruption
             to your bus and/or tram services
           </li>
+          <li>Sign up to our SMS diruption alert trial</li>
         </ul>
         <p>This process takes around 5 minutes.</p>
         <br />
