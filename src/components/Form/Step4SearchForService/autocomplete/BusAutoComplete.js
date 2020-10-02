@@ -35,9 +35,8 @@ const BusAutoComplete = ({ mode, setMode }) => {
         (result) => !BusServices.some((el) => el.id === result.id)
       );
       return newResults;
-    } else {
-      return searchResults;
     }
+    return searchResults;
   };
 
   const updateQuery = (query) => {
@@ -93,7 +92,9 @@ const BusAutoComplete = ({ mode, setMode }) => {
               message: 'Apologies, we are having technical difficulties.',
             });
             // eslint-disable-next-line no-console
-            console.log({ error });
+            console.log({
+              error,
+            });
           }
         });
     } else {
@@ -152,7 +153,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
               className="wmnds-autocomplete__icon"
             />
             <div className="wmnds-loader" role="alert" aria-live="assertive">
-              <p className="wmnds-loader__content">Content is loading...</p>
+              <p className="wmnds-loader__content"> Content is loading... </p>
             </div>
             <DebounceInput
               type="text"
@@ -168,7 +169,6 @@ const BusAutoComplete = ({ mode, setMode }) => {
             />
           </div>
         </div>
-
         {/* If there is no data.length(results) and the user hasn't submitted a query and the state isn't loading then the user should be displayed with no results message, else show results */}
         {!loading && errorInfo ? (
           <Message

@@ -35,6 +35,7 @@ function Tram(props) {
   );
 }
 Tram.propTypes = {
+  id: PropTypes.string.isRequired,
   serviceNumber: PropTypes.string.isRequired,
   routeName: PropTypes.string.isRequired,
   handleRemove: PropTypes.func,
