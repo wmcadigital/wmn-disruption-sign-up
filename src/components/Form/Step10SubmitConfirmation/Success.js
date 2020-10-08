@@ -12,26 +12,32 @@ function Success() {
   };
 
   let message, steps;
-  if (Phone && SMSAlert === 'yes' && EmailAlert && EmailAlert === 'yes') {
+
+  if (Phone && SMSAlert === 'yes' && EmailAlert === 'yes') {
+    /* Text messages AND Email */
     message =
       'You have successfully signed up to text message and email alerts';
     steps = [
       'We’ll send you an email asking to confirm your subscription.',
-      'When you confirm your subscription, we’ll send a PIN code to your mobile phone number. The PIN code can take up to 5 minutes to arrive. You’ll also receive access to the disruption alerts dashboard. This is where you can manage your communication preferences.',
-      'Confirm your mobile phone number in the disruption alerts dashboard by entering the PIN code sent to your mobile phone. If you do not confirm your mobile number by midnight, you’ll need to request a new PIN code through the dashboard. You’ll need to confirm your mobile number before you can receive text message disruption alerts. ',
+      'When you confirm your subscription, we’ll send a PIN code via text message. The PIN code can take up to 5 minutes to arrive.',
+      'Visit the link in the confirmation email to access your disruption alert dashboard. Enter the PIN code sent to you via text message.',
+      'Once you have confirmed your mobile phone number, you’ll receive disruption alerts to your mobile phone.',
     ];
   } else if (Phone && SMSAlert === 'yes') {
+    /* Text messages */
     message = 'You have successfully signed up to text message alerts';
     steps = [
-      'We’ll send an email asking to confirm your subscription to text message alerts.',
-      'When you confirm your subscription, we’ll send a PIN code to your mobile phone number. The PIN code can take up to 5 minutes to arrive. You’ll also receive access to the disruption alerts dashboard. This is where you can manage your communication preferences.',
-      'Confirm your mobile phone number in the disruption alerts dashboard by entering the PIN code sent to your mobile phone. If you do not confirm your mobile number by midnight, you’ll need to request a new PIN code through the dashboard. You’ll need to confirm your mobile number before you can receive text message disruption alerts. ',
+      'We’ll send you an email asking to confirm your subscription for text message alerts.',
+      'When you confirm your subscription, we’ll send a PIN code via text message. The PIN code can take up to 5 minutes to arrive.',
+      'Visit the link in the confirmation email to access your disruption alert dashboard. Enter the PIN code sent to you via text message.',
+      'Once you have confirmed your mobile phone number, you’ll receive disruption alerts to your mobile phone.',
     ];
   } else if (!Phone) {
+    /* Emails only */
     message = 'You have successfully signed up to email alerts';
     steps = [
       'We’ll send you an email asking to confirm your subscription.',
-      'When you confirm your subscription, you’ll receive access to the disruption alerts dashboard. This is where you can manage your communication preferences.',
+      'Once you have confirmed your subscription, you’ll receive disruption alerts to your email address.',
     ];
   }
 
@@ -53,14 +59,11 @@ function Success() {
         </div>
 
         <div className="wmnds-col-1 wmnds-col-lg-3-5">
-          <p>
-            We have sent you an email asking you to confirm your subscription.
-          </p>
           <h3>What happens next</h3>
           <IntextStep steps={steps} />
           <InsetText
             classes="wmnds-m-b-lg"
-            content="You can access your disruption alerts dashboard at any time by visiting the link in your confirmation email."
+            content="The disruption alerts dashboard is where you can manage your communication preferences. You can access the dashboard at any time by visiting the link in your confirmation email."
           />
 
           <p>
