@@ -17,7 +17,7 @@ const Step4Phone = () => {
   // Labels used on inputs and for validation
   const phoneLabel = 'Mobile phone number';
   // Logic used to validate the phone field
-  const phoneRegex = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
+  const phoneRegex = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/; // Regex expression only for uk mobile numbers found in this website (2nd reply) - https://community.dynamics.com/crm/f/microsoft-dynamics-crm-forum/119483/javascript-regex-uk-phone-number
   const phoneValidation = register({
     required: `${phoneLabel} is required`,
     pattern: {
