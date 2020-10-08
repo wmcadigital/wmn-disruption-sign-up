@@ -32,8 +32,7 @@ function Step9Confirm({ setFormSubmitStatus }) {
       <SummarySection />
 
       <div className="wmnds-col-1">
-        <Step9ConsentForm />
-
+        {formDataState.formData.EmailAlert === 'yes' && <Step9ConsentForm />}
         <Button
           disabled={isFetching}
           iconRight="general-chevron-right"

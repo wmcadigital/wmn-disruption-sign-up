@@ -25,14 +25,9 @@ function Step9SummarySection() {
   return (
     <>
       <div className={`wmnds-col-1 ${style.summary}`}>
-        <h2>Check your answers before signing up to email alerts</h2>
-        <ul className="wmnds-col-1">
-          <li>You can sign up to as many services as you would like</li>
-          <li>
-            You will receive an automatic email update for each disruption
-          </li>
-        </ul>
-
+        <h2 className="wmnds-col-1 wmnds-col-lg-3-5">
+          Check your preferences before signing up to disruption alerts
+        </h2>
         <h3>Personal Details</h3>
         {/*         <Table
           title=""
@@ -84,7 +79,7 @@ function Step9SummarySection() {
                     type="button"
                     className={`${style.asLink} wmnds-link`}
                     onClick={() => {
-                      setStepInContext(3);
+                      setStepInContext(4);
                     }}
                   >
                     Change

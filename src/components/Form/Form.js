@@ -7,8 +7,8 @@ import { FormDataContext } from 'globalState/FormDataContext';
 // Import components
 import Step1Name from './Step1Name/Step1Name';
 import Step2SmsAlert from './Step2SmsAlert/Step2SmsAlert';
-import Step3Phone from './Step3Phone/Step3Phone';
-import Step4SmsConsent from './Step4SmsConsent/Step4SmsConsent';
+import Step3SmsConsent from './Step3SmsConsent/Step3SmsConsent';
+import Step4Phone from './Step4Phone/Step4Phone';
 import Step5Email from './Step5Email/Step5Email';
 import Step6EmailAlert from './Step6EmailAlert/Step6EmailAlert';
 import Step7AddService from './Step7AddService/Step7AddService';
@@ -66,8 +66,8 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
             {/* Start of form */}
             {currentStep === 1 && <Step1Name />}
             {currentStep === 2 && <Step2SmsAlert />}
-            {currentStep === 3 && <Step3Phone />}
-            {currentStep === 4 && <Step4SmsConsent />}
+            {currentStep === 3 && <Step3SmsConsent />}
+            {currentStep === 4 && <Step4Phone />}
             {currentStep === 5 && <Step5Email />}
             {currentStep === 6 && <Step6EmailAlert />}
             {currentStep === 7 && <Step7AddService />}
