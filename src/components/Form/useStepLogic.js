@@ -19,12 +19,35 @@ const useStepLogic = (formRef) => {
     // if no errors
     if (result) {
       formDataDispatch({ type: 'UPDATE_FORM_DATA', payload: getValues() });
-      formDataDispatch({
-        type: 'UPDATE_STEP',
-        payload: formDataState.hasReachedConfirmation
-          ? 5
-          : formDataState.currentStep + 1,
-      });
+
+      if (formDataState.currentStep === 2) {
+        formDataDispatch({
+          type: 'UPDATE_STEP',
+          payload:
+            getValues().SMSAlert === 'no' ? 5 : formDataState.currentStep + 1,
+        });
+      } else if (
+        formDataState.currentStep === 5 &&
+        formDataState.formData.SMSAlert === 'no'
+      ) {
+        formDataDispatch({
+          type: 'UPDATE_FORM_DATA',
+          payload: { EmailAlert: 'yes' },
+        });
+        formDataDispatch({
+          type: 'UPDATE_STEP',
+          payload: formDataState.hasReachedConfirmation
+            ? 9
+            : formDataState.currentStep + 2,
+        });
+      } else {
+        formDataDispatch({
+          type: 'UPDATE_STEP',
+          payload: formDataState.hasReachedConfirmation
+            ? 9
+            : formDataState.currentStep + 1,
+        });
+      }
     }
     // else, errors are true...
     else {

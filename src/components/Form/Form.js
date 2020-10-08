@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useForm, FormContext } from 'react-hook-form';
 // Import contexts
+
 import { FormDataContext } from 'globalState/FormDataContext';
 // Import components
 import Step1Name from './Step1Name/Step1Name';
@@ -31,7 +32,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   useTrackFormAbandonment(currentStep, formSubmitStatus);
 
   // Show debug options for below (this should be deleted on release)
-  const debugStepOptions = [1, 2, 3, 4, 5, 6, 7];
+  const debugStepOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   // Run! Like go get some data from an API.
   return (
@@ -40,8 +41,8 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <FormContext {...methods}>
         <div className="wmnds-col-1 wmnds-col-md-3-4 ">
-          {/* Show back button if the step is between 1 or 4 */}
-          {currentStep > 1 && currentStep < 5 && (
+          {/* Show back button if the step is between 1 or 9 */}
+          {currentStep > 1 && currentStep < 9 && (
             <div className="wmnds-col-1 wmnds-m-b-md">
               <button
                 type="button"
@@ -49,7 +50,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
                 onClick={() =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
-                    payload: hasReachedConfirmation ? 5 : currentStep - 1,
+                    payload: hasReachedConfirmation ? 9 : currentStep - 1,
                   })
                 }
               >
