@@ -5,7 +5,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 import InputCheckbox from 'components/shared/FormElements/Input/InputCheckbox';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 
-const Step4SmsConsent = () => {
+const Step3SmsConsent = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const {
     register,
@@ -103,4 +103,4 @@ const Step4SmsConsent = () => {
   );
 };
 
-export default Step4SmsConsent;
+export default Step3SmsConsent;

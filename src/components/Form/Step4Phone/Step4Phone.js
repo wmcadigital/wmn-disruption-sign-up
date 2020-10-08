@@ -5,7 +5,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 
-const Step3Phone = () => {
+const Step4Phone = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const {
     register,
@@ -55,4 +55,4 @@ const Step3Phone = () => {
   );
 };
 
-export default Step3Phone;
+export default Step4Phone;
