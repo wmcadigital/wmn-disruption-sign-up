@@ -17,7 +17,7 @@ const Step3Phone = () => {
   // Labels used on inputs and for validation
   const phoneLabel = 'Mobile phone number';
   // Logic used to validate the phone field
-  const phoneRegex = /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches phone regex on server
+  const phoneRegex = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
   const phoneValidation = register({
     required: `${phoneLabel} is required`,
     pattern: {
@@ -45,6 +45,7 @@ const Step3Phone = () => {
           name="Phone"
           label={`${phoneLabel}, for example: 07700900090`}
           type="tel"
+          fieldValidation={phoneValidation}
         />
       </fieldset>
 

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 // Import custom hooks
 import useStepLogic from 'components/Form/useStepLogic';
 // Import components
-import Input from 'components/shared/FormElements/Input/Input';
+import Radios from 'components/shared/FormElements/Radios/Radios';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 
 const Step6EmailAlert = () => {
@@ -14,6 +14,10 @@ const Step6EmailAlert = () => {
     continueButton,
   } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
+  const radioButtons = [
+    { text: 'Yes', value: 'yes' },
+    { text: 'No', value: 'no' },
+  ];
   // Labels used on inputs and for validation
   const phoneLabel = 'Mobile phone number';
   // Logic used to validate the phone field
@@ -42,12 +46,14 @@ const Step6EmailAlert = () => {
           </p>
         </legend>
 
-        {/*         <Input
-          className="wmnds-col-sm-1-2"
-          name="Phone"
-          label={`${phoneLabel}, for example: 07700900090`}
-          type="tel"
-        /> */}
+        <Radios
+          name="EmailAlert"
+          label=""
+          radios={radioButtons}
+          fieldValidation={register({
+            required: `Please select one option to proceed`,
+          })}
+        />
       </fieldset>
 
       {/* Continue button */}
