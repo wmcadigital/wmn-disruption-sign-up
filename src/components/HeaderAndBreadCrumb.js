@@ -34,8 +34,8 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
           {/* Only show the title in the header if the form is started and we are not on success/error page (formSubmitStatus) */}
           {isFormStarted && formSubmitStatus === null && (
             <h1 className="wmnds-header__title wmnds-col-1 wmnds-col-sm-auto">
-              Sign up to email alerts
-              <br /> about disruption
+              Sign up to service
+              <br /> disruptions alerts
             </h1>
           )}
         </div>
