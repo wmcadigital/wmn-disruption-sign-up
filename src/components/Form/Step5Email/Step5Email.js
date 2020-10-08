@@ -37,7 +37,11 @@ const Step5Email = () => {
       <fieldset className="wmnds-fe-fieldset">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>What is your email address?</h2>
-          <p>We’ll automatically send disruption alerts to this address</p>
+          <p>We’ll automatically send disruption alerts to this address.</p>
+          <p>
+            We also need your email address so you can confirm your subscription
+            and manage your alert preferences.
+          </p>
         </legend>
 
         <Input

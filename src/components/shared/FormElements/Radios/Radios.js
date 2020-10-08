@@ -8,12 +8,14 @@ import Radio from './Radio/Radio';
 
 const { sanitize } = dompurify;
 
-const Radios = ({ name, label, radios, fieldValidation }) => {
+const Radios = ({ name, classes, label, radios, fieldValidation }) => {
   const { errors } = useFormContext();
 
   return (
     <div
-      className={`wmnds-fe-group ${errors[name] && 'wmnds-fe-group--error'}`}
+      className={`wmnds-fe-group ${
+        errors[name] && 'wmnds-fe-group--error'
+      } ${classes}`}
     >
       <fieldset className="wmnds-fe-fieldset">
         <legend className="wmnds-fe-fieldset__legend">
@@ -48,6 +50,7 @@ const Radios = ({ name, label, radios, fieldValidation }) => {
 // PropTypes
 Radios.propTypes = {
   fieldValidation: PropTypes.func,
+  classes: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   radios: PropTypes.arrayOf(
@@ -57,6 +60,7 @@ Radios.propTypes = {
 
 Radios.defaultProps = {
   fieldValidation: null,
+  classes: null,
 };
 
 export default Radios;

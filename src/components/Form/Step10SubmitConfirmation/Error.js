@@ -5,7 +5,7 @@ function Error() {
     <div className="wmnds-container-alerts-sign-up">
       <div className="wmnds-grid">
         <div className="wmnds-col-1 wmnds-col-sm-2-3">
-          <h1>Sign up to email alerts about disruptions</h1>
+          <h1>Sign up to service disruption alerts</h1>
         </div>
         <div className="wmnds-col-1 wmnds-col-md-3-4 wmnds-col-lg-1-2">
           {/* Error message */}

@@ -15,7 +15,7 @@ function Step9Confirm({ setFormSubmitStatus }) {
     setFormSubmitStatus
   );
   useEffect(() => {
-    if (formDataState.currentStep === 5) {
+    if (formDataState.currentStep === 9) {
       formDataDispatch({
         type: 'REACHED_CONFIRMATION',
         payload: true,

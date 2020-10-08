@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { FormDataContext } from '../../../globalState/FormDataContext';
 import Bus from '../../shared/transportServiceType/Bus';
 import Tram from '../../shared/transportServiceType/Tram';
+//mport Table from 'components/shared/Table/Table';
 
 import style from './Step9Confirm.module.scss';
 
@@ -11,6 +12,7 @@ function Step9SummarySection() {
     Firstname,
     LastName,
     Email,
+    Phone,
     BusServices,
     TramServices,
   } = formDataState.formData;
@@ -32,6 +34,14 @@ function Step9SummarySection() {
         </ul>
 
         <h3>Personal Details</h3>
+        {/*         <Table
+          title=""
+          caption=""
+          headers={[]}
+          values={[["Name", `${Firstname} ${LastName}`]]}
+          classes="wmnds-m-b-xl"
+          cellClasses={['', '', 'wmnds-text-align-right wmnds-p-r-none']}
+        /> */}
         {/* TODO: needs to be replaced by table component */}
         <table className="wmnds-table wmnds-m-b-xl wmnds-table--without-header">
           <tbody>
@@ -51,20 +61,37 @@ function Step9SummarySection() {
               </td>
             </tr>
             <tr>
-              <th scope="row">Contact Details</th>
+              <th scope="row">Email</th>
               <td>{Email}</td>
               <td className="wmnds-text-align-right wmnds-p-r-none">
                 <button
                   type="button"
                   className={`${style.asLink} wmnds-link`}
                   onClick={() => {
-                    setStepInContext(2);
+                    setStepInContext(5);
                   }}
                 >
                   Change
                 </button>
               </td>
             </tr>
+            {Phone && (
+              <tr>
+                <th scope="row">Mobile phone number</th>
+                <td>{Phone}</td>
+                <td className="wmnds-text-align-right wmnds-p-r-none">
+                  <button
+                    type="button"
+                    className={`${style.asLink} wmnds-link`}
+                    onClick={() => {
+                      setStepInContext(3);
+                    }}
+                  >
+                    Change
+                  </button>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
         {/* TODO: needs to be replaced by table component */}
@@ -77,7 +104,7 @@ function Step9SummarySection() {
             type="button"
             className={`${style.asLink} wmnds-link`}
             onClick={() => {
-              setStepInContext(3);
+              setStepInContext(7);
             }}
           >
             Change
