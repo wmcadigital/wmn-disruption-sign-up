@@ -30,20 +30,24 @@ function Step9SummarySection() {
   } else {
     title = 'Check your preferences before signing up to disruption alerts';
   }
+
+  // Check if mobile phone has +44, if not, remove the 0 and add +44
+  const updatePhone = (phoneNumber) => {
+    formDataDispatch({
+      type: 'UPDATE_FORM_DATA',
+      payload: { Phone: phoneNumber },
+    });
+  };
+  if (Phone.substr(0, 1) === '0') {
+    updatePhone(`+44${Phone.substr(1)}`);
+  }
+
   return (
     <>
       <div className={`wmnds-col-1 ${style.summary}`}>
         <h2 className="wmnds-col-1 wmnds-col-1 wmnds-col-lg-4-5">{title}</h2>
         <h3>Personal Details</h3>
-        {/*         <Table
-          title=""
-          caption=""
-          headers={[]}
-          values={[["Name", `${Firstname} ${LastName}`]]}
-          classes="wmnds-m-b-xl"
-          cellClasses={['', '', 'wmnds-text-align-right wmnds-p-r-none']}
-        /> */}
-        {/* TODO: needs to be replaced by table component */}
+
         <table className="wmnds-table wmnds-m-b-xl wmnds-table--without-header">
           <tbody>
             <tr>
@@ -99,7 +103,6 @@ function Step9SummarySection() {
             )}
           </tbody>
         </table>
-        {/* TODO: needs to be replaced by table component */}
 
         {!ExistingUser && (
           <>

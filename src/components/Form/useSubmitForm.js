@@ -12,13 +12,22 @@ const useSubmitForm = (setFormSubmitStatus) => {
   // const [isContinuePressed, setIsContinuePressed] = useState(false); // State for tracking if continue has been pressed
 
   // Destructure values from our formDataState (get all users values)
-  const { Email, Firstname, LastName, LineId } = formDataState.formData;
+  const {
+    Email,
+    Firstname,
+    LastName,
+    LineId,
+    EmailAlert,
+    Phone,
+  } = formDataState.formData;
 
   // Map all destructured vals above to an object we will send to API
   const dataToSend = {
-    Email,
     Name: `${Firstname} ${LastName}`,
+    Email,
     LineId,
+    EmailDisabled: !EmailAlert,
+    MobileNumber: Phone,
   };
   // console.log('dataToSend:', dataToSend);
   const handleSubmit = async (event) => {
