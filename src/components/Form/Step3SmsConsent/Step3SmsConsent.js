@@ -4,6 +4,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import InputCheckbox from 'components/shared/FormElements/Input/InputCheckbox';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
+import useFormData from '../useFormData';
 
 const Step3SmsConsent = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
@@ -14,6 +15,9 @@ const Step3SmsConsent = () => {
     continueButton,
   } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
+  // Check if it is an existing user
+  const { ExistingUser } = useFormData();
+
   // Labels used on inputs and for validation
   const checkBoxLabel = `Please tick this box if you accept the Terms and Conditions and ${' '}
   <a
@@ -23,7 +27,7 @@ const Step3SmsConsent = () => {
     rel="noopener noreferrer"
   >
     Privacy Policy
-  </a>${' '}.`;
+  </a>`;
 
   // Logic used to validate the email field
   const checkboxValidation = register({
@@ -37,12 +41,14 @@ const Step3SmsConsent = () => {
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
       {/* Subsection */}
-      <SectionStepInfo section="Section 1 of 2" description="About you" />
+      {!ExistingUser && (
+        <SectionStepInfo section="Section 1 of 2" description="About you" />
+      )}
 
       {/* Show generic error message */}
       {showGenericError}
 
-      <fieldset className="wmnds-fe-fieldset">
+      <fieldset className="wmnds-fe-fieldset wmnds-col-1 wmnds-col-lg-4-5">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>Text message service disruptions trial Terms & Conditions</h2>
 

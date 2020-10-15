@@ -4,6 +4,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
+import useFormData from '../useFormData';
 
 const Step4Phone = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
@@ -13,6 +14,9 @@ const Step4Phone = () => {
     showGenericError,
     continueButton,
   } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+
+  // Check it we are facing an existing user
+  const { ExistingUser } = useFormData();
 
   // Labels used on inputs and for validation
   const phoneLabel = 'Mobile phone number';
@@ -29,19 +33,21 @@ const Step4Phone = () => {
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
       {/* Subsection */}
-      <SectionStepInfo section="Section 1 of 2" description="About you" />
+      {!ExistingUser && (
+        <SectionStepInfo section="Section 1 of 2" description="About you" />
+      )}
 
       {/* Show generic error message */}
       {showGenericError}
 
-      <fieldset className="wmnds-fe-fieldset">
+      <fieldset className="wmnds-fe-fieldset wmnds-col-1 wmnds-col-lg-4-5">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>What is your mobile phone number?</h2>
           <p>We’ll automatically send disruption alerts to this number.</p>
         </legend>
 
         <Input
-          className="wmnds-col-sm-1-2"
+          className="wmnds-col-1 wmnds-col-lg-4-5"
           name="Phone"
           label={`${phoneLabel}, for example: 07700900090`}
           type="tel"

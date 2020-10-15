@@ -41,21 +41,21 @@ const Step2SmsAlert = () => {
       {/* Show generic error message */}
       {showGenericError}
 
-      <fieldset className="wmnds-fe-fieldset">
+      <fieldset className="wmnds-fe-fieldset wmnds-col-1 wmnds-col-lg-4-5">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>
             Would you like to sign up to the text message service disruptions
             trial?
           </h2>
           <p>
-            We’ll automatically send text message alerts straight to your phone.
+            We’ll automatically send text message alerts straight to your mobile
+            phone.
           </p>
         </legend>
 
         <Radios
           name="SMSAlert"
           classes={extraInfo ? 'wmnds-m-b-sm' : ''}
-          label=""
           radios={radioButtons}
           fieldValidation={register({
             required: `Please select one option to proceed`,

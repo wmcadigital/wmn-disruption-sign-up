@@ -34,7 +34,7 @@ const Step5Email = () => {
       {/* Show generic error message */}
       {showGenericError}
 
-      <fieldset className="wmnds-fe-fieldset">
+      <fieldset className="wmnds-fe-fieldset wmnds-col-1 wmnds-col-lg-4-5">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>What is your email address?</h2>
           <p>We’ll automatically send disruption alerts to this address.</p>
@@ -45,7 +45,7 @@ const Step5Email = () => {
         </legend>
 
         <Input
-          className="wmnds-col-sm-1-2"
+          className="wmnds-col-1 wmnds-col-lg-4-5"
           name="Email"
           label={`${emailLabel}, for example name@example.com`}
           type="email"

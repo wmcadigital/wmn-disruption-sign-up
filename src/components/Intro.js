@@ -7,12 +7,12 @@ const Intro = ({ setIsFormStarted }) => {
     setIsFormStarted(true);
   };
   return (
-    <>
-      <h1 className="wmnds-col-1 wmnds-col-lg-3-4">
+    <div className="wmnds-col-1 wmnds-col-md-2-3 wmnds-col-lg-1-2">
+      <h1 className="wmnds-col-1 wmnds-col-lg-4-5">
         Sign up to service disruptions alerts
       </h1>
 
-      <div className="wmnds-col-1 wmnds-col-md-3-4 wmnds-col-lg-1-2">
+      <div className="wmnds-col-1 wmnds-col-lg-4-5">
         <h2>Use this service to:</h2>
         <ul>
           <li>
@@ -36,7 +36,7 @@ const Intro = ({ setIsFormStarted }) => {
           />
         </button>
       </div>
-    </>
+    </div>
   );
 };
 Intro.propTypes = {

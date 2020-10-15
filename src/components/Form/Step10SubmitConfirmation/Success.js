@@ -43,11 +43,11 @@ function Success() {
 
   return (
     <div className="wmnds-container-alerts-sign-up">
-      <div className="wmnds-grid">
-        <div className="wmnds-col-1 wmnds-col-lg-2-3">
+      <div className="wmnds-grid wmnds-col-md-2-3 wmnds-col-lg-1-2">
+        <div className="wmnds-col-1">
           <h1>Sign up to service disruption alerts</h1>
         </div>
-        <div className="wmnds-col-1 wmnds-col-lg-2-3 wmnds-m-b-xl">
+        <div className="wmnds-col-1 wmnds-m-b-xl">
           <div
             style={alignCenter}
             className="wmnds-msg-summary wmnds-msg-summary--success-fill "
@@ -58,7 +58,7 @@ function Success() {
           </div>
         </div>
 
-        <div className="wmnds-col-1 wmnds-col-lg-3-5">
+        <div className="wmnds-col-1">
           <h3>What happens next</h3>
           <IntextStep steps={steps} />
           <InsetText

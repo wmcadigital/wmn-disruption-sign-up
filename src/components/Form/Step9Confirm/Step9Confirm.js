@@ -31,14 +31,20 @@ function Step9Confirm({ setFormSubmitStatus }) {
       )}
       <SummarySection />
 
-      <div className="wmnds-col-1">
-        {formDataState.formData.EmailAlert === 'yes' && <Step9ConsentForm />}
+      <div className="wmnds-col-1 wmnds-col-lg-4-5">
+        {formDataState.formData.EmailAlert === 'yes' &&
+          !formDataState.formData.ExistingUser && <Step9ConsentForm />}
         <Button
+          btnClass="wmnds-btn--start wmnds-m-t-lg"
           disabled={isFetching}
           iconRight="general-chevron-right"
           isFetching={isFetching}
           type="submit"
-          text="Accept and sign up"
+          text={
+            formDataState.formData.ExistingUser
+              ? 'Accept and sign up to text message alerts'
+              : 'Accept and sign up to disruption alerts'
+          }
         />
       </div>
     </form>

@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { FormDataContext } from '../../../globalState/FormDataContext';
 import Bus from '../../shared/transportServiceType/Bus';
 import Tram from '../../shared/transportServiceType/Tram';
-//mport Table from 'components/shared/Table/Table';
 
 import style from './Step9Confirm.module.scss';
 
@@ -15,6 +14,7 @@ function Step9SummarySection() {
     Phone,
     BusServices,
     TramServices,
+    ExistingUser,
   } = formDataState.formData;
   const setStepInContext = (st) => {
     formDataDispatch({
@@ -22,12 +22,18 @@ function Step9SummarySection() {
       payload: st,
     });
   };
+
+  let title;
+  if (ExistingUser) {
+    title =
+      'Check your preferences before signing up to the text message service disruption trial';
+  } else {
+    title = 'Check your preferences before signing up to disruption alerts';
+  }
   return (
     <>
       <div className={`wmnds-col-1 ${style.summary}`}>
-        <h2 className="wmnds-col-1 wmnds-col-lg-3-5">
-          Check your preferences before signing up to disruption alerts
-        </h2>
+        <h2 className="wmnds-col-1 wmnds-col-1 wmnds-col-lg-4-5">{title}</h2>
         <h3>Personal Details</h3>
         {/*         <Table
           title=""
@@ -44,30 +50,34 @@ function Step9SummarySection() {
               <th scope="row">Name</th>
               <td>{`${Firstname} ${LastName}`}</td>
               <td className="wmnds-text-align-right wmnds-p-r-none">
-                <button
-                  type="button"
-                  className={`${style.asLink} wmnds-link`}
-                  onClick={() => {
-                    setStepInContext(1);
-                  }}
-                >
-                  Change
-                </button>
+                {!ExistingUser && (
+                  <button
+                    type="button"
+                    className={`${style.asLink} wmnds-link`}
+                    onClick={() => {
+                      setStepInContext(1);
+                    }}
+                  >
+                    Change
+                  </button>
+                )}
               </td>
             </tr>
             <tr>
               <th scope="row">Email</th>
               <td>{Email}</td>
               <td className="wmnds-text-align-right wmnds-p-r-none">
-                <button
-                  type="button"
-                  className={`${style.asLink} wmnds-link`}
-                  onClick={() => {
-                    setStepInContext(5);
-                  }}
-                >
-                  Change
-                </button>
+                {!ExistingUser && (
+                  <button
+                    type="button"
+                    className={`${style.asLink} wmnds-link`}
+                    onClick={() => {
+                      setStepInContext(5);
+                    }}
+                  >
+                    Change
+                  </button>
+                )}
               </td>
             </tr>
             {Phone && (
@@ -91,60 +101,82 @@ function Step9SummarySection() {
         </table>
         {/* TODO: needs to be replaced by table component */}
 
-        <div
-          className={`wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}
-        >
-          <h3 className="wmnds-col-1-3">Services added</h3>
-          <button
-            type="button"
-            className={`${style.asLink} wmnds-link`}
-            onClick={() => {
-              setStepInContext(7);
-            }}
-          >
-            Change
-          </button>
-        </div>
-
-        <div className={style.busses}>
-          {BusServices && BusServices.length > 0 && <h4>Buses</h4>}
-          {BusServices && BusServices.length > 0 && (
-            <div className={` ${BusServices.length > 0 ? 'wmnds-m-b-lg' : ''}`}>
-              {BusServices &&
-                BusServices.map((busRoute) => {
-                  return (
-                    <Bus
-                      serviceNumber={busRoute.serviceNumber}
-                      routeName={busRoute.routeName}
-                      key={`${busRoute.serviceNumber}`}
-                      showRemove={false}
-                    />
-                  );
-                })}
-            </div>
-          )}
-        </div>
-
-        <div className={style.busses}>
-          {TramServices && TramServices.length > 0 && <h4>Trams</h4>}
-          {TramServices && TramServices.length > 0 && (
+        {!ExistingUser && (
+          <>
             <div
-              className={` ${TramServices.length > 0 ? 'wmnds-m-b-lg' : ''}`}
+              className={`wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}
             >
-              {TramServices &&
-                TramServices.map((tramRoute) => {
-                  return (
-                    <Tram
-                      serviceNumber={tramRoute.serviceNumber}
-                      routeName={tramRoute.routeName}
-                      key={`${tramRoute.serviceNumber}`}
-                      showRemove={false}
-                    />
-                  );
-                })}
+              <h3 className="wmnds-col-1-3">Services added</h3>
+              <button
+                type="button"
+                className={`${style.asLink} wmnds-link`}
+                onClick={() => {
+                  setStepInContext(7);
+                }}
+              >
+                Change
+              </button>
             </div>
-          )}
-        </div>
+
+            <div className={style.busses}>
+              {BusServices && BusServices.length > 0 && <h4>Buses</h4>}
+              {BusServices && BusServices.length > 0 && (
+                <div
+                  className={` ${BusServices.length > 0 ? 'wmnds-m-b-lg' : ''}`}
+                >
+                  {BusServices &&
+                    BusServices.map((busRoute) => {
+                      return (
+                        <Bus
+                          serviceNumber={busRoute.serviceNumber}
+                          routeName={busRoute.routeName}
+                          key={`${busRoute.serviceNumber}`}
+                          showRemove={false}
+                        />
+                      );
+                    })}
+                </div>
+              )}
+            </div>
+
+            <div className={style.busses}>
+              {TramServices && TramServices.length > 0 && <h4>Trams</h4>}
+              {TramServices && TramServices.length > 0 && (
+                <div
+                  className={` ${
+                    TramServices.length > 0 ? 'wmnds-m-b-lg' : ''
+                  }`}
+                >
+                  {TramServices &&
+                    TramServices.map((tramRoute) => {
+                      return (
+                        <Tram
+                          serviceNumber={tramRoute.serviceNumber}
+                          routeName={tramRoute.routeName}
+                          key={`${tramRoute.serviceNumber}`}
+                          showRemove={false}
+                        />
+                      );
+                    })}
+                </div>
+              )}
+            </div>
+          </>
+        )}
+
+        {ExistingUser && (
+          <div className={`wmnds-m-b-lg wmnds-m-t-xl`}>
+            <h3 className="wmnds-col-1-3">Your services</h3>
+            <p>
+              You’ll receive text message alerts for the service disruptions you
+              are currently subscribed to.
+            </p>
+            <p>
+              You can add or remove your services in the disruption alerts
+              dashboard.
+            </p>
+          </div>
+        )}
       </div>
     </>
   );
