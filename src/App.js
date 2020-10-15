@@ -7,7 +7,7 @@ import HeaderAndBreadcrumb from './components/HeaderAndBreadCrumb';
 
 import SubmitSuccess from './components/Form/Step10SubmitConfirmation/Success';
 import SubmitError from './components/Form/Step10SubmitConfirmation/Error';
-import { getSearchParam, delSearchParam } from './helpers/URLSearchParams';
+import { getSearchParam } from './helpers/URLSearchParams';
 
 function App() {
   const [isFormStarted, setIsFormStarted] = useState(false);
@@ -23,7 +23,7 @@ function App() {
         isFormStarted={isFormStarted}
         formSubmitStatus={formSubmitStatus}
       />
-      <div className="wmnds-container wmnds-p-b-lg wmnds-grid">
+      <main className="wmnds-container wmnds-container--main wmnds-p-b-lg wmnds-grid">
         {!isFormStarted ? (
           <Intro setIsFormStarted={setIsFormStarted} />
         ) : (
@@ -40,7 +40,7 @@ function App() {
             {formSubmitStatus === false && <SubmitError />}
           </FormDataProvider>
         )}
-      </div>
+      </main>
     </>
   );
 }
