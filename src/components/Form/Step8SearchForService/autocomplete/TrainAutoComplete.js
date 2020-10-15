@@ -6,27 +6,19 @@ import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 
 // Import components
-import Button from '../../../shared/Button/Button';
 import Message from '../../../Message';
 import Icon from '../../../shared/Icon/Icon';
-import BusAutoCompleteResult from './BusAutoCompleteResult';
-import useFormData from '../../useFormData';
+import TrainAutoCompleteResult from './TrainAutoCompleteResult';
 
-const BusAutoComplete = ({ mode, setMode }) => {
+const TrainAutoComplete = ({ mode, setMode }) => {
   const [loading, setLoading] = useState(false); // Set loading state for spinner
   const [errorInfo, setErrorInfo] = useState(); // Placeholder to set error messaging
   const [searchResults, setSearchResults] = useState();
-  const [lineNumber, setLineNumber] = useState();
+  const [station, setStation] = useState();
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
 
-  const { formDataState, formDataDispatch } = useFormData();
-  const getPreviousStep = (incrementAmount) => {
-    formDataDispatch({
-      type: 'UPDATE_STEP',
-      payload: formDataState.currentStep - incrementAmount,
-    });
-  };
+  /*
   let BusServices;
   if (formDataState.formData.BusServices) {
     BusServices = formDataState.formData.BusServices;
@@ -44,10 +36,11 @@ const BusAutoComplete = ({ mode, setMode }) => {
     }
     return searchResults;
   };
+  */
 
   const updateQuery = (query) => {
     setErrorInfo(null);
-    setLineNumber(query);
+    setStation(query);
   };
 
   const handleCancel = () => {
@@ -59,34 +52,41 @@ const BusAutoComplete = ({ mode, setMode }) => {
     let mounted = true; // Set mounted to true (used later to make sure we don't do events as component is unmounting)
     const source = axios.CancelToken.source(); // Set source of cancelToken
     // If autocomplete has query
-    if (lineNumber) {
+    if (station) {
+      /*
       const {
-        REACT_APP_AUTOCOMPLETE_API,
-        REACT_APP_AUTOCOMPLETE_API_KEY,
+        REACT_APP_TRAIN_AUTOCOMPLETE_API,
+        REACT_APP_TRAIN_AUTOCOMPLETE_API_KEY,
       } = process.env; // Destructure env vars
+      */
+      const REACT_APP_TRAIN_AUTOCOMPLETE_API =
+        'https://wmnapi-alpha-01.azure-api.net';
+      const REACT_APP_TRAIN_AUTOCOMPLETE_API_KEY =
+        'fe4085ce404c4653b939d20a4ccbd581';
+
       setLoading(true); // Update loading state to true as we are hitting API
       axios
         .get(
-          `${REACT_APP_AUTOCOMPLETE_API}/bus/v1/service?q=${encodeURI(
-            lineNumber
+          `${REACT_APP_TRAIN_AUTOCOMPLETE_API}/Rail/v2/Station?q=${encodeURI(
+            station
           )}`,
           {
             headers: {
-              'Ocp-Apim-Subscription-Key': REACT_APP_AUTOCOMPLETE_API_KEY,
+              'Ocp-Apim-Subscription-Key': REACT_APP_TRAIN_AUTOCOMPLETE_API_KEY,
             },
             cancelToken: source.token, // Set token with API call, so we can cancel this call on unmount
           }
         )
-        .then((bus) => {
+        .then((train) => {
           setLoading(false); // Set loading state to false after data is received
-          // If bus.data.services isn't there, then we can't map the results to it, so return null
-          if (bus.data.services.length === 0) {
+          // If train.data isn't there, then we can't map the results to it, so return null
+          if (train.data.length === 0) {
             setErrorInfo({
               title: 'No results found',
               message: 'Apologies, could not find the service.',
             });
           } else {
-            setSearchResults(bus.data.services);
+            setSearchResults(train.data);
           }
         })
         .catch((error) => {
@@ -111,7 +111,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
       mounted = false; // Set mounted back to false on unmount
       source.cancel(); // cancel the request
     };
-  }, [lineNumber]);
+  }, [station]);
 
   // Function for handling keyboard/keydown events (controls the up/down arrow on autocomplete results)
   const handleKeyDown = ({ keyCode, target }) => {
@@ -163,12 +163,12 @@ const BusAutoComplete = ({ mode, setMode }) => {
             </div>
             <DebounceInput
               type="text"
-              name="busSearch"
-              placeholder="Search for a service"
+              name="stationSearch"
+              placeholder="Search for a rail station"
               className="wmnds-fe-input wmnds-autocomplete__input"
-              value={lineNumber || ''}
+              value={station || ''}
               onChange={(e) => updateQuery(e.target.value)}
-              aria-label="Search for a service"
+              aria-label="Search for a rail station"
               debounceTimeout={600}
               onKeyDown={(e) => handleKeyDown(e)}
               inputRef={debounceInput}
@@ -186,41 +186,32 @@ const BusAutoComplete = ({ mode, setMode }) => {
           searchResults && (
             <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
-                {filterResults().map((result) => {
-                  if (busId && busId.indexOf(result.id) < 0) {
-                    // eslint-disable-next-line no-unused-expressions
-                    return (
-                      <BusAutoCompleteResult
-                        key={result.id}
-                        result={result}
-                        handleKeyDown={handleKeyDown}
-                        type={mode}
-                        handleCancel={handleCancel}
-                      />
-                    );
-                  }
+                {searchResults.map((result) => {
+                  //if (busId && busId.indexOf(result.id) < 0) {
+                  // eslint-disable-next-line no-unused-expressions
+                  return (
+                    <TrainAutoCompleteResult
+                      key={result.id}
+                      result={result}
+                      handleKeyDown={handleKeyDown}
+                      type={mode}
+                      handleCancel={handleCancel}
+                    />
+                  );
+                  //}
                 })}
               </ul>
             </div>
           )
         )}
       </div>
-      <div className="wmnds-col-1 wmnds-col-md-1-5">
-        <Button
-          btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
-          text="Cancel"
-          onClick={() => {
-            getPreviousStep(1);
-          }}
-        />
-      </div>
     </div>
   );
 };
 
-BusAutoComplete.propTypes = {
+TrainAutoComplete.propTypes = {
   mode: PropTypes.string.isRequired,
   setMode: PropTypes.func.isRequired,
 };
 
-export default BusAutoComplete;
+export default TrainAutoComplete;

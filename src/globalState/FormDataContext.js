@@ -18,6 +18,7 @@ export const FormDataProvider = (props) => {
     },
     formRef: '',
     hasReachedConfirmation: false,
+    mode: null,
   };
 
   // Set up a reducer so we can change state based on centralised logic here
@@ -61,6 +62,14 @@ export const FormDataProvider = (props) => {
               (tramId) => action.payload !== tramId
             ),
           },
+        };
+      }
+
+      // Update service mode
+      case 'UPDATE_MODE': {
+        return {
+          ...state,
+          mode: action.payload,
         };
       }
 

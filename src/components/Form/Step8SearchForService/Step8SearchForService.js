@@ -1,12 +1,13 @@
 /* eslint-disable react/button-has-type */
-import React, { useState } from 'react';
+import React from 'react';
 
 // Import components
 import Autocomplete from './autocomplete/Autocomplete';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
+import useFormData from '../useFormData';
 
 function Step8SearchForService() {
-  const [mode, setMode] = useState('bus');
+  const { mode, setMode } = useFormData();
 
   return (
     <form

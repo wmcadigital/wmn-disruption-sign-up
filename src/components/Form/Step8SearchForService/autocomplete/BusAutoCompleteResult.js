@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FormDataContext } from 'globalState/FormDataContext';
 
-const AutoCompleteResult = (props) => {
+const BusAutoCompleteResult = (props) => {
   const { result, handleKeyDown, handleCancel } = props || {};
   const [formState, formDataDispatch] = useContext(FormDataContext);
   const { currentStep } = formState;
@@ -60,4 +60,4 @@ const AutoCompleteResult = (props) => {
   );
 };
 
-export default AutoCompleteResult;
+export default BusAutoCompleteResult;

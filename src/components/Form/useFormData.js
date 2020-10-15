@@ -3,6 +3,14 @@ import { FormDataContext } from '../../globalState/FormDataContext';
 
 const useFormData = () => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
+  const { mode } = formDataState;
+  const setMode = (newMode) => {
+    formDataDispatch({
+      type: 'UPDATE_MODE',
+      payload: newMode,
+    });
+  };
+
   const {
     Firstname,
     LastName,
@@ -22,6 +30,8 @@ const useFormData = () => {
     ExistingUser,
     formDataState,
     formDataDispatch,
+    mode,
+    setMode,
   };
 };
 

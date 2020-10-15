@@ -10,6 +10,7 @@ function Step7AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   const { BusServices } = formDataState.formData;
   const { TramServices } = formDataState.formData;
+  const { TrainServices } = formDataState.formData;
 
   const handleRemoveBus = (id) => {
     formDataDispatch({ type: 'REMOVE_BUS', payload: id });
@@ -47,6 +48,13 @@ function Step7AddService() {
     });
   };
 
+  const updateMode = (mode) => {
+    formDataDispatch({
+      type: 'UPDATE_MODE',
+      payload: mode,
+    });
+  };
+
   return (
     <form
       onSubmit={(e) => {
@@ -68,6 +76,7 @@ function Step7AddService() {
           btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
           onClick={() => {
             getNextStep(1);
+            updateMode('bus');
           }}
           text={`Add ${
             BusServices && BusServices.length > 0 ? 'another' : ''
@@ -102,6 +111,7 @@ function Step7AddService() {
             btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
             onClick={() => {
               addDirectlyAvailableTram();
+              updateMode('tram');
             }}
             text="Add tram service"
             iconRight="general-expand"
@@ -129,9 +139,44 @@ function Step7AddService() {
           </>
         )}
 
+        <h3 className="wmnds-p-t-md">Trains</h3>
+        {/* Add train service button */}
+        <Button
+          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
+          onClick={() => {
+            getNextStep(1);
+            updateMode('train');
+          }}
+          text={`Add ${
+            TrainServices && TrainServices.length > 0 ? 'another' : ''
+          } train service`}
+          iconRight="general-expand"
+        />
+        {/* Show the train services the user has added */}
+        {TrainServices && TrainServices.length > 0 && (
+          <>
+            <h4>Train lines that you want to add</h4>
+            <div className="wmnds-m-b-lg">
+              {TrainServices.map((busRoute) => {
+                return (
+                  <Bus
+                    showRemove
+                    handleRemove={handleRemoveBus}
+                    serviceNumber={busRoute.serviceNumber}
+                    routeName={busRoute.routeName}
+                    id={busRoute.id}
+                    key={`${busRoute.id}`}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
+
         {/* Continue button */}
         {((BusServices && BusServices.length > 0) ||
-          (TramServices && TramServices.length > 0)) && (
+          (TramServices && TramServices.length > 0) ||
+          (TrainServices && TrainServices.length > 0)) && (
           <Button
             btnClass="wmnds-btn wmnds-col-1 wmnds-m-t-xl"
             type="submit"
