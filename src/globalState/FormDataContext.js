@@ -1,4 +1,5 @@
 import React, { useReducer, createContext } from 'react';
+import { getSearchParam } from 'helpers/URLSearchParams';
 
 export const FormDataContext = createContext();
 
@@ -7,8 +8,14 @@ export const FormDataProvider = (props) => {
 
   // Set intial state of when
   const initialState = {
-    currentStep: 1,
-    formData: {},
+    currentStep:
+      getSearchParam('email') && getSearchParam('email').length > 0 ? 3 : 1,
+    formData: {
+      Firstname: getSearchParam('firstname') || null,
+      LastName: getSearchParam('lastname') || null,
+      Email: getSearchParam('email') || null,
+      ExistingUser: getSearchParam('email') !== null || false,
+    },
     formRef: '',
     hasReachedConfirmation: false,
   };

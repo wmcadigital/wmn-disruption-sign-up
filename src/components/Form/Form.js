@@ -25,6 +25,7 @@ import s from './Form.module.scss';
 const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
   const { currentStep, hasReachedConfirmation } = formDataState; // Destructure step from state
+  const { ExistingUser } = formDataState.formData;
   const methods = useForm({
     mode: 'onBlur',
   }); // Trigger validation onBlur events (config for react hook form lib)
@@ -40,9 +41,9 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
       {/* pass all methods into the context */}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <FormContext {...methods}>
-        <div className="wmnds-col-1 wmnds-col-md-3-4 ">
-          {/* Show back button if the step is between 1 or 9 */}
-          {currentStep > 1 && currentStep < 9 && (
+        <div className="wmnds-col-1 wmnds-col-md-2-3">
+          {/* NEW USERS: Show back button if the step is between 1 or 9 */}
+          {!ExistingUser && currentStep > 1 && currentStep < 9 && (
             <div className="wmnds-col-1 wmnds-m-b-md">
               <button
                 type="button"
@@ -58,6 +59,45 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
               </button>
             </div>
           )}
+
+          {/* EXISTING USERS: Show back button if the step is 4 or 6. Step 3 has no back button */}
+          {ExistingUser &&
+            currentStep > 3 &&
+            currentStep < 9 &&
+            currentStep !== 6 && (
+              <div className="wmnds-col-1 wmnds-m-b-md">
+                <button
+                  type="button"
+                  className={`wmnds-link ${s.asLink}`}
+                  onClick={() =>
+                    formDataDispatch({
+                      type: 'UPDATE_STEP',
+                      payload: hasReachedConfirmation ? 9 : currentStep - 1,
+                    })
+                  }
+                >
+                  &lt; Back
+                </button>
+              </div>
+            )}
+          {/* Exception: on click back button (on step 6) -> step 4 */}
+          {ExistingUser && currentStep === 6 && (
+            <div className="wmnds-col-1 wmnds-m-b-md">
+              <button
+                type="button"
+                className={`wmnds-link ${s.asLink}`}
+                onClick={() =>
+                  formDataDispatch({
+                    type: 'UPDATE_STEP',
+                    payload: hasReachedConfirmation ? 9 : 4,
+                  })
+                }
+              >
+                &lt; Back
+              </button>
+            </div>
+          )}
+
           <div
             className={
               formSubmitStatus === null ? `${s.formWrapper} wmnds-p-lg ` : ''

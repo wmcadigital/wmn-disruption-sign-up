@@ -7,10 +7,15 @@ import HeaderAndBreadcrumb from './components/HeaderAndBreadCrumb';
 
 import SubmitSuccess from './components/Form/Step10SubmitConfirmation/Success';
 import SubmitError from './components/Form/Step10SubmitConfirmation/Error';
+import { getSearchParam, delSearchParam } from './helpers/URLSearchParams';
 
 function App() {
   const [isFormStarted, setIsFormStarted] = useState(false);
   const [formSubmitStatus, setFormSubmitStatus] = useState(null);
+
+  if (getSearchParam('email') && !isFormStarted) {
+    setIsFormStarted(true);
+  }
 
   return (
     <>
