@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../Icon/Icon';
+import Button from '../Button/Button';
 import style from './Bus.module.scss';
 
 function Bus(props) {
@@ -17,19 +17,17 @@ function Bus(props) {
         {serviceNumber}
       </div>
       <strong className="wmnds-col-auto">{routeName}</strong>
+      {/* Right side for remove route button */}
       {showRemove && (
-        <button
-          type="button"
-          className={style.removeBtn}
+        <Button
+          btnClass={`wmnds-btn--destructive wmnds-col-1 wmnds-col-sm-auto ${style.removeBtn}`}
+          text="Remove service"
+          iconRight="general-trash"
+          title={`Remove service ${serviceNumber}: ${routeName}`}
           onClick={() => {
             onClick();
           }}
-        >
-          <Icon
-            iconName="general-cross"
-            className={`general-cross ${style.closeIcon}`}
-          />
-        </button>
+        />
       )}
     </div>
   );

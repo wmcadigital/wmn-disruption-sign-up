@@ -4,9 +4,7 @@ import Button from 'components/shared/Button/Button';
 import { FormDataContext } from '../../../globalState/FormDataContext';
 // Import components
 import Bus from '../../shared/transportServiceType/Bus';
-import Tram from '../../shared/transportServiceType/Tram';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
-import style from './Step7AddService.module.scss';
 
 function Step7AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
@@ -56,100 +54,86 @@ function Step7AddService() {
         return false;
       }}
     >
-      <div className="wmnds-col-1">
+      <div className="">
         {/* Subsection */}
         <SectionStepInfo section="Section 2 of 2" description="Services" />
-        <h2 className="">Add a service</h2>
-        <p className="wmnds-col-2-3">
-          You can sign up to 10 services at a time.
-        </p>
-        <p className="wmnds-m-b-lg">
-          You will receive an automatic email update for each disruption
+        <h2 className="wmnds-col-1 wmnds-col-lg-4-5">Add a service</h2>
+        <p className="wmnds-col-1 wmnds-col-lg-4-5">
+          We’ll send an automatic disruption alert for each service you add.
         </p>
 
-        {/* Show the bus and tram services the user has added */}
-        {((BusServices && BusServices.length > 0) ||
-          (TramServices && TramServices.length > 0)) && (
-          <div className="wmnds-m-b-xl wmnds-p-b-lg">
-            <h3>Services added</h3>
-
-            {/* Show the bus services the user has added */}
-            {BusServices && BusServices.length > 0 && (
-              <>
-                <h4 className="wmnds-m-b-none">Buses</h4>
-                <div className="wmnds-m-b-lg">
-                  {BusServices.map((busRoute) => {
-                    return (
-                      <Bus
-                        showRemove
-                        handleRemove={handleRemoveBus}
-                        serviceNumber={busRoute.serviceNumber}
-                        routeName={busRoute.routeName}
-                        id={busRoute.id}
-                        key={`${busRoute.id}`}
-                      />
-                    );
-                  })}
-                </div>
-              </>
-            )}
-
-            {/* Show the tram services the user has added */}
-            {TramServices && TramServices.length > 0 && (
-              <>
-                <h4 className="wmnds-m-b-none">Trams</h4>
-                <div className="wmnds-m-b-lg">
-                  {TramServices.map((tramRoute) => {
-                    return (
-                      <Tram
-                        showRemove
-                        handleRemove={handleRemoveTram}
-                        serviceNumber={tramRoute.serviceNumber}
-                        routeName={tramRoute.routeName}
-                        id={tramRoute.id}
-                        key={`${tramRoute.id}`}
-                      />
-                    );
-                  })}
-                </div>
-              </>
-            )}
-          </div>
+        <h3>Buses</h3>
+        {/* Add bus service button */}
+        <Button
+          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
+          onClick={() => {
+            getNextStep(1);
+          }}
+          text={`Add ${
+            BusServices && BusServices.length > 0 ? 'another' : ''
+          } bus service`}
+          iconRight="general-expand"
+        />
+        {/* Show the bus services the user has added */}
+        {BusServices && BusServices.length > 0 && (
+          <>
+            <h4>Bus services that you want to add</h4>
+            <div className="wmnds-m-b-lg">
+              {BusServices.map((busRoute) => {
+                return (
+                  <Bus
+                    showRemove
+                    handleRemove={handleRemoveBus}
+                    serviceNumber={busRoute.serviceNumber}
+                    routeName={busRoute.routeName}
+                    id={busRoute.id}
+                    key={`${busRoute.id}`}
+                  />
+                );
+              })}
+            </div>
+          </>
         )}
 
-        <div
-          className={`wmnds-grid wmnds-grid--justify-between ${style.group_buttons}`}
-        >
-          {/* Add bus service button */}
+        <h3 className="wmnds-p-t-md">Trams</h3>
+        {/* Add tram service button */}
+        {(!TramServices || TramServices.length === 0) && (
           <Button
-            btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-1-2 wmnds-m-b-sm"
+            btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
             onClick={() => {
-              getNextStep(1);
+              addDirectlyAvailableTram();
             }}
-            text={`Add ${
-              BusServices && BusServices.length > 0 ? 'another' : ''
-            } bus service`}
+            text="Add tram service"
             iconRight="general-expand"
           />
-          <span className="wmnds-m-r-md wmnds-hide-mobile" />
-          {/* Add tram service button */}
-          {(!TramServices || TramServices.length === 0) && (
-            <Button
-              btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1 wmnds-col-md-1-2 wmnds-m-b-sm"
-              onClick={() => {
-                addDirectlyAvailableTram();
-              }}
-              text="Add tram service"
-              iconRight="general-expand"
-            />
-          )}
-        </div>
+        )}
+
+        {/* Show the tram services the user has added */}
+        {TramServices && TramServices.length > 0 && (
+          <>
+            <h4>Tram services that you want to add</h4>
+            <div className="wmnds-m-b-lg">
+              {TramServices.map((tramRoute) => {
+                return (
+                  <Bus
+                    showRemove
+                    handleRemove={handleRemoveTram}
+                    serviceNumber={tramRoute.serviceNumber}
+                    routeName={tramRoute.routeName}
+                    id={tramRoute.id}
+                    key={`${tramRoute.id}`}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
 
         {/* Continue button */}
         {((BusServices && BusServices.length > 0) ||
           (TramServices && TramServices.length > 0)) && (
           <Button
-            btnClass="wmnds-btn wmnds-col-1 wmnds-m-t-md"
+            btnClass="wmnds-btn wmnds-col-1 wmnds-m-t-xl"
             type="submit"
             text="Continue"
             onClick={() => {

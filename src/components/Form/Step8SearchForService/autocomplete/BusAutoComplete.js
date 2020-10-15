@@ -1,16 +1,16 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable consistent-return */
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 
 // Import components
+import Button from '../../../shared/Button/Button';
 import Message from '../../../Message';
 import Icon from '../../../shared/Icon/Icon';
 import BusAutoCompleteResult from './AutoCompleteResult';
-
-import { FormDataContext } from '../../../../globalState/FormDataContext';
+import useFormData from '../../useFormData';
 
 const BusAutoComplete = ({ mode, setMode }) => {
   const [loading, setLoading] = useState(false); // Set loading state for spinner
@@ -20,7 +20,13 @@ const BusAutoComplete = ({ mode, setMode }) => {
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
 
-  const [formDataState] = useContext(FormDataContext);
+  const { formDataState, formDataDispatch } = useFormData();
+  const getPreviousStep = (incrementAmount) => {
+    formDataDispatch({
+      type: 'UPDATE_STEP',
+      payload: formDataState.currentStep - incrementAmount,
+    });
+  };
   let BusServices;
   if (formDataState.formData.BusServices) {
     BusServices = formDataState.formData.BusServices;
@@ -140,14 +146,14 @@ const BusAutoComplete = ({ mode, setMode }) => {
     }
   };
   return (
-    <>
-      <div className="wmnds-m-b-xl wmnds-col-1">
+    <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
+      <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5">
         <div
           className={`wmnds-autocomplete wmnds-grid ${
             loading ? 'wmnds-is--loading' : ''
           }`}
         >
-          <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-3-5">
+          <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
             <Icon
               iconName="general-search"
               className="wmnds-autocomplete__icon"
@@ -178,7 +184,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
           />
         ) : (
           searchResults && (
-            <div className="wmnds-wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-3-5">
+            <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
                 {filterResults().map((result) => {
                   if (busId && busId.indexOf(result.id) < 0) {
@@ -199,7 +205,16 @@ const BusAutoComplete = ({ mode, setMode }) => {
           )
         )}
       </div>
-    </>
+      <div className="wmnds-col-1 wmnds-col-md-1-5">
+        <Button
+          btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
+          text="Cancel"
+          onClick={() => {
+            getPreviousStep(1);
+          }}
+        />
+      </div>
+    </div>
   );
 };
 
