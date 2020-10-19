@@ -187,8 +187,6 @@ const TrainAutoComplete = ({ mode, setMode }) => {
             <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
                 {searchResults.map((result) => {
-                  //if (busId && busId.indexOf(result.id) < 0) {
-                  // eslint-disable-next-line no-unused-expressions
                   return (
                     <TrainAutoCompleteResult
                       key={result.id}
@@ -198,7 +196,6 @@ const TrainAutoComplete = ({ mode, setMode }) => {
                       handleCancel={handleCancel}
                     />
                   );
-                  //}
                 })}
               </ul>
             </div>

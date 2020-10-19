@@ -31,20 +31,20 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
         </div>
       </header>
 
-      <div class="wmnds-container">
-        <div class="wmnds-banner-container">
-          <div class="wmnds-col-1">
-            <div class="wmnds-banner-container__phase-wrapper">
+      <div className="wmnds-container">
+        <div className="wmnds-banner-container">
+          <div className="wmnds-col-1">
+            <div className="wmnds-banner-container__phase-wrapper">
               <a
                 href="/"
                 target="_self"
-                class="wmnds-phase-indicator"
+                className="wmnds-phase-indicator"
                 title="Beta homepage of West Midlands Network"
               >
                 Beta
               </a>
             </div>
-            <p class="wmnds-banner-container__text">
+            <p className="wmnds-banner-container__text">
               This is a new service - your{' '}
               <a
                 href="https://surveys.hotjar.com/s?siteId=264586&surveyId=156448"

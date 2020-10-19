@@ -61,6 +61,7 @@ Radios.propTypes = {
 Radios.defaultProps = {
   fieldValidation: null,
   classes: null,
+  label: null,
 };
 
 export default Radios;

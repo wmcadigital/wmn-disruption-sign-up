@@ -4,6 +4,7 @@ import InsetText from 'components/shared/InsetText/InsetText';
 import { FormDataContext } from '../../../globalState/FormDataContext';
 
 function Success() {
+  // eslint-disable-next-line no-unused-vars
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   const { Phone, SMSAlert, EmailAlert } = formDataState.formData;
 
@@ -11,7 +12,8 @@ function Success() {
     textAlign: 'center',
   };
 
-  let message, steps;
+  let message;
+  let steps;
 
   if (Phone && SMSAlert === 'yes' && EmailAlert === 'yes') {
     /* Text messages AND Email */

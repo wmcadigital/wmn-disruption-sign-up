@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../../Icon';
-import style from './Bus.module.scss';
+import Icon from '../../../shared/Icon/Icon';
+import style from '../../../shared/transportServiceType/Bus.module.scss';
 
 function Bus(props) {
   const { id, serviceNumber, routeName, handleRemove, showRemove } = props;
