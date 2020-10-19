@@ -7,8 +7,8 @@ const TrainAutoCompleteResult = (props) => {
   // const [formState, formDataDispatch] = useContext(FormDataContext);
   // const { currentStep } = formState;
 
+  // eslint-disable-next-line no-unused-vars
   const updateSelectedService = (busResult) => {
-    console.log(busResult);
     /* 
     const { routeName } = busResult.routes[0];
     const { serviceNumber, id } = busResult;
