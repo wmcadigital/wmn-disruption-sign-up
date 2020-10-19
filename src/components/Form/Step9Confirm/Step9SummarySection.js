@@ -38,7 +38,7 @@ function Step9SummarySection() {
       payload: { Phone: phoneNumber },
     });
   };
-  if (Phone.substr(0, 1) === '0') {
+  if (Phone && Phone.substr(0, 1) === '0') {
     updatePhone(`+44${Phone.substr(1)}`);
   }
 
@@ -168,7 +168,7 @@ function Step9SummarySection() {
         )}
 
         {ExistingUser && (
-          <div className={`wmnds-m-b-lg wmnds-m-t-xl`}>
+          <div className="wmnds-m-b-lg wmnds-m-t-xl">
             <h3 className="wmnds-col-1-3">Your services</h3>
             <p>
               You’ll receive text message alerts for the service disruptions you

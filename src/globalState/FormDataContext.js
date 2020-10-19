@@ -6,13 +6,21 @@ export const FormDataContext = createContext();
 export const FormDataProvider = (props) => {
   const { children } = props || {};
 
+  let FirstName = null;
+  let LastName = null;
+  const UrlName = getSearchParam('name');
+  if (UrlName) {
+    FirstName = UrlName.split('%20')[0];
+    LastName = UrlName.split('%20')[1];
+  }
+
   // Set intial state of when
   const initialState = {
     currentStep:
       getSearchParam('email') && getSearchParam('email').length > 0 ? 3 : 1,
     formData: {
-      Firstname: getSearchParam('firstname') || null,
-      LastName: getSearchParam('lastname') || null,
+      Firstname: FirstName,
+      LastName: LastName,
       Email: getSearchParam('email') || null,
       ExistingUser: getSearchParam('email') !== null || false,
     },
