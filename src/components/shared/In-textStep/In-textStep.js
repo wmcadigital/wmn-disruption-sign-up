@@ -6,10 +6,10 @@ function IntextStep(props) {
 
   return (
     <ol className="wmnds-in-text-step">
-      {steps.map((step) => {
+      {steps.map((index, value) => {
         return (
-          <li className="wmnds-in-text-step__item" key={step.index}>
-            {step.value}
+          <li className="wmnds-in-text-step__item" key={index}>
+            {value}
           </li>
         );
       })}
