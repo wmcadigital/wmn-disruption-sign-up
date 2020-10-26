@@ -9,8 +9,9 @@ export const FormDataProvider = (props) => {
   let FirstName = null;
   let LastName = null;
   const UrlName = getSearchParam('name');
-  if (UrlName) {
-    [FirstName, LastName] = UrlName.split('%20');
+
+  if (UrlName && decodeURI(UrlName)) {
+    [FirstName, LastName] = decodeURI(UrlName).split(' ');
   }
 
   // Set intial state of when

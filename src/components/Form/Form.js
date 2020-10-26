@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useForm, FormContext } from 'react-hook-form';
 // Import contexts
-
 import { FormDataContext } from 'globalState/FormDataContext';
 // Import components
 import Step1Name from './Step1Name/Step1Name';
@@ -16,16 +15,15 @@ import Step8SearchForService from './Step8SearchForService/Step8SearchForService
 import Step9Confirm from './Step9Confirm/Step9Confirm';
 import SubmitSuccess from './Step10SubmitConfirmation/Success';
 import SubmitError from './Step10SubmitConfirmation/Error';
-
+// Custom Hooks
 import useTrackFormAbandonment from './useTrackFormAbandonment';
-
 // Import styling
 import s from './Form.module.scss';
 
 const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
   const { currentStep, hasReachedConfirmation } = formDataState; // Destructure step from state
-  const { ExistingUser } = formDataState.formData;
+  const { ExistingUser, SMSAlert } = formDataState.formData;
   const methods = useForm({
     mode: 'onBlur',
   }); // Trigger validation onBlur events (config for react hook form lib)
@@ -43,7 +41,27 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
       <FormContext {...methods}>
         <div className="wmnds-col-1 wmnds-col-md-2-3">
           {/* NEW USERS: Show back button if the step is between 1 or 9 */}
-          {!ExistingUser && currentStep > 1 && currentStep < 9 && (
+          {!ExistingUser &&
+            currentStep > 1 &&
+            currentStep < 9 &&
+            !(currentStep === 5 && SMSAlert === 'no') &&
+            !(currentStep === 7 && SMSAlert === 'no') && (
+              <div className="wmnds-col-1 wmnds-m-b-md">
+                <button
+                  type="button"
+                  className={`wmnds-link ${s.asLink}`}
+                  onClick={() =>
+                    formDataDispatch({
+                      type: 'UPDATE_STEP',
+                      payload: hasReachedConfirmation ? 9 : currentStep - 1,
+                    })
+                  }
+                >
+                  &lt; Back
+                </button>
+              </div>
+            )}
+          {!ExistingUser && currentStep === 5 && SMSAlert === 'no' && (
             <div className="wmnds-col-1 wmnds-m-b-md">
               <button
                 type="button"
@@ -51,7 +69,23 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
                 onClick={() =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
-                    payload: hasReachedConfirmation ? 9 : currentStep - 1,
+                    payload: hasReachedConfirmation ? 9 : 2,
+                  })
+                }
+              >
+                &lt; Back
+              </button>
+            </div>
+          )}
+          {!ExistingUser && currentStep === 7 && SMSAlert === 'no' && (
+            <div className="wmnds-col-1 wmnds-m-b-md">
+              <button
+                type="button"
+                className={`wmnds-link ${s.asLink}`}
+                onClick={() =>
+                  formDataDispatch({
+                    type: 'UPDATE_STEP',
+                    payload: hasReachedConfirmation ? 9 : 5,
                   })
                 }
               >

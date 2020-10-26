@@ -26,7 +26,7 @@ const Step4Phone = () => {
     required: `${phoneLabel} is required`,
     pattern: {
       value: phoneRegex,
-      message: `Enter an ${phoneLabel.toLowerCase()} in the correct format`,
+      message: `Enter a ${phoneLabel.toLowerCase()} in the correct format`,
     },
   });
 
