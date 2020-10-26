@@ -139,8 +139,8 @@ function Step7AddService() {
           </>
         )}
 
+        {/* Add train service button 
         <h3 className="wmnds-p-t-md">Trains</h3>
-        {/* Add train service button */}
         <Button
           btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
           onClick={() => {
@@ -152,7 +152,8 @@ function Step7AddService() {
           } train service`}
           iconRight="general-expand"
         />
-        {/* Show the train services the user has added */}
+        */}
+        {/* Show the train services the user has added 
         {TrainServices && TrainServices.length > 0 && (
           <>
             <h4>Train lines that you want to add</h4>
@@ -172,6 +173,7 @@ function Step7AddService() {
             </div>
           </>
         )}
+        */}
 
         {/* Continue button */}
         {((BusServices && BusServices.length > 0) ||
