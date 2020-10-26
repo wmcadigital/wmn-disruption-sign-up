@@ -6,14 +6,15 @@ function IntextStep(props) {
 
   return (
     <ol className="wmnds-in-text-step">
-      {steps.map((value, index) => {
-        return (
-          // eslint-disable-next-line react/no-array-index-key
-          <li className="wmnds-in-text-step__item" key={`step${index}`}>
-            {value}
-          </li>
-        );
-      })}
+      {steps &&
+        steps.map((value, index) => {
+          return (
+            // eslint-disable-next-line react/no-array-index-key
+            <li className="wmnds-in-text-step__item" key={`step${index}`}>
+              {value}
+            </li>
+          );
+        })}
     </ol>
   );
 }
