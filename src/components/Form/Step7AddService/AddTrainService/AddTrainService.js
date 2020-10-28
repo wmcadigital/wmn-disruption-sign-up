@@ -32,9 +32,7 @@ const AddTrainService = () => {
           getNextStep(1);
           updateMode('train');
         }}
-        text={`Add ${
-          TrainServices && TrainServices.length > 0 ? 'another' : ''
-        } train service`}
+        text={`Add ${TrainServices && TrainServices.length > 0 ? 'another' : ''} train service`}
         iconRight="general-expand"
       />
       {/* {/* Show the train services the user has added */}

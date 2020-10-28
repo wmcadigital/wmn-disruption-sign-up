@@ -6,8 +6,8 @@ import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 
 // Import components
-import Message from '../../../Message';
-import Icon from '../../../shared/Icon/Icon';
+import Message from '../../../../Message';
+import Icon from '../../../../shared/Icon/Icon';
 import TrainAutoCompleteResult from './TrainAutoCompleteResult';
 
 const TrainAutoComplete = ({ mode, setMode }) => {

@@ -12,11 +12,7 @@ const BusAutoCompleteResult = (props) => {
     const TramService = formState.formData.TramServices || [];
     const BusService = formState.formData.BusServices || [];
     const BusServiceUpdated = [...BusService, { id, routeName, serviceNumber }];
-    const AllServicesUpdated = [
-      ...BusService,
-      ...TramService,
-      { id, routeName, serviceNumber },
-    ];
+    const AllServicesUpdated = [...BusService, ...TramService, { id, routeName, serviceNumber }];
     const allServicesId = [];
     AllServicesUpdated.map((single) => {
       return allServicesId.push(single.id);

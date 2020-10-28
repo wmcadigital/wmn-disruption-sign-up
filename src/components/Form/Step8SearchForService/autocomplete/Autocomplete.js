@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 // Import components
 import useFormData from 'components/Form/useFormData';
 import Button from 'components/shared/Button/Button';
-import BusAutoComplete from './BusAutoComplete';
-import TrainAutoComplete from './TrainAutoComplete';
 
 const AutoComplete = ({ mode, setMode }) => {
   const { formDataState, formDataDispatch } = useFormData();
@@ -28,10 +26,9 @@ const AutoComplete = ({ mode, setMode }) => {
 
     return (
       <div className="wmnds-grid">
-        {mode === 'bus' &&
-          autoCompleteTitle(`Search for a ${mode} service`) && (
-            <BusAutoComplete mode={mode} setMode={setMode} />
-          )}
+        {mode === 'bus' && autoCompleteTitle(`Search for a ${mode} service`) && (
+          <BusAutoComplete mode={mode} setMode={setMode} />
+        )}
         {mode === 'train' && (
           <div className="wmnds-col-1">
             <h4>Select trains between</h4>
