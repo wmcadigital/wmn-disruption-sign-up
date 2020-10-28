@@ -6,10 +6,10 @@ import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 
 // Import components
+import BusAutoCompleteResult from './BusAutoCompleteResult';
 import Button from '../../../../shared/Button/Button';
 import Message from '../../../../Message';
 import Icon from '../../../../shared/Icon/Icon';
-import BusAutoCompleteResult from './BusAutoCompleteResult';
 import useFormData from '../../../useFormData';
 
 const BusAutoComplete = ({ mode, setMode }) => {
@@ -60,15 +60,23 @@ const BusAutoComplete = ({ mode, setMode }) => {
     const source = axios.CancelToken.source(); // Set source of cancelToken
     // If autocomplete has query
     if (lineNumber) {
-      const { REACT_APP_AUTOCOMPLETE_API, REACT_APP_AUTOCOMPLETE_API_KEY } = process.env; // Destructure env vars
+      const {
+        REACT_APP_AUTOCOMPLETE_API,
+        REACT_APP_AUTOCOMPLETE_API_KEY,
+      } = process.env; // Destructure env vars
       setLoading(true); // Update loading state to true as we are hitting API
       axios
-        .get(`${REACT_APP_AUTOCOMPLETE_API}/bus/v1/service?q=${encodeURI(lineNumber)}`, {
-          headers: {
-            'Ocp-Apim-Subscription-Key': REACT_APP_AUTOCOMPLETE_API_KEY,
-          },
-          cancelToken: source.token, // Set token with API call, so we can cancel this call on unmount
-        })
+        .get(
+          `${REACT_APP_AUTOCOMPLETE_API}/bus/v1/service?q=${encodeURI(
+            lineNumber
+          )}`,
+          {
+            headers: {
+              'Ocp-Apim-Subscription-Key': REACT_APP_AUTOCOMPLETE_API_KEY,
+            },
+            cancelToken: source.token, // Set token with API call, so we can cancel this call on unmount
+          }
+        )
         .then((bus) => {
           setLoading(false); // Set loading state to false after data is received
           // If bus.data.services isn't there, then we can't map the results to it, so return null
@@ -140,9 +148,16 @@ const BusAutoComplete = ({ mode, setMode }) => {
   return (
     <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
       <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5">
-        <div className={`wmnds-autocomplete wmnds-grid ${loading ? 'wmnds-is--loading' : ''}`}>
+        <div
+          className={`wmnds-autocomplete wmnds-grid ${
+            loading ? 'wmnds-is--loading' : ''
+          }`}
+        >
           <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
-            <Icon iconName="general-search" className="wmnds-autocomplete__icon" />
+            <Icon
+              iconName="general-search"
+              className="wmnds-autocomplete__icon"
+            />
             <div className="wmnds-loader" role="alert" aria-live="assertive">
               <p className="wmnds-loader__content"> Content is loading... </p>
             </div>
@@ -162,7 +177,11 @@ const BusAutoComplete = ({ mode, setMode }) => {
         </div>
         {/* If there is no data.length(results) and the user hasn't submitted a query and the state isn't loading then the user should be displayed with no results message, else show results */}
         {!loading && errorInfo ? (
-          <Message type="error" title={errorInfo.title} message={errorInfo.message} />
+          <Message
+            type="error"
+            title={errorInfo.title}
+            message={errorInfo.message}
+          />
         ) : (
           searchResults && (
             <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
