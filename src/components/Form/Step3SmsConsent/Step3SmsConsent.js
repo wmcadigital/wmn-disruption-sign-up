@@ -50,7 +50,7 @@ const Step3SmsConsent = () => {
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1 wmnds-col-lg-4-5">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>Text message service disruptions trial Terms & Conditions</h2>
+          <h2>Text message service disruptions trial Terms &amp; Conditions</h2>
 
           <h4>Terms and conditions for Transport for West Midlands (TfWM)</h4>
           <h4>Introduction</h4>

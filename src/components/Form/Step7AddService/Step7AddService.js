@@ -38,7 +38,7 @@ function Step7AddService() {
 
         <AddTramService />
 
-<AddTrainService />
+        <AddTrainService />
 
         {/* Continue button */}
         {((BusServices && BusServices.length > 0) ||
