@@ -3,55 +3,19 @@ import Button from 'components/shared/Button/Button';
 // import { getNodeText } from '@testing-library/react';
 import { FormDataContext } from '../../../globalState/FormDataContext';
 // Import components
-import Bus from '../../shared/transportServiceType/Bus';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
+import AddBusService from './AddBusService/AddBusService';
+import AddTramService from './AddTramService/AddTramService';
+import AddTrainService from './AddTrainService/AddTrainService';
 
 function Step7AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
-  const { BusServices } = formDataState.formData;
-  const { TramServices } = formDataState.formData;
-  const { TrainServices } = formDataState.formData;
-
-  const handleRemoveBus = (id) => {
-    formDataDispatch({ type: 'REMOVE_BUS', payload: id });
-  };
-
-  const handleRemoveTram = (id) => {
-    formDataDispatch({ type: 'REMOVE_TRAM', payload: id });
-  };
-
-  const addDirectlyAvailableTram = () => {
-    const defTram = {
-      id: '4546',
-      routeName: 'Birmingham - Wolverhampton - Birmingham',
-      serviceNumber: 'MM1',
-    };
-    const currentTrams = [defTram];
-    const { LineId } = formDataState.formData;
-    let allServicesId = [];
-    if (LineId && LineId.length > 0) {
-      allServicesId = [...LineId, 4546];
-    } else {
-      allServicesId = [4546];
-    }
-
-    formDataDispatch({
-      type: 'UPDATE_FORM_DATA',
-      payload: { LineId: allServicesId, TramServices: currentTrams },
-    });
-  };
+  const { BusServices, TramServices, TrainServices } = formDataState.formData;
 
   const getNextStep = (incrementAmount) => {
     formDataDispatch({
       type: 'UPDATE_STEP',
       payload: formDataState.currentStep + incrementAmount,
-    });
-  };
-
-  const updateMode = (mode) => {
-    formDataDispatch({
-      type: 'UPDATE_MODE',
-      payload: mode,
     });
   };
 
@@ -62,7 +26,7 @@ function Step7AddService() {
         return false;
       }}
     >
-      <div className="">
+      <div>
         {/* Subsection */}
         <SectionStepInfo section="Section 2 of 2" description="Services" />
         <h2 className="wmnds-col-1 wmnds-col-lg-4-5">Add a service</h2>
@@ -70,110 +34,11 @@ function Step7AddService() {
           We’ll send an automatic disruption alert for each service you add.
         </p>
 
-        <h3>Buses</h3>
-        {/* Add bus service button */}
-        <Button
-          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
-          onClick={() => {
-            getNextStep(1);
-            updateMode('bus');
-          }}
-          text={`Add ${
-            BusServices && BusServices.length > 0 ? 'another' : ''
-          } bus service`}
-          iconRight="general-expand"
-        />
-        {/* Show the bus services the user has added */}
-        {BusServices && BusServices.length > 0 && (
-          <>
-            <h4>Bus services that you want to add</h4>
-            <div className="wmnds-m-b-lg">
-              {BusServices.map((busRoute) => {
-                return (
-                  <Bus
-                    showRemove
-                    handleRemove={handleRemoveBus}
-                    serviceNumber={busRoute.serviceNumber}
-                    routeName={busRoute.routeName}
-                    id={busRoute.id}
-                    key={`${busRoute.id}`}
-                  />
-                );
-              })}
-            </div>
-          </>
-        )}
+        <AddBusService />
 
-        <h3 className="wmnds-p-t-md">Trams</h3>
-        {/* Add tram service button */}
-        {(!TramServices || TramServices.length === 0) && (
-          <Button
-            btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
-            onClick={() => {
-              addDirectlyAvailableTram();
-              updateMode('tram');
-            }}
-            text="Add tram service"
-            iconRight="general-expand"
-          />
-        )}
+        <AddTramService />
 
-        {/* Show the tram services the user has added */}
-        {TramServices && TramServices.length > 0 && (
-          <>
-            <h4>Tram services that you want to add</h4>
-            <div className="wmnds-m-b-lg">
-              {TramServices.map((tramRoute) => {
-                return (
-                  <Bus
-                    showRemove
-                    handleRemove={handleRemoveTram}
-                    serviceNumber={tramRoute.serviceNumber}
-                    routeName={tramRoute.routeName}
-                    id={tramRoute.id}
-                    key={`${tramRoute.id}`}
-                  />
-                );
-              })}
-            </div>
-          </>
-        )}
-
-        {/* Add train service button 
-        <h3 className="wmnds-p-t-md">Trains</h3>
-        <Button
-          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
-          onClick={() => {
-            getNextStep(1);
-            updateMode('train');
-          }}
-          text={`Add ${
-            TrainServices && TrainServices.length > 0 ? 'another' : ''
-          } train service`}
-          iconRight="general-expand"
-        />
-        */}
-        {/* Show the train services the user has added 
-        {TrainServices && TrainServices.length > 0 && (
-          <>
-            <h4>Train lines that you want to add</h4>
-            <div className="wmnds-m-b-lg">
-              {TrainServices.map((busRoute) => {
-                return (
-                  <Bus
-                    showRemove
-                    handleRemove={handleRemoveBus}
-                    serviceNumber={busRoute.serviceNumber}
-                    routeName={busRoute.routeName}
-                    id={busRoute.id}
-                    key={`${busRoute.id}`}
-                  />
-                );
-              })}
-            </div>
-          </>
-        )}
-        */}
+<AddTrainService />
 
         {/* Continue button */}
         {((BusServices && BusServices.length > 0) ||

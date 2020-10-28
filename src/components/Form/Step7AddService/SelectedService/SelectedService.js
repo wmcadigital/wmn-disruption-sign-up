@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from '../../../shared/Icon/Icon';
 import style from '../../../shared/transportServiceType/Bus.module.scss';
 
-function Bus(props) {
+const SelectedService = (props) => {
   const { id, serviceNumber, routeName, handleRemove, showRemove } = props;
   const onClick = () => {
     handleRemove(id, serviceNumber);
@@ -33,8 +33,9 @@ function Bus(props) {
       )}
     </div>
   );
-}
-Bus.propTypes = {
+};
+
+SelectedService.propTypes = {
   id: PropTypes.string.isRequired,
   serviceNumber: PropTypes.string.isRequired,
   routeName: PropTypes.string.isRequired,
@@ -42,9 +43,9 @@ Bus.propTypes = {
   showRemove: PropTypes.bool,
 };
 
-Bus.defaultProps = {
+SelectedService.defaultProps = {
   handleRemove: () => {},
   showRemove: false,
 };
 
-export default Bus;
+export default SelectedService;
