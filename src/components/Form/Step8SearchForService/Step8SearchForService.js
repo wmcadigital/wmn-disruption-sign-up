@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Import components
-import Autocomplete from './autocomplete/Autocomplete';
+import Autocomplete from './Autocomplete/Autocomplete';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
 import useFormData from '../useFormData';
 
