@@ -31,17 +31,6 @@ function Step9SummarySection() {
     title = 'Check your preferences before signing up to disruption alerts';
   }
 
-  // Check if mobile phone has +44, if not, remove the 0 and add +44
-  const updatePhone = (phoneNumber) => {
-    formDataDispatch({
-      type: 'UPDATE_FORM_DATA',
-      payload: { Phone: phoneNumber },
-    });
-  };
-  if (Phone && Phone.substr(0, 1) === '0') {
-    updatePhone(`+44${Phone.substr(1)}`);
-  }
-
   return (
     <>
       <div className={`wmnds-col-1 ${style.summary}`}>
