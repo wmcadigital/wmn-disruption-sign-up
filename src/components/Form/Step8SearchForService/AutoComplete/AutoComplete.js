@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 // Import components
 import useFormData from 'components/Form/useFormData';
 import Button from 'components/shared/Button/Button';
 import TrainAutoComplete from './TrainAutoComplete/TrainAutoComplete';
 import BusAutoComplete from './BusAutoComplete/BusAutoComplete';
 
-const AutoComplete = ({ mode, setMode }) => {
-  const { formDataState, formDataDispatch } = useFormData();
+const AutoComplete = () => {
+  const { formDataState, formDataDispatch, mode, setMode } = useFormData();
   const getPreviousStep = (incrementAmount) => {
     formDataDispatch({
       type: 'UPDATE_STEP',
@@ -56,11 +55,6 @@ const AutoComplete = ({ mode, setMode }) => {
 
   // Render the correct component based on logic in switch statement above
   return <>{autoCompleteToShow()}</>;
-};
-
-AutoComplete.propTypes = {
-  mode: PropTypes.string.isRequired,
-  setMode: PropTypes.func.isRequired,
 };
 
 export default AutoComplete;

@@ -1,14 +1,10 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
-
 // Import components
 import Autocomplete from './AutoComplete/AutoComplete';
 import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
-import useFormData from '../useFormData';
 
 function Step8SearchForService() {
-  const { mode, setMode } = useFormData();
-
   return (
     <form
       onSubmit={(e) => {
@@ -24,7 +20,7 @@ function Step8SearchForService() {
           We’ll send an automatic disruption alert for each service you add.
         </p>
 
-        <Autocomplete mode={mode} setMode={setMode} />
+        <Autocomplete />
       </div>
     </form>
   );

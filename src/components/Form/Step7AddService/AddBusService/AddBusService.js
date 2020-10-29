@@ -37,7 +37,9 @@ const AddBusService = () => {
           getNextStep(1);
           updateMode('bus');
         }}
-        text={`Add ${BusServices && BusServices.length > 0 ? 'another' : ''} bus service`}
+        text={`Add ${
+          BusServices && BusServices.length > 0 ? 'another' : ''
+        } bus service`}
         iconRight="general-expand"
       />
       {/* Show the bus services the user has added */}
