@@ -31,12 +31,13 @@ const AutoComplete = () => {
           autoCompleteTitle(`Search for a ${mode} service`) && (
             <BusAutoComplete mode={mode} setMode={setMode} />
           )}
+
         {mode === 'train' && (
           <div className="wmnds-col-1">
             <h4>Select trains between</h4>
             <TrainAutoComplete mode={mode} setMode={setMode} />
             <h4>and</h4>
-            <TrainAutoComplete mode={mode} setMode={setMode} />
+            <TrainAutoComplete mode={mode} setMode={setMode} to />
             {/* Add cancel button */}
             <div className="wmnds-col-1 wmnds-col-md-2-5">
               <Button
