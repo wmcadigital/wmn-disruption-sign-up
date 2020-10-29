@@ -16,8 +16,7 @@ export const FormDataProvider = (props) => {
 
   // Set intial state of when
   const initialState = {
-    currentStep:
-      getSearchParam('email') && getSearchParam('email').length > 0 ? 3 : 1,
+    currentStep: getSearchParam('email') && getSearchParam('email').length > 0 ? 3 : 1,
     formData: {
       Firstname: FirstName,
       LastName,
@@ -26,7 +25,8 @@ export const FormDataProvider = (props) => {
       LineId: [],
       BusServices: [],
       TramServices: [],
-      TrainServices: [],
+      TrainStations: {},
+      TrainLines: [],
     },
     formRef: '',
     hasReachedConfirmation: false,
@@ -51,12 +51,8 @@ export const FormDataProvider = (props) => {
           ...state,
           formData: {
             ...state.formData,
-            BusServices: state.formData.BusServices.filter(
-              (bus) => action.payload !== bus.id
-            ),
-            LineId: state.formData.LineId.filter(
-              (busId) => action.payload !== busId
-            ),
+            BusServices: state.formData.BusServices.filter((bus) => action.payload !== bus.id),
+            LineId: state.formData.LineId.filter((busId) => action.payload !== busId),
           },
         };
       }
@@ -67,12 +63,8 @@ export const FormDataProvider = (props) => {
           ...state,
           formData: {
             ...state.formData,
-            TramServices: state.formData.TramServices.filter(
-              (tram) => action.payload !== tram.id
-            ),
-            LineId: state.formData.LineId.filter(
-              (tramId) => action.payload !== tramId
-            ),
+            TramServices: state.formData.TramServices.filter((tram) => action.payload !== tram.id),
+            LineId: state.formData.LineId.filter((tramId) => action.payload !== tramId),
           },
         };
       }

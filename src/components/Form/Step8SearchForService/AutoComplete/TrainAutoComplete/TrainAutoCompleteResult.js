@@ -9,16 +9,21 @@ const TrainAutoCompleteResult = (props) => {
 
   // Function to update the state with selected service
   const updateSelectedService = () => {
-    const { TrainServices } = formState.formData; // Get existing LineId and TrainServices in state
+    const { TrainStations } = formState.formData; // Get existing LineId and TrainServices in state
     // Update state with new selected service
+
+    const toOrFrom = to ? 'To' : 'From';
     formDataDispatch({
       type: 'UPDATE_FORM_DATA',
       payload: {
-        TrainServices: [...TrainServices, { id, name }],
+        TrainStations: {
+          ...TrainStations,
+          [toOrFrom]: { id, name },
+        },
       },
     });
 
-    handleCancel(); // Passed in from parent (go back to previous step and set mode to null)
+    // handleCancel(); // Passed in from parent (go back to previous step and set mode to null)
   };
 
   // Return service with the above disruption logic, replace type and iconName with correct icon and class depending on disruption type

@@ -39,7 +39,11 @@ const TrainAutoComplete = ({ mode, setMode, to }) => {
   return (
     <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
       <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5 wmnds-p-r-md">
-        <div className={`wmnds-autocomplete wmnds-grid ${loading ? 'wmnds-is--loading' : ''}`}>
+        <div
+          className={`wmnds-autocomplete wmnds-grid ${loading ? 'wmnds-is--loading' : ''} ${
+            !to && !query && !loading && 'wmnds-m-b-sm'
+          }`}
+        >
           <Icon iconName="general-search" className="wmnds-autocomplete__icon" />
           <div className="wmnds-loader" role="alert" aria-live="assertive">
             <p className="wmnds-loader__content">Content is loading...</p>
@@ -82,13 +86,6 @@ const TrainAutoComplete = ({ mode, setMode, to }) => {
             </div>
           )
         )}
-      </div>
-      <div className="wmnds-col-1 wmnds-col-md-1-5">
-        <Button
-          btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
-          text="Cancel"
-          onClick={handleCancel}
-        />
       </div>
     </div>
   );
