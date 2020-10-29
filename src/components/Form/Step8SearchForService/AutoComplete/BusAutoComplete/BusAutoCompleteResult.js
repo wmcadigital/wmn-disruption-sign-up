@@ -11,7 +11,6 @@ const BusAutoCompleteResult = (props) => {
   // Function to update the state with selected service
   const updateSelectedService = () => {
     const { LineId, BusServices } = formState.formData; // Get existing LineId and BusServices in state
-
     // Update state with new selected service
     formDataDispatch({
       type: 'UPDATE_FORM_DATA',
@@ -23,6 +22,7 @@ const BusAutoCompleteResult = (props) => {
 
     handleCancel(); // Passed in from parent (go back to previous step and set mode to null)
   };
+
   // Return service with the above disruption logic, replace type and iconName with correct icon and class depending on disruption type
   return (
     <li

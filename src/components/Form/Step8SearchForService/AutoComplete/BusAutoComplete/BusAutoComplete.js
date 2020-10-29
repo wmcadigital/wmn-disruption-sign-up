@@ -28,11 +28,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
   );
 
   // Import handleKeyDown function from customHook (used by all modes)
-  const { handleKeyDown } = useHandleAutoCompleteKeys(
-    resultsList,
-    debounceInput,
-    results
-  );
+  const { handleKeyDown } = useHandleAutoCompleteKeys(resultsList, debounceInput, results);
 
   // Go back to prev step if cancel
   const handleCancel = () => {
@@ -43,15 +39,8 @@ const BusAutoComplete = ({ mode, setMode }) => {
   return (
     <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
       <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5 wmnds-p-r-md">
-        <div
-          className={`wmnds-autocomplete wmnds-grid ${
-            loading ? 'wmnds-is--loading' : ''
-          }`}
-        >
-          <Icon
-            iconName="general-search"
-            className="wmnds-autocomplete__icon"
-          />
+        <div className={`wmnds-autocomplete wmnds-grid ${loading ? 'wmnds-is--loading' : ''}`}>
+          <Icon iconName="general-search" className="wmnds-autocomplete__icon" />
           <div className="wmnds-loader" role="alert" aria-live="assertive">
             <p className="wmnds-loader__content">Content is loading...</p>
           </div>
@@ -70,11 +59,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
         </div>
         {/* If there is no data.length(results) and the user hasn't submitted a query and the state isn't loading then the user should be displayed with no results message, else show results */}
         {!results.length && query && !loading && errorInfo ? (
-          <Message
-            type="error"
-            title={errorInfo.title}
-            message={errorInfo.message}
-          />
+          <Message type="error" title={errorInfo.title} message={errorInfo.message} />
         ) : (
           query && (
             <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
@@ -82,9 +67,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
                 {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added
                  */}
                 {results
-                  .filter(
-                    (result) => !BusServices.some((el) => el.id === result.id)
-                  )
+                  .filter((result) => !BusServices.some((el) => el.id === result.id))
                   .map((result) => {
                     return (
                       <BusAutoCompleteResult
