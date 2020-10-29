@@ -32,18 +32,15 @@ const BusAutoComplete = ({ mode, setMode }) => {
   );
 
   const { formDataState, formDataDispatch } = useFormData();
+
   const getPreviousStep = (incrementAmount) => {
     formDataDispatch({
       type: 'UPDATE_STEP',
       payload: formDataState.currentStep - incrementAmount,
     });
   };
-  let BusServices;
-  if (formDataState.formData.BusServices) {
-    BusServices = formDataState.formData.BusServices;
-  } else {
-    BusServices = [];
-  }
+
+  const BusServices = formDataState.formData.BusServices || [];
   const busId = formDataState.formData.LineId || [];
 
   const filterResults = () => {
