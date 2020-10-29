@@ -1,70 +1,39 @@
-import React from 'react';
-// import React, { useContext } from 'react';
-// import { FormDataContext } from 'globalState/FormDataContext';
+import React, { useContext } from 'react';
+import { FormDataContext } from 'globalState/FormDataContext';
 
 const TrainAutoCompleteResult = (props) => {
-  const { result, handleKeyDown, handleCancel } = props || {};
-  // const [formState, formDataDispatch] = useContext(FormDataContext);
-  // const { currentStep } = formState;
+  const [formState, formDataDispatch] = useContext(FormDataContext); // Get state and dispatch of form
+  const { result, handleKeyDown, handleCancel, to } = props || {};
+  // Destructure fields from result
+  const { id, name } = result;
 
-  // eslint-disable-next-line no-unused-vars
-  const updateSelectedService = (busResult) => {
-    /* 
-    const { routeName } = busResult.routes[0];
-    const { serviceNumber, id } = busResult;
-
-    
-    const TramService = formState.formData.TramServices || [];
-    const BusService = formState.formData.BusServices || [];
-    const BusServiceUpdated = [...BusService, { id, routeName, serviceNumber }];
-    const AllServicesUpdated = [
-      ...BusService,
-      ...TramService,
-      { id, routeName, serviceNumber },
-    ];
-    const allServicesId = [];
-    AllServicesUpdated.map((single) => {
-      return allServicesId.push(single.id);
-    });
-
-    
+  // Function to update the state with selected service
+  const updateSelectedService = () => {
+    const { TrainServices } = formState.formData; // Get existing LineId and TrainServices in state
+    // Update state with new selected service
     formDataDispatch({
       type: 'UPDATE_FORM_DATA',
-      payload: { LineId: allServicesId, BusServices: BusServiceUpdated },
+      payload: {
+        TrainServices: [...TrainServices, { id, name }],
+      },
     });
 
-    formDataDispatch({
-      type: 'UPDATE_STEP',
-      payload: currentStep - 1,
-    });
-    
-    */
-
-    handleCancel();
+    handleCancel(); // Passed in from parent (go back to previous step and set mode to null)
   };
 
   // Return service with the above disruption logic, replace type and iconName with correct icon and class depending on disruption type
   return (
     <li
       className="wmnds-autocomplete-suggestions__li wmnds-grid"
-      title={result.serviceNumber}
+      title={name}
       tabIndex="0"
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
       role="button"
       aria-pressed="false"
       onKeyDown={(e) => handleKeyDown(e)}
-      onClick={() => updateSelectedService(result)}
+      onClick={() => updateSelectedService()}
     >
-      {/* Right section */}
-      <div
-        className="
-        wmnds-disruption-indicator-medium
-        wmnds-col-auto wmnds-m-r-md
-        "
-      >
-        {result.serviceNumber}
-      </div>
-      <strong className="wmnds-col-auto">{result.routes[0].routeName}</strong>
+      <strong className="wmnds-col-1">{name}</strong>
     </li>
   );
 };

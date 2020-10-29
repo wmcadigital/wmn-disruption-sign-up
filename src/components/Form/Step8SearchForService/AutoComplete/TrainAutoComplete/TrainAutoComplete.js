@@ -15,7 +15,6 @@ import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys'
 const TrainAutoComplete = ({ mode, setMode, to }) => {
   const { formDataState, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
   const [query, setQuery] = useState(); // placeholder for getting/setting query
-  const BusServices = formDataState.formData.BusServices || []; // Get currently selected bus services
 
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
@@ -67,20 +66,18 @@ const TrainAutoComplete = ({ mode, setMode, to }) => {
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
                 {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added
                  */}
-                {results
-                  .filter((result) => !BusServices.some((el) => el.id === result.id))
-                  .map((result) => {
-                    return (
-                      <TrainAutoCompleteResult
-                        key={result.id}
-                        result={result}
-                        handleKeyDown={handleKeyDown}
-                        type={mode}
-                        handleCancel={handleCancel}
-                        to={to}
-                      />
-                    );
-                  })}
+                {results.map((result) => {
+                  return (
+                    <TrainAutoCompleteResult
+                      key={result.id}
+                      result={result}
+                      handleKeyDown={handleKeyDown}
+                      type={mode}
+                      handleCancel={handleCancel}
+                      to={to}
+                    />
+                  );
+                })}
               </ul>
             </div>
           )
