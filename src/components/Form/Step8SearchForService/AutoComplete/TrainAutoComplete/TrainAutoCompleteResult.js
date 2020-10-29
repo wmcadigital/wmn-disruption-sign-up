@@ -5,7 +5,7 @@ const TrainAutoCompleteResult = (props) => {
   const [formState, formDataDispatch] = useContext(FormDataContext); // Get state and dispatch of form
   const { result, handleKeyDown, handleCancel, to } = props || {};
   // Destructure fields from result
-  const { id, name } = result;
+  const { id, name, lines } = result;
 
   // Function to update the state with selected service
   const updateSelectedService = () => {
@@ -18,7 +18,7 @@ const TrainAutoCompleteResult = (props) => {
       payload: {
         TrainStations: {
           ...TrainStations,
-          [toOrFrom]: { id, name },
+          [toOrFrom]: { id, name, lines },
         },
       },
     });
