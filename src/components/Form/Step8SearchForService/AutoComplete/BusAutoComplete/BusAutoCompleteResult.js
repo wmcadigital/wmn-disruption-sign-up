@@ -4,7 +4,6 @@ import { FormDataContext } from 'globalState/FormDataContext';
 const BusAutoCompleteResult = (props) => {
   const { result, handleKeyDown, handleCancel } = props || {};
   const [formState, formDataDispatch] = useContext(FormDataContext);
-  const { currentStep } = formState;
 
   const updateSelectedService = (busResult) => {
     const { routeName } = busResult.routes[0];
@@ -25,11 +24,6 @@ const BusAutoCompleteResult = (props) => {
     formDataDispatch({
       type: 'UPDATE_FORM_DATA',
       payload: { LineId: allServicesId, BusServices: BusServiceUpdated },
-    });
-
-    formDataDispatch({
-      type: 'UPDATE_STEP',
-      payload: currentStep - 1,
     });
 
     handleCancel();

@@ -1,29 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
 // Context
-import { FormDataContext } from 'globalState/FormDataContext';
 // Components
 import Button from 'components/shared/Button/Button';
 import Bus from 'components/shared/transportServiceType/Bus';
+import useStepLogic from 'components/Form/useStepLogic';
 
 const AddBusService = () => {
-  const [formDataState, formDataDispatch] = useContext(FormDataContext);
+  const { setStep, formDataState, formDataDispatch } = useStepLogic();
+
   const { BusServices } = formDataState.formData;
 
   const handleRemoveBus = (id) => {
     formDataDispatch({ type: 'REMOVE_BUS', payload: id });
   };
 
-  const getNextStep = (incrementAmount) => {
-    formDataDispatch({
-      type: 'UPDATE_STEP',
-      payload: formDataState.currentStep + incrementAmount,
-    });
-  };
-
-  const updateMode = (mode) => {
+  const handleAddBus = () => {
+    setStep(formDataState.currentStep + 1);
     formDataDispatch({
       type: 'UPDATE_MODE',
-      payload: mode,
+      payload: 'bus',
     });
   };
 
@@ -33,10 +28,7 @@ const AddBusService = () => {
       {/* Add bus service button */}
       <Button
         btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
-        onClick={() => {
-          getNextStep(1);
-          updateMode('bus');
-        }}
+        onClick={handleAddBus}
         text={`Add ${
           BusServices && BusServices.length > 0 ? 'another' : ''
         } bus service`}

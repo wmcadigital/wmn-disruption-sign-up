@@ -93,6 +93,8 @@ const useStepLogic = (formRef) => {
     handleSubmit,
     showGenericError,
     continueButton,
+    formDataState,
+    formDataDispatch,
   };
 };
 
