@@ -6,11 +6,11 @@ import axios from 'axios';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 
 // Import components
-import BusAutoCompleteResult from './BusAutoCompleteResult';
 import Button from '../../../../shared/Button/Button';
 import Message from '../../../../Message';
 import Icon from '../../../../shared/Icon/Icon';
 import useFormData from '../../../useFormData';
+import BusAutoCompleteResult from './BusAutoCompleteResult';
 
 const BusAutoComplete = ({ mode, setMode }) => {
   const [loading, setLoading] = useState(false); // Set loading state for spinner

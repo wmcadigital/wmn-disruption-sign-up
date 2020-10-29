@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import useFormData from 'components/Form/useFormData';
 import Button from 'components/shared/Button/Button';
 import TrainAutoComplete from './TrainAutoComplete/TrainAutoComplete';
-import BusAutoComplete from './BusAutoComplete/BusAutoComplete';
+import BusAutoComplete from './BusAutoComplete1/BusAutoComplete';
 
 const AutoComplete = ({ mode, setMode }) => {
   const { formDataState, formDataDispatch } = useFormData();
