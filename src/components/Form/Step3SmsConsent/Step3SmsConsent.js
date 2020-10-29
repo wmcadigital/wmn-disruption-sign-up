@@ -19,15 +19,8 @@ const Step3SmsConsent = () => {
   const { ExistingUser } = useFormData();
 
   // Labels used on inputs and for validation
-  const checkBoxLabel = `Please tick this box if you accept the Terms and Conditions and ${' '}
-  <a
-    href="https://www.wmca.org.uk/policies"
-    target="_blank"
-    title="Read our Privacy Policy"
-    rel="noopener noreferrer"
-  >
-    Privacy Policy
-  </a>`;
+  const checkBoxLabel =
+    'I confirm I give my informed consent to take part in the trial';
 
   // Logic used to validate the email field
   const checkboxValidation = register({
@@ -50,48 +43,87 @@ const Step3SmsConsent = () => {
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>Text message service disruptions trial Terms & Conditions</h2>
-
-          <h4>Terms and conditions for Transport for West Midlands (TfWM)</h4>
+          <h2>About the text message alert trial</h2>
           <h4>Introduction</h4>
           <p>
-            These Website Standard Terms and Conditions written on this webpage
-            shall manage your use of our website, West Midlands Network
-            accessible at wmnetwork.co.uk.
+            This trial is being run by West Midlands Combined Authority (WMCA).
+            We are testing the demand for the service, so we can understand the
+            cost of running the service permanently.
+          </p>
+          <h4>Text message alerts</h4>
+          <p>
+            Text messages will be sent from ‘WM Network’. Texts are sent
+            automatically when a disruption is entered into our systems.
           </p>
           <p>
-            These Terms will be applied fully and affect to your use of this
-            service. By using this service, you agree to accept all terms and
-            conditions written in here. You must not use this service if you
-            disagree with any of these Website Standard Terms and Conditions.
+            Text messages we send to you are free. We can’t read any replies you
+            send, and you might be charged by your mobile network.
           </p>
-          <h4>Your Privacy</h4>
-          <p>Please read our Privacy Policy.</p>
-          <h4>Severability</h4>
           <p>
-            If any provision of these Terms is found to be invalid under any
-            applicable law, such provisions shall be deleted without affecting
-            the remaining provisions herein.
+            We’ll occasionally send a text asking for feedback about the
+            service. We will link to a Hotjar survey and offer an incentive.
           </p>
-          <h4>Variation of Terms</h4>
+          <h4>End of the trial</h4>
           <p>
-            Transport for West Midlands (TfWM) is permitted to revise these
-            Terms at any time as it sees fit, and by using this service you are
-            expected to review these Terms on a regular basis.
+            At the end of the trial, we’ll text you to let you know you won’t
+            receive any more text message alerts from us.
           </p>
-          <h4>Assignment </h4>
+          <p>We’ll also email you to let you know how the trial went.</p>
+          <h4>Research participation information</h4>
           <p>
-            The Transport for West Midlands (TfWM) is allowed to assign,
-            transfer, and subcontract its rights and/or obligations under these
-            Terms without any notification. However, you are not allowed to
-            assign, transfer, or subcontract any of your rights and/or
-            obligations under these Terms.
+            WMCA is responsible for any information that you provide us. We
+            ensure that this information will be processed in accordance with
+            data protection legislation. We are committed to protecting your
+            privacy and will use your personal information fairly.
           </p>
-          <h4>Entire Agreement</h4>
           <p>
-            These Terms constitute the entire agreement between Transport for
-            West Midlands (TfWM) and you in relation to your use of this
-            service, and supersede all prior agreements and understandings.
+            The personal data that we may collect about you as part of this
+            trial are:
+          </p>
+          <ul>
+            <li>Name</li>
+            <li>Email</li>
+            <li>Phone number</li>
+          </ul>
+          <p>
+            We will keep your personal data for a maximum of 12 months. This is
+            so that the information you provide in this trial may be reused for
+            further improvements to our transport services.
+          </p>
+          <p>
+            If you remain signed up to email alerts after the trial ends, the
+            service keeps your details until you decide to unsubscribe from all
+            alerts. You can do this through the ‘manage my preferences’ link at
+            the bottom of email alerts.
+          </p>
+
+          <h4>How you can make a complaint</h4>
+          <p>
+            Please email the Design Team at{' '}
+            <a href="mailto:UserTesting@wmca.org.uk">UserTesting@wmca.org.uk</a>{' '}
+            if you have a complaint about this trial.
+          </p>
+
+          <h4>Your consent</h4>
+          <p>
+            By continuing, you are giving your informed consent to take part in
+            the trial. You understand that you may remove yourself from the
+            trial at any time. If you choose to remove yourself, we will delete
+            your personal information from our research. However, any anonymous
+            data provided by you during the trial will be used to improve our
+            services.
+          </p>
+          <p>
+            For further information on how we handle information/data, and your
+            information rights visit our Privacy and Cookies policy.
+          </p>
+          <p>
+            This research has been conducted by WMN in partnership with The
+            Market Research Society (MRS). The MRS is the professional body for
+            market and social researchers. This project is being conducted by an
+            MRS Company Partner. You can verify this by calling MRS freephone
+            0800 975 9596 and giving the name of the organisation that
+            interviewed you.
           </p>
         </legend>
 
