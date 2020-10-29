@@ -42,33 +42,31 @@ const BusAutoComplete = ({ mode, setMode }) => {
 
   return (
     <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
-      <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5">
+      <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5 wmnds-p-r-md">
         <div
           className={`wmnds-autocomplete wmnds-grid ${
             loading ? 'wmnds-is--loading' : ''
           }`}
         >
-          <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
-            <Icon
-              iconName="general-search"
-              iconClass="wmnds-autocomplete__icon"
-            />
-            <div className="wmnds-loader" role="alert" aria-live="assertive">
-              <p className="wmnds-loader__content">Content is loading...</p>
-            </div>
-            <DebounceInput
-              type="text"
-              name="busSearch"
-              placeholder="Search for a service"
-              className="wmnds-fe-input wmnds-autocomplete__input"
-              value={query || ''}
-              onChange={(e) => setQuery(e.target.value)}
-              aria-label="Search for a service"
-              debounceTimeout={600}
-              onKeyDown={(e) => handleKeyDown(e)}
-              inputRef={debounceInput}
-            />
+          <Icon
+            iconName="general-search"
+            className="wmnds-autocomplete__icon"
+          />
+          <div className="wmnds-loader" role="alert" aria-live="assertive">
+            <p className="wmnds-loader__content">Content is loading...</p>
           </div>
+          <DebounceInput
+            type="text"
+            name="busSearch"
+            placeholder="Search for a service"
+            className="wmnds-fe-input wmnds-autocomplete__input"
+            value={query || ''}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search for a service"
+            debounceTimeout={600}
+            onKeyDown={(e) => handleKeyDown(e)}
+            inputRef={debounceInput}
+          />
         </div>
         {/* If there is no data.length(results) and the user hasn't submitted a query and the state isn't loading then the user should be displayed with no results message, else show results */}
         {!results.length && query && !loading && errorInfo ? (
@@ -81,7 +79,8 @@ const BusAutoComplete = ({ mode, setMode }) => {
           query && (
             <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
-                {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added */}
+                {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added
+                 */}
                 {results
                   .filter(
                     (result) => !BusServices.some((el) => el.id === result.id)
