@@ -65,15 +65,15 @@ function Step7AddService() {
       <div className="">
         {/* Subsection */}
         <SectionStepInfo section="Section 2 of 2" description="Services" />
-        <h2 className="wmnds-col-1 wmnds-col-lg-4-5">Add a service</h2>
-        <p className="wmnds-col-1 wmnds-col-lg-4-5">
+        <h2>Add a service</h2>
+        <p>
           We’ll send an automatic disruption alert for each service you add.
         </p>
 
         <h3>Buses</h3>
         {/* Add bus service button */}
         <Button
-          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
+          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
           onClick={() => {
             getNextStep(1);
             updateMode('bus');

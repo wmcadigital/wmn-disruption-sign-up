@@ -45,7 +45,7 @@ function Step9SummarySection() {
   return (
     <>
       <div className={`wmnds-col-1 ${style.summary}`}>
-        <h2 className="wmnds-col-1 wmnds-col-1 wmnds-col-lg-4-5">{title}</h2>
+        <h2>{title}</h2>
         <h3>Personal Details</h3>
 
         <table className="wmnds-table wmnds-m-b-xl wmnds-table--without-header">

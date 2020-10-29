@@ -8,11 +8,9 @@ const Intro = ({ setIsFormStarted }) => {
   };
   return (
     <div className="wmnds-col-1 wmnds-col-md-2-3 wmnds-col-lg-1-2">
-      <h1 className="wmnds-col-1 wmnds-col-lg-4-5">
-        Sign up to service disruptions alerts
-      </h1>
+      <h1>Sign up to service disruptions alerts</h1>
 
-      <div className="wmnds-col-1 wmnds-col-lg-4-5">
+      <div>
         <h2>Use this service to:</h2>
         <ul>
           <li>

@@ -48,7 +48,7 @@ const Step3SmsConsent = () => {
       {/* Show generic error message */}
       {showGenericError}
 
-      <fieldset className="wmnds-fe-fieldset wmnds-col-1 wmnds-col-lg-4-5">
+      <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>Text message service disruptions trial Terms & Conditions</h2>
 
