@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // Import components
 import useFormData from 'components/Form/useFormData';
 import Button from 'components/shared/Button/Button';
@@ -8,6 +8,8 @@ import TrainAutoCompleteSelectLines from './TrainAutoComplete/TrainAutoCompleteS
 
 const AutoComplete = () => {
   const { formDataState, formDataDispatch, mode, setMode } = useFormData();
+  const [trainStations, setTrainStations] = useState({});
+
   // Used to go back to previous step and wipes any train data stored
   const getPreviousStep = () => {
     formDataDispatch({ type: 'UPDATE_FORM_DATA', payload: { TrainStations: {} } });
@@ -31,20 +33,29 @@ const AutoComplete = () => {
           <BusAutoComplete mode={mode} setMode={setMode} />
         )}
 
-        {mode === 'train' &&
-          (!formDataState.formData.TrainStations.From ||
-            !formDataState.formData.TrainStations.To) && (
-            <div className="wmnds-col-1">
-              <h4>Select trains between</h4>
-              <TrainAutoComplete mode={mode} setMode={setMode} />
-              <h4>and</h4>
-              <TrainAutoComplete mode={mode} setMode={setMode} to />
-            </div>
-          )}
+        {mode === 'train' && (!trainStations.From || !trainStations.To) && (
+          <div className="wmnds-col-1">
+            <h4>Select trains between</h4>
+            <TrainAutoComplete
+              mode={mode}
+              setMode={setMode}
+              trainStations={trainStations}
+              setTrainStations={setTrainStations}
+            />
+            <h4>and</h4>
+            <TrainAutoComplete
+              mode={mode}
+              setMode={setMode}
+              trainStations={trainStations}
+              setTrainStations={setTrainStations}
+              to
+            />
+          </div>
+        )}
 
-        {mode === 'train' &&
-          formDataState.formData.TrainStations.From &&
-          formDataState.formData.TrainStations.To && <TrainAutoCompleteSelectLines />}
+        {mode === 'train' && trainStations.From && trainStations.To && (
+          <TrainAutoCompleteSelectLines trainStations={trainStations} />
+        )}
 
         {mode === 'train' && (
           // Add cancel button

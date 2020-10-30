@@ -4,7 +4,6 @@ import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/p
 // Custom Hooks
 import useStepLogic from 'components/Form/useStepLogic';
 // Import components
-import Button from 'components/shared/Button/Button';
 import Message from 'components/Message';
 import Icon from 'components/shared/Icon/Icon';
 import TrainAutoCompleteResult from './TrainAutoCompleteResult';
@@ -12,7 +11,7 @@ import TrainAutoCompleteResult from './TrainAutoCompleteResult';
 import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
 
-const TrainAutoComplete = ({ mode, setMode, to }) => {
+const TrainAutoComplete = ({ mode, setMode, trainStations, setTrainStations, to }) => {
   const { formDataState, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
   const [query, setQuery] = useState(); // placeholder for getting/setting query
 
@@ -78,6 +77,7 @@ const TrainAutoComplete = ({ mode, setMode, to }) => {
                       handleKeyDown={handleKeyDown}
                       type={mode}
                       handleCancel={handleCancel}
+                      setTrainStations={setTrainStations}
                       to={to}
                     />
                   );
@@ -95,6 +95,8 @@ const TrainAutoComplete = ({ mode, setMode, to }) => {
 TrainAutoComplete.propTypes = {
   mode: PropTypes.string.isRequired,
   setMode: PropTypes.func.isRequired,
+  trainStations: PropTypes.objectOf(PropTypes.any).isRequired,
+  setTrainStations: PropTypes.func.isRequired,
   to: PropTypes.bool,
 };
 

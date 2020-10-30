@@ -1,27 +1,18 @@
-import React, { useContext } from 'react';
-import { FormDataContext } from 'globalState/FormDataContext';
+import React from 'react';
 
 const TrainAutoCompleteResult = (props) => {
-  const [formState, formDataDispatch] = useContext(FormDataContext); // Get state and dispatch of form
-  const { result, handleKeyDown, handleCancel, to } = props || {};
+  const { result, handleKeyDown, handleCancel, setTrainStations, to } = props || {};
   // Destructure fields from result
   const { id, name, lines } = result;
 
   // Function to update the state with selected service
   const updateSelectedService = () => {
-    const { TrainStations } = formState.formData; // Get existing LineId and TrainServices in state
-    // Update state with new selected service
-
     const toOrFrom = to ? 'To' : 'From';
-    formDataDispatch({
-      type: 'UPDATE_FORM_DATA',
-      payload: {
-        TrainStations: {
-          ...TrainStations,
-          [toOrFrom]: { id, name, lines },
-        },
-      },
-    });
+
+    setTrainStations((prevState) => ({
+      ...prevState,
+      [toOrFrom]: { id, name, lines },
+    }));
 
     // handleCancel(); // Passed in from parent (go back to previous step and set mode to null)
   };
