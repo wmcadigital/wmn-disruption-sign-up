@@ -4,14 +4,14 @@ import useFormData from 'components/Form/useFormData';
 import Button from 'components/shared/Button/Button';
 import TrainAutoComplete from './TrainAutoComplete/TrainAutoComplete';
 import BusAutoComplete from './BusAutoComplete/BusAutoComplete';
+import TrainAutoCompleteSelectLines from './TrainAutoComplete/TrainAutoCompleteSelectLines';
 
 const AutoComplete = () => {
   const { formDataState, formDataDispatch, mode, setMode } = useFormData();
-  const getPreviousStep = (incrementAmount) => {
-    formDataDispatch({
-      type: 'UPDATE_STEP',
-      payload: formDataState.currentStep - incrementAmount,
-    });
+  // Used to go back to previous step and wipes any train data stored
+  const getPreviousStep = () => {
+    formDataDispatch({ type: 'UPDATE_FORM_DATA', payload: { TrainStations: {} } });
+    formDataDispatch({ type: 'UPDATE_STEP', payload: formDataState.currentStep - 1 });
   };
 
   // Do a switch on the mode, then return the component related to that
@@ -27,27 +27,33 @@ const AutoComplete = () => {
 
     return (
       <div className="wmnds-grid">
-        {mode === 'bus' &&
-          autoCompleteTitle(`Search for a ${mode} service`) && (
-            <BusAutoComplete mode={mode} setMode={setMode} />
+        {mode === 'bus' && autoCompleteTitle(`Search for a ${mode} service`) && (
+          <BusAutoComplete mode={mode} setMode={setMode} />
+        )}
+
+        {mode === 'train' &&
+          (!formDataState.formData.TrainStations.From ||
+            !formDataState.formData.TrainStations.To) && (
+            <div className="wmnds-col-1">
+              <h4>Select trains between</h4>
+              <TrainAutoComplete mode={mode} setMode={setMode} />
+              <h4>and</h4>
+              <TrainAutoComplete mode={mode} setMode={setMode} to />
+            </div>
           )}
 
+        {mode === 'train' &&
+          formDataState.formData.TrainStations.From &&
+          formDataState.formData.TrainStations.To && <TrainAutoCompleteSelectLines />}
+
         {mode === 'train' && (
-          <div className="wmnds-col-1">
-            <h4>Select trains between</h4>
-            <TrainAutoComplete mode={mode} setMode={setMode} />
-            <h4>and</h4>
-            <TrainAutoComplete mode={mode} setMode={setMode} to />
-            {/* Add cancel button */}
-            <div className="wmnds-col-1 wmnds-col-md-2-5">
-              <Button
-                btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
-                text="Cancel"
-                onClick={() => {
-                  getPreviousStep(1);
-                }}
-              />
-            </div>
+          // Add cancel button
+          <div className="wmnds-col-1 wmnds-col-md-2-5">
+            <Button
+              btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
+              text="Cancel"
+              onClick={getPreviousStep}
+            />
           </div>
         )}
       </div>
