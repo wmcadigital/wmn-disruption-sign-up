@@ -47,7 +47,7 @@ const Step4Phone = () => {
         </legend>
 
         <Input
-          className="wmnds-col-1 wmnds-col-lg-4-5"
+          className="wmnds-col-1 wmnds-col-lg-3-4"
           name="Phone"
           label={`${phoneLabel}, for example: 07700900090`}
           type="tel"

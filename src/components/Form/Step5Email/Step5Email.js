@@ -45,7 +45,7 @@ const Step5Email = () => {
         </legend>
 
         <Input
-          className="wmnds-col-1 wmnds-col-lg-4-5"
+          className="wmnds-col-1 wmnds-col-lg-3-4"
           name="Email"
           label={`${emailLabel}, for example name@example.com`}
           type="email"

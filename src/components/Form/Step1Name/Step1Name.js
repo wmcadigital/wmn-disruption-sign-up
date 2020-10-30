@@ -42,14 +42,14 @@ const Step1Name = () => {
         </legend>
 
         <Input
-          className="wmnds-col-1 wmnds-col-lg-4-5"
+          className="wmnds-col-1 wmnds-col-lg-3-4"
           name="Firstname"
           label={fNameLabel}
           autocomplete="given-name"
           fieldValidation={fieldValidation(fNameLabel)}
         />
         <Input
-          className="wmnds-col-1 wmnds-col-lg-4-5"
+          className="wmnds-col-1 wmnds-col-lg-3-4"
           name="LastName"
           label={lNameLabel}
           autocomplete="family-name"
