@@ -164,11 +164,11 @@ const BusAutoComplete = ({ mode, setMode }) => {
             <DebounceInput
               type="text"
               name="busSearch"
-              placeholder="Search for a service"
+              placeholder="Search for a bus service"
               className="wmnds-fe-input wmnds-autocomplete__input"
               value={lineNumber || ''}
               onChange={(e) => updateQuery(e.target.value)}
-              aria-label="Search for a service"
+              aria-label="Search for a bus service"
               debounceTimeout={600}
               onKeyDown={(e) => handleKeyDown(e)}
               inputRef={debounceInput}

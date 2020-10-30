@@ -17,21 +17,16 @@ const AutoComplete = ({ mode, setMode }) => {
 
   // Do a switch on the mode, then return the component related to that
   const autoCompleteToShow = () => {
-    // This is used as a template html for the title of the autocomplete box. It changes depending on the mode
-    const autoCompleteTitle = (text) => {
-      return (
-        <div className="wmnds-col-1">
-          <h4>{text}</h4>
-        </div>
-      );
-    };
-
     return (
       <div className="wmnds-grid">
-        {mode === 'bus' &&
-          autoCompleteTitle(`Search for a ${mode} service`) && (
+        {mode === 'bus' && (
+          <>
+            <div className="wmnds-col-1">
+              <h4>{`Search for a ${mode} service`}</h4>
+            </div>
             <BusAutoComplete mode={mode} setMode={setMode} />
-          )}
+          </>
+        )}
         {mode === 'train' && (
           <div className="wmnds-col-1">
             <h4>Select trains between</h4>
