@@ -17,11 +17,7 @@ const InputCheckbox = ({ fieldValidation, name, labelValue, classes }) => {
   // Set input to render below
 
   return (
-    <div
-      className={`wmnds-fe-group ${
-        errors[name] ? 'wmnds-fe-group--error' : ''
-      } ${classes}`}
-    >
+    <div className={`wmnds-fe-group ${errors[name] ? 'wmnds-fe-group--error' : ''} ${classes}`}>
       {errors[name] && (
         <span
           className="wmnds-fe-error-message"
@@ -45,10 +41,7 @@ const InputCheckbox = ({ fieldValidation, name, labelValue, classes }) => {
           type="checkbox"
         />
         <span className="wmnds-fe-checkboxes__checkmark">
-          <Icon
-            className="wmnds-fe-checkboxes__icon"
-            iconName="general-checkmark"
-          />
+          <Icon className="wmnds-fe-checkboxes__icon" iconName="general-checkmark" />
         </span>
       </label>
     </div>

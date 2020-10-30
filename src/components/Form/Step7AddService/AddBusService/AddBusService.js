@@ -29,9 +29,7 @@ const AddBusService = () => {
       <Button
         btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
         onClick={handleAddBus}
-        text={`Add ${
-          BusServices && BusServices.length > 0 ? 'another' : ''
-        } bus service`}
+        text={`Add ${BusServices && BusServices.length > 0 ? 'another' : ''} bus service`}
         iconRight="general-expand"
       />
       {/* Show the bus services the user has added */}

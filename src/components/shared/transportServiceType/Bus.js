@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import style from './Bus.module.scss';
 
-function Bus(props) {
+const Bus = (props) => {
   const { id, serviceNumber, routeName, handleRemove, showRemove } = props;
   const onClick = () => {
     handleRemove(id);
@@ -38,7 +38,7 @@ function Bus(props) {
       <hr className="wmnds-col-1 wmnds-m-t-md wmnds-m-b-md" />
     </>
   );
-}
+};
 
 Bus.propTypes = {
   id: PropTypes.string.isRequired,
