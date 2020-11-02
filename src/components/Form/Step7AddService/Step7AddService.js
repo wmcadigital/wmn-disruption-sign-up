@@ -86,7 +86,7 @@ function Step7AddService() {
         {/* Show the bus services the user has added */}
         {BusServices && BusServices.length > 0 && (
           <>
-            <h4 className="wmnds-m-b-md wmnds-m-t-lg">
+            <h4 className="wmnds-m-b-sm wmnds-m-t-lg">
               Bus services that you want to add
             </h4>
             <div>
@@ -123,7 +123,7 @@ function Step7AddService() {
         {/* Show the tram services the user has added */}
         {TramServices && TramServices.length > 0 && (
           <>
-            <h4 className="wmnds-m-b-md wmnds-m-t-lg">
+            <h4 className="wmnds-m-b-sm wmnds-m-t-lg">
               Tram services that you want to add
             </h4>
             <div>
