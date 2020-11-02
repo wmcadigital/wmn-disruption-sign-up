@@ -14,32 +14,19 @@ const AddTramService = () => {
   };
 
   const addDirectlyAvailableTram = () => {
-    const defTram = {
-      id: '4546',
-      routeName: 'Birmingham - Wolverhampton - Birmingham',
-      serviceNumber: 'MM1',
-    };
+    const defTram = [
+      {
+        id: '4546',
+        routeName: 'Birmingham - Wolverhampton - Birmingham',
+        serviceNumber: 'MM1',
+      },
+    ];
 
-    const currentTrams = [defTram];
     const { LineId } = formDataState.formData;
-    let allServicesId = [];
-
-    if (LineId && LineId.length > 0) {
-      allServicesId = [...LineId, 4546];
-    } else {
-      allServicesId = [4546];
-    }
 
     formDataDispatch({
       type: 'UPDATE_FORM_DATA',
-      payload: { LineId: allServicesId, TramServices: currentTrams },
-    });
-  };
-
-  const updateMode = (mode) => {
-    formDataDispatch({
-      type: 'UPDATE_MODE',
-      payload: mode,
+      payload: { LineId: [...LineId, 4546], TramServices: defTram },
     });
   };
 
@@ -52,7 +39,6 @@ const AddTramService = () => {
           btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
           onClick={() => {
             addDirectlyAvailableTram();
-            updateMode('tram');
           }}
           text="Add tram service"
           iconRight="general-expand"
@@ -68,7 +54,7 @@ const AddTramService = () => {
               return (
                 <RemoveService
                   showRemove
-                  handleRemove={handleRemoveTram}
+                  onClick={() => handleRemoveTram(tramRoute.id)}
                   serviceNumber={tramRoute.serviceNumber}
                   mode="tram"
                   routeName={tramRoute.routeName}

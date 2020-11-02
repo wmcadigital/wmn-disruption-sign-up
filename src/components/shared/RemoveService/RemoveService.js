@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import style from './RemoveService.module.scss';
 import Button from '../Button/Button';
 
-const RemoveService = ({ id, serviceNumber, routeName, handleRemove, showRemove, mode }) => {
+const RemoveService = ({ id, serviceNumber, routeName, onClick, showRemove, mode }) => {
   return (
     <>
       <div className="wmnds-grid wmnds-grid--justify-between wmnds-grid--align-center">
@@ -25,7 +25,7 @@ const RemoveService = ({ id, serviceNumber, routeName, handleRemove, showRemove,
             text={mode === 'train' ? 'Remove line' : 'Remove route'}
             iconRight="general-trash"
             title={`Remove ${serviceNumber}${mode !== 'train' ? `: ${routeName}` : ' line'}`}
-            onClick={handleRemove}
+            onClick={onClick}
           />
         )}
       </div>
@@ -37,7 +37,7 @@ const RemoveService = ({ id, serviceNumber, routeName, handleRemove, showRemove,
 
 RemoveService.propTypes = {
   id: PropTypes.string.isRequired,
-  handleRemove: PropTypes.func,
+  onClick: PropTypes.func,
   mode: PropTypes.string.isRequired,
   routeName: PropTypes.string,
   serviceNumber: PropTypes.string.isRequired,
@@ -45,7 +45,7 @@ RemoveService.propTypes = {
 };
 
 RemoveService.defaultProps = {
-  handleRemove: () => {},
+  onClick: () => {},
   routeName: null,
   showRemove: false,
 };

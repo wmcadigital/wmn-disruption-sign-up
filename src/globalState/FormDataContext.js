@@ -63,7 +63,7 @@ export const FormDataProvider = (props) => {
           formData: {
             ...state.formData,
             TramServices: state.formData.TramServices.filter((tram) => action.payload !== tram.id),
-            LineId: state.formData.LineId.filter((tramId) => action.payload !== tramId),
+            LineId: state.formData.LineId.filter((tramId) => +action.payload !== tramId),
           },
         };
       }
