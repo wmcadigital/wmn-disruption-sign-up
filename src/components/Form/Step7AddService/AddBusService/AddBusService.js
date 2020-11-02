@@ -15,11 +15,11 @@ const AddBusService = () => {
   };
 
   const handleAddBus = () => {
-    setStep(formDataState.currentStep + 1);
     formDataDispatch({
       type: 'UPDATE_MODE',
       payload: 'bus',
     });
+    setStep(formDataState.currentStep + 1);
   };
 
   return (
@@ -41,7 +41,7 @@ const AddBusService = () => {
               return (
                 <RemoveService
                   showRemove
-                  handleRemove={handleRemoveBus}
+                  onClick={() => handleRemoveBus(busRoute.id)}
                   mode="bus"
                   serviceNumber={busRoute.serviceNumber}
                   routeName={busRoute.routeName}

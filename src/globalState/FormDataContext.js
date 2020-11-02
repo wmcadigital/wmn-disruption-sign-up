@@ -68,6 +68,19 @@ export const FormDataProvider = (props) => {
         };
       }
 
+      case 'REMOVE_TRAIN': {
+        const { Trains } = state.formData;
+        Trains[0].LineIds = Trains[0].LineIds.filter((line) => line !== action.payload);
+
+        return {
+          ...state,
+          formData: {
+            ...state.formData,
+            Trains,
+          },
+        };
+      }
+
       // Update service mode
       case 'UPDATE_MODE': {
         return {

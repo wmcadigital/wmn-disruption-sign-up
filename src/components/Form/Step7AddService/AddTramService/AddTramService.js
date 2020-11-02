@@ -1,19 +1,18 @@
-import React, { useContext } from 'react';
-// Context
-import { FormDataContext } from 'globalState/FormDataContext';
+import React from 'react';
 // Components
 import Button from 'components/shared/Button/Button';
 import RemoveService from 'components/shared/RemoveService/RemoveService';
+import useStepLogic from 'components/Form/useStepLogic';
 
 const AddTramService = () => {
-  const [formDataState, formDataDispatch] = useContext(FormDataContext);
+  const { formDataState, formDataDispatch } = useStepLogic();
   const { TramServices } = formDataState.formData;
 
   const handleRemoveTram = (id) => {
     formDataDispatch({ type: 'REMOVE_TRAM', payload: id });
   };
 
-  const addDirectlyAvailableTram = () => {
+  const handleAddTram = () => {
     const defTram = [
       {
         id: '4546',
@@ -37,9 +36,7 @@ const AddTramService = () => {
       {(!TramServices || TramServices.length === 0) && (
         <Button
           btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
-          onClick={() => {
-            addDirectlyAvailableTram();
-          }}
+          onClick={handleAddTram}
           text="Add tram service"
           iconRight="general-expand"
         />
