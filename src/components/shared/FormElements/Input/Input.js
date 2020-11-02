@@ -24,9 +24,7 @@ const Input = ({
     <>
       <input
         autoComplete={autocomplete}
-        className={`wmnds-fe-input ${
-          errors[name] ? 'wmnds-fe-input--error' : ''
-        }`}
+        className={`wmnds-fe-input ${errors[name] ? 'wmnds-fe-input--error' : ''}`}
         defaultValue={formDataState.formData[name]}
         id={name}
         inputMode={inputmode}
@@ -39,11 +37,7 @@ const Input = ({
   );
 
   return (
-    <div
-      className={`wmnds-fe-group ${
-        errors[name] ? 'wmnds-fe-group--error' : ''
-      }`}
-    >
+    <div className={`wmnds-fe-group ${errors[name] ? 'wmnds-fe-group--error' : ''}`}>
       {label && (
         // eslint-disable-next-line jsx-a11y/label-has-associated-control
         <label

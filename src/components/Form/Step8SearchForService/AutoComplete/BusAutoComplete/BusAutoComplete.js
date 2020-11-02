@@ -32,8 +32,8 @@ const BusAutoComplete = ({ mode, setMode }) => {
 
   // Go back to prev step if cancel
   const handleCancel = () => {
-    setStep(formDataState.currentStep - 1);
     setMode(null);
+    setStep(formDataState.currentStep - 1);
   };
 
   return (

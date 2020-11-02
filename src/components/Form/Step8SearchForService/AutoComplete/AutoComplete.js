@@ -12,7 +12,6 @@ const AutoComplete = () => {
 
   // Used to go back to previous step and wipes any train data stored
   const getPreviousStep = () => {
-    formDataDispatch({ type: 'UPDATE_FORM_DATA', payload: { TrainStations: {} } });
     formDataDispatch({ type: 'UPDATE_STEP', payload: formDataState.currentStep - 1 });
   };
 
@@ -33,39 +32,43 @@ const AutoComplete = () => {
           <BusAutoComplete mode={mode} setMode={setMode} />
         )}
 
-        {mode === 'train' && (!trainStations.From || !trainStations.To) && (
-          <div className="wmnds-col-1">
-            <h4>Select trains between</h4>
-            <TrainAutoComplete
-              mode={mode}
-              setMode={setMode}
-              trainStations={trainStations}
-              setTrainStations={setTrainStations}
-            />
-            <h4>and</h4>
-            <TrainAutoComplete
-              mode={mode}
-              setMode={setMode}
-              trainStations={trainStations}
-              setTrainStations={setTrainStations}
-              to
-            />
-          </div>
-        )}
-
-        {mode === 'train' && trainStations.From && trainStations.To && (
-          <TrainAutoCompleteSelectLines trainStations={trainStations} />
-        )}
-
         {mode === 'train' && (
-          // Add cancel button
-          <div className="wmnds-col-1 wmnds-col-md-2-5">
-            <Button
-              btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
-              text="Cancel"
-              onClick={getPreviousStep}
-            />
-          </div>
+          <>
+            {(!trainStations.From || !trainStations.To) && (
+              <div className="wmnds-col-1">
+                <h4>Select trains between</h4>
+                <TrainAutoComplete
+                  mode={mode}
+                  setMode={setMode}
+                  trainStations={trainStations}
+                  setTrainStations={setTrainStations}
+                />
+                <h4>and</h4>
+                <TrainAutoComplete
+                  mode={mode}
+                  setMode={setMode}
+                  trainStations={trainStations}
+                  setTrainStations={setTrainStations}
+                  to
+                />
+              </div>
+            )}
+
+            {trainStations.From && trainStations.To && (
+              <TrainAutoCompleteSelectLines setMode={setMode} trainStations={trainStations} />
+            )}
+
+            {(!trainStations.From || !trainStations.To) && (
+              // Add cancel button
+              <div className="wmnds-col-1 wmnds-col-md-2-5">
+                <Button
+                  btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
+                  text="Cancel"
+                  onClick={getPreviousStep}
+                />
+              </div>
+            )}
+          </>
         )}
       </div>
     );

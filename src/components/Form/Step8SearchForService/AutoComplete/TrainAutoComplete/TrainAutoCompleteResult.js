@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TrainAutoCompleteResult = (props) => {
-  const { result, handleKeyDown, handleCancel, setTrainStations, to } = props || {};
+  const { result, handleKeyDown, setTrainStations, to } = props || {};
   // Destructure fields from result
   const { id, name, lines } = result;
 
