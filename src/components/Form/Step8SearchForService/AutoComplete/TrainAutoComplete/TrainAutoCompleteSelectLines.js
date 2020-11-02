@@ -7,10 +7,30 @@ import useStepLogic from 'components/Form/useStepLogic';
 
 const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
   const { formDataState, formDataDispatch, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
-  useStepLogic();
   const [selectedLines, setSelectedLines] = useState(
     formDataState.formData?.Trains[0]?.LineIds || []
   ); // Set state of selected lines to what has already been selected or empty array
+
+  // These numbers will be used to convert .length into a written number
+  const writtenNumbers = [
+    '',
+    'One',
+    'Two',
+    'Three',
+    'Four',
+    'Five',
+    'Six',
+    'Seven',
+    'Eight',
+    'Nine',
+    'Ten',
+  ];
+
+  const allLines = trainStations.From.lines.concat(trainStations.To.lines);
+  // Then get any duplicates found and pluck them out. If duplicates are found then this means the user MUST be interested in only them lines as that line was part of their from AND to station search.
+  const getDuplicates = allLines.filter((item, index) => allLines.indexOf(item) !== index);
+  // If duplicates exist, use them as that's what the user is interested in. Otherwise default to all lines (all will be unique)...this usually means the user has selected two stations that are on separate lines.
+  const linesToCompareWith = getDuplicates.length ? getDuplicates : allLines;
 
   // Run on change of select box
   const handleChange = (val) => {
@@ -24,16 +44,33 @@ const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
 
   // Run when continue button pressed
   const handleContinue = () => {
-    // Set payload object
-    const payload = {
-      Trains: [
-        {
-          To: trainStations.To.name,
-          From: trainStations.From.name,
-          LineIds: selectedLines,
-        },
-      ],
-    };
+    let payload;
+    // If Trains doesn't have any data yet
+    if (!formDataState.formData.Trains.length) {
+      // Set payload to from/to stations and the users selected lines
+      payload = {
+        Trains: [
+          {
+            To: trainStations.To.name,
+            From: trainStations.From.name,
+            LineIds: selectedLines,
+          },
+        ],
+      };
+    }
+    // Else, if the above logic has already been completed when returning to this step
+    else {
+      const newArr = formDataState.formData.Trains; // Get existing data the user selected
+      newArr[0].LineIds = selectedLines; // Map the selected lines to the first object in the array
+
+      // Set payload to above newArr and and a new object. This will add the from/to as a new object but the selected lines will map to the first object in the array.
+      payload = {
+        Trains: [
+          ...newArr,
+          { To: trainStations.To.name, From: trainStations.From.name, LineIds: [] },
+        ],
+      };
+    }
     formDataDispatch({ type: 'UPDATE_FORM_DATA', payload }); // Write new payload/data to global state
 
     // Go back to prev step
@@ -45,11 +82,14 @@ const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
     <div className="wmnds-col-1">
       <h4>Select a train line</h4>
       <p>
-        Two train lines are available between University and Birmingham New Street train stations.
+        {writtenNumbers[linesToCompareWith.length]} train line
+        {linesToCompareWith.length > 1 ? 's are' : ' is'} available between{' '}
+        <strong>{trainStations.From.name}</strong> and <strong>{trainStations.To.name}</strong>{' '}
+        train stations.
       </p>
       <div className="wmnds-fe-group">
         <fieldset className="wmnds-fe-fieldset">
-          {trainStations.From.lines.map((line) => (
+          {linesToCompareWith.map((line) => (
             <div key={line}>
               <label className="wmnds-grid wmnds-grid--justify-between wmnds-grid--align-center">
                 {/* Left side (service number and route name) */}

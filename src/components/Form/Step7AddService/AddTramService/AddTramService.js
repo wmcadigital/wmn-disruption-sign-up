@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { FormDataContext } from 'globalState/FormDataContext';
 // Components
 import Button from 'components/shared/Button/Button';
-import Tram from 'components/shared/transportServiceType/Tram';
+import RemoveService from 'components/shared/RemoveService/RemoveService';
 
 const AddTramService = () => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
@@ -66,10 +66,11 @@ const AddTramService = () => {
           <div className="wmnds-m-b-lg">
             {TramServices.map((tramRoute) => {
               return (
-                <Tram
+                <RemoveService
                   showRemove
                   handleRemove={handleRemoveTram}
                   serviceNumber={tramRoute.serviceNumber}
+                  mode="tram"
                   routeName={tramRoute.routeName}
                   id={tramRoute.id}
                   key={`${tramRoute.id}`}

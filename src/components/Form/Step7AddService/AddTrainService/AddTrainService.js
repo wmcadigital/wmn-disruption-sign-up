@@ -7,7 +7,7 @@ import Train from 'components/shared/transportServiceType/Bus';
 
 const AddTrainService = () => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
-  const { TrainServices } = formDataState.formData;
+  const { Trains } = formDataState.formData;
 
   const getNextStep = (incrementAmount) => {
     formDataDispatch({
@@ -32,23 +32,23 @@ const AddTrainService = () => {
           getNextStep(1);
           updateMode('train');
         }}
-        text={`Add ${TrainServices && TrainServices.length > 0 ? 'another' : ''} train service`}
+        text={`Add ${Trains && Trains.length > 0 ? 'another' : ''} train service`}
         iconRight="general-expand"
       />
       {/* {/* Show the train services the user has added */}
-      {TrainServices && TrainServices.length > 0 && (
+      {Trains && Trains.length > 0 && (
         <>
           <h4>Train lines that you want to add</h4>
           <div className="wmnds-m-b-lg">
-            {TrainServices.map((busRoute) => {
+            {Trains[0].LineIds.map((line) => {
               return (
                 <Train
                   showRemove
                   // handleRemove={handleRemoveBus}
-                  serviceNumber={busRoute.serviceNumber}
-                  routeName={busRoute.routeName}
-                  id={busRoute.id}
-                  key={`${busRoute.id}`}
+                  serviceNumber={line}
+                  // routeName={train.routeName}
+                  id={line}
+                  key={`${line}`}
                 />
               );
             })}

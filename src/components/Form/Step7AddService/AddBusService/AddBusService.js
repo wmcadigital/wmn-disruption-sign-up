@@ -2,7 +2,7 @@ import React from 'react';
 // Context
 // Components
 import Button from 'components/shared/Button/Button';
-import Bus from 'components/shared/transportServiceType/Bus';
+import RemoveService from 'components/shared/RemoveService/RemoveService';
 import useStepLogic from 'components/Form/useStepLogic';
 
 const AddBusService = () => {
@@ -39,9 +39,10 @@ const AddBusService = () => {
           <div className="wmnds-m-b-lg">
             {BusServices.map((busRoute) => {
               return (
-                <Bus
+                <RemoveService
                   showRemove
                   handleRemove={handleRemoveBus}
+                  mode="bus"
                   serviceNumber={busRoute.serviceNumber}
                   routeName={busRoute.routeName}
                   id={busRoute.id}

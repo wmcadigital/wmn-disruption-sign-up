@@ -24,7 +24,7 @@ const Bus = (props) => {
         {showRemove && (
           <div className="wmnds-col-1 wmnds-col-sm-2-5 wmnds-col-lg-auto wmnds-grid wmnds-m-t-sm wmnds-grid--align-center wmnds-grid--justify-end">
             <Button
-              btnClass={`wmnds-btn--destructive wmnds-col-1 wmnds-col-lg-auto wmnds-m-t-sm ${style.removeRoute}`}
+              btnClass={`wmnds-btn--destructive wmnds-col-1 wmnds-col-lg-auto ${style.removeRoute}`}
               text="Remove service"
               iconRight="general-trash"
               title={`Remove service ${serviceNumber}: ${routeName}`}

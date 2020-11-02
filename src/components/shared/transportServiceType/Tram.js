@@ -16,7 +16,9 @@ function Tram(props) {
       >
         {serviceNumber}
       </div>
+
       <strong className="wmnds-col-auto">{routeName}</strong>
+
       {showRemove && (
         <button
           type="button"
@@ -25,10 +27,7 @@ function Tram(props) {
             onClick();
           }}
         >
-          <Icon
-            iconName="general-cross"
-            className={`general-cross ${style.closeIcon}`}
-          />
+          <Icon iconName="general-cross" className={`general-cross ${style.closeIcon}`} />
         </button>
       )}
     </div>
