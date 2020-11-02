@@ -153,7 +153,7 @@ const TrainAutoComplete = ({ mode, setMode }) => {
             loading ? 'wmnds-is--loading' : ''
           }`}
         >
-          <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
+          <div className="wmnds-col-1 wmnds-col-lg-11-12">
             <Icon
               iconName="general-search"
               className="wmnds-autocomplete__icon"
@@ -184,7 +184,7 @@ const TrainAutoComplete = ({ mode, setMode }) => {
           />
         ) : (
           searchResults && (
-            <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
+            <div className="wmnds-col-1 wmnds-col-lg-11-12">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
                 {searchResults.map((result) => {
                   return (

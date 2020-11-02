@@ -147,13 +147,13 @@ const BusAutoComplete = ({ mode, setMode }) => {
   };
   return (
     <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
-      <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5">
+      <div className="wmnds-col-1 wmnds-col-md-3-4 wmnds-m-t-sm">
         <div
           className={`wmnds-autocomplete wmnds-grid ${
             loading ? 'wmnds-is--loading' : ''
           }`}
         >
-          <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
+          <div className="wmnds-col-1">
             <Icon
               iconName="general-search"
               className="wmnds-autocomplete__icon"
@@ -184,7 +184,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
           />
         ) : (
           searchResults && (
-            <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
+            <div className="wmnds-col-1">
               <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
                 {filterResults().map((result) => {
                   if (busId && busId.indexOf(result.id) < 0) {
@@ -205,9 +205,9 @@ const BusAutoComplete = ({ mode, setMode }) => {
           )
         )}
       </div>
-      <div className="wmnds-col-1 wmnds-col-md-1-5">
+      <div className="wmnds-col-1 wmnds-col-md-1-5 wmnds-m-t-sm">
         <Button
-          btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
+          btnClass="wmnds-btn wmnds-btn--primary wmnds-col-auto wmnds-col-md-1 wmnds-float-right"
           text="Cancel"
           onClick={() => {
             getPreviousStep(1);
