@@ -4,6 +4,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
+import useFormData from '../useFormData';
 
 const Step5Email = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
@@ -26,6 +27,28 @@ const Step5Email = () => {
     },
   });
 
+  // Check if user is in the trial
+  const { SMSAlert } = useFormData();
+  let text;
+  if (SMSAlert) {
+    text = (
+      <p>
+        We need your email address so you can confirm your subscription and
+        manage your alert preferences.
+      </p>
+    );
+  } else {
+    text = (
+      <>
+        <p>We’ll automatically send disruption alerts to this address.</p>
+        <p>
+          We also need your email address so you can confirm your subscription
+          and manage your alert preferences.
+        </p>
+      </>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
       {/* Subsection */}
@@ -37,11 +60,7 @@ const Step5Email = () => {
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>What is your email address?</h2>
-          <p>We’ll automatically send disruption alerts to this address.</p>
-          <p>
-            We also need your email address so you can confirm your subscription
-            and manage your alert preferences.
-          </p>
+          {text}
         </legend>
 
         <Input

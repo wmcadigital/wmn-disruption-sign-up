@@ -19,6 +19,9 @@ const useFormData = () => {
     BusServices,
     TramServices,
     ExistingUser,
+    SMSAlert,
+    EmailAlert,
+    SMSTerms,
   } = formDataState.formData;
   return {
     Firstname,
@@ -32,6 +35,9 @@ const useFormData = () => {
     formDataDispatch,
     mode,
     setMode,
+    SMSAlert,
+    EmailAlert,
+    SMSTerms,
   };
 };
 
