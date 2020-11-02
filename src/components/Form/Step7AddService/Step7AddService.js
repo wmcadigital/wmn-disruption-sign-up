@@ -70,7 +70,7 @@ function Step7AddService() {
           We’ll send an automatic disruption alert for each service you add.
         </p>
 
-        <h3>Buses</h3>
+        <h3 className="wmnds-p-t-md">Buses</h3>
         {/* Add bus service button */}
         <Button
           btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
@@ -86,8 +86,10 @@ function Step7AddService() {
         {/* Show the bus services the user has added */}
         {BusServices && BusServices.length > 0 && (
           <>
-            <h4>Bus services that you want to add</h4>
-            <div className="wmnds-m-b-lg">
+            <h4 className="wmnds-m-b-md wmnds-m-t-lg">
+              Bus services that you want to add
+            </h4>
+            <div>
               {BusServices.map((busRoute) => {
                 return (
                   <Bus
@@ -108,7 +110,7 @@ function Step7AddService() {
         {/* Add tram service button */}
         {(!TramServices || TramServices.length === 0) && (
           <Button
-            btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
+            btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
             onClick={() => {
               addDirectlyAvailableTram();
               updateMode('tram');
@@ -121,8 +123,10 @@ function Step7AddService() {
         {/* Show the tram services the user has added */}
         {TramServices && TramServices.length > 0 && (
           <>
-            <h4>Tram services that you want to add</h4>
-            <div className="wmnds-m-b-lg">
+            <h4 className="wmnds-m-b-md wmnds-m-t-lg">
+              Tram services that you want to add
+            </h4>
+            <div>
               {TramServices.map((tramRoute) => {
                 return (
                   <Bus
@@ -142,7 +146,7 @@ function Step7AddService() {
         {/* Add train service button 
         <h3 className="wmnds-p-t-md">Trains</h3>
         <Button
-          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
+          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
           onClick={() => {
             getNextStep(1);
             updateMode('train');

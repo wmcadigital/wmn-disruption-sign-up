@@ -1,17 +1,8 @@
-.serviceWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #979797;
-  padding-bottom: 1em;
-  padding-top: 1em;
+.removeBtn {
+  margin-top: 0.75rem;
+  margin-left: auto;
 
-  .removeBtn {
-    margin-top: 0.75rem;
-    margin-left: auto;
-
-    @media all and (min-width: 35.5em) {
-      margin-top: 0;
-    }
+  @media all and (min-width: 35.5em) {
+    margin-top: 0;
   }
 }
