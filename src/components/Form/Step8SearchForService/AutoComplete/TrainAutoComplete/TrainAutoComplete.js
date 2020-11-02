@@ -10,6 +10,7 @@ import TrainAutoCompleteResult from './TrainAutoCompleteResult';
 // Local CustomHooks
 import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
+import SelectedTrainStation from './SelectedTrainStation/SelectedTrainStation';
 
 const TrainAutoComplete = ({ mode, setMode, trainStations, setTrainStations, to }) => {
   const { formDataState, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
@@ -26,6 +27,8 @@ const TrainAutoComplete = ({ mode, setMode, trainStations, setTrainStations, to 
     to
   );
 
+  const selectedService = to ? trainStations.To : trainStations.From;
+
   // Import handleKeyDown function from customHook (used by all modes)
   const { handleKeyDown } = useHandleAutoCompleteKeys(resultsList, debounceInput, results);
 
@@ -36,58 +39,64 @@ const TrainAutoComplete = ({ mode, setMode, trainStations, setTrainStations, to 
   };
 
   return (
-    <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
-      <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5 wmnds-p-r-md">
-        <div
-          className={`wmnds-autocomplete wmnds-grid ${loading ? 'wmnds-is--loading' : ''} ${
-            !to && !query && !loading && 'wmnds-m-b-sm'
-          }`}
-        >
-          <Icon iconName="general-search" className="wmnds-autocomplete__icon" />
-          <div className="wmnds-loader" role="alert" aria-live="assertive">
-            <p className="wmnds-loader__content">Content is loading...</p>
-          </div>
-          <DebounceInput
-            type="text"
-            name="busSearch"
-            placeholder="Search for a stop"
-            className="wmnds-fe-input wmnds-autocomplete__input"
-            value={query || ''}
-            onChange={(e) => setQuery(e.target.value)}
-            aria-label="Search for a stop"
-            debounceTimeout={600}
-            onKeyDown={(e) => handleKeyDown(e)}
-            inputRef={debounceInput}
-          />
-        </div>
-        {/* If there is no data.length(results) and the user hasn't submitted a query and the state isn't loading then the user should be displayed with no results message, else show results */}
-        {!results.length && query && !loading && errorInfo ? (
-          <Message type="error" title={errorInfo.title} message={errorInfo.message} />
-        ) : (
-          query && (
-            <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
-              <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
-                {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added
-                 */}
-                {results.map((result) => {
-                  return (
-                    <TrainAutoCompleteResult
-                      key={result.id}
-                      result={result}
-                      handleKeyDown={handleKeyDown}
-                      type={mode}
-                      handleCancel={handleCancel}
-                      setTrainStations={setTrainStations}
-                      to={to}
-                    />
-                  );
-                })}
-              </ul>
+    <>
+      {selectedService && selectedService?.id ? (
+        <SelectedTrainStation selectedService={selectedService} />
+      ) : (
+        <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
+          <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5 wmnds-p-r-md">
+            <div
+              className={`wmnds-autocomplete wmnds-grid ${loading ? 'wmnds-is--loading' : ''} ${
+                !to && !query && !loading && 'wmnds-m-b-sm'
+              }`}
+            >
+              <Icon iconName="general-search" className="wmnds-autocomplete__icon" />
+              <div className="wmnds-loader" role="alert" aria-live="assertive">
+                <p className="wmnds-loader__content">Content is loading...</p>
+              </div>
+              <DebounceInput
+                type="text"
+                name="busSearch"
+                placeholder="Search for a stop"
+                className="wmnds-fe-input wmnds-autocomplete__input"
+                value={query || ''}
+                onChange={(e) => setQuery(e.target.value)}
+                aria-label="Search for a stop"
+                debounceTimeout={600}
+                onKeyDown={(e) => handleKeyDown(e)}
+                inputRef={debounceInput}
+              />
             </div>
-          )
-        )}
-      </div>
-    </div>
+            {/* If there is no data.length(results) and the user hasn't submitted a query and the state isn't loading then the user should be displayed with no results message, else show results */}
+            {!results.length && query && !loading && errorInfo ? (
+              <Message type="error" title={errorInfo.title} message={errorInfo.message} />
+            ) : (
+              query && (
+                <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
+                  <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
+                    {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added
+                     */}
+                    {results.map((result) => {
+                      return (
+                        <TrainAutoCompleteResult
+                          key={result.id}
+                          result={result}
+                          handleKeyDown={handleKeyDown}
+                          type={mode}
+                          handleCancel={handleCancel}
+                          setTrainStations={setTrainStations}
+                          to={to}
+                        />
+                      );
+                    })}
+                  </ul>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
