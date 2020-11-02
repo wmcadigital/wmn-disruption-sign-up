@@ -34,6 +34,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     dataToSend = {
       Name: `${Firstname} ${LastName}`,
       Email,
+      LineId: ['0'],
       EmailDisabled: !EmailAlert,
       MobileNumber: englishNumber,
     };

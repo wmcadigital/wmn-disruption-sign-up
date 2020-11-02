@@ -25,7 +25,7 @@ function Success() {
       'Visit the link in the confirmation email to access your disruption alert dashboard. Enter the PIN code sent to you via text message.',
       'Once you have confirmed your mobile phone number, you’ll receive disruption alerts to your mobile phone.',
     ];
-  } else if (Phone && SMSAlert === 'yes') {
+  } else if (Phone && (SMSAlert === 'yes' || SMSTerms)) {
     /* Text messages */
     message = 'You have successfully signed up to text message alerts';
     steps = [
