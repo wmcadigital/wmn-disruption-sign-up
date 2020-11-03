@@ -48,7 +48,7 @@ const Step3SmsConsent = () => {
       {showGenericError}
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
-        <legend className="wmnds-fe-fieldset__legend">
+        <div className="wmnds-fe-fieldset__legend">
           <h2>About the text message alert trial</h2>
           <h4>Introduction</h4>
           <p>
@@ -127,7 +127,7 @@ const Step3SmsConsent = () => {
             is being conducted by an MRS Company Partner. You can verify this by calling MRS
             freephone 0800 975 9596 and giving the name of the organisation that interviewed you.
           </p>
-        </legend>
+        </div>
 
         <InputCheckbox
           name="SMSTerms"
