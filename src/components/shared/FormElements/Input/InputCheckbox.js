@@ -11,7 +11,13 @@ import Icon from '../../Icon/Icon';
 
 const { sanitize } = dompurify;
 
-const InputCheckbox = ({ fieldValidation, name, labelValue, classes }) => {
+const InputCheckbox = ({
+  fieldValidation,
+  name,
+  labelValue,
+  labelElement,
+  classes,
+}) => {
   const [formDataState] = useContext(FormDataContext); // Get the state of form data from FormDataContext
   const { errors } = useFormContext();
   // Set input to render below
@@ -32,11 +38,14 @@ const InputCheckbox = ({ fieldValidation, name, labelValue, classes }) => {
       )}
 
       <label className="wmnds-fe-checkboxes__container">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: sanitize(labelValue),
-          }}
-        />
+        {labelElement !== null && labelElement}
+        {!labelElement && labelValue && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: sanitize(labelValue),
+            }}
+          />
+        )}
         <input
           ref={fieldValidation}
           defaultValue={formDataState.formData[name]}
@@ -60,10 +69,12 @@ InputCheckbox.propTypes = {
   fieldValidation: PropTypes.func,
   name: PropTypes.string.isRequired,
   classes: PropTypes.string,
+  labelElement: PropTypes.element,
 };
 
 InputCheckbox.defaultProps = {
   labelValue: null,
+  labelElement: null,
   fieldValidation: null,
   classes: null,
 };
