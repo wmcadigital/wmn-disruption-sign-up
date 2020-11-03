@@ -1,8 +1,11 @@
 @import '~assets/styles/vars';
 
 .leftWrap {
-  width: calc(100% - 180px);
   flex-wrap: nowrap;
+
+  @media all and(min-width: $breakpoint-sm) {
+    width: calc(100% - 180px);
+  }
 }
 
 .train {
