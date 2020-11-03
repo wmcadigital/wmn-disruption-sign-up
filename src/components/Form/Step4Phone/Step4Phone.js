@@ -40,14 +40,14 @@ const Step4Phone = () => {
       {/* Show generic error message */}
       {showGenericError}
 
-      <fieldset className="wmnds-fe-fieldset wmnds-col-1 wmnds-col-lg-4-5">
+      <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>What is your mobile phone number?</h2>
           <p>We’ll automatically send disruption alerts to this number.</p>
         </legend>
 
         <Input
-          className="wmnds-col-1 wmnds-col-lg-4-5"
+          className="wmnds-col-1 wmnds-col-lg-3-4"
           name="Phone"
           label={`${phoneLabel}, for example: 07700900090`}
           type="tel"

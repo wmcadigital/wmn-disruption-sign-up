@@ -23,14 +23,21 @@ const useSubmitForm = (setFormSubmitStatus) => {
     Phone,
   } = formDataState.formData;
 
+  // Check if mobile phone has +44, if not, remove the 0 and add +44
+  let englishNumber = Phone;
+  if (Phone && Phone.substr(0, 1) === '0') {
+    englishNumber = `+44${Phone.substr(1)}`;
+  }
+
   // Map all destructured vals above to an object we will send to API
   let dataToSend;
   if (ExistingUser) {
     dataToSend = {
       Name: `${Firstname} ${LastName}`,
       Email,
+      LineId: ['1001'],
       EmailDisabled: !EmailAlert,
-      MobileNumber: Phone,
+      MobileNumber: englishNumber,
     };
   } else {
     dataToSend = {
@@ -39,10 +46,10 @@ const useSubmitForm = (setFormSubmitStatus) => {
       LineId,
       Trains,
       EmailDisabled: !EmailAlert,
-      MobileNumber: Phone,
+      MobileNumber: englishNumber,
     };
   }
-  // console.log('dataToSend:', dataToSend);
+
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission method
     // Validation

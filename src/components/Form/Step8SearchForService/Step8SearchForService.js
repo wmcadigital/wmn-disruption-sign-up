@@ -15,8 +15,8 @@ function Step8SearchForService() {
       <div className="wmnds-col-1">
         {/* Subsection */}
         <SectionStepInfo section="Section 2 of 2" description="Services" />
-        <h2 className="">Add a service</h2>
-        <p className="wmnds-col-2-3">
+        <h2>Add a service</h2>
+        <p>
           We’ll send an automatic disruption alert for each service you add.
         </p>
 
