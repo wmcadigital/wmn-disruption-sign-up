@@ -36,7 +36,6 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   let stepToGoTo;
 
   if (!ExistingUser) {
-    console.log(currentStep);
     // NEW USERS: Show back button if the step is between 1 or 9
     if (
       currentStep > 1 &&
@@ -44,25 +43,25 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
       !(currentStep === 5 && SMSAlert === 'no') &&
       !(currentStep === 7 && SMSAlert === 'no')
     ) {
-      stepToGoTo = hasReachedConfirmation ? 9 : currentStep - 1;
+      stepToGoTo = currentStep - 1;
     }
 
     if (currentStep === 5 && SMSAlert === 'no') {
-      stepToGoTo = hasReachedConfirmation ? 9 : 2;
+      stepToGoTo = 2;
     }
 
     if (currentStep === 7 && SMSAlert === 'no') {
-      stepToGoTo = hasReachedConfirmation ? 9 : 5;
+      stepToGoTo = 5;
     }
   } else {
     /* EXISTING USERS: Show back button if the step is 4 or 6. Step 3 has no back button */
     if (currentStep > 3 && currentStep < 9 && currentStep !== 6) {
-      stepToGoTo = hasReachedConfirmation ? 9 : currentStep - 1;
+      stepToGoTo = currentStep - 1;
     }
 
     /* Exception: on click back button (on step 6) -> step 4 */
     if (currentStep === 6) {
-      stepToGoTo = hasReachedConfirmation ? 9 : 4;
+      stepToGoTo = 4;
     }
   }
 
@@ -81,7 +80,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
                 onClick={() =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
-                    payload: stepToGoTo,
+                    payload: hasReachedConfirmation ? 9 : stepToGoTo,
                   })
                 }
               >
