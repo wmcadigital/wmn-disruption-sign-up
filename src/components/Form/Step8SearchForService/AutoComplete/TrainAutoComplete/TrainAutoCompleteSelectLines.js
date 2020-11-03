@@ -7,10 +7,9 @@ import useStepLogic from 'components/Form/useStepLogic';
 
 const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
   const { formDataState, formDataDispatch, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
-  const [selectedLines, setSelectedLines] = useState(
-    formDataState.formData?.Trains[0]?.LineIds || []
-  ); // Set state of selected lines to what has already been selected or empty array
-
+  const lineIds = formDataState.formData?.Trains[0]?.LineIds || []; // Get the selected lines to what has already been selected or empty array
+  const [selectedLines, setSelectedLines] = useState(lineIds); // Set state to lineIds var above
+  const originalSelectedLines = lineIds; // This is used so we can store the original value and compare if the user changes anything (used to show continue/cancel button below)
   // These numbers will be used to convert .length into a written number
   const writtenNumbers = [
     '',
@@ -58,8 +57,8 @@ const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
         ],
       };
     }
-    // Else, if the above logic has already been completed when returning to this step
-    else {
+    // Else, if the above logic has already been completed when returning to this step && there are selectedLines to add
+    else if (selectedLines.length) {
       const newArr = formDataState.formData.Trains; // Get existing data the user selected
       newArr[0].LineIds = selectedLines; // Map the selected lines to the first object in the array
 
@@ -71,6 +70,13 @@ const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
         ],
       };
     }
+    // Else the user must have removed all their chosen lines, so reset trains field
+    else {
+      payload = {
+        Trains: [],
+      };
+    }
+
     formDataDispatch({ type: 'UPDATE_FORM_DATA', payload }); // Write new payload/data to global state
 
     // Go back to prev step
@@ -117,11 +123,19 @@ const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
           ))}
         </fieldset>
       </div>
-      <Button
-        btnClass="wmnds-btn wmnds-col-1 wmnds-m-t-xl"
-        text="Continue"
-        onClick={handleContinue}
-      />
+      {/* This logic compares if the users selected lines are different from the ones they originally chose (when step loads). If it's different then the user must have changed their chosen lines, so show continue button else show cancel button(nothing changed) */}
+      {originalSelectedLines.sort().join(',') !== selectedLines.sort().join(',') ? (
+        <Button btnClass="wmnds-btn wmnds-col-1" text="Continue" onClick={handleContinue} />
+      ) : (
+        // Add cancel button
+        <div className="wmnds-col-1 wmnds-col-md-2-5">
+          <Button
+            btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
+            text="Cancel"
+            onClick={() => setStep(formDataState.currentStep - 1)}
+          />
+        </div>
+      )}
     </div>
   );
 };
