@@ -18,6 +18,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     Firstname,
     LastName,
     LineId,
+    Trains,
     EmailAlert,
     Phone,
   } = formDataState.formData;
@@ -36,6 +37,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
       Name: `${Firstname} ${LastName}`,
       Email,
       LineId,
+      Trains,
       EmailDisabled: !EmailAlert,
       MobileNumber: Phone,
     };

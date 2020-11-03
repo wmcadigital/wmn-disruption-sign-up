@@ -33,6 +33,38 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   // Show debug options for below (this should be deleted on release)
   const debugStepOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
+  let stepToGoTo;
+
+  if (!ExistingUser) {
+    // NEW USERS: Show back button if the step is between 1 or 9
+    if (
+      currentStep > 1 &&
+      currentStep < 9 &&
+      !(currentStep === 5 && SMSAlert === 'no') &&
+      !(currentStep === 7 && SMSAlert === 'no')
+    ) {
+      stepToGoTo = hasReachedConfirmation ? 9 : currentStep - 1;
+    }
+
+    if (currentStep === 5 && SMSAlert === 'no') {
+      stepToGoTo = hasReachedConfirmation ? 9 : 2;
+    }
+
+    if (currentStep === 7 && SMSAlert === 'no') {
+      stepToGoTo = hasReachedConfirmation ? 9 : 5;
+    }
+  } else {
+    /* EXISTING USERS: Show back button if the step is 4 or 6. Step 3 has no back button */
+    if (currentStep > 3 && currentStep < 9 && currentStep !== 6) {
+      stepToGoTo = hasReachedConfirmation ? 9 : currentStep - 1;
+    }
+
+    /* Exception: on click back button (on step 6) -> step 4 */
+    if (currentStep === 6) {
+      stepToGoTo = hasReachedConfirmation ? 9 : 4;
+    }
+  }
+
   // Run! Like go get some data from an API.
   return (
     <>
@@ -40,103 +72,22 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <FormContext {...methods}>
         <div className="wmnds-col-1 wmnds-col-md-2-3">
-          {/* NEW USERS: Show back button if the step is between 1 or 9 */}
-          {!ExistingUser &&
-            currentStep > 1 &&
-            currentStep < 9 &&
-            !(currentStep === 5 && SMSAlert === 'no') &&
-            !(currentStep === 7 && SMSAlert === 'no') && (
-              <div className="wmnds-col-1 wmnds-m-b-md">
-                <button
-                  type="button"
-                  className={`wmnds-link ${s.asLink}`}
-                  onClick={() =>
-                    formDataDispatch({
-                      type: 'UPDATE_STEP',
-                      payload: hasReachedConfirmation ? 9 : currentStep - 1,
-                    })
-                  }
-                >
-                  &lt; Back
-                </button>
-              </div>
-            )}
-          {!ExistingUser && currentStep === 5 && SMSAlert === 'no' && (
-            <div className="wmnds-col-1 wmnds-m-b-md">
-              <button
-                type="button"
-                className={`wmnds-link ${s.asLink}`}
-                onClick={() =>
-                  formDataDispatch({
-                    type: 'UPDATE_STEP',
-                    payload: hasReachedConfirmation ? 9 : 2,
-                  })
-                }
-              >
-                &lt; Back
-              </button>
-            </div>
-          )}
-          {!ExistingUser && currentStep === 7 && SMSAlert === 'no' && (
-            <div className="wmnds-col-1 wmnds-m-b-md">
-              <button
-                type="button"
-                className={`wmnds-link ${s.asLink}`}
-                onClick={() =>
-                  formDataDispatch({
-                    type: 'UPDATE_STEP',
-                    payload: hasReachedConfirmation ? 9 : 5,
-                  })
-                }
-              >
-                &lt; Back
-              </button>
-            </div>
-          )}
+          <div className="wmnds-col-1 wmnds-m-b-md">
+            <button
+              type="button"
+              className={`wmnds-link ${s.asLink}`}
+              onClick={() =>
+                formDataDispatch({
+                  type: 'UPDATE_STEP',
+                  payload: stepToGoTo,
+                })
+              }
+            >
+              &lt; Back
+            </button>
+          </div>
 
-          {/* EXISTING USERS: Show back button if the step is 4 or 6. Step 3 has no back button */}
-          {ExistingUser &&
-            currentStep > 3 &&
-            currentStep < 9 &&
-            currentStep !== 6 && (
-              <div className="wmnds-col-1 wmnds-m-b-md">
-                <button
-                  type="button"
-                  className={`wmnds-link ${s.asLink}`}
-                  onClick={() =>
-                    formDataDispatch({
-                      type: 'UPDATE_STEP',
-                      payload: hasReachedConfirmation ? 9 : currentStep - 1,
-                    })
-                  }
-                >
-                  &lt; Back
-                </button>
-              </div>
-            )}
-          {/* Exception: on click back button (on step 6) -> step 4 */}
-          {ExistingUser && currentStep === 6 && (
-            <div className="wmnds-col-1 wmnds-m-b-md">
-              <button
-                type="button"
-                className={`wmnds-link ${s.asLink}`}
-                onClick={() =>
-                  formDataDispatch({
-                    type: 'UPDATE_STEP',
-                    payload: hasReachedConfirmation ? 9 : 4,
-                  })
-                }
-              >
-                &lt; Back
-              </button>
-            </div>
-          )}
-
-          <div
-            className={
-              formSubmitStatus === null ? `${s.formWrapper} wmnds-p-lg ` : ''
-            }
-          >
+          <div className={formSubmitStatus === null ? `${s.formWrapper} wmnds-p-lg ` : ''}>
             {/* Start of form */}
             {currentStep === 1 && <Step1Name />}
             {currentStep === 2 && <Step2SmsAlert />}
@@ -146,9 +97,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
             {currentStep === 6 && <Step6EmailAlert />}
             {currentStep === 7 && <Step7AddService />}
             {currentStep === 8 && <Step8SearchForService />}
-            {currentStep === 9 && (
-              <Step9Confirm setFormSubmitStatus={setFormSubmitStatus} />
-            )}
+            {currentStep === 9 && <Step9Confirm setFormSubmitStatus={setFormSubmitStatus} />}
             {/* for testing only */}
             {currentStep === 10 && <SubmitSuccess />}
             {currentStep === 11 && <SubmitError />}

@@ -17,8 +17,7 @@ function Success() {
 
   if (Phone && (SMSAlert === 'yes' || SMSTerms) && EmailAlert === 'yes') {
     /* Text messages AND Email */
-    message =
-      'You have successfully signed up to text message and email alerts';
+    message = 'You have successfully signed up to text message and email alerts';
     steps = [
       'We’ll send you an email asking to confirm your subscription.',
       'When you confirm your subscription, we’ll send a PIN code via text message. The PIN code can take up to 5 minutes to arrive.',
@@ -50,10 +49,7 @@ function Success() {
           <h1>Sign up to service disruption alerts</h1>
         </div>
         <div className="wmnds-col-1 wmnds-m-b-xl">
-          <div
-            style={alignCenter}
-            className="wmnds-msg-summary wmnds-msg-summary--success-fill "
-          >
+          <div style={alignCenter} className="wmnds-msg-summary wmnds-msg-summary--success-fill ">
             <div className="wmnds-msg-summary__header">
               <h3 className="wmnds-msg-summary__title">{message}</h3>
             </div>
@@ -69,8 +65,8 @@ function Success() {
           />
 
           <p>
-            To unsubscribe from all disruption alerts, please select the
-            ‘Unsubscribe from alerts’ option in the disruption alerts dashboard.
+            To unsubscribe from all disruption alerts, please select the ‘Unsubscribe from alerts’
+            option in the disruption alerts dashboard.
           </p>
 
           <p>

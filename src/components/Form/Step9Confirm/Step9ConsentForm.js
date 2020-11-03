@@ -23,16 +23,12 @@ const Step9ConsentForm = () => {
   const checkboxValidation = register({
     required: 'Agree to terms and conditions before continue',
     validate: {
-      shouldBeTrue: (val) =>
-        val === true || 'Agree to terms and conditions before continue',
+      shouldBeTrue: (val) => val === true || 'Agree to terms and conditions before continue',
     },
   });
 
   return (
-    <fieldset
-      className="wmnds-fe-fieldset wmnds-col-1 wmnds-col-lg-4-5"
-      ref={formRef}
-    >
+    <fieldset className="wmnds-fe-fieldset wmnds-col-1" ref={formRef}>
       <h3 className="wmnds-m-t-lg wmnds-m-b-lg">Consent</h3>
       <InputCheckbox
         name="Terms"
