@@ -18,6 +18,7 @@ function Step9SummarySection() {
     Trains,
     ExistingUser,
   } = formDataState.formData;
+
   const setStepInContext = (st) => {
     formDataDispatch({
       type: 'UPDATE_STEP',
@@ -129,6 +130,7 @@ function Step9SummarySection() {
                 {BusServices.map((busRoute) => {
                   return (
                     <RemoveService
+                      id={busRoute.id}
                       mode="bus"
                       serviceNumber={busRoute.serviceNumber}
                       routeName={busRoute.routeName}
@@ -148,6 +150,7 @@ function Step9SummarySection() {
                   return (
                     <RemoveService
                       mode="tram"
+                      id={tramRoute.id}
                       serviceNumber={tramRoute.serviceNumber}
                       routeName={tramRoute.routeName}
                       key={`${tramRoute.serviceNumber}`}
