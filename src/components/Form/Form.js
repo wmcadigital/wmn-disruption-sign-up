@@ -36,6 +36,7 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
   let stepToGoTo;
 
   if (!ExistingUser) {
+    console.log(currentStep);
     // NEW USERS: Show back button if the step is between 1 or 9
     if (
       currentStep > 1 &&
@@ -72,20 +73,22 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <FormContext {...methods}>
         <div className="wmnds-col-1 wmnds-col-md-2-3">
-          <div className="wmnds-col-1 wmnds-m-b-md">
-            <button
-              type="button"
-              className={`wmnds-link ${s.asLink}`}
-              onClick={() =>
-                formDataDispatch({
-                  type: 'UPDATE_STEP',
-                  payload: stepToGoTo,
-                })
-              }
-            >
-              &lt; Back
-            </button>
-          </div>
+          {stepToGoTo && (
+            <div className="wmnds-col-1 wmnds-m-b-md">
+              <button
+                type="button"
+                className={`wmnds-link ${s.asLink}`}
+                onClick={() =>
+                  formDataDispatch({
+                    type: 'UPDATE_STEP',
+                    payload: stepToGoTo,
+                  })
+                }
+              >
+                &lt; Back
+              </button>
+            </div>
+          )}
 
           <div className={formSubmitStatus === null ? `${s.formWrapper} wmnds-p-lg ` : ''}>
             {/* Start of form */}

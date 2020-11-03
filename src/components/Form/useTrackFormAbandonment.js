@@ -13,16 +13,13 @@ const useTrackFormAbandonment = (currentStep, formSubmitStatus) => {
     // Function to work out last changed element in form
     const lastChangedEle = (e) => {
       // Update fields changed array with step number and last changed field name i.e. Step1: CustomerType > Step3: CardNumber
-      setFieldsChanged([
-        ...fieldsChanged,
-        `Step${currentStep}: ${e.target.name}`,
-      ]);
+      setFieldsChanged([...fieldsChanged, `Step${currentStep}: ${e.target.name}`]);
     };
     // Listen to changes in form and run above function
-    form.addEventListener('change', lastChangedEle);
+    if (form) form.addEventListener('change', lastChangedEle);
     // On unmount, remove listener
     return () => {
-      form.removeEventListener('change', lastChangedEle);
+      if (form) form.removeEventListener('change', lastChangedEle);
     };
   }, [currentStep, fieldsChanged]);
 
