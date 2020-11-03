@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
-// Import custom hooks
-import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import InputCheckbox from 'components/shared/FormElements/Input/InputCheckbox';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
+import WarningText from 'components/shared/WarningText/WarningText';
+// Import custom hooks
+import useStepLogic from 'components/Form/useStepLogic';
 import useFormData from '../useFormData';
 
 const Step3SmsConsent = () => {
@@ -17,6 +18,20 @@ const Step3SmsConsent = () => {
 
   // Check if it is an existing user
   const { ExistingUser } = useFormData();
+
+  const message = (
+    <p>
+      This is not a way to &nbsp;
+      <a
+        href="https://www.wmnetwork.co.uk/get-in-touch/"
+        target="_blank"
+        title="Contact customer services"
+        rel="noopener noreferrer"
+      >
+        contact customer services
+      </a>
+    </p>
+  );
 
   // Labels used on inputs and for validation
   const checkBoxLabel =
@@ -59,6 +74,14 @@ const Step3SmsConsent = () => {
             Text messages we send to you are free. We can’t read any replies you
             send, and you might be charged by your mobile network.
           </p>
+          <div>
+            <WarningText
+              type="warning"
+              message={message}
+              className="wmnds-m-b-md"
+            />
+          </div>
+
           <p>
             We’ll occasionally send a text asking for feedback about the
             service. We will link to a Hotjar survey and offer an incentive.
