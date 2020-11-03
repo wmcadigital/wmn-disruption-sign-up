@@ -32,7 +32,7 @@ const AddTrainService = () => {
       {/* {/* Add train service button */}
       <h3 className="wmnds-p-t-md">Trains</h3>
       <Button
-        btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
+        btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
         onClick={handleAddTrain}
         text={`Add ${Trains && Trains.length > 0 ? 'another' : ''} train service`}
         iconRight="general-expand"
@@ -40,21 +40,19 @@ const AddTrainService = () => {
       {/* {/* Show the train services the user has added */}
       {Trains && Trains.length > 0 && (
         <>
-          <h4>Train lines that you want to add</h4>
-          <div className="wmnds-m-b-lg">
-            {Trains[0].LineIds.map((line) => {
-              return (
-                <RemoveService
-                  showRemove
-                  onClick={() => handleRemoveTrain(line)}
-                  serviceNumber={line}
-                  id={line}
-                  key={line}
-                  mode="train"
-                />
-              );
-            })}
-          </div>
+          <h4 className="wmnds-m-b-sm wmnds-m-t-lg">Train lines that you want to add</h4>
+          {Trains[0].LineIds.map((line) => {
+            return (
+              <RemoveService
+                showRemove
+                onClick={() => handleRemoveTrain(line)}
+                serviceNumber={line}
+                id={line}
+                key={line}
+                mode="train"
+              />
+            );
+          })}
         </>
       )}
     </>

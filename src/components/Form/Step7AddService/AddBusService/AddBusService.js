@@ -24,10 +24,10 @@ const AddBusService = () => {
 
   return (
     <>
-      <h3>Buses</h3>
+      <h3 className="wmnds-p-t-md">Buses</h3>
       {/* Add bus service button */}
       <Button
-        btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
+        btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
         onClick={handleAddBus}
         text={`Add ${BusServices && BusServices.length > 0 ? 'another' : ''} bus service`}
         iconRight="general-expand"
@@ -35,22 +35,20 @@ const AddBusService = () => {
       {/* Show the bus services the user has added */}
       {BusServices && BusServices.length > 0 && (
         <>
-          <h4>Bus services that you want to add</h4>
-          <div className="wmnds-m-b-lg">
-            {BusServices.map((busRoute) => {
-              return (
-                <RemoveService
-                  showRemove
-                  onClick={() => handleRemoveBus(busRoute.id)}
-                  mode="bus"
-                  serviceNumber={busRoute.serviceNumber}
-                  routeName={busRoute.routeName}
-                  id={busRoute.id}
-                  key={`${busRoute.id}`}
-                />
-              );
-            })}
-          </div>
+          <h4 className="wmnds-m-b-sm wmnds-m-t-lg">Bus services that you want to add</h4>
+          {BusServices.map((busRoute) => {
+            return (
+              <RemoveService
+                showRemove
+                onClick={() => handleRemoveBus(busRoute.id)}
+                mode="bus"
+                serviceNumber={busRoute.serviceNumber}
+                routeName={busRoute.routeName}
+                id={busRoute.id}
+                key={`${busRoute.id}`}
+              />
+            );
+          })}
         </>
       )}
     </>

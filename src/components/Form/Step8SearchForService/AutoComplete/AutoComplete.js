@@ -4,7 +4,7 @@ import useFormData from 'components/Form/useFormData';
 import Button from 'components/shared/Button/Button';
 import TrainAutoComplete from './TrainAutoComplete/TrainAutoComplete';
 import BusAutoComplete from './BusAutoComplete/BusAutoComplete';
-import TrainAutoCompleteSelectLines from './TrainAutoComplete/TrainAutoCompleteSelectLines';
+import TrainAutoCompleteSelectLines from './TrainAutoComplete/TrainAutoCompleteSelectLines/TrainAutoCompleteSelectLines';
 
 const AutoComplete = () => {
   const { formDataState, formDataDispatch, mode, setMode } = useFormData();
@@ -28,8 +28,11 @@ const AutoComplete = () => {
 
     return (
       <div className="wmnds-grid">
-        {mode === 'bus' && autoCompleteTitle(`Search for a ${mode} service`) && (
-          <BusAutoComplete mode={mode} setMode={setMode} />
+        {mode === 'bus' && (
+          <>
+            {autoCompleteTitle(`Search for a ${mode} service`)}
+            <BusAutoComplete mode={mode} setMode={setMode} />
+          </>
         )}
 
         {mode === 'train' && (

@@ -35,7 +35,7 @@ const AddTramService = () => {
       {/* Add tram service button */}
       {(!TramServices || TramServices.length === 0) && (
         <Button
-          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left wmnds-col-1"
+          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
           onClick={handleAddTram}
           text="Add tram service"
           iconRight="general-expand"
@@ -45,22 +45,20 @@ const AddTramService = () => {
       {/* Show the tram services the user has added */}
       {TramServices && TramServices.length > 0 && (
         <>
-          <h4>Tram services that you want to add</h4>
-          <div className="wmnds-m-b-lg">
-            {TramServices.map((tramRoute) => {
-              return (
-                <RemoveService
-                  showRemove
-                  onClick={() => handleRemoveTram(tramRoute.id)}
-                  serviceNumber={tramRoute.serviceNumber}
-                  mode="tram"
-                  routeName={tramRoute.routeName}
-                  id={tramRoute.id}
-                  key={`${tramRoute.id}`}
-                />
-              );
-            })}
-          </div>
+          <h4 className="wmnds-m-b-sm wmnds-m-t-lg">Tram services that you want to add</h4>
+          {TramServices.map((tramRoute) => {
+            return (
+              <RemoveService
+                showRemove
+                onClick={() => handleRemoveTram(tramRoute.id)}
+                serviceNumber={tramRoute.serviceNumber}
+                mode="tram"
+                routeName={tramRoute.routeName}
+                id={tramRoute.id}
+                key={`${tramRoute.id}`}
+              />
+            );
+          })}
         </>
       )}
     </>

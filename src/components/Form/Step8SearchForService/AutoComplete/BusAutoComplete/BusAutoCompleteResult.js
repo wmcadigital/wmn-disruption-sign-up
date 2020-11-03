@@ -26,7 +26,7 @@ const BusAutoCompleteResult = (props) => {
   // Return service with the above disruption logic, replace type and iconName with correct icon and class depending on disruption type
   return (
     <li
-      className="wmnds-autocomplete-suggestions__li wmnds-grid"
+      className="wmnds-autocomplete-suggestions__li wmnds-grid wmnds-grid--align-center"
       title={serviceNumber}
       tabIndex="0"
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
@@ -36,15 +36,19 @@ const BusAutoCompleteResult = (props) => {
       onClick={() => updateSelectedService()}
     >
       {/* Right section */}
-      <div
-        className="
-        wmnds-disruption-indicator-medium
-        wmnds-col-auto wmnds-m-r-md
-        "
-      >
-        {serviceNumber}
+      <div className="wmnds-col-auto">
+        <div
+          className="
+          wmnds-disruption-indicator-medium
+          wmnds-col-auto
+          "
+        >
+          {serviceNumber}
+        </div>
       </div>
-      <strong className="wmnds-col-auto">{routeName}</strong>
+      <div className="wmnds-col-3-4 wmnds-col-lg-4-5">
+        <strong>{routeName}</strong>
+      </div>
     </li>
   );
 };

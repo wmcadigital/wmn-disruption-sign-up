@@ -38,7 +38,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
 
   return (
     <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
-      <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5 wmnds-p-r-md">
+      <div className="wmnds-col-1 wmnds-col-md-3-4 wmnds-m-t-sm">
         <div className={`wmnds-autocomplete wmnds-grid ${loading ? 'wmnds-is--loading' : ''}`}>
           <Icon iconName="general-search" className="wmnds-autocomplete__icon" />
           <div className="wmnds-loader" role="alert" aria-live="assertive">
@@ -47,11 +47,11 @@ const BusAutoComplete = ({ mode, setMode }) => {
           <DebounceInput
             type="text"
             name="busSearch"
-            placeholder="Search for a service"
+            placeholder="Search for a bus service"
             className="wmnds-fe-input wmnds-autocomplete__input"
             value={query || ''}
             onChange={(e) => setQuery(e.target.value)}
-            aria-label="Search for a service"
+            aria-label="Search for a bus service"
             debounceTimeout={600}
             onKeyDown={(e) => handleKeyDown(e)}
             inputRef={debounceInput}
@@ -82,9 +82,9 @@ const BusAutoComplete = ({ mode, setMode }) => {
           )
         )}
       </div>
-      <div className="wmnds-col-1 wmnds-col-md-1-5">
+      <div className="wmnds-col-1 wmnds-col-md-1-5 wmnds-m-t-sm">
         <Button
-          btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
+          btnClass="wmnds-btn wmnds-btn--primary wmnds-col-auto wmnds-col-md-1 wmnds-float-right"
           text="Cancel"
           onClick={handleCancel}
         />

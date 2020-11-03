@@ -16,9 +16,7 @@ function Step8SearchForService() {
         {/* Subsection */}
         <SectionStepInfo section="Section 2 of 2" description="Services" />
         <h2>Add a service</h2>
-        <p>
-          We’ll send an automatic disruption alert for each service you add.
-        </p>
+        <p>We’ll send an automatic disruption alert for each service you add.</p>
 
         <Autocomplete />
       </div>
