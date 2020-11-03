@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Icon from 'components/shared/Icon/Icon';
 import Button from 'components/shared/Button/Button';
 import useStepLogic from 'components/Form/useStepLogic';
+// Style
+import s from './TrainAutoCompleteSelectLines.module.scss';
 
 const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
   const { formDataState, formDataDispatch, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
@@ -99,7 +101,9 @@ const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
             <div key={line}>
               <label className="wmnds-grid wmnds-grid--justify-between wmnds-grid--align-center">
                 {/* Left side (service number and route name) */}
-                <div className="wmnds-disruption-indicator-medium wmnds-m-r-md wmnds-col-auto">
+                <div
+                  className={`wmnds-disruption-indicator-medium wmnds-m-r-md wmnds-col-auto ${s.lineName}`}
+                >
                   {line}
                 </div>
 
