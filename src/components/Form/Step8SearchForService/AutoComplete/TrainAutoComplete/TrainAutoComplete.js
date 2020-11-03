@@ -41,15 +41,14 @@ const TrainAutoComplete = ({ mode, setMode, trainStations, setTrainStations, to 
   return (
     <>
       {selectedService && selectedService?.id ? (
-        <SelectedTrainStation selectedService={selectedService} />
+        <SelectedTrainStation
+          selectedService={selectedService}
+          setTrainStations={setTrainStations}
+        />
       ) : (
-        <div className="wmnds-grid wmnds-grid--justify-between wmnds-m-b-xl">
-          <div className="wmnds-col-md-3-5 wmnds-col-lg-4-5 wmnds-p-r-md">
-            <div
-              className={`wmnds-autocomplete wmnds-grid ${loading ? 'wmnds-is--loading' : ''} ${
-                !to && !query && !loading && 'wmnds-m-b-sm'
-              }`}
-            >
+        <div className="wmnds-grid wmnds-grid--justify-between">
+          <div className="wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-4-5">
+            <div className={`wmnds-autocomplete wmnds-grid ${loading ? 'wmnds-is--loading' : ''}`}>
               <Icon iconName="general-search" className="wmnds-autocomplete__icon" />
               <div className="wmnds-loader" role="alert" aria-live="assertive">
                 <p className="wmnds-loader__content">Content is loading...</p>
@@ -72,25 +71,23 @@ const TrainAutoComplete = ({ mode, setMode, trainStations, setTrainStations, to 
               <Message type="error" title={errorInfo.title} message={errorInfo.message} />
             ) : (
               query && (
-                <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
-                  <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
-                    {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added
-                     */}
-                    {results.map((result) => {
-                      return (
-                        <TrainAutoCompleteResult
-                          key={result.id}
-                          result={result}
-                          handleKeyDown={handleKeyDown}
-                          type={mode}
-                          handleCancel={handleCancel}
-                          setTrainStations={setTrainStations}
-                          to={to}
-                        />
-                      );
-                    })}
-                  </ul>
-                </div>
+                <ul className="wmnds-autocomplete-suggestions wmnds-m-b-none" ref={resultsList}>
+                  {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added
+                   */}
+                  {results.map((result) => {
+                    return (
+                      <TrainAutoCompleteResult
+                        key={result.id}
+                        result={result}
+                        handleKeyDown={handleKeyDown}
+                        type={mode}
+                        handleCancel={handleCancel}
+                        setTrainStations={setTrainStations}
+                        to={to}
+                      />
+                    );
+                  })}
+                </ul>
               )
             )}
           </div>

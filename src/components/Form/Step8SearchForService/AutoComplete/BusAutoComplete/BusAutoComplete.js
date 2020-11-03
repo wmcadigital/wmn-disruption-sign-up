@@ -62,25 +62,23 @@ const BusAutoComplete = ({ mode, setMode }) => {
           <Message type="error" title={errorInfo.title} message={errorInfo.message} />
         ) : (
           query && (
-            <div className="wmnds-wmnds-col-1 wmnds-col-lg-11-12">
-              <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
-                {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added
-                 */}
-                {results
-                  .filter((result) => !BusServices.some((el) => el.id === result.id))
-                  .map((result) => {
-                    return (
-                      <BusAutoCompleteResult
-                        key={result.id}
-                        result={result}
-                        handleKeyDown={handleKeyDown}
-                        type={mode}
-                        handleCancel={handleCancel}
-                      />
-                    );
-                  })}
-              </ul>
-            </div>
+            <ul className="wmnds-autocomplete-suggestions" ref={resultsList}>
+              {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added
+               */}
+              {results
+                .filter((result) => !BusServices.some((el) => el.id === result.id))
+                .map((result) => {
+                  return (
+                    <BusAutoCompleteResult
+                      key={result.id}
+                      result={result}
+                      handleKeyDown={handleKeyDown}
+                      type={mode}
+                      handleCancel={handleCancel}
+                    />
+                  );
+                })}
+            </ul>
           )
         )}
       </div>

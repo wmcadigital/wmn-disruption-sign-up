@@ -35,7 +35,7 @@ const AutoComplete = () => {
         {mode === 'train' && (
           <>
             {(!trainStations.From || !trainStations.To) && (
-              <div className="wmnds-col-1">
+              <div className="wmnds-col-1 wmnds-m-b-xl">
                 <h4>Select trains between</h4>
                 <TrainAutoComplete
                   mode={mode}
@@ -43,7 +43,7 @@ const AutoComplete = () => {
                   trainStations={trainStations}
                   setTrainStations={setTrainStations}
                 />
-                <h4>and</h4>
+                <strong className="wmnds-col-1 wmnds-m-t-md wmnds-m-b-md">and</strong>
                 <TrainAutoComplete
                   mode={mode}
                   setMode={setMode}

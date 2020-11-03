@@ -4,44 +4,34 @@
 @import '~assets/styles/mixins';
 
 .selectedItemBox {
-  padding: $size-xsm $size-xs;
+  padding: $size-sm;
   border: 1px solid get-color(primary);
   width: 100%;
   position: relative;
-
-  .wmnds-disruption-indicator-medium {
-    padding: $size-xs;
-  }
 }
 
 .selectedSummary {
-  margin-top: $size-md;
-  width: 100%;
-
-  @media all and (min-width: 360px) {
-    max-width: calc(100% - (115px));
-    margin-top: 0;
-    margin-right: $size-md;
-  }
+  max-width: calc(100% - (115px));
+  margin-top: 0;
+  margin-right: $size-md;
 }
 
 .closeButton {
-  background: none;
+  height: 22px;
+  width: calc(22px + (2 * #{$size-xs}));
+  padding: 0 $size-xs;
   cursor: pointer;
   border: 0;
-  position: absolute;
-  top: 1rem;
   margin: auto;
-  right: $size-xsm;
-
-  @media all and(min-width: 400px) {
-    top: 0;
-    bottom: 0;
-  }
+  position: absolute;
+  top: 0;
+  right: $size-sm;
+  bottom: 0;
+  background: none;
 }
 
 .closeIcon {
-  width: 22px;
+  width: 100%;
   height: 22px;
   fill: get-color(secondary);
 }
