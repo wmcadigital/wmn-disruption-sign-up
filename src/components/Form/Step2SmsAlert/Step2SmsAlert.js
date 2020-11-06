@@ -28,7 +28,7 @@ const Step2SmsAlert = () => {
     extraInfo = (
       <InsetText
         classes="wmnds-m-b-lg"
-        content="You can always sign up to the text message service disruptions trial later in the disruption alerts dashboard."
+        content="You can also sign up to the text message service disruptions trial later in the disruption alerts dashboard."
       />
     );
   }
@@ -44,8 +44,8 @@ const Step2SmsAlert = () => {
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>
-            Would you like to sign up to the text message service disruptions
-            trial?
+            Would you like to sign up to a trial to receive text message alerts 
+            for disruptions?
           </h2>
           <p>
             We’ll automatically send text message alerts straight to your mobile
