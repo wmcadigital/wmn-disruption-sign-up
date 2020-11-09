@@ -30,25 +30,14 @@ const useSubmitForm = (setFormSubmitStatus) => {
   }
 
   // Map all destructured vals above to an object we will send to API
-  let dataToSend;
-  if (ExistingUser) {
-    dataToSend = {
-      Name: `${Firstname} ${LastName}`,
-      Email,
-      LineId: ['1001'],
-      EmailDisabled: !EmailAlert,
-      MobileNumber: englishNumber,
-    };
-  } else {
-    dataToSend = {
-      Name: `${Firstname} ${LastName}`,
-      Email,
-      LineId,
-      Trains,
-      EmailDisabled: !EmailAlert,
-      MobileNumber: englishNumber,
-    };
-  }
+  const dataToSend = {
+    Name: `${Firstname} ${LastName}`,
+    Email,
+    LineId: LineId.length > 0 ? LineId : ['1001'],
+    Trains,
+    EmailDisabled: !EmailAlert,
+    MobileNumber: englishNumber,
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission method
