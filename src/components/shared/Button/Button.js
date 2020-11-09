@@ -28,9 +28,7 @@ const Button = ({
       disabled={disabled}
     >
       {/* If icon left is set then call icon component and inject correct svg */}
-      {iconLeft ? (
-        <Icon iconClass="wmnds-btn__icon" iconName={iconLeft} />
-      ) : null}
+      {iconLeft ? <Icon iconClass="wmnds-btn__icon" iconName={iconLeft} /> : null}
 
       {/* button text will go here, if any */}
       {text}
@@ -47,10 +45,7 @@ const Button = ({
       ) : (
         /* If icon right is set then call icon component and inject correct svg */
         iconRight && (
-          <Icon
-            className="wmnds-btn__icon wmnds-btn__icon--right"
-            iconName={iconRight}
-          />
+          <Icon className="wmnds-btn__icon wmnds-btn__icon--right" iconName={iconRight} />
         )
       )}
     </button>

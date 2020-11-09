@@ -8,12 +8,7 @@ import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 
 const Step1Name = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const {
-    register,
-    handleSubmit,
-    showGenericError,
-    continueButton,
-  } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   // Labels used on inputs and for validation
   const fNameLabel = 'First name';
@@ -36,8 +31,8 @@ const Step1Name = () => {
         <legend className="wmnds-fe-fieldset__legend">
           <h2>What is your name?</h2>
           <p>
-            We’ll use this information to personalise email notifications so
-            they are not marked as spam in your inbox.
+            We’ll use this information to personalise email notifications so they are not marked as
+            spam in your inbox.
           </p>
         </legend>
 

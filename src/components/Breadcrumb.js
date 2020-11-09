@@ -8,18 +8,21 @@ function Breadcrumb() {
     >
       <ol className="wmnds-breadcrumb__list">
         <li className="wmnds-breadcrumb__list-item">
-          <a href="/" className="wmnds-breadcrumb__link">
+          <a href="https://wmnetwork.co.uk/plan-your-journey/" className="wmnds-breadcrumb__link">
             Plan a journey
           </a>
         </li>
         <li className="wmnds-breadcrumb__list-item">
-          <a href="#" className="wmnds-breadcrumb__link">
+          <a
+            href="https://wmnetwork.co.uk/plan-your-journey/disruptions/"
+            className="wmnds-breadcrumb__link"
+          >
             Disruptions
           </a>
         </li>
         <li className="wmnds-breadcrumb__list-item">
           <a
-            href="#"
+            href="/"
             className="wmnds-breadcrumb__link wmnds-breadcrumb__link--current"
             aria-current="page"
           >

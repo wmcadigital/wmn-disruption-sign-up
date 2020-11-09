@@ -8,12 +8,7 @@ import InsetText from 'components/shared/InsetText/InsetText';
 
 const Step2SmsAlert = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const {
-    register,
-    handleSubmit,
-    showGenericError,
-    continueButton,
-  } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   const radioButtons = [
     { text: 'Yes', value: 'yes' },
@@ -44,13 +39,9 @@ const Step2SmsAlert = () => {
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>
-            Would you like to sign up to a trial to receive text message alerts 
-            for disruptions?
+            Would you like to sign up to a trial to receive text message alerts for disruptions?
           </h2>
-          <p>
-            We’ll automatically send text message alerts straight to your mobile
-            phone.
-          </p>
+          <p>We’ll automatically send text message alerts straight to your mobile phone.</p>
         </legend>
 
         <Radios

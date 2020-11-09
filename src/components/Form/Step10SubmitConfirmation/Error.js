@@ -12,8 +12,8 @@ function Error() {
           <h3>Sorry, there is a problem with this service</h3>
           <p>Try again later.</p>
           <p>
-            We have not saved your answers. When the service is available, you
-            will have to start again.
+            We have not saved your answers. When the service is available, you will have to start
+            again.
           </p>
           <p>
             Contact the{' '}

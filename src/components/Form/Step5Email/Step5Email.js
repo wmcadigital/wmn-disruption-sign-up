@@ -8,12 +8,7 @@ import useFormData from '../useFormData';
 
 const Step5Email = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const {
-    register,
-    handleSubmit,
-    showGenericError,
-    continueButton,
-  } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   // Labels used on inputs and for validation
   const emailLabel = 'Email address';
@@ -33,8 +28,8 @@ const Step5Email = () => {
   if (SMSAlert) {
     text = (
       <p>
-        We need your email address so you can confirm your subscription and
-        manage your alert preferences.
+        We need your email address so you can confirm your subscription and manage your alert
+        preferences.
       </p>
     );
   } else {
@@ -42,8 +37,8 @@ const Step5Email = () => {
       <>
         <p>We’ll automatically send disruption alerts to this address.</p>
         <p>
-          We also need your email address so you can confirm your subscription
-          and manage your alert preferences.
+          We also need your email address so you can confirm your subscription and manage your alert
+          preferences.
         </p>
       </>
     );
