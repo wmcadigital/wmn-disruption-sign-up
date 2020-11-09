@@ -16,7 +16,7 @@ const Step3SmsConsent = () => {
 
   const message = (
     <p>
-      This is not a way to &nbsp;
+      This is not a way to&nbsp;
       <a
         href="https://www.wmnetwork.co.uk/get-in-touch/"
         target="_blank"
@@ -52,26 +52,28 @@ const Step3SmsConsent = () => {
           <h2>About the text message alert trial</h2>
           <h4>Introduction</h4>
           <p>
-            This trial is being run by West Midlands Combined Authority (WMCA). We are testing the
-            demand for the service, so we can understand the cost of running the service
-            permanently.
+            This trial is being run by West Midlands Network (WMN) to explore
+            whether our customers would like to receive information about
+            disruptions on the network through text message alerts.
           </p>
           <h4>Text message alerts</h4>
           <p>
-            Text messages will be sent from ‘WM Network’. Texts are sent automatically when a
-            disruption is entered into our systems.
+            Text messages will be sent from ‘WM Network’ and are sent
+            automatically when a disruption is entered into our systems.
           </p>
           <p>
-            Text messages we send to you are free. We can’t read any replies you send, and you might
-            be charged by your mobile network.
+            The text messages we send to you are free. We can’t read any replies
+            you send to the text message alerts, however you may still be
+            charged by your mobile network for doing so.
           </p>
           <div>
             <WarningText type="warning" message={message} className="wmnds-m-b-md" />
           </div>
 
           <p>
-            We’ll occasionally send a text asking for feedback about the service. We will link to a
-            Hotjar survey and offer an incentive.
+            We’ll occasionally send a text asking for feedback about the
+            service. The message will include a link that will take you to a
+            survey. We will use responses to improve the service.
           </p>
           <h4>End of the trial</h4>
           <p>
@@ -79,11 +81,17 @@ const Step3SmsConsent = () => {
             message alerts from us.
           </p>
           <p>We’ll also email you to let you know how the trial went.</p>
-          <h4>Research participation information</h4>
+          <h4>Trial participation information</h4>
           <p>
-            WMCA is responsible for any information that you provide us. We ensure that this
-            information will be processed in accordance with data protection legislation. We are
-            committed to protecting your privacy and will use your personal information fairly.
+            West Midlands Network is run by the West Midlands Combined Authority
+            (WMCA) who is responsible for any information that you provide us.
+            We ensure that this information will be processed in accordance with
+            data protection legislation. We are committed to protecting your
+            privacy and will use your personal information fairly.
+          </p>
+          <p>
+            The items of personal data that we may ask for and store as part of
+            this trial are:
           </p>
           <p>The personal data that we may collect about you as part of this trial are:</p>
           <ul>
@@ -102,11 +110,11 @@ const Step3SmsConsent = () => {
             ‘manage my preferences’ link at the bottom of email alerts.
           </p>
 
-          <h4>How you can make a complaint</h4>
+          <h4>Have a question for the team?</h4>
           <p>
             Please email the Design Team at{' '}
-            <a href="mailto:UserTesting@wmca.org.uk">UserTesting@wmca.org.uk</a> if you have a
-            complaint about this trial.
+            <a href="mailto:UserTesting@wmca.org.uk">UserTesting@wmca.org.uk</a>{' '}
+            if you have a question about this trial.
           </p>
 
           <h4>Your consent</h4>
@@ -118,14 +126,25 @@ const Step3SmsConsent = () => {
             services.
           </p>
           <p>
-            For further information on how we handle information/data, and your information rights
-            visit our Privacy and Cookies policy.
+            For further information on how we handle information/data, and your
+            information rights visit our&nbsp;
+            <a
+              href="https://www.wmnetwork.co.uk/privacy-cookies-policy/"
+              target="_blank"
+              title="Privacy and Cookies policy"
+              rel="noopener noreferrer"
+            >
+              Privacy and Cookies policy
+            </a>
+            .
           </p>
           <p>
-            This research has been conducted by WMN in partnership with The Market Research Society
-            (MRS). The MRS is the professional body for market and social researchers. This project
-            is being conducted by an MRS Company Partner. You can verify this by calling MRS
-            freephone 0800 975 9596 and giving the name of the organisation that interviewed you.
+            This research is being conducted by WMN in partnership with The
+            Market Research Society (MRS). The MRS is the professional body for
+            market and social researchers. This project is being conducted by an
+            MRS Company Partner. You can verify this by calling MRS freephone
+            0800 975 9596 and giving the name of the organisation that
+            interviewed you.
           </p>
         </div>
 
