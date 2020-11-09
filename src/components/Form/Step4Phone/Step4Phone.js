@@ -8,12 +8,7 @@ import useFormData from '../useFormData';
 
 const Step4Phone = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const {
-    register,
-    handleSubmit,
-    showGenericError,
-    continueButton,
-  } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   // Check it we are facing an existing user
   const { ExistingUser } = useFormData();
@@ -33,9 +28,7 @@ const Step4Phone = () => {
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
       {/* Subsection */}
-      {!ExistingUser && (
-        <SectionStepInfo section="Section 1 of 2" description="About you" />
-      )}
+      {!ExistingUser && <SectionStepInfo section="Section 1 of 2" description="About you" />}
 
       {/* Show generic error message */}
       {showGenericError}

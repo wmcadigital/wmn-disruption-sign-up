@@ -9,12 +9,7 @@ import useFormData from '../useFormData';
 
 const Step6EmailAlert = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const {
-    register,
-    handleSubmit,
-    showGenericError,
-    continueButton,
-  } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   const radioButtons = [
     { text: 'Yes', value: 'yes' },
@@ -51,14 +46,12 @@ const Step6EmailAlert = () => {
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
       {/* Subsection */}
-      {!ExistingUser && (
-        <SectionStepInfo section="Section 1 of 2" description="About you" />
-      )}
+      {!ExistingUser && <SectionStepInfo section="Section 1 of 2" description="About you" />}
 
       {/* Show generic error message */}
       {showGenericError}
 
-      <fieldset className="wmnds-fe-fieldset wmnds-col-1 wmnds-col-lg-4-5">
+      <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>{title}</h2>
           <p>{text}</p>

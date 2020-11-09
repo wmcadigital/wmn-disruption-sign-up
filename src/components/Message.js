@@ -18,14 +18,9 @@ const Message = ({ type, title, message }) => {
   }
 
   return (
-    <div
-      className={`wmnds-msg-summary wmnds-msg-summary--${type} wmnds-col-1 wmnds-m-t-lg`}
-    >
+    <div className={`wmnds-msg-summary wmnds-msg-summary--${type} wmnds-col-1 wmnds-m-t-lg`}>
       <div className="wmnds-msg-summary__header">
-        <Icon
-          iconName={`general-${iconName}`}
-          className="wmnds-msg-summary__icon"
-        />
+        <Icon iconName={`general-${iconName}`} className="wmnds-msg-summary__icon" />
         <h3 className="wmnds-msg-summary__title">{title}</h3>
       </div>
 

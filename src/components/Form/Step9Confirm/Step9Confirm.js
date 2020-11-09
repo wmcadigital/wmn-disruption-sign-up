@@ -11,9 +11,7 @@ import Button from '../../shared/Button/Button';
 function Step9Confirm({ setFormSubmitStatus }) {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   // Get handleSubmit fn and isFetching from custom hook which handles submitting data to API (this is used in the last step[4])
-  const { handleSubmit, isFetching, APIErrorMessage } = useSubmitForm(
-    setFormSubmitStatus
-  );
+  const { handleSubmit, isFetching, APIErrorMessage } = useSubmitForm(setFormSubmitStatus);
   useEffect(() => {
     if (formDataState.currentStep === 9) {
       formDataDispatch({
@@ -26,14 +24,13 @@ function Step9Confirm({ setFormSubmitStatus }) {
   return (
     <form onSubmit={handleSubmit} data-private>
       {/* If we get any errors back from the server, show here */}
-      {APIErrorMessage && (
-        <span className="wmnds-fe-error-message">{APIErrorMessage}</span>
-      )}
+      {APIErrorMessage && <span className="wmnds-fe-error-message">{APIErrorMessage}</span>}
       <SummarySection />
 
       <div className="wmnds-col-1 wmnds-col-lg-4-5">
-        {formDataState.formData.EmailAlert === 'yes' &&
-          !formDataState.formData.ExistingUser && <Step9ConsentForm />}
+        {formDataState.formData.EmailAlert === 'yes' && !formDataState.formData.ExistingUser && (
+          <Step9ConsentForm />
+        )}
         <Button
           btnClass="wmnds-btn--start wmnds-m-t-lg"
           disabled={isFetching}

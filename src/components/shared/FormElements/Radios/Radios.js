@@ -12,11 +12,7 @@ const Radios = ({ name, classes, label, radios, fieldValidation }) => {
   const { errors } = useFormContext();
 
   return (
-    <div
-      className={`wmnds-fe-group ${
-        errors[name] && 'wmnds-fe-group--error'
-      } ${classes}`}
-    >
+    <div className={`wmnds-fe-group ${errors[name] && 'wmnds-fe-group--error'} ${classes}`}>
       <fieldset className="wmnds-fe-fieldset">
         <legend className="wmnds-fe-fieldset__legend">
           {label && <h2>{label}</h2>}
@@ -53,9 +49,7 @@ Radios.propTypes = {
   classes: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
-  radios: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.string, PropTypes.string)
-  ).isRequired,
+  radios: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string, PropTypes.string)).isRequired,
 };
 
 Radios.defaultProps = {
