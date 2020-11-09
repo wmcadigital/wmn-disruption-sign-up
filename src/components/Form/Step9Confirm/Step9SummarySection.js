@@ -119,11 +119,10 @@ function Step9SummarySection() {
                 {BusServices.map((busRoute) => {
                   return (
                     <RemoveService
-                      id={busRoute.id}
                       mode="bus"
                       serviceNumber={busRoute.serviceNumber}
                       routeName={busRoute.routeName}
-                      key={`${busRoute.serviceNumber}`}
+                      key={`${busRoute.id}`}
                       showRemove={false}
                     />
                   );
