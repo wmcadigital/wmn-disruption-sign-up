@@ -44,7 +44,6 @@ const AddBusService = () => {
                 mode="bus"
                 serviceNumber={busRoute.serviceNumber}
                 routeName={busRoute.routeName}
-                id={busRoute.id}
                 key={`${busRoute.id}`}
               />
             );

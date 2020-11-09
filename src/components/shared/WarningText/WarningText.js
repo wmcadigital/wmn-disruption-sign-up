@@ -23,13 +23,8 @@ const WarningText = ({ type, message, className }) => {
   }
 
   return (
-    <div
-      className={`wmnds-warning-text wmnds-warning-text--${type} ${className}`}
-    >
-      <Icon
-        iconName={`general-${iconName}`}
-        className="wmnds-warning-text__icon"
-      />
+    <div className={`wmnds-warning-text wmnds-warning-text--${type} ${className}`}>
+      <Icon iconName={`general-${iconName}`} className="wmnds-warning-text__icon" />
       {message}
     </div>
   );

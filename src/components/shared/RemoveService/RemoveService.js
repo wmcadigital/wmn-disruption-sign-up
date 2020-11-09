@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import style from './RemoveService.module.scss';
 import Button from '../Button/Button';
 
-const RemoveService = ({ id, serviceNumber, routeName, onClick, showRemove, mode }) => {
+const RemoveService = ({ serviceNumber, routeName, onClick, showRemove, mode }) => {
   return (
     <>
       <div className="wmnds-grid wmnds-grid--justify-between wmnds-grid--align-center">
@@ -36,7 +36,6 @@ const RemoveService = ({ id, serviceNumber, routeName, onClick, showRemove, mode
 };
 
 RemoveService.propTypes = {
-  id: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   mode: PropTypes.string.isRequired,
   routeName: PropTypes.string,
