@@ -16,13 +16,16 @@ export const FormDataProvider = (props) => {
 
   // Set intial state of when
   const initialState = {
-    currentStep:
-      getSearchParam('email') && getSearchParam('email').length > 0 ? 3 : 1,
+    currentStep: getSearchParam('email') && getSearchParam('email').length > 0 ? 3 : 1,
     formData: {
       Firstname: FirstName,
       LastName,
       Email: getSearchParam('email') || null,
       ExistingUser: getSearchParam('email') !== null || false,
+      LineId: [],
+      BusServices: [],
+      TramServices: [],
+      Trains: [],
     },
     formRef: '',
     hasReachedConfirmation: false,
@@ -47,12 +50,8 @@ export const FormDataProvider = (props) => {
           ...state,
           formData: {
             ...state.formData,
-            BusServices: state.formData.BusServices.filter(
-              (bus) => action.payload !== bus.id
-            ),
-            LineId: state.formData.LineId.filter(
-              (busId) => action.payload !== busId
-            ),
+            BusServices: state.formData.BusServices.filter((bus) => action.payload !== bus.id),
+            LineId: state.formData.LineId.filter((busId) => action.payload !== busId),
           },
         };
       }
@@ -63,12 +62,21 @@ export const FormDataProvider = (props) => {
           ...state,
           formData: {
             ...state.formData,
-            TramServices: state.formData.TramServices.filter(
-              (tram) => action.payload !== tram.id
-            ),
-            LineId: state.formData.LineId.filter(
-              (tramId) => action.payload !== tramId
-            ),
+            TramServices: state.formData.TramServices.filter((tram) => action.payload !== tram.id),
+            LineId: state.formData.LineId.filter((tramId) => +action.payload !== tramId),
+          },
+        };
+      }
+
+      case 'REMOVE_TRAIN': {
+        const { Trains } = state.formData;
+        Trains[0].LineIds = Trains[0].LineIds.filter((line) => line !== action.payload);
+
+        return {
+          ...state,
+          formData: {
+            ...state.formData,
+            Trains,
           },
         };
       }

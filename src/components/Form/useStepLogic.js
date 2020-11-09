@@ -11,6 +11,14 @@ const useStepLogic = (formRef) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
   const [isContinuePressed, setIsContinuePressed] = useState(false); // State for tracking if continue has been pressed
 
+  // Function for setting the step of the form
+  const setStep = (step) => {
+    formDataDispatch({
+      type: 'UPDATE_STEP',
+      payload: step,
+    });
+  };
+
   // Update the current step to the correct one depending on users selection
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,11 +30,9 @@ const useStepLogic = (formRef) => {
 
       if (formDataState.currentStep === 2) {
         // Step2: SMS alert?  Yes -> Step 3  No -> Step 5
-        formDataDispatch({
-          type: 'UPDATE_STEP',
-          payload:
-            getValues().SMSAlert === 'no' ? 5 : formDataState.currentStep + 1,
-        });
+        setStep(
+          getValues().SMSAlert === 'no' ? 5 : formDataState.currentStep + 1
+        );
       } else if (
         formDataState.currentStep === 5 &&
         formDataState.formData.SMSAlert === 'no'
@@ -36,19 +42,18 @@ const useStepLogic = (formRef) => {
           type: 'UPDATE_FORM_DATA',
           payload: { EmailAlert: 'yes' },
         });
-        formDataDispatch({
-          type: 'UPDATE_STEP',
-          payload: formDataState.hasReachedConfirmation
+
+        setStep(
+          formDataState.hasReachedConfirmation
             ? 9
-            : formDataState.currentStep + 2,
-        });
+            : formDataState.currentStep + 2
+        );
       } else {
-        formDataDispatch({
-          type: 'UPDATE_STEP',
-          payload: formDataState.hasReachedConfirmation
+        setStep(
+          formDataState.hasReachedConfirmation
             ? 9
-            : formDataState.currentStep + 1,
-        });
+            : formDataState.currentStep + 1
+        );
       }
 
       // EXISTING USERS: exceptions to the usual workflow
@@ -56,16 +61,10 @@ const useStepLogic = (formRef) => {
         if (formDataState.currentStep === 4) {
           // Step4: Phone  ->  Step 6: Keep receiving email alerts?
           // Step4: Phone  -> Step 9: summary  (if using is editing the phone number)
-          formDataDispatch({
-            type: 'UPDATE_STEP',
-            payload: formDataState.hasReachedConfirmation ? 9 : 6,
-          });
+          setStep(formDataState.hasReachedConfirmation ? 9 : 6);
         } else if (formDataState.currentStep === 6) {
           // Step6: Keep receiving email alerts?  ->  Step 9: Summary
-          formDataDispatch({
-            type: 'UPDATE_STEP',
-            payload: 9,
-          });
+          setStep(9);
         }
       }
     }
@@ -89,10 +88,13 @@ const useStepLogic = (formRef) => {
     isContinuePressed && <GenericError />;
 
   return {
+    setStep,
     register,
     handleSubmit,
     showGenericError,
     continueButton,
+    formDataState,
+    formDataDispatch,
   };
 };
 

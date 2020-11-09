@@ -19,20 +19,14 @@ function App() {
 
   return (
     <>
-      <HeaderAndBreadcrumb
-        isFormStarted={isFormStarted}
-        formSubmitStatus={formSubmitStatus}
-      />
+      <HeaderAndBreadcrumb isFormStarted={isFormStarted} formSubmitStatus={formSubmitStatus} />
       <main className="wmnds-container wmnds-container--main wmnds-p-b-lg wmnds-grid">
         {!isFormStarted ? (
           <Intro setIsFormStarted={setIsFormStarted} />
         ) : (
           <FormDataProvider>
             {isFormStarted && formSubmitStatus === null && (
-              <Form
-                setFormSubmitStatus={setFormSubmitStatus}
-                formSubmitStatus={formSubmitStatus}
-              />
+              <Form setFormSubmitStatus={setFormSubmitStatus} formSubmitStatus={formSubmitStatus} />
             )}
 
             {formSubmitStatus && <SubmitSuccess />}

@@ -9,12 +9,7 @@ import useFormData from '../useFormData';
 
 const Step3SmsConsent = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const {
-    register,
-    handleSubmit,
-    showGenericError,
-    continueButton,
-  } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   // Check if it is an existing user
   const { ExistingUser } = useFormData();
@@ -34,30 +29,26 @@ const Step3SmsConsent = () => {
   );
 
   // Labels used on inputs and for validation
-  const checkBoxLabel =
-    'I confirm I give my informed consent to take part in the trial';
+  const checkBoxLabel = 'I confirm I give my informed consent to take part in the trial';
 
   // Logic used to validate the email field
   const checkboxValidation = register({
     required: 'Agree to terms and conditions before continue',
     validate: {
-      shouldBeTrue: (val) =>
-        val === true || 'Agree to terms and conditions before continue',
+      shouldBeTrue: (val) => val === true || 'Agree to terms and conditions before continue',
     },
   });
 
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
       {/* Subsection */}
-      {!ExistingUser && (
-        <SectionStepInfo section="Section 1 of 2" description="About you" />
-      )}
+      {!ExistingUser && <SectionStepInfo section="Section 1 of 2" description="About you" />}
 
       {/* Show generic error message */}
       {showGenericError}
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
-        <legend className="wmnds-fe-fieldset__legend">
+        <div className="wmnds-fe-fieldset__legend">
           <h2>About the text message alert trial</h2>
           <h4>Introduction</h4>
           <p>
@@ -76,11 +67,7 @@ const Step3SmsConsent = () => {
             charged by your mobile network for doing so.
           </p>
           <div>
-            <WarningText
-              type="warning"
-              message={message}
-              className="wmnds-m-b-md"
-            />
+            <WarningText type="warning" message={message} className="wmnds-m-b-md" />
           </div>
 
           <p>
@@ -90,8 +77,8 @@ const Step3SmsConsent = () => {
           </p>
           <h4>End of the trial</h4>
           <p>
-            At the end of the trial, we’ll text you to let you know you won’t
-            receive any more text message alerts from us.
+            At the end of the trial, we’ll text you to let you know you won’t receive any more text
+            message alerts from us.
           </p>
           <p>We’ll also email you to let you know how the trial went.</p>
           <h4>Trial participation information</h4>
@@ -106,21 +93,21 @@ const Step3SmsConsent = () => {
             The items of personal data that we may ask for and store as part of
             this trial are:
           </p>
+          <p>The personal data that we may collect about you as part of this trial are:</p>
           <ul>
             <li>Name</li>
             <li>Email</li>
             <li>Phone number</li>
           </ul>
           <p>
-            We will keep your personal data for a maximum of 12 months. This is
-            so that the information you provide in this trial may be reused for
-            further improvements to our transport services.
+            We will keep your personal data for a maximum of 12 months. This is so that the
+            information you provide in this trial may be reused for further improvements to our
+            transport services.
           </p>
           <p>
-            If you remain signed up to email alerts after the trial ends, the
-            service keeps your details until you decide to unsubscribe from all
-            alerts. You can do this through the ‘manage my preferences’ link at
-            the bottom of email alerts.
+            If you remain signed up to email alerts after the trial ends, the service keeps your
+            details until you decide to unsubscribe from all alerts. You can do this through the
+            ‘manage my preferences’ link at the bottom of email alerts.
           </p>
 
           <h4>Have a question for the team?</h4>
@@ -132,11 +119,10 @@ const Step3SmsConsent = () => {
 
           <h4>Your consent</h4>
           <p>
-            By continuing, you are giving your informed consent to take part in
-            the trial. You understand that you may remove yourself from the
-            trial at any time. If you choose to remove yourself, we will delete
-            your personal information from our research. However, any anonymous
-            data provided by you during the trial will be used to improve our
+            By continuing, you are giving your informed consent to take part in the trial. You
+            understand that you may remove yourself from the trial at any time. If you choose to
+            remove yourself, we will delete your personal information from our research. However,
+            any anonymous data provided by you during the trial will be used to improve our
             services.
           </p>
           <p>
@@ -160,7 +146,7 @@ const Step3SmsConsent = () => {
             0800 975 9596 and giving the name of the organisation that
             interviewed you.
           </p>
-        </legend>
+        </div>
 
         <InputCheckbox
           name="SMSTerms"

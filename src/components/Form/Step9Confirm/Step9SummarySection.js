@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { FormDataContext } from '../../../globalState/FormDataContext';
-import Bus from '../../shared/transportServiceType/Bus';
-import Tram from '../../shared/transportServiceType/Tram';
-
+// Context
+import { FormDataContext } from 'globalState/FormDataContext';
+// Components
+import RemoveService from 'components/shared/RemoveService/RemoveService';
+// Style
 import style from './Step9Confirm.module.scss';
 
 function Step9SummarySection() {
@@ -14,8 +15,10 @@ function Step9SummarySection() {
     Phone,
     BusServices,
     TramServices,
+    Trains,
     ExistingUser,
   } = formDataState.formData;
+
   const setStepInContext = (st) => {
     formDataDispatch({
       type: 'UPDATE_STEP',
@@ -25,8 +28,7 @@ function Step9SummarySection() {
 
   let title;
   if (ExistingUser) {
-    title =
-      'Check your preferences before signing up to the text message service disruption trial';
+    title = 'Check your preferences before signing up to the text message service disruption trial';
   } else {
     title = 'Check your preferences before signing up to disruption alerts';
   }
@@ -110,49 +112,61 @@ function Step9SummarySection() {
               </button>
             </div>
 
-            <div className={style.busses}>
-              {BusServices && BusServices.length > 0 && <h4>Buses</h4>}
-              {BusServices && BusServices.length > 0 && (
-                <div
-                  className={` ${BusServices.length > 0 ? 'wmnds-m-b-lg' : ''}`}
-                >
-                  {BusServices &&
-                    BusServices.map((busRoute) => {
-                      return (
-                        <Bus
-                          serviceNumber={busRoute.serviceNumber}
-                          routeName={busRoute.routeName}
-                          key={`${busRoute.serviceNumber}`}
-                          showRemove={false}
-                        />
-                      );
-                    })}
-                </div>
-              )}
-            </div>
+            {/* Buses */}
+            {BusServices && BusServices.length > 0 && (
+              <div className="wmnds-m-b-lg">
+                <h4>Buses</h4>
+                {BusServices.map((busRoute) => {
+                  return (
+                    <RemoveService
+                      id={busRoute.id}
+                      mode="bus"
+                      serviceNumber={busRoute.serviceNumber}
+                      routeName={busRoute.routeName}
+                      key={`${busRoute.serviceNumber}`}
+                      showRemove={false}
+                    />
+                  );
+                })}
+              </div>
+            )}
 
-            <div className={style.busses}>
-              {TramServices && TramServices.length > 0 && <h4>Trams</h4>}
-              {TramServices && TramServices.length > 0 && (
-                <div
-                  className={` ${
-                    TramServices.length > 0 ? 'wmnds-m-b-lg' : ''
-                  }`}
-                >
-                  {TramServices &&
-                    TramServices.map((tramRoute) => {
-                      return (
-                        <Tram
-                          serviceNumber={tramRoute.serviceNumber}
-                          routeName={tramRoute.routeName}
-                          key={`${tramRoute.serviceNumber}`}
-                          showRemove={false}
-                        />
-                      );
-                    })}
-                </div>
-              )}
-            </div>
+            {/* Trams */}
+            {TramServices && TramServices.length > 0 && (
+              <div className="wmnds-m-b-lg">
+                <h4>Trams</h4>
+                {TramServices.map((tramRoute) => {
+                  return (
+                    <RemoveService
+                      mode="tram"
+                      id={tramRoute.id}
+                      serviceNumber={tramRoute.serviceNumber}
+                      routeName={tramRoute.routeName}
+                      key={`${tramRoute.serviceNumber}`}
+                      showRemove={false}
+                    />
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Trains */}
+            {Trains && Trains.length > 0 && (
+              <div className="wmnds-m-b-lg">
+                <h4>Trains</h4>
+                {Trains[0].LineIds.map((line) => {
+                  return (
+                    <RemoveService
+                      mode="train"
+                      serviceNumber={line}
+                      id={line}
+                      key={line}
+                      showRemove={false}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </>
         )}
 
@@ -160,13 +174,10 @@ function Step9SummarySection() {
           <div className="wmnds-m-b-lg wmnds-m-t-xl">
             <h3 className="wmnds-col-1-3">Your services</h3>
             <p>
-              You’ll receive text message alerts for the service disruptions you
-              are currently subscribed to.
+              You’ll receive text message alerts for the service disruptions you are currently
+              subscribed to.
             </p>
-            <p>
-              You can add or remove your services in the disruption alerts
-              dashboard.
-            </p>
+            <p>You can add or remove your services in the disruption alerts dashboard.</p>
           </div>
         )}
       </div>
