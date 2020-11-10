@@ -1,16 +1,35 @@
 import React, { useReducer, createContext } from 'react';
+import { getSearchParam } from 'helpers/URLSearchParams';
 
 export const FormDataContext = createContext();
 
 export const FormDataProvider = (props) => {
   const { children } = props || {};
 
+  let FirstName = null;
+  let LastName = null;
+  const UrlName = getSearchParam('name');
+
+  if (UrlName && decodeURI(UrlName)) {
+    [FirstName, LastName] = decodeURI(UrlName).split(' ');
+  }
+
   // Set intial state of when
   const initialState = {
-    currentStep: 1,
-    formData: {},
+    currentStep: getSearchParam('email') && getSearchParam('email').length > 0 ? 3 : 1,
+    formData: {
+      Firstname: FirstName,
+      LastName,
+      Email: getSearchParam('email') || null,
+      ExistingUser: getSearchParam('email') !== null || false,
+      LineId: [],
+      BusServices: [],
+      TramServices: [],
+      Trains: [],
+    },
     formRef: '',
     hasReachedConfirmation: false,
+    mode: null,
   };
 
   // Set up a reducer so we can change state based on centralised logic here
@@ -26,15 +45,47 @@ export const FormDataProvider = (props) => {
       }
 
       // Remove the bus route from form data
-      case 'REMOVE_ROUTE': {
+      case 'REMOVE_BUS': {
         return {
           ...state,
           formData: {
             ...state.formData,
-            BusServices: state.formData.BusServices.filter(
-              (busRoute) => action.payload !== busRoute.serviceNumber
-            ),
+            BusServices: state.formData.BusServices.filter((bus) => action.payload !== bus.id),
+            LineId: state.formData.LineId.filter((busId) => action.payload !== busId),
           },
+        };
+      }
+
+      // Remove the bus route from form data
+      case 'REMOVE_TRAM': {
+        return {
+          ...state,
+          formData: {
+            ...state.formData,
+            TramServices: state.formData.TramServices.filter((tram) => action.payload !== tram.id),
+            LineId: state.formData.LineId.filter((tramId) => +action.payload !== tramId),
+          },
+        };
+      }
+
+      case 'REMOVE_TRAIN': {
+        const { Trains } = state.formData;
+        Trains[0].LineIds = Trains[0].LineIds.filter((line) => line !== action.payload);
+
+        return {
+          ...state,
+          formData: {
+            ...state.formData,
+            Trains,
+          },
+        };
+      }
+
+      // Update service mode
+      case 'UPDATE_MODE': {
+        return {
+          ...state,
+          mode: action.payload,
         };
       }
 

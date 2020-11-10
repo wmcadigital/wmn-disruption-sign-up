@@ -9,23 +9,29 @@ const useSubmitForm = (setFormSubmitStatus) => {
   const [isFetching, setIsFetching] = useState(false);
   const [APIErrorMessage, setAPIErrorMessage] = useState(null);
 
-  // const [isContinuePressed, setIsContinuePressed] = useState(false); // State for tracking if continue has been pressed
-
   // Destructure values from our formDataState (get all users values)
-  const { Email, Firstname, LastName, LineId } = formDataState.formData;
+  const { Email, Firstname, LastName, LineId, Trains, EmailAlert, Phone } = formDataState.formData;
+
+  // Check if mobile phone has +44, if not, remove the 0 and add +44
+  let englishNumber = Phone;
+  if (Phone && Phone.substr(0, 1) === '0') {
+    englishNumber = `+44${Phone.substr(1)}`;
+  }
 
   // Map all destructured vals above to an object we will send to API
   const dataToSend = {
-    Email,
     Name: `${Firstname} ${LastName}`,
-    LineId,
+    Email,
+    LineId: LineId.length > 0 ? LineId : ['1001'],
+    Trains,
+    EmailDisabled: !EmailAlert,
+    MobileNumber: englishNumber,
   };
-  // console.log('dataToSend:', dataToSend);
+
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission method
     // Validation
     const result = await triggerValidation();
-    // setIsContinuePressed(true);
     // if no errors
     if (result) {
       formDataDispatch({ type: 'UPDATE_FORM_DATA', payload: getValues() }); // Map to global state

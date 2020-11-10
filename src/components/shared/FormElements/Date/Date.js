@@ -60,15 +60,9 @@ const Date = ({ autoCompletPrefix, fieldValidation, name, label }) => {
   return (
     <>
       {/* If there is an error, show here */}
-      {errors[name] && (
-        <span className="wmnds-fe-error-message">{errors[name].message}</span>
-      )}
+      {errors[name] && <span className="wmnds-fe-error-message">{errors[name].message}</span>}
 
-      <div
-        className={`wmnds-fe-group ${
-          errors[name] ? 'wmnds-fe-group--error' : ''
-        }`}
-      >
+      <div className={`wmnds-fe-group ${errors[name] ? 'wmnds-fe-group--error' : ''}`}>
         <div className="wmnds-col-1-2 wmnds-col-sm-1-12 wmnds-m-r-md">
           <DateInput
             autoComplete={autoCompletPrefix ? `${autoCompletPrefix}day` : 'day'}
@@ -81,9 +75,7 @@ const Date = ({ autoCompletPrefix, fieldValidation, name, label }) => {
         </div>
         <div className="wmnds-col-1-2 wmnds-col-sm-1-12 wmnds-m-r-md">
           <DateInput
-            autoComplete={
-              autoCompletPrefix ? `${autoCompletPrefix}month` : 'month'
-            }
+            autoComplete={autoCompletPrefix ? `${autoCompletPrefix}month` : 'month'}
             dateType="Month"
             defaultValue={month}
             name={name}
@@ -93,9 +85,7 @@ const Date = ({ autoCompletPrefix, fieldValidation, name, label }) => {
         </div>
         <div className="wmnds-col-1-2 wmnds-col-sm-1-8">
           <DateInput
-            autoComplete={
-              autoCompletPrefix ? `${autoCompletPrefix}year` : 'year'
-            }
+            autoComplete={autoCompletPrefix ? `${autoCompletPrefix}year` : 'year'}
             dateType="Year"
             defaultValue={year}
             name={name}
@@ -104,12 +94,7 @@ const Date = ({ autoCompletPrefix, fieldValidation, name, label }) => {
           />
         </div>
       </div>
-      <input
-        name={name}
-        type="hidden"
-        ref={fieldValidation}
-        value={date || ''}
-      />
+      <input name={name} type="hidden" ref={fieldValidation} value={date || ''} />
     </>
   );
 };

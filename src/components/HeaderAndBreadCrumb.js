@@ -20,39 +20,30 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
                 src="//wmnetwork.netlify.com/img/logo.svg"
               />
             </a>
-            {/* <!-- Phase indicator --> */}
-            <a
-              href="//wmnetwork.co.uk"
-              target="_self"
-              className="wmnds-phase-indicator"
-              title="Beta homepage of West Midlands Network Home"
-            >
-              Beta
-            </a>
           </div>
 
           {/* Only show the title in the header if the form is started and we are not on success/error page (formSubmitStatus) */}
           {isFormStarted && formSubmitStatus === null && (
             <h1 className="wmnds-header__title wmnds-col-1 wmnds-col-sm-auto">
-              Sign up to email alerts
-              <br /> about disruption
+              Sign up to service disruptions alerts
             </h1>
           )}
         </div>
       </header>
+
       <div className="wmnds-container">
-        <div className="wmnds-grid wmnds-banner-container">
-          <div className="wmnds-col-auto wmnds-float-left wmnds-m-r-xsm">
-            <a
-              href="/"
-              target="_self"
-              className="wmnds-phase-indicator"
-              title="Beta homepage of West Midlands Network Design System"
-            >
-              Beta
-            </a>
-          </div>
-          <div className="wmnds-col-auto">
+        <div className="wmnds-banner-container">
+          <div className="wmnds-col-1">
+            <div className="wmnds-banner-container__phase-wrapper">
+              <a
+                href="/"
+                target="_self"
+                className="wmnds-phase-indicator"
+                title="Beta homepage of West Midlands Network"
+              >
+                Beta
+              </a>
+            </div>
             <p className="wmnds-banner-container__text">
               This is a new service - your{' '}
               <a
@@ -62,43 +53,48 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
                 className="wmnds-link"
                 rel="noopener noreferrer"
               >
-                feedback
-              </a>{' '}
+                feedback{' '}
+              </a>
               will help us to improve it.
             </p>
           </div>
         </div>
       </div>
-      <div className="wmnds-container">
-        {/* <!-- Breadcrumb --> */}
-        <nav
-          aria-label="Breadcrumb"
-          className="wmnds-breadcrumb wmnds-breadcrumb--mobile-app wmnds-col-1"
-        >
-          <ol className="wmnds-breadcrumb__list">
-            <li className="wmnds-breadcrumb__list-item">
-              <a href="/" className="wmnds-breadcrumb__link">
-                Plan a journey
-              </a>
-            </li>
-            <li className="wmnds-breadcrumb__list-item">
-              <a href="#" className="wmnds-breadcrumb__link">
-                Disruptions
-              </a>
-            </li>
-            <li className="wmnds-breadcrumb__list-item">
-              <a
-                href="#"
-                className="wmnds-breadcrumb__link wmnds-breadcrumb__link--current"
-                aria-current="page"
-              >
-                Sign up to email alerts about disruption
-              </a>
-            </li>
-          </ol>
-        </nav>
-        {/* <!-- End Breadcrumb --> */}
-      </div>
+
+      {/* <!-- Breadcrumb --> */}
+      {/* Only show breadcrumbs if the form isn't started or we are on success/error page (formSubmitStatus) */}
+      {!isFormStarted ||
+        (formSubmitStatus !== null && (
+          <div className="wmnds-container">
+            <nav
+              aria-label="Breadcrumb"
+              className="wmnds-breadcrumb wmnds-breadcrumb--mobile-app wmnds-col-1"
+            >
+              <ol className="wmnds-breadcrumb__list">
+                <li className="wmnds-breadcrumb__list-item">
+                  <a href="/" className="wmnds-breadcrumb__link">
+                    Plan a journey
+                  </a>
+                </li>
+                <li className="wmnds-breadcrumb__list-item">
+                  <a href="#" className="wmnds-breadcrumb__link">
+                    Disruptions
+                  </a>
+                </li>
+                <li className="wmnds-breadcrumb__list-item">
+                  <a
+                    href="#"
+                    className="wmnds-breadcrumb__link wmnds-breadcrumb__link--current"
+                    aria-current="page"
+                  >
+                    Sign up to service disruption alerts
+                  </a>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        ))}
+      {/* <!-- End Breadcrumb --> */}
     </>
   );
 };

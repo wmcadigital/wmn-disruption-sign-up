@@ -1,13 +1,16 @@
+// IE 11 support
 import 'react-app-polyfill/stable';
+// React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as Sentry from '@sentry/browser';
+// Sentry logging
+import * as Sentry from '@sentry/react';
+// Components
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 Sentry.init({
-  dsn:
-    'https://b07ac88977e44a9a8b6c7dabf58fe190@o378798.ingest.sentry.io/5279827',
+  dsn: 'https://b07ac88977e44a9a8b6c7dabf58fe190@o378798.ingest.sentry.io/5279827',
 });
 
 ReactDOM.render(

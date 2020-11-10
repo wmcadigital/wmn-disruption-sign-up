@@ -8,12 +8,7 @@ import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 
 const Step1Name = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const {
-    register,
-    handleSubmit,
-    showGenericError,
-    continueButton,
-  } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   // Labels used on inputs and for validation
   const fNameLabel = 'First name';
@@ -32,24 +27,24 @@ const Step1Name = () => {
       {/* Show generic error message */}
       {showGenericError}
 
-      <fieldset className="wmnds-fe-fieldset">
+      <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
           <h2>What is your name?</h2>
           <p>
-            We’ll use this information to personalise your email
-            <br /> notifications so they aren’t marked as spam.
+            We’ll use this information to personalise email notifications so they are not marked as
+            spam in your inbox.
           </p>
         </legend>
 
         <Input
-          className="wmnds-col-1 wmnds-col-sm-2-3 wmnds-col-lg-1-2"
+          className="wmnds-col-1 wmnds-col-lg-3-4"
           name="Firstname"
           label={fNameLabel}
           autocomplete="given-name"
           fieldValidation={fieldValidation(fNameLabel)}
         />
         <Input
-          className="wmnds-col-1 wmnds-col-sm-2-3 wmnds-col-lg-1-2"
+          className="wmnds-col-1 wmnds-col-lg-3-4"
           name="LastName"
           label={lNameLabel}
           autocomplete="family-name"

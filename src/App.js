@@ -5,29 +5,28 @@ import Form from './components/Form/Form';
 import { FormDataProvider } from './globalState/FormDataContext';
 import HeaderAndBreadcrumb from './components/HeaderAndBreadCrumb';
 
-import SubmitSuccess from './components/Form/Step6SubmitConfirmation/Success';
-import SubmitError from './components/Form/Step6SubmitConfirmation/Error';
+import SubmitSuccess from './components/Form/Step10SubmitConfirmation/Success';
+import SubmitError from './components/Form/Step10SubmitConfirmation/Error';
+import { getSearchParam } from './helpers/URLSearchParams';
 
 function App() {
   const [isFormStarted, setIsFormStarted] = useState(false);
   const [formSubmitStatus, setFormSubmitStatus] = useState(null);
 
+  if (getSearchParam('email') && !isFormStarted) {
+    setIsFormStarted(true);
+  }
+
   return (
     <>
-      <HeaderAndBreadcrumb
-        isFormStarted={isFormStarted}
-        formSubmitStatus={formSubmitStatus}
-      />
-      <div className="wmnds-container wmnds-p-b-lg wmnds-grid">
+      <HeaderAndBreadcrumb isFormStarted={isFormStarted} formSubmitStatus={formSubmitStatus} />
+      <main className="wmnds-container wmnds-container--main wmnds-p-b-lg wmnds-grid">
         {!isFormStarted ? (
           <Intro setIsFormStarted={setIsFormStarted} />
         ) : (
           <FormDataProvider>
             {isFormStarted && formSubmitStatus === null && (
-              <Form
-                setFormSubmitStatus={setFormSubmitStatus}
-                formSubmitStatus={formSubmitStatus}
-              />
+              <Form setFormSubmitStatus={setFormSubmitStatus} formSubmitStatus={formSubmitStatus} />
             )}
 
             {formSubmitStatus && <SubmitSuccess />}
@@ -35,7 +34,7 @@ function App() {
             {formSubmitStatus === false && <SubmitError />}
           </FormDataProvider>
         )}
-      </div>
+      </main>
     </>
   );
 }
