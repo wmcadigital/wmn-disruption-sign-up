@@ -39,8 +39,8 @@ function Step9Confirm({ setFormSubmitStatus }) {
           type="submit"
           text={
             formDataState.formData.ExistingUser
-              ? 'Accept and sign up to text message alerts'
-              : 'Accept and sign up to disruption alerts'
+              ? 'Sign up to text message alerts'
+              : 'Sign up to disruption alerts'
           }
         />
       </div>
