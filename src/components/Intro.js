@@ -11,11 +11,11 @@ const Intro = ({ setIsFormStarted }) => {
       <h1>Sign up to service disruptions alerts</h1>
       <h2>Use this service to:</h2>
       <ul>
+        <li>Sign up to automatic email and text message disruption alerts</li>
         <li>
-          Sign up to automatic email alerts every time there is a disruption to your bus and/or tram
-          services
+          You&apos;ll get an alert every time there is a disruption to your bus, tram or train
+          service
         </li>
-        <li>Sign up to our text message disruption alert trial</li>
       </ul>
       <p>This process takes around 5 minutes.</p>
       <br />
