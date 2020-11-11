@@ -26,27 +26,30 @@ const InputCheckbox = ({ fieldValidation, name, labelValue, labelElement, classe
           }}
         />
       )}
-
-      <label className="wmnds-fe-checkboxes__container">
-        {labelElement !== null && labelElement}
-        {!labelElement && labelValue && (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: sanitize(labelValue),
-            }}
-          />
-        )}
-        <input
-          ref={fieldValidation}
-          defaultValue={formDataState.formData[name]}
-          className="wmnds-fe-checkboxes__input"
-          name={name}
-          type="checkbox"
-        />
-        <span className="wmnds-fe-checkboxes__checkmark">
-          <Icon className="wmnds-fe-checkboxes__icon" iconName="general-checkmark" />
-        </span>
-      </label>
+      <fieldset className="wmnds-fe-fieldset">
+        <div className="wmnds-fe-checkboxes">
+          <label className="wmnds-fe-checkboxes__container">
+            {labelElement !== null && labelElement}
+            {!labelElement && labelValue && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: sanitize(labelValue),
+                }}
+              />
+            )}
+            <input
+              ref={fieldValidation}
+              defaultValue={formDataState.formData[name]}
+              className="wmnds-fe-checkboxes__input"
+              name={name}
+              type="checkbox"
+            />
+            <span className="wmnds-fe-checkboxes__checkmark">
+              <Icon className="wmnds-fe-checkboxes__icon" iconName="general-checkmark" />
+            </span>
+          </label>
+        </div>
+      </fieldset>
     </div>
   );
 };
