@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import axios from 'axios';
 import { useFormContext } from 'react-hook-form';
 // Import contexts
 import { FormDataContext } from 'globalState/FormDataContext';
@@ -39,9 +40,11 @@ const useSubmitForm = (setFormSubmitStatus) => {
       // Start submitting API
       setIsFetching(true); // Set this so we can put loading state on button
       // Go hit the API with the data
-      fetch(`${process.env.REACT_APP_API_HOST}api/SignUp`, {
+      axios({
+        url: '/SignUp',
+        baseURL: `${process.env.REACT_APP_API_HOST}api`,
         method: 'post',
-        body: JSON.stringify(dataToSend),
+        data: JSON.stringify(dataToSend),
         headers: {
           'Content-Type': 'application/json',
         },
