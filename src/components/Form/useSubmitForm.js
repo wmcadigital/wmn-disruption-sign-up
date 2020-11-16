@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useFormContext } from 'react-hook-form';
 // Import contexts
 import { FormDataContext } from 'globalState/FormDataContext';
-import { configs } from 'eslint-plugin-prettier';
 
 const useSubmitForm = (setFormSubmitStatus) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
