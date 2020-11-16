@@ -97,34 +97,37 @@ const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
       </p>
       <div className="wmnds-fe-group">
         <fieldset className="wmnds-fe-fieldset">
-          {linesToCompareWith.map((line) => (
-            <div key={line}>
-              <label className="wmnds-grid wmnds-grid--justify-between wmnds-grid--align-center">
-                {/* Left side (service number and route name) */}
-                <div
-                  className={`wmnds-disruption-indicator-medium wmnds-m-r-md wmnds-col-auto ${s.lineName}`}
-                >
-                  {line}
-                </div>
-
-                <div className="wmnds-fe-checkboxes__container wmnds-m-b-none">
-                  {/* Right side for remove service button */}
-                  <input
-                    checked={selectedLines.includes(line)}
-                    value={line}
-                    onChange={(e) => handleChange(e.target.value)}
-                    className="wmnds-fe-checkboxes__input"
-                    type="checkbox"
-                  />
-
-                  <span className="wmnds-fe-checkboxes__checkmark">
-                    <Icon className="wmnds-fe-checkboxes__icon" iconName="general-checkmark" />
+          <div className="wmnds-fe-checkboxes">
+            <span className="wmnds-fe-checkboxes__desc">
+              Select all lines you would like to receive a notification for
+            </span>
+            {linesToCompareWith.map((line) => (
+              <div key={line}>
+                <label className="wmnds-grid wmnds-grid--justify-between wmnds-grid--align-center">
+                  {/* Left side (service number and route name) */}
+                  <span
+                    className={`wmnds-disruption-indicator-medium wmnds-m-r-md wmnds-col-auto ${s.lineName}`}
+                  >
+                    {line}
                   </span>
-                </div>
-              </label>
-              <hr className="wmnds-col-1 wmnds-m-t-md wmnds-m-b-md" />
-            </div>
-          ))}
+                  <div className="wmnds-fe-checkboxes__container wmnds-m-b-none">
+                    {/* Right side for remove service button */}
+                    <input
+                      checked={selectedLines.includes(line)}
+                      value={line}
+                      onChange={(e) => handleChange(e.target.value)}
+                      className="wmnds-fe-checkboxes__input"
+                      type="checkbox"
+                    />
+                    <span className="wmnds-fe-checkboxes__checkmark">
+                      <Icon className="wmnds-fe-checkboxes__icon" iconName="general-checkmark" />
+                    </span>
+                  </div>
+                </label>
+                <hr className="wmnds-col-1 wmnds-m-t-md wmnds-m-b-md" />
+              </div>
+            ))}
+          </div>
         </fieldset>
       </div>
       {/* This logic compares if the users selected lines are different from the ones they originally chose (when step loads). If it's different then the user must have changed their chosen lines, so show continue button else show cancel button(nothing changed) */}
