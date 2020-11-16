@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useFormContext } from 'react-hook-form';
 // Import contexts
 import { FormDataContext } from 'globalState/FormDataContext';
+import { configs } from 'eslint-plugin-prettier';
 
 const useSubmitForm = (setFormSubmitStatus) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
@@ -52,27 +53,26 @@ const useSubmitForm = (setFormSubmitStatus) => {
         .then((response) => {
           // If the response is successful(200: OK) or error with validation message(400)
           if (response.status === 200 || response.status === 400) {
-            return response.text(); // Return response as json
+            const payload = response.config.data;
+            formDataDispatch({ type: 'ADD_FORM_REF', payload }); // Update form state with the form ref received from server
+            // Log event to analytics/tag manager
+            window.dataLayer.push({
+              event: 'formAbandonment',
+              eventCategory: 'wmn-email-alerts-signup: success',
+            });
+            setIsFetching(false); // set to false as we are done fetching now
+            if (payload.Message) {
+              setAPIErrorMessage(payload.Message);
+            } else {
+              setFormSubmitStatus(true); // Set form status to success
+              window.scrollTo(0, 0); // Scroll to top of page
+              // set success page
+            }
+            return true;
           }
           throw new Error(response.statusText, response.Message); // Else throw error and go to our catch below
         })
-        // If formsubmission is successful
-        .then((payload) => {
-          formDataDispatch({ type: 'ADD_FORM_REF', payload }); // Update form state with the form ref received from server
-          // Log event to analytics/tag manager
-          window.dataLayer.push({
-            event: 'formAbandonment',
-            eventCategory: 'wmn-email-alerts-signup: success',
-          });
-          setIsFetching(false); // set to false as we are done fetching now
-          if (payload.Message) {
-            setAPIErrorMessage(payload.Message);
-          } else {
-            setFormSubmitStatus(true); // Set form status to success
-            window.scrollTo(0, 0); // Scroll to top of page
-            // set success page
-          }
-        })
+
         // If formsubmission errors
         .catch((error) => {
           // eslint-disable-next-line no-console
