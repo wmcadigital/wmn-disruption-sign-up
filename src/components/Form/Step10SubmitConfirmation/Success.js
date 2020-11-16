@@ -44,7 +44,7 @@ function Success() {
 
   return (
     <div className="wmnds-container-alerts-sign-up">
-      <div className="wmnds-grid wmnds-col-md-2-3 wmnds-col-lg-1-2">
+      <div className="wmnds-grid wmnds-col-1 wmnds-col-md-2-3">
         <div className="wmnds-col-1">
           <h1>Sign up to service disruption alerts</h1>
         </div>
@@ -71,7 +71,7 @@ function Success() {
 
           <p>
             <a
-              href="https://surveys.hotjar.com/s?siteId=264586&surveyId=158470"
+              href="https://forms.office.com/Pages/ResponsePage.aspx?id=RetZCK7xCk6e-ubWa7tnLz45Weo_RTVDpYxVYcrD8wxUMzI4UlRVRVFMV002VU9FWllFTDM5QjlVWS4u"
               title="Service feedback survey"
               target="_blank"
               className="wmds-link"

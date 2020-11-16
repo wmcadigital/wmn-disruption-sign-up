@@ -27,7 +27,7 @@ function Step9Confirm({ setFormSubmitStatus }) {
       {APIErrorMessage && <span className="wmnds-fe-error-message">{APIErrorMessage}</span>}
       <SummarySection />
 
-      <div className="wmnds-col-1 wmnds-col-lg-4-5">
+      <div className="wmnds-col-1">
         {formDataState.formData.EmailAlert === 'yes' && !formDataState.formData.ExistingUser && (
           <Step9ConsentForm />
         )}
@@ -39,8 +39,8 @@ function Step9Confirm({ setFormSubmitStatus }) {
           type="submit"
           text={
             formDataState.formData.ExistingUser
-              ? 'Accept and sign up to text message alerts'
-              : 'Accept and sign up to disruption alerts'
+              ? 'Sign up to text message alerts'
+              : 'Sign up to disruption alerts'
           }
         />
       </div>

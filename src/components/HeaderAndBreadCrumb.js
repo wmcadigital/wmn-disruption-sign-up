@@ -47,7 +47,7 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
             <p className="wmnds-banner-container__text">
               This is a new service - your{' '}
               <a
-                href="https://surveys.hotjar.com/s?siteId=264586&surveyId=156448"
+                href="https://forms.office.com/Pages/ResponsePage.aspx?id=RetZCK7xCk6e-ubWa7tnLz45Weo_RTVDpYxVYcrD8wxUMzI4UlRVRVFMV002VU9FWllFTDM5QjlVWS4u"
                 title="Service feedback survey"
                 target="_blank"
                 className="wmnds-link"
@@ -72,18 +72,24 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
             >
               <ol className="wmnds-breadcrumb__list">
                 <li className="wmnds-breadcrumb__list-item">
-                  <a href="/" className="wmnds-breadcrumb__link">
+                  <a
+                    href="https://wmnetwork.co.uk/plan-your-journey/"
+                    className="wmnds-breadcrumb__link"
+                  >
                     Plan a journey
                   </a>
                 </li>
                 <li className="wmnds-breadcrumb__list-item">
-                  <a href="#" className="wmnds-breadcrumb__link">
+                  <a
+                    href="https://wmnetwork.co.uk/plan-your-journey/disruptions/"
+                    className="wmnds-breadcrumb__link"
+                  >
                     Disruptions
                   </a>
                 </li>
                 <li className="wmnds-breadcrumb__list-item">
                   <a
-                    href="#"
+                    href="/"
                     className="wmnds-breadcrumb__link wmnds-breadcrumb__link--current"
                     aria-current="page"
                   >

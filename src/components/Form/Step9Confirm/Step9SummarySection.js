@@ -100,7 +100,7 @@ function Step9SummarySection() {
             <div
               className={`wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}
             >
-              <h3 className="wmnds-col-1-3">Services added</h3>
+              <h3 className="wmnds-col-2-3">Services added</h3>
               <button
                 type="button"
                 className={`${style.asLink} wmnds-link`}
@@ -138,7 +138,6 @@ function Step9SummarySection() {
                   return (
                     <RemoveService
                       mode="tram"
-                      id={tramRoute.id}
                       serviceNumber={tramRoute.serviceNumber}
                       routeName={tramRoute.routeName}
                       key={`${tramRoute.serviceNumber}`}
@@ -158,7 +157,6 @@ function Step9SummarySection() {
                     <RemoveService
                       mode="train"
                       serviceNumber={line}
-                      id={line}
                       key={line}
                       showRemove={false}
                     />
