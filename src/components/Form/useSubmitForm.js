@@ -24,7 +24,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     Email,
     LineId: LineId.length > 0 ? LineId : ['1001'],
     Trains,
-    EmailDisabled: !EmailAlert,
+    EmailDisabled: EmailAlert !== 'yes',
     MobileNumber: englishNumber,
   };
 
