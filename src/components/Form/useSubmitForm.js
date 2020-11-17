@@ -11,7 +11,16 @@ const useSubmitForm = (setFormSubmitStatus) => {
   const [APIErrorMessage, setAPIErrorMessage] = useState(null);
 
   // Destructure values from our formDataState (get all users values)
-  const { Email, Firstname, LastName, LineId, Trains, EmailAlert, Phone } = formDataState.formData;
+  const {
+    Email,
+    Firstname,
+    LastName,
+    LineId,
+    Trains,
+    EmailAlert,
+    Phone,
+    ExistingUser,
+  } = formDataState.formData;
 
   // Check if mobile phone has +44, if not, remove the 0 and add +44
   let englishNumber = Phone;
@@ -54,10 +63,17 @@ const useSubmitForm = (setFormSubmitStatus) => {
           if (response.status === 200 || response.status === 400) {
             const payload = response.config.data;
             formDataDispatch({ type: 'ADD_FORM_REF', payload }); // Update form state with the form ref received from server
+
+            // Create an event label with the users contact preferences and if they are a newUser or existing
+            const eventLabel = `newUser: ${!ExistingUser}, email: ${
+              EmailAlert === 'yes'
+            }, sms: ${!!Phone}`;
             // Log event to analytics/tag manager
             window.dataLayer.push({
               event: 'formAbandonment',
-              eventCategory: 'wmn-email-alerts-signup: success',
+              eventCategory: 'wmn-disruption-sign-up',
+              eventAction: 'form submitted: success',
+              eventLabel,
             });
             setIsFetching(false); // set to false as we are done fetching now
             if (payload.Message) {
@@ -89,8 +105,9 @@ const useSubmitForm = (setFormSubmitStatus) => {
           // Log event to analytics/tag manager
           window.dataLayer.push({
             event: 'formAbandonment',
-            eventCategory: 'wmn-email-alerts-signup: submission: error',
-            eventAction: errMsg,
+            eventCategory: 'wmn-disruption-sign-up',
+            eventAction: 'form submitted: error',
+            eventLabel: errMsg,
           });
           setIsFetching(false); // set to false as we are done fetching now
           setFormSubmitStatus(false); // Set form status to error
