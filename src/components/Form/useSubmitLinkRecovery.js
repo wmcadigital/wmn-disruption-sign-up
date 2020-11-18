@@ -31,20 +31,16 @@ const useSubmitLinkRecovery = (setFormSubmitStatus) => {
       })
         .then((response) => {
           // If the response is successful(200: OK) or error with validation message(400)
-          if (response.status === 200 || response.status === 400) {
-            const payload = response.data;
+          if (response.status === 200) {
             // Log event to analytics/tag manager
             window.dataLayer.push({
               event: 'formAbandonment',
               eventCategory: 'wmn-recover-dashboard-link: success',
             });
             setIsFetching(false); // set to false as we are done fetching now
-            if (payload.Message) {
-              setAPIErrorMessage(payload.Message);
-            } else {
-              setFormSubmitStatus(true); // Set form status to success
-              window.scrollTo(0, 0); // Scroll to top of page
-            }
+            setFormSubmitStatus(true); // Set form status to success
+            window.scrollTo(0, 0); // Scroll to top of page
+
             return true;
           }
           throw new Error(response.statusText, response.Message); // Else throw error and go to our catch below
@@ -54,24 +50,31 @@ const useSubmitLinkRecovery = (setFormSubmitStatus) => {
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error({ error });
+          setIsFetching(false);
           let errMsg;
-
-          if (error.text) {
-            error.text().then((errorMessage) => {
-              errMsg = errorMessage;
-            });
+          if (error.response.data) {
+            errMsg = error.response.data;
           } else {
             errMsg = error;
           }
-
-          // Log event to analytics/tag manager
-          window.dataLayer.push({
-            event: 'formAbandonment',
-            eventCategory: 'wmn-recover-dashboard-link: submission: error',
-            eventAction: errMsg,
-          });
+          setAPIErrorMessage(errMsg);
+          if (errMsg === "this email hasn't been registered") {
+            // Log event to analytics/tag manager
+            window.dataLayer.push({
+              event: 'formAbandonment',
+              eventCategory: 'wmn-recover-dashboard-link: error - email not registered',
+              eventAction: errMsg,
+            });
+          } else {
+            setFormSubmitStatus(false); // Set form status to success
+            // Log event to analytics/tag manager
+            window.dataLayer.push({
+              event: 'formAbandonment',
+              eventCategory: 'wmn-recover-dashboard-link: submission: error',
+              eventAction: errMsg,
+            });
+          }
           setIsFetching(false); // set to false as we are done fetching now
-          setFormSubmitStatus(false); // Set form status to error
           window.scrollTo(0, 0); // Scroll to top of page
           // set error message
         });

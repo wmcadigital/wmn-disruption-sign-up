@@ -6,11 +6,12 @@ import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import Input from 'components/shared/FormElements/Input/Input';
 import Button from 'components/shared/Button/Button';
+// import Message from 'components/shared/Message/Message';
 
 const Step0Recovery = ({ setFormSubmitStatus }) => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const { register, showGenericError } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
-  const { handleSubmit, isFetching } = useSubmitLinkRecovery(setFormSubmitStatus);
+  const { register } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { handleSubmit, isFetching, APIErrorMessage } = useSubmitLinkRecovery(setFormSubmitStatus);
   // Labels used on inputs and for validation
   const emailLabel = 'Email address';
   // Logic used to validate the email field
@@ -23,10 +24,29 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
     },
   });
 
+  // To show in case of the entered email is not registered.
+  const ErrorMessage = (
+    <p>
+      <span className="wmnds-fe-error-message">This email address does not exist</span>
+      <span>
+        Please check that you’ve entered the correct email address. Otherwise, you’ll need to{' '}
+        <a href="/" target="_self" title="Sign up as a new user">
+          sign up as a new user
+        </a>
+      </span>
+    </p>
+  );
+
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
-      {/* Show generic error message */}
-      {showGenericError}
+      {/*       {APIErrorMessage && isFetching === false && (
+        <Message
+          type="error"
+          title="This email address does not exist"
+          message="Please check that you’ve entered the correct email address. Otherwise, you’ll need to sign up as a new user"
+          className="wmnds-m-b-md"
+        />
+      )} */}
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
@@ -44,6 +64,7 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
           type="email"
           autocomplete="email"
           fieldValidation={emailValidation}
+          APIerrors={APIErrorMessage && isFetching === false ? ErrorMessage : null}
         />
       </fieldset>
 
