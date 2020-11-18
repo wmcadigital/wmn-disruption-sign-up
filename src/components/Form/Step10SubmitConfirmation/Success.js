@@ -6,7 +6,7 @@ import { FormDataContext } from '../../../globalState/FormDataContext';
 function Success() {
   // eslint-disable-next-line no-unused-vars
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
-  const { Email, Phone, SMSAlert, EmailAlert, SMSTerms } = formDataState.formData;
+  const { Phone, SMSAlert, EmailAlert, SMSTerms } = formDataState.formData;
 
   const alignCenter = {
     textAlign: 'center',
@@ -34,14 +34,14 @@ function Success() {
       'Visit the link in the confirmation email to access your disruption alert dashboard. Enter the PIN code sent to you via text message.',
       'Once you have confirmed your mobile phone number, you’ll receive disruption alerts to your mobile phone.',
     ];
-  } else if (!Phone) {
+  } else if (EmailAlert === 'yes' && !Phone) {
     /* Emails only */
     message = 'You have successfully signed up to email alerts';
     steps = [
       'We’ll send you an email asking to confirm your subscription.',
       'Once you have confirmed your subscription, you’ll receive disruption alerts to your email address.',
     ];
-  } else if (Email) {
+  } else {
     /* For Account link recovery only */
     title = 'Request a link to manage your disruption alerts';
     message = 'We have sent the link to manage your disruption alerts to your email';

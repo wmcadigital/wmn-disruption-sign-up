@@ -1,22 +1,11 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useFormContext } from 'react-hook-form';
-// Import contexts
-import { FormDataContext } from 'globalState/FormDataContext';
 
 const useSubmitLinkRecovery = (setFormSubmitStatus) => {
-  const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
-  const { triggerValidation } = useFormContext(); // Get useForm methods
+  const { triggerValidation, getValues } = useFormContext(); // Get useForm methods
   const [isFetching, setIsFetching] = useState(false);
   const [APIErrorMessage, setAPIErrorMessage] = useState(null);
-
-  // Destructure values from our formDataState (get all users values)
-  const { Email } = formDataState.formData;
-
-  // Map all destructured vals above to an object we will send to API
-  const dataToSend = {
-    Email,
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission method
@@ -24,6 +13,10 @@ const useSubmitLinkRecovery = (setFormSubmitStatus) => {
     const result = await triggerValidation();
     // if no errors
     if (result) {
+      // Map all destructured vals above to an object we will send to API
+      const dataToSend = {
+        Email: getValues().Email,
+      };
       // Start submitting API
       setIsFetching(true); // Set this so we can put loading state on button
       // Go hit the API with the data
@@ -39,12 +32,11 @@ const useSubmitLinkRecovery = (setFormSubmitStatus) => {
         .then((response) => {
           // If the response is successful(200: OK) or error with validation message(400)
           if (response.status === 200 || response.status === 400) {
-            const payload = response.config.data;
-            formDataDispatch({ type: 'ADD_FORM_REF', payload }); // Update form state with the form ref received from server
+            const payload = response.data;
             // Log event to analytics/tag manager
             window.dataLayer.push({
               event: 'formAbandonment',
-              eventCategory: 'wmn-email-alerts-signup: success',
+              eventCategory: 'wmn-recover-dashboard-link: success',
             });
             setIsFetching(false); // set to false as we are done fetching now
             if (payload.Message) {
@@ -52,14 +44,13 @@ const useSubmitLinkRecovery = (setFormSubmitStatus) => {
             } else {
               setFormSubmitStatus(true); // Set form status to success
               window.scrollTo(0, 0); // Scroll to top of page
-              // set success page
             }
             return true;
           }
           throw new Error(response.statusText, response.Message); // Else throw error and go to our catch below
         })
 
-        // If formsubmission errors
+        // If has errors
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error({ error });
@@ -76,7 +67,7 @@ const useSubmitLinkRecovery = (setFormSubmitStatus) => {
           // Log event to analytics/tag manager
           window.dataLayer.push({
             event: 'formAbandonment',
-            eventCategory: 'wmn-email-alerts-signup: submission: error',
+            eventCategory: 'wmn-recover-dashboard-link: submission: error',
             eventAction: errMsg,
           });
           setIsFetching(false); // set to false as we are done fetching now
