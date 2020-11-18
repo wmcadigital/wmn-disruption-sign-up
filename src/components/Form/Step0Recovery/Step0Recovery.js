@@ -1,0 +1,67 @@
+import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
+// Import custom hooks
+import useSubmitLinkRecovery from 'components/Form/useSubmitLinkRecovery';
+import useStepLogic from 'components/Form/useStepLogic';
+// Import components
+import Input from 'components/shared/FormElements/Input/Input';
+import Button from 'components/shared/Button/Button';
+
+const Step0Recovery = ({ setFormSubmitStatus }) => {
+  const formRef = useRef(); // Used so we can keep track of the form DOM element
+  const { register, showGenericError } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { handleSubmit, isFetching } = useSubmitLinkRecovery(setFormSubmitStatus);
+  // Labels used on inputs and for validation
+  const emailLabel = 'Email address';
+  // Logic used to validate the email field
+  const emailRegex = /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches email regex on server
+  const emailValidation = register({
+    required: `${emailLabel} is required`,
+    pattern: {
+      value: emailRegex,
+      message: `Enter an ${emailLabel.toLowerCase()} in the correct format`,
+    },
+  });
+
+  return (
+    <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
+      {/* Show generic error message */}
+      {showGenericError}
+
+      <fieldset className="wmnds-fe-fieldset wmnds-col-1">
+        <legend className="wmnds-fe-fieldset__legend">
+          <h2>Request a link to manage your disruption alerts</h2>
+          <p>
+            We will send you a link where you can manage your disruption alerts to the same email
+            address you signed up with.
+          </p>
+        </legend>
+
+        <Input
+          className="wmnds-col-1 wmnds-col-lg-3-4"
+          name="Email"
+          label={`${emailLabel}, for example name@example.com`}
+          type="email"
+          autocomplete="email"
+          fieldValidation={emailValidation}
+        />
+      </fieldset>
+
+      {/* Submit button */}
+      <Button
+        btnClass="wmnds-btn--start"
+        disabled={isFetching}
+        iconRight="general-chevron-right"
+        isFetching={isFetching}
+        type="submit"
+        text="Request link"
+      />
+    </form>
+  );
+};
+
+Step0Recovery.propTypes = {
+  setFormSubmitStatus: PropTypes.func.isRequired,
+};
+
+export default Step0Recovery;

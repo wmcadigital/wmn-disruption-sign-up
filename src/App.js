@@ -11,6 +11,7 @@ import { getSearchParam } from './helpers/URLSearchParams';
 
 function App() {
   const [isFormStarted, setIsFormStarted] = useState(false);
+  const [isRecoverLinkPressed, setIsRecoverLinkPressed] = useState(false);
   const [formSubmitStatus, setFormSubmitStatus] = useState(null);
 
   if (getSearchParam('email') && !isFormStarted) {
@@ -22,16 +23,27 @@ function App() {
       <HeaderAndBreadcrumb isFormStarted={isFormStarted} formSubmitStatus={formSubmitStatus} />
       <main className="wmnds-container wmnds-container--main wmnds-p-b-lg wmnds-grid">
         {!isFormStarted ? (
-          <Intro setIsFormStarted={setIsFormStarted} />
+          <Intro
+            setIsFormStarted={setIsFormStarted}
+            setIsRecoverLinkPressed={setIsRecoverLinkPressed}
+          />
         ) : (
           <FormDataProvider>
             {isFormStarted && formSubmitStatus === null && (
-              <Form setFormSubmitStatus={setFormSubmitStatus} formSubmitStatus={formSubmitStatus} />
+              <Form
+                setFormSubmitStatus={setFormSubmitStatus}
+                formSubmitStatus={formSubmitStatus}
+                isRecoverLinkPressed={isRecoverLinkPressed}
+                setIsRecoverLinkPressed={setIsRecoverLinkPressed}
+                setIsFormStarted={setIsFormStarted}
+              />
             )}
 
             {formSubmitStatus && <SubmitSuccess />}
 
-            {formSubmitStatus === false && <SubmitError />}
+            {formSubmitStatus === false && (
+              <SubmitError isRecoverLinkPressed={isRecoverLinkPressed} />
+            )}
           </FormDataProvider>
         )}
       </main>

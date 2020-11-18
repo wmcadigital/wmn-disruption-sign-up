@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useForm, FormContext } from 'react-hook-form';
 // Import contexts
 import { FormDataContext } from 'globalState/FormDataContext';
 // Import components
+import Step0Recovery from './Step0Recovery/Step0Recovery';
 import Step1Name from './Step1Name/Step1Name';
 import Step2SmsAlert from './Step2SmsAlert/Step2SmsAlert';
 import Step3SmsConsent from './Step3SmsConsent/Step3SmsConsent';
@@ -20,7 +21,13 @@ import useTrackFormAbandonment from './useTrackFormAbandonment';
 // Import styling
 import s from './Form.module.scss';
 
-const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
+const Form = ({
+  formSubmitStatus,
+  setFormSubmitStatus,
+  isRecoverLinkPressed,
+  setIsFormStarted,
+  setIsRecoverLinkPressed,
+}) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
   const { currentStep, hasReachedConfirmation } = formDataState; // Destructure step from state
   const { ExistingUser, SMSAlert } = formDataState.formData;
@@ -28,10 +35,19 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
     mode: 'onBlur',
   }); // Trigger validation onBlur events (config for react hook form lib)
 
+  useEffect(() => {
+    if (isRecoverLinkPressed) {
+      formDataDispatch({
+        type: 'UPDATE_STEP',
+        payload: 0,
+      });
+    }
+  }, [formDataDispatch, isRecoverLinkPressed]);
+
   useTrackFormAbandonment(currentStep, formSubmitStatus);
 
   // Show debug options for below (this should be deleted on release)
-  const debugStepOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  const debugStepOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   let stepToGoTo;
 
@@ -88,9 +104,24 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
               </button>
             </div>
           )}
+          {currentStep === 0 && (
+            <div className="wmnds-col-1 wmnds-m-b-md">
+              <button
+                type="button"
+                className={`wmnds-link ${s.asLink}`}
+                onClick={() => {
+                  setIsRecoverLinkPressed(false);
+                  setIsFormStarted(false);
+                }}
+              >
+                &lt; Back
+              </button>
+            </div>
+          )}
 
           <div className={formSubmitStatus === null ? `${s.formWrapper} wmnds-p-lg ` : ''}>
             {/* Start of form */}
+            {currentStep === 0 && <Step0Recovery setFormSubmitStatus={setFormSubmitStatus} />}
             {currentStep === 1 && <Step1Name />}
             {currentStep === 2 && <Step2SmsAlert />}
             {currentStep === 3 && <Step3SmsConsent />}
@@ -151,10 +182,14 @@ const Form = ({ formSubmitStatus, setFormSubmitStatus }) => {
 Form.propTypes = {
   formSubmitStatus: PropTypes.bool,
   setFormSubmitStatus: PropTypes.func.isRequired,
+  setIsFormStarted: PropTypes.func.isRequired,
+  isRecoverLinkPressed: PropTypes.bool,
+  setIsRecoverLinkPressed: PropTypes.func.isRequired,
 };
 
 Form.defaultProps = {
   formSubmitStatus: null,
+  isRecoverLinkPressed: false,
 };
 
 export default Form;

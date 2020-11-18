@@ -6,7 +6,7 @@ import { FormDataContext } from '../../../globalState/FormDataContext';
 function Success() {
   // eslint-disable-next-line no-unused-vars
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
-  const { Phone, SMSAlert, EmailAlert, SMSTerms } = formDataState.formData;
+  const { Email, Phone, SMSAlert, EmailAlert, SMSTerms } = formDataState.formData;
 
   const alignCenter = {
     textAlign: 'center',
@@ -14,6 +14,7 @@ function Success() {
 
   let message;
   let steps;
+  let title = 'Sign up to service disruption alerts';
 
   if (Phone && (SMSAlert === 'yes' || SMSTerms) && EmailAlert === 'yes') {
     /* Text messages AND Email */
@@ -40,13 +41,21 @@ function Success() {
       'We’ll send you an email asking to confirm your subscription.',
       'Once you have confirmed your subscription, you’ll receive disruption alerts to your email address.',
     ];
+  } else if (Email) {
+    /* For Account link recovery only */
+    title = 'Request a link to manage your disruption alerts';
+    message = 'We have sent the link to manage your disruption alerts to your email';
+    steps = [
+      'Visit the link in the email to manage your disruption alerts.',
+      'You can now manage your services and communication preferences. You can access the page at any time by visiting the link in your email.',
+    ];
   }
 
   return (
     <div className="wmnds-container-alerts-sign-up">
       <div className="wmnds-grid wmnds-col-1 wmnds-col-md-2-3">
         <div className="wmnds-col-1">
-          <h1>Sign up to service disruption alerts</h1>
+          <h1>{title}</h1>
         </div>
         <div className="wmnds-col-1 wmnds-m-b-xl">
           <div style={alignCenter} className="wmnds-msg-summary wmnds-msg-summary--success-fill ">
