@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
-// Import custom hooks
-import useStepLogic from 'components/Form/useStepLogic';
+import axios from 'axios';
 // Import components
 import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
+// Import custom hooks
+import useStepLogic from 'components/Form/useStepLogic';
 import useFormData from '../useFormData';
 
 const Step5Email = () => {
@@ -14,12 +15,37 @@ const Step5Email = () => {
   const emailLabel = 'Email address';
   // Logic used to validate the email field
   const emailRegex = /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches email regex on server
+  // To show in case of the entered email is not registered.
+  const ErrorMessage = (
+    <p>
+      <span className="wmnds-fe-error-message">This email address already exists</span>
+      <span>
+        If you&apos;ve lost the link to manage your disruption alerts,{' '}
+        <a href="/" target="_self" title="Request a new link">
+          you can request a new one
+        </a>
+      </span>
+    </p>
+  );
   const emailValidation = register({
     required: `${emailLabel} is required`,
     pattern: {
       value: emailRegex,
       message: `Enter an ${emailLabel.toLowerCase()} in the correct format`,
     },
+    validate: async (value) =>
+      (await axios({
+        url: '/personlink',
+        baseURL: `${process.env.REACT_APP_API_HOST}api`,
+        method: 'post',
+        data: JSON.stringify({ Email: value }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then()
+        // eslint-disable-next-line no-console
+        .catch((error) => console.error({ error }))) || ErrorMessage,
   });
 
   // Check if user is in the trial

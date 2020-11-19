@@ -20,6 +20,7 @@ const Input = ({
 }) => {
   const [formDataState] = useContext(FormDataContext); // Get the state of form data from FormDataContext
   const { errors } = useFormContext();
+  console.log(errors);
   // Set input to render below
   const input = (
     <>
@@ -48,17 +49,19 @@ const Input = ({
         />
       )}
 
-      {/* If there is an error, show here */}
-      {errors[name] && (
-        <span
-          className="wmnds-fe-error-message"
-          dangerouslySetInnerHTML={{
-            __html: sanitize(errors[name].message),
-          }}
-        />
-      )}
       {/* If there is an API error, show here */}
       {APIerrors}
+
+      {/* If there is an error (and error is a string) show here */}
+      {errors[name] && typeof stringValue === 'string' && (
+        <span
+          className="wmnds-fe-error-message"
+          dangerouslySetInnerHTML={{ __html: sanitize(errors[name].message) }}
+        />
+      )}
+
+      {/* If there is an error (and error is a react element) show here */}
+      {errors[name] && typeof stringValue !== 'string' && errors[name].message}
 
       {/* If className then wrap just input with the className else, just show input as usual */}
       {className ? <div className={className}>{input}</div> : input}
