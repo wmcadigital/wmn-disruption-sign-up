@@ -15,13 +15,13 @@ const useSubmitLinkRecovery = (setFormSubmitStatus) => {
     if (result) {
       // Map all destructured vals above to an object we will send to API
       const dataToSend = {
-        Email: getValues().Email,
+        Email: getValues().RecoveryEmail,
       };
       // Start submitting API
       setIsFetching(true); // Set this so we can put loading state on button
       // Go hit the API with the data
       axios({
-        url: '/personlink',
+        url: '/personinfo',
         baseURL: `${process.env.REACT_APP_API_HOST}api`,
         method: 'post',
         data: JSON.stringify(dataToSend),

@@ -59,7 +59,7 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
 
         <Input
           className="wmnds-col-1 wmnds-col-lg-3-4"
-          name="Email"
+          name="RecoveryEmail"
           label={`${emailLabel}, for example name@example.com`}
           type="email"
           autocomplete="email"
