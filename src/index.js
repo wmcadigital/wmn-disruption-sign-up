@@ -1,4 +1,5 @@
 // IE 11 support
+import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 // React
 import React from 'react';
