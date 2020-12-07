@@ -20,7 +20,6 @@ const Input = ({
 }) => {
   const [formDataState] = useContext(FormDataContext); // Get the state of form data from FormDataContext
   const { errors } = useFormContext();
-  console.log(errors);
   // Set input to render below
   const input = (
     <>
