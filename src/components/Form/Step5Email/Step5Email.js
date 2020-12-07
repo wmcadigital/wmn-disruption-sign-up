@@ -9,7 +9,9 @@ import useFormData from '../useFormData';
 
 const Step5Email = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { register, handleSubmit, showGenericError, continueButton, setStep } = useStepLogic(
+    formRef
+  ); // Custom hook for handling continue button (validation, errors etc)
 
   // Labels used on inputs and for validation
   const emailLabel = 'Email address';
@@ -21,7 +23,13 @@ const Step5Email = () => {
       <span className="wmnds-fe-error-message">This email address already exists</span>
       <span>
         If you&apos;ve lost the link to manage your disruption alerts,{' '}
-        <a href="/" target="_self" title="Request a new link">
+        <a
+          href="#recoverlink"
+          target="_self"
+          className="wmnds-link"
+          title="Request a new link"
+          onClick={() => setStep(0)}
+        >
           you can request a new one
         </a>
       </span>
@@ -34,11 +42,11 @@ const Step5Email = () => {
       message: `Enter an ${emailLabel.toLowerCase()} in the correct format`,
     },
     validate: async (value) =>
-      (await axios({
-        url: '/personlink',
+      !(await axios({
+        url: '/personinfo',
         baseURL: `${process.env.REACT_APP_API_HOST}api`,
         method: 'post',
-        data: JSON.stringify({ Email: value }),
+        data: JSON.stringify({ Email: value, sitecode: 'any text' }),
         headers: {
           'Content-Type': 'application/json',
         },
