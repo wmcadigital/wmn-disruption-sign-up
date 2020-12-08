@@ -6,7 +6,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import Input from 'components/shared/FormElements/Input/Input';
 import Button from 'components/shared/Button/Button';
-// import Message from 'components/shared/Message/Message';
+import Message from 'components/shared/Message/Message';
 
 const Step0Recovery = ({ setFormSubmitStatus }) => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
@@ -39,14 +39,14 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
 
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
-      {/*       {APIErrorMessage && isFetching === false && (
+      {APIErrorMessage && isFetching === false && (
         <Message
           type="error"
-          title="This email address does not exist"
-          message="Please check that you’ve entered the correct email address. Otherwise, you’ll need to sign up as a new user"
+          title="Please try again"
+          message="Apologies, we are experiencing technical difficulties"
           className="wmnds-m-b-md"
         />
-      )} */}
+      )}
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
