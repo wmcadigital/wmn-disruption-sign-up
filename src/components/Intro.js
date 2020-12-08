@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getSearchParam } from 'helpers/URLSearchParams';
+import { getSearchParam, delSearchParam } from 'helpers/URLSearchParams';
 // Import components
 import Icon from './shared/Icon/Icon';
 
@@ -16,6 +16,7 @@ const Intro = ({ setIsFormStarted, setIsRecoverLinkPressed }) => {
 
   if (getSearchParam('requestLink') === 'true') {
     recoverLink();
+    delSearchParam('requestLink');
   }
 
   return (
