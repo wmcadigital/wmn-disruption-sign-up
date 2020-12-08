@@ -17,6 +17,17 @@ if (process.env.NODE_ENV === 'production' && !process.env.NETLIFY) {
   // LOG ROCKET
   // Used to log/track console errors with LogRocket
   LogRocket.init('brya8q/wmn-disruption-sign-up', {
+    browser: {
+      urlSanitizer: (url) => {
+        let sanitizedUrl = url;
+        // redact the value of the query parameter secret_key
+        sanitizedUrl = sanitizedUrl.replace(/name=([^&]*)/, 'name=**redacted**');
+        sanitizedUrl = sanitizedUrl.replace(/email=([^&]*)/, 'email=**redacted**');
+        sanitizedUrl = sanitizedUrl.replace(/user=([^&]*)/, 'user=**redacted**');
+        // make sure you return the sanitized URL string
+        return sanitizedUrl;
+      },
+    },
     // Sanitizer to stop the tracking of user input/text fields
     dom: {
       inputSanitizer: true,
