@@ -102,6 +102,7 @@ function Step9SummarySection() {
           cellClasses={['', '', 'wmnds-text-align-right wmnds-p-r-none']}
           headers={[]}
           values={data}
+          data-private
         />
 
         {!ExistingUser && (
