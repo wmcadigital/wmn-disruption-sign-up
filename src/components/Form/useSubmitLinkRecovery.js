@@ -52,7 +52,7 @@ const useSubmitLinkRecovery = (setFormSubmitStatus) => {
           console.error({ error });
           setIsFetching(false);
           let errMsg;
-          if (error.response.data) {
+          if (error.response && error.response.data) {
             errMsg = error.response.data;
           } else {
             errMsg = error;

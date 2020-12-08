@@ -39,14 +39,26 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
 
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
-      {APIErrorMessage && isFetching === false && (
-        <Message
-          type="error"
-          title="Please try again"
-          message="Apologies, we are experiencing technical difficulties"
-          className="wmnds-m-b-md"
-        />
-      )}
+      {APIErrorMessage &&
+        APIErrorMessage !== "this email hasn't been registered" &&
+        isFetching === false && (
+          <Message
+            type="error"
+            title="Please try again"
+            message="Apologies, we are experiencing technical difficulties"
+            className="wmnds-m-b-md"
+          />
+        )}
+      {APIErrorMessage &&
+        APIErrorMessage === "this email hasn't been registered" &&
+        isFetching === false && (
+          <Message
+            type="error"
+            title="This email address does not exist"
+            message="Please check that you’ve entered the correct email address."
+            className="wmnds-m-b-md"
+          />
+        )}
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
