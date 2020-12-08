@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getSearchParam } from 'helpers/URLSearchParams';
 // Import components
 import Icon from './shared/Icon/Icon';
 
@@ -12,6 +13,10 @@ const Intro = ({ setIsFormStarted, setIsRecoverLinkPressed }) => {
     setIsFormStarted(true);
     setIsRecoverLinkPressed(true);
   };
+
+  if (getSearchParam('requestLink') === 'true') {
+    recoverLink();
+  }
 
   return (
     <div className="wmnds-col-1 wmnds-col-md-2-3">
