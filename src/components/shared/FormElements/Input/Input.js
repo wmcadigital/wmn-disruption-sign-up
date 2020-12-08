@@ -47,22 +47,18 @@ const Input = ({
           dangerouslySetInnerHTML={{ __html: sanitize(label) }}
         />
       )}
-
       {/* If there is an API error, show here */}
       {APIerrors}
 
       {/* If there is an error (and error is a string) show here */}
-      {errors[name] && typeof stringValue === 'string' && (
+      {errors[name] && typeof errors[name].message === 'string' && (
         <span
           className="wmnds-fe-error-message"
           dangerouslySetInnerHTML={{ __html: sanitize(errors[name].message) }}
         />
       )}
-
       {/* If there is an error (and error is a react element) show here */}
-      {errors[name] && typeof stringValue !== 'string' && (
-        <span className="wmnds-fe-error-message">{errors[name].message}</span>
-      )}
+      {errors[name] && typeof errors[name].message !== 'string' && errors[name].message}
 
       {/* If className then wrap just input with the className else, just show input as usual */}
       {className ? <div className={className}>{input}</div> : input}
