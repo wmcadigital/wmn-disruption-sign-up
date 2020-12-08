@@ -60,7 +60,9 @@ const Input = ({
       )}
 
       {/* If there is an error (and error is a react element) show here */}
-      {errors[name] && typeof stringValue !== 'string' && errors[name].message}
+      {errors[name] && typeof stringValue !== 'string' && (
+        <span className="wmnds-fe-error-message">{errors[name].message}</span>
+      )}
 
       {/* If className then wrap just input with the className else, just show input as usual */}
       {className ? <div className={className}>{input}</div> : input}
