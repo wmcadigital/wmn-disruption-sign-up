@@ -20,6 +20,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     EmailAlert,
     Phone,
     ExistingUser,
+    UserId,
   } = formDataState.formData;
 
   // Check if mobile phone has +44, if not, remove the 0 and add +44
@@ -35,7 +36,8 @@ const useSubmitForm = (setFormSubmitStatus) => {
     LineId: LineId.length > 0 ? LineId : ['1001'],
     Trains,
     EmailDisabled: EmailAlert !== 'yes',
-    MobileNumber: englishNumber,
+    MobileNumber: englishNumber || '',
+    siteCode: ExistingUser ? UserId : '',
   };
 
   const handleSubmit = async (event) => {

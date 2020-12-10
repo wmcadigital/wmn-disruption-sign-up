@@ -22,6 +22,7 @@ export const FormDataProvider = (props) => {
       LastName,
       Email: getSearchParam('email') || null,
       ExistingUser: getSearchParam('email') !== null || false,
+      UserId: getSearchParam('user') || null,
       LineId: [],
       BusServices: [],
       TramServices: [],

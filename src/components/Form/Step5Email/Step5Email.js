@@ -1,25 +1,65 @@
 import React, { useRef } from 'react';
-// Import custom hooks
-import useStepLogic from 'components/Form/useStepLogic';
+import axios from 'axios';
 // Import components
 import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
+import Button from 'components/shared/Button/Button';
+// Helper
+import { setSearchParam } from 'helpers/URLSearchParams';
+// Import custom hooks
+import useStepLogic from 'components/Form/useStepLogic';
 import useFormData from '../useFormData';
 
 const Step5Email = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+  const { register, handleSubmit, showGenericError, continueButton, setStep } = useStepLogic(
+    formRef
+  ); // Custom hook for handling continue button (validation, errors etc)
+
+  const goToRequestLinkStep = () => {
+    setStep(0);
+    setSearchParam('requestLink', true);
+  };
 
   // Labels used on inputs and for validation
   const emailLabel = 'Email address';
   // Logic used to validate the email field
   const emailRegex = /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches email regex on server
+  // To show in case of the entered email is not registered.
+  const ErrorMessage = (
+    <p>
+      <span className="wmnds-fe-error-message">This email address already exists</span>
+      <span>
+        If you&apos;ve lost the link to manage your disruption alerts,{' '}
+        <Button
+          title="Request a new link"
+          btnClass="wmnds-btn--link"
+          text="you can request a new one"
+          type="button"
+          onClick={goToRequestLinkStep}
+        />
+      </span>
+    </p>
+  );
   const emailValidation = register({
     required: `${emailLabel} is required`,
     pattern: {
       value: emailRegex,
       message: `Enter an ${emailLabel.toLowerCase()} in the correct format`,
     },
+    validate: async (value) =>
+      !(await axios({
+        url: '/personinfo',
+        baseURL: `${process.env.REACT_APP_API_HOST}api`,
+        method: 'post',
+        data: JSON.stringify({ Email: value, sitecode: 'any text' }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then()
+        // eslint-disable-next-line no-console
+        .catch((error) => console.error({ error }))) || ErrorMessage,
   });
 
   // Check if user is in the trial
