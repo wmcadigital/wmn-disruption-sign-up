@@ -15,7 +15,7 @@
     "dompurify": "^2.0.12",
     "logrocket": "^1.0.14",
     "logrocket-react": "^4.0.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
