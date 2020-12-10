@@ -14,7 +14,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 // If is prod build and is not netlify build (based on envs) then log using Sentry and Log Rocket
-if (process.env.NODE_ENV === 'production' && !process.env.NETLIFY) {
+if (process.env.NODE_ENV === 'production') {
   // LOG ROCKET
   // Used to log/track console errors with LogRocket
   LogRocket.init('brya8q/wmn-disruption-sign-up', {
