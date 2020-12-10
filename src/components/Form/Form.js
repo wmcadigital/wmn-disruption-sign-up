@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useForm, FormContext } from 'react-hook-form';
 // Import contexts
 import { FormDataContext } from 'globalState/FormDataContext';
+// Helper
+import { getSearchParam, delSearchParam } from 'helpers/URLSearchParams';
 // Import components
 import Step0Recovery from './Step0Recovery/Step0Recovery';
 import Step1Name from './Step1Name/Step1Name';
@@ -18,8 +20,6 @@ import SubmitSuccess from './Step10SubmitConfirmation/Success';
 import SubmitError from './Step10SubmitConfirmation/Error';
 // Custom Hooks
 import useTrackFormAbandonment from './useTrackFormAbandonment';
-// Helper
-import { getSearchParam, delSearchParam } from 'helpers/URLSearchParams';
 // Import styling
 import s from './Form.module.scss';
 
