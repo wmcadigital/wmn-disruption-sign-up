@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Intro from './components/Intro';
 import Form from './components/Form/Form';
 // Import contexts
@@ -14,6 +14,17 @@ function App() {
   const [isRecoverLinkPressed, setIsRecoverLinkPressed] = useState(false);
   const [formSubmitStatus, setFormSubmitStatus] = useState(null);
 
+  const goToRecoverLinkStep = () => {
+    setIsFormStarted(true);
+    setIsRecoverLinkPressed(true);
+  };
+
+  useEffect(() => {
+    if (getSearchParam('requestLink')) {
+      goToRecoverLinkStep();
+    }
+  }, []);
+
   if (getSearchParam('email') && !isFormStarted) {
     setIsFormStarted(true);
   }
@@ -23,10 +34,7 @@ function App() {
       <HeaderAndBreadcrumb isFormStarted={isFormStarted} formSubmitStatus={formSubmitStatus} />
       <main className="wmnds-container wmnds-container--main wmnds-p-b-lg wmnds-grid">
         {!isFormStarted ? (
-          <Intro
-            setIsFormStarted={setIsFormStarted}
-            setIsRecoverLinkPressed={setIsRecoverLinkPressed}
-          />
+          <Intro setIsFormStarted={setIsFormStarted} goToRecoverLinkStep={goToRecoverLinkStep} />
         ) : (
           <FormDataProvider>
             {isFormStarted && formSubmitStatus === null && (

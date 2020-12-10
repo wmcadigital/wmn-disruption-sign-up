@@ -3,6 +3,9 @@ import axios from 'axios';
 // Import components
 import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
+import Button from 'components/shared/Button/Button';
+// Helper
+import { setSearchParam } from 'helpers/URLSearchParams';
 // Import custom hooks
 import useStepLogic from 'components/Form/useStepLogic';
 import useFormData from '../useFormData';
@@ -12,6 +15,11 @@ const Step5Email = () => {
   const { register, handleSubmit, showGenericError, continueButton, setStep } = useStepLogic(
     formRef
   ); // Custom hook for handling continue button (validation, errors etc)
+
+  const goToRequestLinkStep = () => {
+    setStep(0);
+    setSearchParam('requestLink', true);
+  };
 
   // Labels used on inputs and for validation
   const emailLabel = 'Email address';
@@ -23,15 +31,13 @@ const Step5Email = () => {
       <span className="wmnds-fe-error-message">This email address already exists</span>
       <span>
         If you&apos;ve lost the link to manage your disruption alerts,{' '}
-        <a
-          href="#recoverlink"
-          target="_self"
-          className="wmnds-link"
+        <Button
           title="Request a new link"
-          onClick={() => setStep(0)}
-        >
-          you can request a new one
-        </a>
+          btnClass="wmnds-btn--link"
+          text="you can request a new one"
+          type="button"
+          onClick={goToRequestLinkStep}
+        />
       </span>
     </p>
   );

@@ -18,6 +18,8 @@ import SubmitSuccess from './Step10SubmitConfirmation/Success';
 import SubmitError from './Step10SubmitConfirmation/Error';
 // Custom Hooks
 import useTrackFormAbandonment from './useTrackFormAbandonment';
+// Helper
+import { getSearchParam, delSearchParam } from 'helpers/URLSearchParams';
 // Import styling
 import s from './Form.module.scss';
 
@@ -81,6 +83,12 @@ const Form = ({
     }
   }
 
+  const goBackOnRequestLinkStep = () => {
+    if (getSearchParam('requestLink')) delSearchParam('requestLink');
+    setIsRecoverLinkPressed(false);
+    setIsFormStarted(false);
+  };
+
   // Run! Like go get some data from an API.
   return (
     <>
@@ -109,10 +117,7 @@ const Form = ({
               <button
                 type="button"
                 className={`wmnds-link ${s.asLink}`}
-                onClick={() => {
-                  setIsRecoverLinkPressed(false);
-                  setIsFormStarted(false);
-                }}
+                onClick={goBackOnRequestLinkStep}
               >
                 &lt; Back
               </button>

@@ -1,23 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getSearchParam, delSearchParam } from 'helpers/URLSearchParams';
+import { setSearchParam } from 'helpers/URLSearchParams';
 // Import components
 import Icon from './shared/Icon/Icon';
+import Button from './shared/Button/Button';
 
-const Intro = ({ setIsFormStarted, setIsRecoverLinkPressed }) => {
+const Intro = ({ setIsFormStarted, goToRecoverLinkStep }) => {
   const handleClick = () => {
     setIsFormStarted(true);
   };
 
   const recoverLink = () => {
-    setIsFormStarted(true);
-    setIsRecoverLinkPressed(true);
+    setSearchParam('requestLink', true);
+    goToRecoverLinkStep();
   };
-
-  if (getSearchParam('requestLink') === 'true') {
-    recoverLink();
-    delSearchParam('requestLink');
-  }
 
   return (
     <div className="wmnds-col-1 wmnds-col-md-2-3">
@@ -43,20 +39,18 @@ const Intro = ({ setIsFormStarted, setIsRecoverLinkPressed }) => {
 
       <p>
         If you&apos;ve lost the link to manage your disruption alerts, <br />
-        <a
-          href="#recoverlink"
-          onClick={() => recoverLink()}
+        <Button
+          onClick={recoverLink}
           title="Request new link to manage your disruption alerts"
-          className="wmds-link"
-        >
-          you can request a new one
-        </a>{' '}
+          btnClass="wmnds-btn--link"
+          text="you can request a new one"
+        />
       </p>
     </div>
   );
 };
 Intro.propTypes = {
   setIsFormStarted: PropTypes.func.isRequired,
-  setIsRecoverLinkPressed: PropTypes.func.isRequired,
+  goToRecoverLinkStep: PropTypes.func.isRequired,
 };
 export default Intro;
