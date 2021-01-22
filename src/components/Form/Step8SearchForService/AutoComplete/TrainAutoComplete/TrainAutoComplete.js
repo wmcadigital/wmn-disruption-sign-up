@@ -1,114 +1,64 @@
-import React, { useState, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
-// Custom Hooks
+import React, { useState } from 'react';
+// Custom hooks
+import useFormData from 'components/Form/useFormData';
 import useStepLogic from 'components/Form/useStepLogic';
-// Import components
-import Message from 'components/Message';
-import Icon from 'components/shared/Icon/Icon';
-import TrainAutoCompleteResult from './TrainAutoCompleteResult';
-// Local CustomHooks
-import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
-import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
-import SelectedTrainStation from './SelectedTrainStation/SelectedTrainStation';
+// Components
+import Button from 'components/shared/Button/Button';
+import TrainAutoCompleteInput from './TrainAutoCompleteInput';
+import TrainAutoCompleteSelectLines from './TrainAutoCompleteSelectLines/TrainAutoCompleteSelectLines';
 
-const TrainAutoComplete = ({ mode, setMode, trainStations, setTrainStations, to }) => {
-  const { formDataState, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
-  const [query, setQuery] = useState(); // placeholder for getting/setting query
+const TrainAutoComplete = () => {
+  const { setMode } = useFormData();
+  const { formDataState, formDataDispatch, setStep } = useStepLogic();
+  const [trainStations, setStations] = useState({ From: null, To: null });
+  // Functions to pass to children
+  const setTrainStationFrom = (station) =>
+    setStations((prevState) => {
+      return { ...prevState, From: station };
+    });
 
-  const resultsList = useRef(null);
-  const debounceInput = useRef(null);
+  const setTrainStationTo = (station) =>
+    setStations((prevState) => {
+      return { ...prevState, To: station };
+    });
 
-  // customHook used to fetch results based on query
-  const { loading, errorInfo, results } = useAutoCompleteAPI(
-    `/rail/v2/station?q=${encodeURI(query)}`,
-    'train',
-    query,
-    to
-  );
-
-  const selectedService = to ? trainStations.To : trainStations.From;
-
-  // Import handleKeyDown function from customHook (used by all modes)
-  const { handleKeyDown } = useHandleAutoCompleteKeys(resultsList, debounceInput, results);
-
-  // Go back to prev step if cancel
-  const handleCancel = () => {
-    setStep(formDataState.currentStep - 1);
+  const goToPreviousStep = () => {
     setMode(null);
+    setStep(formDataState.currentStep - 1);
   };
+
+  const bothStationsSelected = trainStations.From?.name && trainStations.To?.name;
 
   return (
     <>
-      {selectedService && selectedService?.id ? (
-        <SelectedTrainStation
-          selectedService={selectedService}
-          setTrainStations={setTrainStations}
+      {bothStationsSelected ? (
+        <TrainAutoCompleteSelectLines
+          goToPreviousStep={goToPreviousStep}
+          formDataDispatch={formDataDispatch}
+          formDataState={formDataState}
+          trainStations={trainStations}
         />
       ) : (
-        <div className="wmnds-grid wmnds-grid--justify-between">
-          <div className="wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-4-5">
-            <div className={`wmnds-autocomplete wmnds-grid ${loading ? 'wmnds-is--loading' : ''}`}>
-              <Icon iconName="general-search" className="wmnds-autocomplete__icon" />
-              <div className="wmnds-loader" role="alert" aria-live="assertive">
-                <p className="wmnds-loader__content">Content is loading...</p>
-              </div>
-              <DebounceInput
-                type="text"
-                name="busSearch"
-                placeholder="Search for a stop"
-                className="wmnds-fe-input wmnds-autocomplete__input"
-                value={query || ''}
-                onChange={(e) => setQuery(e.target.value)}
-                aria-label="Search for a stop"
-                debounceTimeout={600}
-                onKeyDown={(e) => handleKeyDown(e)}
-                inputRef={debounceInput}
-              />
-            </div>
-            {/* If there is no data.length(results) and the user hasn't submitted a query and the state isn't loading then the user should be displayed with no results message, else show results */}
-            {!results.length && query && !loading && errorInfo ? (
-              <Message type="error" title={errorInfo.title} message={errorInfo.message} />
-            ) : (
-              query && (
-                <ul className="wmnds-autocomplete-suggestions wmnds-m-b-none" ref={resultsList}>
-                  {/* Only show autocomplete results if there is a query, also filter out any results that the user has already added
-                   */}
-                  {results.map((result) => {
-                    return (
-                      <TrainAutoCompleteResult
-                        key={result.id}
-                        result={result}
-                        handleKeyDown={handleKeyDown}
-                        type={mode}
-                        handleCancel={handleCancel}
-                        setTrainStations={setTrainStations}
-                        to={to}
-                      />
-                    );
-                  })}
-                </ul>
-              )
-            )}
+        <>
+          <div className="wmnds-col-1 wmnds-m-b-xl">
+            <h4>Select trains between</h4>
+            {/* From station */}
+            <TrainAutoCompleteInput station={trainStations.From} setStation={setTrainStationFrom} />
+            <strong className="wmnds-col-1 wmnds-m-t-md wmnds-m-b-md">and</strong>
+            {/* To station */}
+            <TrainAutoCompleteInput station={trainStations.To} setStation={setTrainStationTo} />
           </div>
-        </div>
+          <div className="wmnds-col-1 wmnds-col-md-2-5">
+            <Button
+              btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
+              text="Cancel"
+              onClick={goToPreviousStep}
+            />
+          </div>
+        </>
       )}
     </>
   );
-};
-
-// PropTypes
-TrainAutoComplete.propTypes = {
-  mode: PropTypes.string.isRequired,
-  setMode: PropTypes.func.isRequired,
-  trainStations: PropTypes.objectOf(PropTypes.any).isRequired,
-  setTrainStations: PropTypes.func.isRequired,
-  to: PropTypes.bool,
-};
-
-// Default props
-TrainAutoComplete.defaultProps = {
-  to: false,
 };
 
 export default TrainAutoComplete;

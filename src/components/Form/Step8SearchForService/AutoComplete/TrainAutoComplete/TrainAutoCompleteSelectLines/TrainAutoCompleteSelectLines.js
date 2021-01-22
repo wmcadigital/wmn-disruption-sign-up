@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/shared/Icon/Icon';
 import Button from 'components/shared/Button/Button';
-import useStepLogic from 'components/Form/useStepLogic';
 // Style
 import s from './TrainAutoCompleteSelectLines.module.scss';
 
-const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
-  const { formDataState, formDataDispatch, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
+const TrainAutoCompleteSelectLines = ({
+  formDataState,
+  formDataDispatch,
+  goToPreviousStep,
+  trainStations,
+}) => {
   const lineIds = formDataState.formData?.Trains[0]?.LineIds || []; // Get the selected lines to what has already been selected or empty array
   const [selectedLines, setSelectedLines] = useState(lineIds); // Set state to lineIds var above
   const originalSelectedLines = lineIds; // This is used so we can store the original value and compare if the user changes anything (used to show continue/cancel button below)
@@ -82,8 +85,7 @@ const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
     formDataDispatch({ type: 'UPDATE_FORM_DATA', payload }); // Write new payload/data to global state
 
     // Go back to prev step
-    setMode(null);
-    setStep(formDataState.currentStep - 1);
+    goToPreviousStep();
   };
 
   return (
@@ -136,7 +138,7 @@ const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
           <Button
             btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
             text="Cancel"
-            onClick={() => setStep(formDataState.currentStep - 1)}
+            onClick={goToPreviousStep}
           />
         </div>
       )}
@@ -145,7 +147,9 @@ const TrainAutoCompleteSelectLines = ({ setMode, trainStations }) => {
 };
 
 TrainAutoCompleteSelectLines.propTypes = {
-  setMode: PropTypes.func.isRequired,
+  formDataDispatch: PropTypes.func.isRequired,
+  formDataState: PropTypes.objectOf(PropTypes.any).isRequired,
+  goToPreviousStep: PropTypes.func.isRequired,
   trainStations: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
