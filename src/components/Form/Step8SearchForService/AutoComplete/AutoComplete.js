@@ -4,6 +4,7 @@ import React from 'react';
 import useFormData from 'components/Form/useFormData';
 import BusAutoComplete from './BusAutoComplete/BusAutoComplete';
 import TrainAutoComplete from './TrainAutoComplete/TrainAutoComplete';
+import TramAutoComplete from './TramAutoComplete/TramAutoComplete';
 
 const AutoComplete = () => {
   const { mode } = useFormData();
@@ -14,7 +15,7 @@ const AutoComplete = () => {
     const autoCompleteTitle = (text) => {
       return (
         <div className="wmnds-col-1">
-          <h4>{`Search for a ${text} service`}</h4>
+          <h4>{text}</h4>
         </div>
       );
     };
@@ -30,6 +31,9 @@ const AutoComplete = () => {
 
       case 'train':
         return <TrainAutoComplete />;
+
+      case 'tram':
+        return <TramAutoComplete />;
 
       default:
         return null;

@@ -5,57 +5,46 @@ import RemoveService from 'components/shared/RemoveService/RemoveService';
 import useStepLogic from 'components/Form/useStepLogic';
 
 const AddTramService = () => {
-  const { formDataState, formDataDispatch } = useStepLogic();
-  const { TramServices } = formDataState.formData;
+  const { formDataState, formDataDispatch, setStep } = useStepLogic();
+  const { TramLines } = formDataState.formData;
 
-  const handleRemoveTram = (id) => {
-    formDataDispatch({ type: 'REMOVE_TRAM', payload: id });
+  const handleRemoveTram = (route) => {
+    const { From, To } = route;
+    formDataDispatch({ type: 'REMOVE_TRAM', payload: { From, To } });
   };
 
   const handleAddTram = () => {
-    const defTram = [
-      {
-        id: '4546',
-        routeName: 'Birmingham - Wolverhampton - Birmingham',
-        serviceNumber: 'MM1',
-      },
-    ];
-
-    const { LineId } = formDataState.formData;
-
     formDataDispatch({
-      type: 'UPDATE_FORM_DATA',
-      payload: { LineId: [...LineId, 4546], TramServices: defTram },
+      type: 'UPDATE_MODE',
+      payload: 'tram',
     });
+    setStep(formDataState.currentStep + 1);
   };
 
   return (
     <>
       <h3 className="wmnds-p-t-md">Trams</h3>
       {/* Add tram service button */}
-      {(!TramServices || TramServices.length === 0) && (
-        <Button
-          btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
-          onClick={handleAddTram}
-          text="Add tram service"
-          iconRight="general-expand"
-        />
-      )}
-
+      <Button
+        btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
+        onClick={handleAddTram}
+        text="Add tram service"
+        iconRight="general-expand"
+      />
       {/* Show the tram services the user has added */}
-      {TramServices && TramServices.length > 0 && (
+      {TramLines && TramLines.length > 0 && (
         <>
           <h4 className="wmnds-m-b-sm wmnds-m-t-lg">Tram services that you want to add</h4>
-          {TramServices.map((tramRoute) => {
+          {TramLines.map((route) => {
             return (
               <RemoveService
                 showRemove
-                onClick={() => handleRemoveTram(tramRoute.id)}
-                serviceNumber={tramRoute.serviceNumber}
+                onClick={() => handleRemoveTram(route)}
+                serviceNumber="MM1"
                 mode="tram"
-                routeName={tramRoute.routeName}
-                id={tramRoute.id}
-                key={`${tramRoute.id}`}
+                routeName={`${route.From.name} to ${route.To.name}`}
+                id={`${route.From.id}-${route.To.id}`}
+                key={`${route.From.id}-${route.To.id}`}
               />
             );
           })}
