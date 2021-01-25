@@ -8,7 +8,7 @@ import TrainAutoCompleteResult from './TrainAutoCompleteResult';
 // Local CustomHooks
 import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
-import SelectedTrainStation from './SelectedTrainStation/SelectedTrainStation';
+import SelectedTrainStation from './SelectedTrainStation';
 
 const TrainAutoComplete = ({ station, setStation }) => {
   const [query, setQuery] = useState(); // placeholder for getting/setting query
