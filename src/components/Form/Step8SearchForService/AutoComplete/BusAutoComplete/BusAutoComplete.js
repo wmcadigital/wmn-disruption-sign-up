@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import PropTypes from 'prop-types';
 import { DebounceInput } from 'react-debounce-input'; // https://www.npmjs.com/package/react-debounce-input
 // Custom Hooks
+import useFormData from 'components/Form/useFormData';
 import useStepLogic from 'components/Form/useStepLogic';
 // Import components
 import Button from 'components/shared/Button/Button';
@@ -12,7 +12,8 @@ import BusAutoCompleteResult from './BusAutoCompleteResult';
 import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
 
-const BusAutoComplete = ({ mode, setMode }) => {
+const BusAutoComplete = () => {
+  const { setMode } = useFormData();
   const { formDataState, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
   const [query, setQuery] = useState(); // placeholder for getting/setting query
   const BusServices = formDataState.formData.BusServices || []; // Get currently selected bus services
@@ -95,7 +96,6 @@ const BusAutoComplete = ({ mode, setMode }) => {
                       key={result.id}
                       result={result}
                       handleKeyDown={handleKeyDown}
-                      type={mode}
                       handleCancel={handleCancel}
                     />
                   );
@@ -113,11 +113,6 @@ const BusAutoComplete = ({ mode, setMode }) => {
       </div>
     </div>
   );
-};
-
-BusAutoComplete.propTypes = {
-  mode: PropTypes.string.isRequired,
-  setMode: PropTypes.func.isRequired,
 };
 
 export default BusAutoComplete;
