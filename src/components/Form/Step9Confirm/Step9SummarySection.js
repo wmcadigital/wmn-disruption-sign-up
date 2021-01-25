@@ -14,7 +14,7 @@ function Step9SummarySection() {
     Email,
     Phone,
     BusServices,
-    TramServices,
+    TramLines,
     Trains,
     ExistingUser,
   } = formDataState.formData;
@@ -131,17 +131,17 @@ function Step9SummarySection() {
             )}
 
             {/* Trams */}
-            {TramServices && TramServices.length > 0 && (
+            {TramLines && TramLines.length > 0 && (
               <div className="wmnds-m-b-lg">
                 <h4>Trams</h4>
-                {TramServices.map((tramRoute) => {
+                {TramLines.map((route) => {
                   return (
                     <RemoveService
                       mode="tram"
-                      id={tramRoute.id}
-                      serviceNumber={tramRoute.serviceNumber}
-                      routeName={tramRoute.routeName}
-                      key={`${tramRoute.serviceNumber}`}
+                      id={`${route.From.id}-${route.To.id}`}
+                      serviceNumber="MM1"
+                      routeName={`${route.From.name} to ${route.To.name}`}
+                      key={`${route.From.id}-${route.To.id}`}
                       showRemove={false}
                     />
                   );

@@ -24,7 +24,7 @@ export const FormDataProvider = (props) => {
       ExistingUser: getSearchParam('email') !== null || false,
       LineId: [],
       BusServices: [],
-      TramServices: [],
+      TramLines: [],
       Trains: [],
     },
     formRef: '',
@@ -56,14 +56,16 @@ export const FormDataProvider = (props) => {
         };
       }
 
-      // Remove the bus route from form data
+      // Remove the tram route from form data
       case 'REMOVE_TRAM': {
         return {
           ...state,
           formData: {
             ...state.formData,
-            TramServices: state.formData.TramServices.filter((tram) => action.payload !== tram.id),
-            LineId: state.formData.LineId.filter((tramId) => +action.payload !== tramId),
+            TramLines: state.formData.TramLines.filter(
+              (line) =>
+                action.payload.From.id !== line.From.id || action.payload.To.id !== line.To.id
+            ),
           },
         };
       }
