@@ -44,6 +44,17 @@ export const FormDataProvider = (props) => {
         };
       }
 
+      // Remove a line id
+      case 'REMOVE_LINE': {
+        return {
+          ...state,
+          formData: {
+            ...state.formData,
+            LineId: state.formData.LineId.filter((lineId) => action.payload.lineId !== lineId),
+          },
+        };
+      }
+
       // Remove the bus route from form data
       case 'REMOVE_BUS': {
         return {
