@@ -10,7 +10,7 @@ import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
 import SelectedTramStop from './SelectedTramStop';
 
-const TrainAutoComplete = ({ stop, setStop }) => {
+const TramAutoComplete = ({ stop, setStop }) => {
   const [query, setQuery] = useState(); // placeholder for getting/setting query
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
@@ -77,13 +77,13 @@ const TrainAutoComplete = ({ stop, setStop }) => {
 };
 
 // PropTypes
-TrainAutoComplete.propTypes = {
+TramAutoComplete.propTypes = {
   stop: PropTypes.objectOf(PropTypes.any),
   setStop: PropTypes.func.isRequired,
 };
 
-TrainAutoComplete.defaultProps = {
+TramAutoComplete.defaultProps = {
   stop: null,
 };
 
-export default TrainAutoComplete;
+export default TramAutoComplete;
