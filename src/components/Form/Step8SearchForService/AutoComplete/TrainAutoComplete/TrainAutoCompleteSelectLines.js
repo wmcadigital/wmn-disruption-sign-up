@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import Icon from 'components/shared/Icon/Icon';
 import Button from 'components/shared/Button/Button';
 // Style
-import s from './TrainAutoCompleteSelectLines.module.scss';
+import s from '../ServiceAutocomplete.module.scss';
 
 const TrainAutoCompleteSelectLines = ({
   formDataState,
   formDataDispatch,
-  goToPreviousStep,
+  closeAutoComlplete,
   trainStations,
 }) => {
   const lineIds = formDataState.formData?.Trains[0]?.LineIds || []; // Get the selected lines to what has already been selected or empty array
@@ -85,7 +85,7 @@ const TrainAutoCompleteSelectLines = ({
     formDataDispatch({ type: 'UPDATE_FORM_DATA', payload }); // Write new payload/data to global state
 
     // Go back to prev step
-    goToPreviousStep();
+    closeAutoComlplete();
   };
 
   return (
@@ -138,7 +138,7 @@ const TrainAutoCompleteSelectLines = ({
           <Button
             btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
             text="Cancel"
-            onClick={goToPreviousStep}
+            onClick={closeAutoComlplete}
           />
         </div>
       )}
@@ -149,7 +149,7 @@ const TrainAutoCompleteSelectLines = ({
 TrainAutoCompleteSelectLines.propTypes = {
   formDataDispatch: PropTypes.func.isRequired,
   formDataState: PropTypes.objectOf(PropTypes.any).isRequired,
-  goToPreviousStep: PropTypes.func.isRequired,
+  closeAutoComlplete: PropTypes.func.isRequired,
   trainStations: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
