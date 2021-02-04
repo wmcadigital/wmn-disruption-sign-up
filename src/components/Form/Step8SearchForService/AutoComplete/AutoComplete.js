@@ -1,13 +1,21 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-// Import components
+// Import hooks
 import useFormData from 'components/Form/useFormData';
+import useStepLogic from 'components/Form/useStepLogic';
+// Import components
 import BusAutoComplete from './BusAutoComplete/BusAutoComplete';
 import TrainAutoComplete from './TrainAutoComplete/TrainAutoComplete';
 import TramAutoComplete from './TramAutoComplete/TramAutoComplete';
 
 const AutoComplete = () => {
-  const { mode } = useFormData();
+  const { mode, setMode } = useFormData();
+  const { formDataState, setStep } = useStepLogic();
+
+  const closeAutoComplete = () => {
+    setMode(null);
+    setStep(formDataState.currentStep - 1);
+  };
 
   // Do a switch on the mode, then return the component related to that
   const autoCompleteToShow = () => {
@@ -25,15 +33,15 @@ const AutoComplete = () => {
         return (
           <>
             {autoCompleteTitle(`Search for a bus service`)}
-            <BusAutoComplete />
+            <BusAutoComplete closeAutoComplete={closeAutoComplete} />
           </>
         );
 
       case 'train':
-        return <TrainAutoComplete />;
+        return <TrainAutoComplete closeAutoComplete={closeAutoComplete} />;
 
       case 'tram':
-        return <TramAutoComplete />;
+        return <TramAutoComplete closeAutoComplete={closeAutoComplete} />;
 
       default:
         return null;

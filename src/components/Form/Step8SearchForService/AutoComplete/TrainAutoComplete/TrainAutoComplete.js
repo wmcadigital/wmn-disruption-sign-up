@@ -1,39 +1,33 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 // Custom hooks
-import useFormData from 'components/Form/useFormData';
 import useStepLogic from 'components/Form/useStepLogic';
 // Components
 import Button from 'components/shared/Button/Button';
 import TrainAutoCompleteInput from './TrainAutoCompleteInput';
-import TrainAutoCompleteSelectLines from './TrainAutoCompleteSelectLines/TrainAutoCompleteSelectLines';
+import TrainAutoCompleteSelectLines from './TrainAutoCompleteSelectLines';
 
-const TrainAutoComplete = () => {
-  const { setMode } = useFormData();
-  const { formDataState, formDataDispatch, setStep } = useStepLogic();
+const TrainAutoComplete = ({ closeAutoComplete }) => {
+  const { formDataState, formDataDispatch } = useStepLogic();
   const [trainStations, setStations] = useState({ From: null, To: null });
+
   // Functions to pass to children
-  const setTrainStationFrom = (station) =>
+  const setTrainStation = (direction) => (station) => {
     setStations((prevState) => {
-      return { ...prevState, From: station };
+      return { ...prevState, [direction]: station };
     });
-
-  const setTrainStationTo = (station) =>
-    setStations((prevState) => {
-      return { ...prevState, To: station };
-    });
-
-  const goToPreviousStep = () => {
-    setMode(null);
-    setStep(formDataState.currentStep - 1);
   };
+  const setTrainStationFrom = setTrainStation('From');
+  const setTrainStationTo = setTrainStation('To');
 
+  // Helper boolean
   const bothStationsSelected = trainStations.From?.name && trainStations.To?.name;
 
   return (
     <>
       {bothStationsSelected ? (
         <TrainAutoCompleteSelectLines
-          goToPreviousStep={goToPreviousStep}
+          goToPreviousStep={closeAutoComplete}
           formDataDispatch={formDataDispatch}
           formDataState={formDataState}
           trainStations={trainStations}
@@ -52,13 +46,17 @@ const TrainAutoComplete = () => {
             <Button
               btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
               text="Cancel"
-              onClick={goToPreviousStep}
+              onClick={closeAutoComplete}
             />
           </div>
         </>
       )}
     </>
   );
+};
+
+TrainAutoComplete.propTypes = {
+  closeAutoComplete: PropTypes.func.isRequired,
 };
 
 export default TrainAutoComplete;
