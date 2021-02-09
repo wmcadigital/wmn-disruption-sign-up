@@ -12,7 +12,7 @@ const AddTramService = () => {
   const { TramLines, LineId } = formDataState.formData;
 
   // Move to the next step
-  const showTramAutoCompletes = () => {
+  const showTramAutoComplete = () => {
     formDataDispatch({
       type: 'UPDATE_MODE',
       payload: 'tram',
@@ -21,13 +21,13 @@ const AddTramService = () => {
   };
 
   // Functions to update global state
-  const handleRemoveTram = (route) => {
+  const removeTramStops = (route) => {
     const { From, To } = route;
     formDataDispatch({ type: 'REMOVE_TRAM', payload: { From, To } });
   };
 
-  const handleRemoveTramLine = (lineId) => {
-    formDataDispatch({ type: 'REMOVE_TRAM_LINE', payload: { lineId } });
+  const removeTramLine = (lineId) => {
+    formDataDispatch({ type: 'REMOVE_LINE', payload: { lineId } });
   };
 
   // Get the info for selected full lines
@@ -44,7 +44,7 @@ const AddTramService = () => {
       {!isFullLineSelected && (
         <Button
           btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
-          onClick={showTramAutoCompletes}
+          onClick={showTramAutoComplete}
           text="Add tram service"
           iconRight="general-expand"
         />
@@ -59,7 +59,7 @@ const AddTramService = () => {
             return (
               <RemoveService
                 showRemove
-                onClick={() => handleRemoveTram(route)}
+                onClick={() => removeTramStops(route)}
                 serviceNumber="MM1"
                 mode="tram"
                 routeName={`${route.From.name} to ${route.To.name}`}
@@ -75,7 +75,7 @@ const AddTramService = () => {
             return (
               <RemoveService
                 showRemove
-                onClick={() => handleRemoveTramLine(line.id)}
+                onClick={() => removeTramLine(line.id)}
                 serviceNumber={line.serviceNumber}
                 mode="tram"
                 routeName={line.routeName}
