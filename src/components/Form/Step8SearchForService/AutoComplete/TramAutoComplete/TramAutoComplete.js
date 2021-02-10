@@ -52,6 +52,7 @@ const TramAutoComplete = ({ closeAutoComplete }) => {
   // Helper booleans
   const bothStopsSelected = tramStops.From?.name && tramStops.To?.name;
   const isFullLineSelected = selectedLines.length > 0;
+  const hasPreviouslySelectedStops = formDataState.formData.TramLines.length > 0;
 
   const warningMessage = (
     <p className="wmnds-m-b-none">
@@ -78,7 +79,7 @@ const TramAutoComplete = ({ closeAutoComplete }) => {
           setSelectedLines={setSlectedTramLines}
         />
         {/* Warning message for when selecting the whole line */}
-        {isFullLineSelected && (
+        {isFullLineSelected && hasPreviouslySelectedStops && (
           <div className="wmnds-grid">
             <div className="wmnds-col-md-7-8">
               <WarningText type="warning" message={warningMessage} className="wmnds-p-r-sm" />
