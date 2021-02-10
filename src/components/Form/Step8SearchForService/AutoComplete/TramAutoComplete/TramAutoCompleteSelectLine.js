@@ -40,7 +40,7 @@ const TramAutoCompleteSelectLine = ({ selectedLines, setSelectedLines }) => {
                 {line.serviceNumber}
               </div>
 
-              <strong className="wmnds-col-auto">{line.routeName}</strong>
+              <strong className={`wmnds-col-auto ${s.routeName}`}>{line.routeName}</strong>
 
               <div className="wmnds-fe-checkboxes__container wmnds-m-b-none">
                 {/* Right side for remove service button */}
