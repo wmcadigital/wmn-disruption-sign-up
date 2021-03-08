@@ -27,7 +27,7 @@ const TrainAutoComplete = ({ closeAutoComplete }) => {
     <>
       {bothStationsSelected ? (
         <TrainAutoCompleteSelectLines
-          goToPreviousStep={closeAutoComplete}
+          closeAutoComlplete={closeAutoComplete}
           formDataDispatch={formDataDispatch}
           formDataState={formDataState}
           trainStations={trainStations}
