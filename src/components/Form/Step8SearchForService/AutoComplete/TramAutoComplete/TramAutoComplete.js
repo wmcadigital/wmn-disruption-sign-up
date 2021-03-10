@@ -23,7 +23,7 @@ const TramAutoComplete = ({ closeAutoComplete }) => {
   const setTramStopTo = setTramStop('To');
 
   // Function for updating local tramLines state
-  const setSlectedTramLines = useCallback((lineIds) => setSelectedLines(lineIds), []);
+  const setSelectedTramLines = useCallback((lineIds) => setSelectedLines(lineIds), []);
 
   // Function for pushing data to global state
   const selectTramOptions = () => {
@@ -77,7 +77,7 @@ const TramAutoComplete = ({ closeAutoComplete }) => {
         <h4 className="wmnds-m-t-lg">Or select entire tram line</h4>
         <TramAutoCompleteSelectLine
           selectedLines={formDataState.formData.LineId}
-          setSelectedLines={setSlectedTramLines}
+          setSelectedLines={setSelectedTramLines}
         />
         {/* Warning message for when selecting the whole line */}
         {isFullLineSelected && hasAnySelectedStops && (
