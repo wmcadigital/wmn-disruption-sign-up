@@ -5,7 +5,19 @@
   "homepage": "https://disruption-sign-up.wmnetwork.co.uk/",
   "author": "WMCA",
   "main": "src/index.js",
+  "repository": "https://github.com/wmcadigital/wmn-disruption-sign-up",
+  "bugs": {
+    "url": "https://github.com/wmcadigital/wmn-disruption-sign-up/issues"
+  },
   "copyright": "WMCA",
+  "scripts": {
+    "start": "react-app-rewired start",
+    "lint:styles": "sass-lint '**/*.scss'",
+    "update-packages": "ncu",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@sentry/react": "^5.27.2",
     "@testing-library/jest-dom": "^5.11.0",
@@ -34,15 +46,6 @@
     "eslint-plugin-react": "^7.21.2",
     "prettier": "^2.1.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -51,10 +54,11 @@
       "ie 11"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version",
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
       "ie 11"
     ]
-  }
+  },
+  "sasslintConfig": ".sass-lint.yml"
 }
