@@ -89,11 +89,11 @@ const TramAutoComplete = ({ closeAutoComplete }) => {
         )}
       </div>
       {bothStopsSelected || isFullLineSelected ? (
-        <Button btnClass="wmnds-btn wmnds-col-1" text="Continue" onClick={selectTramOptions} />
+        <Button btnClass="wmnds-btn" text="Continue" onClick={selectTramOptions} />
       ) : (
         <div className="wmnds-col-1 wmnds-col-md-2-5">
           <Button
-            btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
+            btnClass="wmnds-btn wmnds-btn--primary"
             text="Cancel"
             onClick={closeAutoComplete}
           />
