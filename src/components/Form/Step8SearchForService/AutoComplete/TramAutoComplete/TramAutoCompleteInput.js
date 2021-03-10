@@ -16,7 +16,7 @@ const TramAutoComplete = ({ stop, setStop }) => {
   const debounceInput = useRef(null);
   // customHook used to fetch results based on query
   const { loading, errorInfo, results } = useAutoCompleteAPI(
-    `/metro/v1/stop?q=${encodeURI(query)}`,
+    `/metro/v2/stop?q=${encodeURI(query)}`,
     'tram',
     query
   );
