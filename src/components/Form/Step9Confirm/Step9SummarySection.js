@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+// Hooks
+import useSelectableTramLines from 'components/Form/useSelectableTramLines';
 // Context
 import { FormDataContext } from 'globalState/FormDataContext';
 // Components
@@ -16,8 +18,10 @@ function Step9SummarySection() {
     BusServices,
     TramLines,
     Trains,
+    LineId,
     ExistingUser,
   } = formDataState.formData;
+  const { filterTramLineInfo } = useSelectableTramLines();
 
   const setStepInContext = (st) => {
     formDataDispatch({
@@ -131,21 +135,34 @@ function Step9SummarySection() {
             )}
 
             {/* Trams */}
-            {TramLines && TramLines.length > 0 && (
+            {((TramLines && TramLines.length > 0) || filterTramLineInfo(LineId).length) && (
               <div className="wmnds-m-b-lg">
                 <h4>Trams</h4>
-                {TramLines.map((route) => {
-                  return (
-                    <RemoveService
-                      mode="tram"
-                      id={`${route.From.id}-${route.To.id}`}
-                      serviceNumber="MM1"
-                      routeName={`${route.From.name} to ${route.To.name}`}
-                      key={`${route.From.id}-${route.To.id}`}
-                      showRemove={false}
-                    />
-                  );
-                })}
+                {/* Stop by stop */}
+                {TramLines.length > 0 &&
+                  TramLines.map((route) => {
+                    return (
+                      <RemoveService
+                        mode="tram"
+                        id={`${route.From.id}-${route.To.id}`}
+                        serviceNumber="MM1"
+                        routeName={`${route.From.name} to ${route.To.name}`}
+                        key={`${route.From.id}-${route.To.id}`}
+                        showRemove={false}
+                      />
+                    );
+                  })}
+                {/* Full line */}
+                {filterTramLineInfo(LineId).map((line) => (
+                  <RemoveService
+                    id={line.id}
+                    serviceNumber={line.serviceNumber}
+                    mode="tram"
+                    routeName={line.routeName}
+                    key={line.routeName}
+                    showRemove={false}
+                  />
+                ))}
               </div>
             )}
 
