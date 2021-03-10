@@ -4,32 +4,32 @@
       margin-bottom: 0;
     }
   }
+
   .busses {
     h4 {
       margin-bottom: 0;
     }
   }
-  
+
   .asLink {
-    background: none!important;
-    border: none;
-    padding: 0!important;
-    /*optional*/
+    padding: 0 !important;
+    border: 0;
+    background: none !important;
     text-decoration: underline;
     cursor: pointer;
   }
-  button.asLink  {
-    font-size: 1rem;
-  } 
+
   .details {
-    border-bottom: 1px solid #f3f2f1;
-    padding-bottom: 1.5rem;
     padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid $background;
+
     div {
       // every third
       &:nth-child(3n) {
         text-align: right;
       }
+
       // every third - starting from the second child element
       &:nth-child(3n + 2) {
         text-align: left;
