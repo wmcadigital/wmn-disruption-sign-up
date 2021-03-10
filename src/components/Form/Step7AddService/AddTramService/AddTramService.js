@@ -8,7 +8,7 @@ import RemoveService from 'components/shared/RemoveService/RemoveService';
 
 const AddTramService = () => {
   const { formDataState, formDataDispatch, setStep } = useStepLogic();
-  const { selectableTramLineIds, selectableTramLineInfo } = useSelectableTramLines();
+  const { selectableTramLineIds, filterTramLineInfo } = useSelectableTramLines();
   const { TramLines, LineId } = formDataState.formData;
 
   // Move to the next step
@@ -31,7 +31,7 @@ const AddTramService = () => {
   };
 
   // Get the info for selected full lines
-  const selectedFullTramLines = selectableTramLineInfo.filter((line) => LineId.includes(line.id));
+  const selectedFullTramLines = filterTramLineInfo(LineId);
 
   // Helper booleans
   const anyStopsSelected = TramLines && TramLines.length > 0;

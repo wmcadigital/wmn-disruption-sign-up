@@ -9,7 +9,13 @@ const useSelectableTramLines = () => {
   ];
 
   const selectableTramLineIds = selectableTramLineInfo.map((line) => line.id);
-  return { selectableTramLineInfo, selectableTramLineIds };
+
+  const filterTramLineInfo = (lineIds) => {
+    if (!lineIds.length) return [];
+    return selectableTramLineInfo.filter((line) => lineIds.includes(line.id));
+  };
+
+  return { selectableTramLineInfo, selectableTramLineIds, filterTramLineInfo };
 };
 
 export default useSelectableTramLines;
