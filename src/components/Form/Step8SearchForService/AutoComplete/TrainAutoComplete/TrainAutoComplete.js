@@ -44,7 +44,7 @@ const TrainAutoComplete = ({ closeAutoComplete }) => {
           </div>
           <div className="wmnds-col-1 wmnds-col-md-2-5">
             <Button
-              btnClass="wmnds-btn wmnds-btn--primary wmnds-col-1"
+              btnClass="wmnds-btn wmnds-btn--primary"
               text="Cancel"
               onClick={closeAutoComplete}
             />
