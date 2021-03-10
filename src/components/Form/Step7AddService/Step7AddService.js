@@ -10,7 +10,7 @@ import AddTrainService from './AddTrainService/AddTrainService';
 
 function Step7AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
-  const { BusServices, TramServices, Trains } = formDataState.formData;
+  const { BusServices, TramLines, Trains, LineId } = formDataState.formData;
 
   const getNextStep = (incrementAmount) => {
     formDataDispatch({
@@ -18,6 +18,12 @@ function Step7AddService() {
       payload: formDataState.currentStep + incrementAmount,
     });
   };
+
+  const anyServicesSelected =
+    (BusServices && BusServices.length > 0) ||
+    (TramLines && TramLines.length > 0) ||
+    (Trains && Trains.length > 0) ||
+    (LineId && LineId.length > 0);
 
   return (
     <form
@@ -39,9 +45,7 @@ function Step7AddService() {
         <AddTrainService />
 
         {/* Continue button */}
-        {((BusServices && BusServices.length > 0) ||
-          (TramServices && TramServices.length > 0) ||
-          (Trains && Trains.length > 0)) && (
+        {anyServicesSelected && (
           <Button
             btnClass="wmnds-btn wmnds-col-1 wmnds-m-t-xl"
             type="submit"

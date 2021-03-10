@@ -1,61 +1,85 @@
 import React from 'react';
+// Hooks
+import useSelectableTramLines from 'components/Form/useSelectableTramLines';
+import useStepLogic from 'components/Form/useStepLogic';
 // Components
 import Button from 'components/shared/Button/Button';
 import RemoveService from 'components/shared/RemoveService/RemoveService';
-import useStepLogic from 'components/Form/useStepLogic';
 
 const AddTramService = () => {
-  const { formDataState, formDataDispatch } = useStepLogic();
-  const { TramServices } = formDataState.formData;
+  const { formDataState, formDataDispatch, setStep } = useStepLogic();
+  const { selectableTramLineIds, filterTramLineInfo } = useSelectableTramLines();
+  const { TramLines, LineId } = formDataState.formData;
 
-  const handleRemoveTram = (id) => {
-    formDataDispatch({ type: 'REMOVE_TRAM', payload: id });
-  };
-
-  const handleAddTram = () => {
-    const defTram = [
-      {
-        id: '4546',
-        routeName: 'Birmingham - Wolverhampton - Birmingham',
-        serviceNumber: 'MM1',
-      },
-    ];
-
-    const { LineId } = formDataState.formData;
-
+  // Move to the next step
+  const showTramAutoComplete = () => {
     formDataDispatch({
-      type: 'UPDATE_FORM_DATA',
-      payload: { LineId: [...LineId, 4546], TramServices: defTram },
+      type: 'UPDATE_MODE',
+      payload: 'tram',
     });
+    setStep(formDataState.currentStep + 1);
   };
+
+  // Functions to update global state
+  const removeTramStops = (route) => {
+    const { From, To } = route;
+    formDataDispatch({ type: 'REMOVE_TRAM', payload: { From, To } });
+  };
+
+  const removeTramLine = (lineId) => {
+    formDataDispatch({ type: 'REMOVE_LINE', payload: { lineId } });
+  };
+
+  // Get the info for selected full lines
+  const selectedFullTramLines = filterTramLineInfo(LineId);
+
+  // Helper booleans
+  const anyStopsSelected = TramLines && TramLines.length > 0;
+  const isFullLineSelected = selectableTramLineIds.some((lineId) => LineId.includes(lineId));
 
   return (
     <>
       <h3 className="wmnds-p-t-md">Trams</h3>
       {/* Add tram service button */}
-      {(!TramServices || TramServices.length === 0) && (
+      {!isFullLineSelected && (
         <Button
           btnClass="wmnds-btn wmnds-btn--primary wmnds-text-align-left"
-          onClick={handleAddTram}
+          onClick={showTramAutoComplete}
           text="Add tram service"
           iconRight="general-expand"
         />
       )}
-
+      {(anyStopsSelected || isFullLineSelected) && (
+        <h4 className="wmnds-m-b-sm wmnds-m-t-lg">Tram services that you want to add</h4>
+      )}
       {/* Show the tram services the user has added */}
-      {TramServices && TramServices.length > 0 && (
+      {anyStopsSelected && !isFullLineSelected ? (
         <>
-          <h4 className="wmnds-m-b-sm wmnds-m-t-lg">Tram services that you want to add</h4>
-          {TramServices.map((tramRoute) => {
+          {TramLines.map((route) => {
             return (
               <RemoveService
                 showRemove
-                onClick={() => handleRemoveTram(tramRoute.id)}
-                serviceNumber={tramRoute.serviceNumber}
+                onClick={() => removeTramStops(route)}
+                serviceNumber="MM1"
                 mode="tram"
-                routeName={tramRoute.routeName}
-                id={tramRoute.id}
-                key={`${tramRoute.id}`}
+                routeName={`${route.From.name} to ${route.To.name}`}
+                id={`${route.From.id}-${route.To.id}`}
+                key={`${route.From.id}-${route.To.id}`}
+              />
+            );
+          })}
+        </>
+      ) : (
+        <>
+          {selectedFullTramLines.map((line) => {
+            return (
+              <RemoveService
+                showRemove
+                onClick={() => removeTramLine(line.id)}
+                serviceNumber={line.serviceNumber}
+                mode="tram"
+                routeName={line.routeName}
+                key={line.routeName}
               />
             );
           })}

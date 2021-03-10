@@ -10,7 +10,16 @@ const useSubmitForm = (setFormSubmitStatus) => {
   const [APIErrorMessage, setAPIErrorMessage] = useState(null);
 
   // Destructure values from our formDataState (get all users values)
-  const { Email, Firstname, LastName, LineId, Trains, EmailAlert, Phone } = formDataState.formData;
+  const {
+    Email,
+    Firstname,
+    LastName,
+    LineId,
+    Trains,
+    TramLines,
+    EmailAlert,
+    Phone,
+  } = formDataState.formData;
 
   // Check if mobile phone has +44, if not, remove the 0 and add +44
   let englishNumber = Phone;
@@ -24,6 +33,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     Email,
     LineId: LineId.length > 0 ? LineId : ['1001'],
     Trains,
+    TramLines: TramLines.map((line) => ({ From: line.From.id, To: line.To.id })),
     EmailDisabled: !EmailAlert,
     MobileNumber: englishNumber,
   };

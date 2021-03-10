@@ -12,8 +12,8 @@ import BusAutoCompleteResult from './BusAutoCompleteResult';
 import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
 
-const BusAutoComplete = ({ mode, setMode }) => {
-  const { formDataState, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
+const BusAutoComplete = ({ closeAutoComplete }) => {
+  const { formDataState } = useStepLogic(); // get formDataState and setStep logic from customHook
   const [query, setQuery] = useState(); // placeholder for getting/setting query
   const BusServices = formDataState.formData.BusServices || []; // Get currently selected bus services
 
@@ -29,12 +29,6 @@ const BusAutoComplete = ({ mode, setMode }) => {
 
   // Import handleKeyDown function from customHook (used by all modes)
   const { handleKeyDown } = useHandleAutoCompleteKeys(resultsList, debounceInput, results);
-
-  // Go back to prev step if cancel
-  const handleCancel = () => {
-    setMode(null);
-    setStep(formDataState.currentStep - 1);
-  };
 
   function compare(a, b) {
     // Use toUpperCase() to ignore character casing
@@ -95,8 +89,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
                       key={result.id}
                       result={result}
                       handleKeyDown={handleKeyDown}
-                      type={mode}
-                      handleCancel={handleCancel}
+                      handleCancel={closeAutoComplete}
                     />
                   );
                 })}
@@ -108,7 +101,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
         <Button
           btnClass="wmnds-btn wmnds-btn--primary wmnds-col-auto wmnds-col-md-1 wmnds-float-right"
           text="Cancel"
-          onClick={handleCancel}
+          onClick={closeAutoComplete}
         />
       </div>
     </div>
@@ -116,8 +109,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
 };
 
 BusAutoComplete.propTypes = {
-  mode: PropTypes.string.isRequired,
-  setMode: PropTypes.func.isRequired,
+  closeAutoComplete: PropTypes.func.isRequired,
 };
 
 export default BusAutoComplete;
