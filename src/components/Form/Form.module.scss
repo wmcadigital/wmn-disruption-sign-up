@@ -1,19 +1,10 @@
-@import '../../assets/styles/common.scss';
+@import '../../assets/styles/common';
+@import '~assets/styles/vars';
 
 .formWrapper {
-  background-color: white;
+  background-color: $white;
 
   @media all and (max-width: 767px) {
     margin: 0 -0.75rem;
   }
-}
-
-.asLink {
-  background: none !important;
-  border: none;
-  padding: 0 !important;
-  
-}
-button.asLink {
-  font-size: 1rem;
 }
