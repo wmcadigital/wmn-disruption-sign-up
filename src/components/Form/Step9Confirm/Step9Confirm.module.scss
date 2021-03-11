@@ -1,3 +1,5 @@
+@import '~assets/styles/vars';
+
 .summary {
   .serviceAdded {
     h3 {
@@ -22,7 +24,7 @@
   .details {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid $background;
+    border-bottom: 1px solid get-color(background);
 
     div {
       // every third
