@@ -1,4 +1,3 @@
-# Block indexing as this is a service. Services should be accessed from web content.
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: /
-Disallow: /cgi-bin/
+Disallow:
