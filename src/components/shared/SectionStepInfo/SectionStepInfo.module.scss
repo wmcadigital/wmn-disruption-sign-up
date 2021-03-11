@@ -1,10 +1,13 @@
+$grey: #5f6166;
+
 .sectionWrapper {
   .section {
+    color: $grey;
     font-size: 16px;
-    color: #5f6166;
   }
+
   .description {
+    color: $grey;
     font: 18px;
-    color: #54565b;
   }
 }
