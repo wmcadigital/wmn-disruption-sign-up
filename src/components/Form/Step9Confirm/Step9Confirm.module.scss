@@ -21,21 +21,4 @@
     cursor: pointer;
   }
 
-  .details {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid get-color(background);
-
-    div {
-      // every third
-      &:nth-child(3n) {
-        text-align: right;
-      }
-
-      // every third - starting from the second child element
-      &:nth-child(3n + 2) {
-        text-align: left;
-      }
-    }
-  }
 }
