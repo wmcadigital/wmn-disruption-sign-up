@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 import s from './TooltipMessage.module.scss';
 
 const TooltipMessage = ({ text }) => {
-  return (
-    <div className={`wmnds-col-1 wmnds-p-md wmnds-m-b-md ${s.tooltipMessage}`}>
-      {text}
-    </div>
-  );
+  return <div className={`wmnds-col-1 wmnds-p-md wmnds-m-b-md ${s.tooltipMessage}`}>{text}</div>;
 };
 
 TooltipMessage.propTypes = {
