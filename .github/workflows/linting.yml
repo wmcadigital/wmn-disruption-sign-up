@@ -7,7 +7,7 @@ on:
 
 jobs:
   buildApp:
-    name: Build app
+    name: try build app
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

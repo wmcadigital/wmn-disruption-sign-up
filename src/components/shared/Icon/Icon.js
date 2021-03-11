@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // So we Ajax the SVG in with a snippet at the bottom of public/index.html
 
 const Icon = ({ className, iconName }) => {
+  var hello;
   return (
     <svg className={className}>
       <use xlinkHref={`#wmnds-${iconName}`} href={`#wmnds-${iconName}`} />
