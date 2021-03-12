@@ -32,8 +32,9 @@ const useTrackFormAbandonment = (currentStep, formSubmitStatus) => {
         // Push abandoned event to GA/Tag Manager
         window.dataLayer.push({
           event: 'formAbandonment',
-          eventCategory: 'wmn-email-alerts-signup abandonment',
-          eventAction: fieldsChanged
+          eventCategory: 'wmn-disruption-sign-up',
+          eventAction: 'form abandonded',
+          eventLabel: fieldsChanged
             ? fieldsChanged.join(' > ')
             : 'Clicked start, but abandoned straight away.', // If fieldsChanged (set in first useEffect) is available then use that and join with ' > ' so it logs as 'Step1: ... > Step2: ... >' ELSE the user must of abandoned without updating the form in step 1 so log message
         });
@@ -53,8 +54,9 @@ const useTrackFormAbandonment = (currentStep, formSubmitStatus) => {
     if (currentStep) {
       window.dataLayer.push({
         event: 'formAbandonment',
-        eventCategory: 'wmn-email-alerts-signup started',
-        eventAction: true,
+        eventCategory: 'wmn-disruption-sign-up',
+        eventAction: 'form started',
+        eventLabel: true,
       });
     }
   }, [currentStep]);

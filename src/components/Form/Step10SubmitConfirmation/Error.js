@@ -1,11 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Error() {
+function Error({ isRecoverLinkPressed }) {
+  const title = isRecoverLinkPressed
+    ? 'Request a link to manage your disruption alerts'
+    : 'Sign up to service disruption alerts';
   return (
     <div className="wmnds-container-alerts-sign-up">
       <div className="wmnds-grid">
         <div className="wmnds-col-1 wmnds-col-sm-2-3">
-          <h1>Sign up to service disruption alerts</h1>
+          <h1>{title}</h1>
         </div>
         <div className="wmnds-col-1 wmnds-col-md-3-4 wmnds-col-lg-1-2">
           {/* Error message */}
@@ -32,5 +36,9 @@ function Error() {
     </div>
   );
 }
+
+Error.propTypes = {
+  isRecoverLinkPressed: PropTypes.bool.isRequired,
+};
 
 export default Error;

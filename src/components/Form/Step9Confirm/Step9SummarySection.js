@@ -5,6 +5,7 @@ import useSelectableTramLines from 'components/Form/useSelectableTramLines';
 import { FormDataContext } from 'globalState/FormDataContext';
 // Components
 import RemoveService from 'components/shared/RemoveService/RemoveService';
+import Table from 'components/shared/Table/Table';
 // Style
 import style from './Step9Confirm.module.scss';
 
@@ -37,74 +38,83 @@ function Step9SummarySection() {
     title = 'Check your preferences before signing up to disruption alerts';
   }
 
+  /* Table Data */
+  const dataLine1 = [];
+  dataLine1.push(<span>Name</span>);
+  dataLine1.push(<span>{`${Firstname} ${LastName}`}</span>);
+  dataLine1.push(
+    !ExistingUser ? (
+      <button
+        type="button"
+        className={`${style.asLink} wmnds-link`}
+        onClick={() => {
+          setStepInContext(1);
+        }}
+      >
+        Change
+      </button>
+    ) : null
+  );
+
+  const dataLine2 = [];
+  dataLine2.push(<span>Email</span>);
+  dataLine2.push(<span>{Email}</span>);
+  dataLine2.push(
+    !ExistingUser ? (
+      <button
+        type="button"
+        className={`${style.asLink} wmnds-link`}
+        onClick={() => {
+          setStepInContext(5);
+        }}
+      >
+        Change
+      </button>
+    ) : null
+  );
+
+  const dataLine3 = [];
+  if (Phone) {
+    dataLine3.push(<span>Mobile phone number</span>);
+    dataLine3.push(<span>{Phone}</span>);
+    dataLine3.push(
+      <button
+        type="button"
+        className={`${style.asLink} wmnds-link`}
+        onClick={() => {
+          setStepInContext(4);
+        }}
+      >
+        Change
+      </button>
+    );
+  }
+  /* End of Table Data */
+
+  const data = [dataLine1, dataLine2];
+  if (Phone) {
+    data.push(dataLine3);
+  }
+
   return (
     <>
       <div className={`wmnds-col-1 ${style.summary}`}>
         <h2>{title}</h2>
-        <h3>Personal Details</h3>
-
-        <table className="wmnds-table wmnds-m-b-xl wmnds-table--without-header">
-          <tbody>
-            <tr>
-              <th scope="row">Name</th>
-              <td>{`${Firstname} ${LastName}`}</td>
-              <td className="wmnds-text-align-right wmnds-p-r-none">
-                {!ExistingUser && (
-                  <button
-                    type="button"
-                    className={`${style.asLink} wmnds-link`}
-                    onClick={() => {
-                      setStepInContext(1);
-                    }}
-                  >
-                    Change
-                  </button>
-                )}
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Email</th>
-              <td>{Email}</td>
-              <td className="wmnds-text-align-right wmnds-p-r-none">
-                {!ExistingUser && (
-                  <button
-                    type="button"
-                    className={`${style.asLink} wmnds-link`}
-                    onClick={() => {
-                      setStepInContext(5);
-                    }}
-                  >
-                    Change
-                  </button>
-                )}
-              </td>
-            </tr>
-            {Phone && (
-              <tr>
-                <th scope="row">Mobile phone number</th>
-                <td>{Phone}</td>
-                <td className="wmnds-text-align-right wmnds-p-r-none">
-                  <button
-                    type="button"
-                    className={`${style.asLink} wmnds-link`}
-                    onClick={() => {
-                      setStepInContext(4);
-                    }}
-                  >
-                    Change
-                  </button>
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        <Table
+          title="Personal Details"
+          classes=""
+          cellClasses={['', '', 'wmnds-text-align-right wmnds-p-r-none']}
+          headers={[]}
+          values={data}
+          data-private
+        />
 
         {!ExistingUser && (
           <>
             <div
               className={`wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}
             >
-              <h3 className="wmnds-col-1-3">Services added</h3>
+              <h3 className="wmnds-col-2-3">Services added</h3>
               <button
                 type="button"
                 className={`${style.asLink} wmnds-link`}
