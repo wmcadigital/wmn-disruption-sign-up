@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Intro from './components/Intro';
 import Form from './components/Form/Form';
 // Import contexts
@@ -11,7 +11,19 @@ import { getSearchParam } from './helpers/URLSearchParams';
 
 function App() {
   const [isFormStarted, setIsFormStarted] = useState(false);
+  const [isRecoverLinkPressed, setIsRecoverLinkPressed] = useState(false);
   const [formSubmitStatus, setFormSubmitStatus] = useState(null);
+
+  const goToRecoverLinkStep = () => {
+    setIsFormStarted(true);
+    setIsRecoverLinkPressed(true);
+  };
+
+  useEffect(() => {
+    if (getSearchParam('requestLink')) {
+      goToRecoverLinkStep();
+    }
+  }, []);
 
   if (getSearchParam('email') && !isFormStarted) {
     setIsFormStarted(true);
@@ -22,16 +34,24 @@ function App() {
       <HeaderAndBreadcrumb isFormStarted={isFormStarted} formSubmitStatus={formSubmitStatus} />
       <main className="wmnds-container wmnds-container--main wmnds-p-b-lg wmnds-grid">
         {!isFormStarted ? (
-          <Intro setIsFormStarted={setIsFormStarted} />
+          <Intro setIsFormStarted={setIsFormStarted} goToRecoverLinkStep={goToRecoverLinkStep} />
         ) : (
           <FormDataProvider>
             {isFormStarted && formSubmitStatus === null && (
-              <Form setFormSubmitStatus={setFormSubmitStatus} formSubmitStatus={formSubmitStatus} />
+              <Form
+                setFormSubmitStatus={setFormSubmitStatus}
+                formSubmitStatus={formSubmitStatus}
+                isRecoverLinkPressed={isRecoverLinkPressed}
+                setIsRecoverLinkPressed={setIsRecoverLinkPressed}
+                setIsFormStarted={setIsFormStarted}
+              />
             )}
 
             {formSubmitStatus && <SubmitSuccess />}
 
-            {formSubmitStatus === false && <SubmitError />}
+            {formSubmitStatus === false && (
+              <SubmitError isRecoverLinkPressed={isRecoverLinkPressed} />
+            )}
           </FormDataProvider>
         )}
       </main>

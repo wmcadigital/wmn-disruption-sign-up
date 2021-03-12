@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/227b04f0-0313-455b-a001-c9e184e52912/deploy-status)](https://app.netlify.com/sites/wmn-disruption-sign-up/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
