@@ -1,16 +1,5 @@
 @import '~assets/styles/vars';
 
-.asLink {
-  padding: 0 !important;
-  border: 0;
-  background: none !important;
-}
-
-// sass-lint:disable no-qualifying-elements
-button.asLink {
-  font-size: 1rem;
-}
-
 .formWrapper {
   background-color: $white;
 

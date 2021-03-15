@@ -46,7 +46,7 @@ function Step9SummarySection() {
     !ExistingUser ? (
       <button
         type="button"
-        className={`${style.asLink} wmnds-link`}
+        className="wmnds-btn wmnds-btn--link"
         onClick={() => {
           setStepInContext(1);
         }}
@@ -63,7 +63,7 @@ function Step9SummarySection() {
     !ExistingUser ? (
       <button
         type="button"
-        className={`${style.asLink} wmnds-link`}
+        className="wmnds-btn wmnds-btn--link"
         onClick={() => {
           setStepInContext(5);
         }}
@@ -80,7 +80,7 @@ function Step9SummarySection() {
     dataLine3.push(
       <button
         type="button"
-        className={`${style.asLink} wmnds-link`}
+        className="wmnds-btn wmnds-btn--link"
         onClick={() => {
           setStepInContext(4);
         }}
@@ -117,7 +117,7 @@ function Step9SummarySection() {
               <h3 className="wmnds-col-2-3">Services added</h3>
               <button
                 type="button"
-                className={`${style.asLink} wmnds-link`}
+                className="wmnds-btn wmnds-btn--link"
                 onClick={() => {
                   setStepInContext(7);
                 }}
