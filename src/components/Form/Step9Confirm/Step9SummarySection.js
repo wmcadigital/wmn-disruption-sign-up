@@ -6,8 +6,6 @@ import { FormDataContext } from 'globalState/FormDataContext';
 // Components
 import RemoveService from 'components/shared/RemoveService/RemoveService';
 import Table from 'components/shared/Table/Table';
-// Style
-import style from './Step9Confirm.module.scss';
 
 function Step9SummarySection() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
@@ -98,7 +96,7 @@ function Step9SummarySection() {
 
   return (
     <>
-      <div className={`wmnds-col-1 ${style.summary}`}>
+      <div className="wmnds-col-1">
         <h2 className="wmnds-fe-question">{title}</h2>
         <Table
           title="Personal Details"
@@ -111,9 +109,7 @@ function Step9SummarySection() {
 
         {!ExistingUser && (
           <>
-            <div
-              className={`wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}
-            >
+            <div className="wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between">
               <h3 className="wmnds-col-2-3">Services added</h3>
               <button
                 type="button"
