@@ -82,7 +82,7 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
 
       {/* Submit button */}
       <Button
-        btnClass="wmnds-btn--start"
+        btnClass="wmnds-btn--start wmnds-col-1 wmnds-col-sm-auto"
         disabled={isFetching}
         iconRight="general-chevron-right"
         isFetching={isFetching}

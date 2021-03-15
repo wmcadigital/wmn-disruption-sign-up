@@ -30,7 +30,7 @@ const Intro = ({ setIsFormStarted, goToRecoverLinkStep }) => {
 
       <button
         type="button"
-        className="wmnds-btn wmnds-btn--start wmnds-m-t-xl wmnds-m-b-xl"
+        className="wmnds-btn wmnds-btn--start wmnds-m-t-xl wmnds-m-b-xl wmnds-col-1 wmnds-col-sm-auto"
         onClick={handleClick}
       >
         Start now
