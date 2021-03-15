@@ -141,7 +141,7 @@ function Step9SummarySection() {
             )}
 
             {/* Trams */}
-            {((TramLines && TramLines.length > 0) || filterTramLineInfo(LineId).length) && (
+            {((TramLines && TramLines.length > 0) || filterTramLineInfo(LineId).length > 0) && (
               <div className="wmnds-m-b-lg">
                 <h4>Trams</h4>
                 {/* Stop by stop */}
