@@ -38,7 +38,7 @@ const Step2SmsAlert = () => {
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>
+          <h2 className="wmnds-fe-question">
             Would you like to sign up to a trial to receive text message alerts for disruptions?
           </h2>
           <p>We’ll automatically send text message alerts straight to your mobile phone.</p>
