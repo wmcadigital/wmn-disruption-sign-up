@@ -22,7 +22,7 @@ const BusAutoComplete = ({ closeAutoComplete }) => {
 
   // customHook used to fetch results based on query
   const { loading, errorInfo, results } = useAutoCompleteAPI(
-    `/bus/v1/service?q=${encodeURI(query)}`,
+    `/bus/v1/service?q=${encodeURI(query && query.replaceAll(' ', '').trim())}`,
     'bus',
     query
   );
@@ -65,7 +65,7 @@ const BusAutoComplete = ({ closeAutoComplete }) => {
             placeholder="Search for a bus service"
             className="wmnds-fe-input wmnds-autocomplete__input"
             value={query || ''}
-            onChange={(e) => setQuery(e.target.value.trim())}
+            onChange={(e) => setQuery(e.target.value)}
             aria-label="Search for a bus service"
             debounceTimeout={600}
             onKeyDown={(e) => handleKeyDown(e)}
