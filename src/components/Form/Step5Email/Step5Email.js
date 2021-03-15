@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import axios from 'axios';
 // Import components
 import Input from 'components/shared/FormElements/Input/Input';
@@ -16,6 +16,8 @@ const Step5Email = () => {
     formRef
   ); // Custom hook for handling continue button (validation, errors etc)
 
+  const [checkingEmail, setcheckingEmail] = useState(false);
+
   const goToRequestLinkStep = () => {
     setStep(0);
     setSearchParam('requestLink', true);
@@ -26,6 +28,34 @@ const Step5Email = () => {
   // Logic used to validate the email field
   const emailRegex = /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches email regex on server
   // To show in case of the entered email is not registered.
+
+  // Function to check if email address has already registered
+  const checkEmailAddress = async (value) => {
+    setcheckingEmail(true); // Set checking email to true so continue button shows loading spinner
+
+    try {
+      // Try hitting email checking API
+      // if (!checkingEmail)
+      await axios({
+        url: '/personinfo',
+        baseURL: `${process.env.REACT_APP_API_HOST}api`,
+        method: 'post',
+        data: JSON.stringify({ Email: value, sitecode: 'any text' }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      setcheckingEmail(false); // Set checking to false to remove loading spinner from continue button
+      return false; // If successful (email found on system already) return false so our validation pipes to the error message
+    } catch (error) {
+      // console.log({ error: error.response.status });
+      // eslint-disable-next-line no-console
+      if (error.response.status !== 400) console.error({ error }); // log any errors, if not an error 400 (error 400 means the email address hasn't been registered yet - so it's technically a success)
+      setcheckingEmail(false); // Set checking to false to remove loading spinner from continue button
+      return true; // If successful (email NOT found on system already) return true so our validation doesn't pipe to the error message
+    }
+  };
+
   const ErrorMessage = (
     <p>
       <span className="wmnds-fe-error-message">This email address already exists</span>
@@ -47,19 +77,7 @@ const Step5Email = () => {
       value: emailRegex,
       message: `Enter an ${emailLabel.toLowerCase()} in the correct format`,
     },
-    validate: async (value) =>
-      !(await axios({
-        url: '/personinfo',
-        baseURL: `${process.env.REACT_APP_API_HOST}api`,
-        method: 'post',
-        data: JSON.stringify({ Email: value, sitecode: 'any text' }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then()
-        // eslint-disable-next-line no-console
-        .catch((error) => console.error({ error }))) || ErrorMessage,
+    validate: async (value) => (await checkEmailAddress(value)) || ErrorMessage, // Check if email exists, if false is returned (email exists), then pipe/show error message
   });
 
   // Check if user is in the trial
@@ -109,7 +127,7 @@ const Step5Email = () => {
       </fieldset>
 
       {/* Continue button */}
-      {continueButton}
+      {continueButton(checkingEmail)}
     </form>
   );
 };
