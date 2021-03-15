@@ -47,7 +47,6 @@ const Step5Email = () => {
       setcheckingEmail(false); // Set checking to false to remove loading spinner from continue button
       return false; // If successful (email found on system already) return false so our validation pipes to the error message
     } catch (error) {
-      // console.log({ error: error.response.status });
       // eslint-disable-next-line no-console
       if (error.response.status !== 400) console.error({ error }); // log any errors, if not an error 400 (error 400 means the email address hasn't been registered yet - so it's technically a success)
       setcheckingEmail(false); // Set checking to false to remove loading spinner from continue button
