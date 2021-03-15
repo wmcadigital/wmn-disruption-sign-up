@@ -56,7 +56,7 @@ const Step2SmsAlert = () => {
       </fieldset>
 
       {/* Continue button */}
-      {continueButton}
+      {continueButton()}
     </form>
   );
 };
