@@ -35,7 +35,6 @@ const Step5Email = () => {
 
     try {
       // Try hitting email checking API
-      // if (!checkingEmail)
       await axios({
         url: '/personinfo',
         baseURL: `${process.env.REACT_APP_API_HOST}api`,
