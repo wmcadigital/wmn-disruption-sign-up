@@ -94,7 +94,7 @@ const Step5Email = () => {
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>What is your email address?</h2>
+          <h2 className="wmnds-fe-question">What is your email address?</h2>
           {text}
         </legend>
 

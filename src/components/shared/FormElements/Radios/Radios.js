@@ -15,7 +15,7 @@ const Radios = ({ name, classes, label, radios, fieldValidation }) => {
     <div className={`wmnds-fe-group ${errors[name] && 'wmnds-fe-group--error'} ${classes}`}>
       <fieldset className="wmnds-fe-fieldset">
         <legend className="wmnds-fe-fieldset__legend">
-          {label && <h2>{label}</h2>}
+          {label && <h2 className="wmnds-fe-question">{label}</h2>}
           {/* If there is an error, show here */}
           {errors[name] && (
             <span
