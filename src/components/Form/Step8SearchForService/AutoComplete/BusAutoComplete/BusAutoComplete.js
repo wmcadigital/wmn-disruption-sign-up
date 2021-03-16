@@ -22,7 +22,7 @@ const BusAutoComplete = ({ closeAutoComplete }) => {
 
   // customHook used to fetch results based on query
   const { loading, errorInfo, results } = useAutoCompleteAPI(
-    `/bus/v1/service?q=${encodeURI(query)}`,
+    `/bus/v1/service?q=${encodeURI(query && query.replaceAll(' ', '').trim())}`,
     'bus',
     query
   );

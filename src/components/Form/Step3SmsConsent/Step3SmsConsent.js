@@ -49,7 +49,7 @@ const Step3SmsConsent = () => {
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <div className="wmnds-fe-fieldset__legend">
-          <h2>About the text message alert trial</h2>
+          <h2 className="wmnds-fe-question">About the text message alert trial</h2>
           <h4>Introduction</h4>
           <p>
             This trial is being run by West Midlands Network (WMN) to explore whether our customers

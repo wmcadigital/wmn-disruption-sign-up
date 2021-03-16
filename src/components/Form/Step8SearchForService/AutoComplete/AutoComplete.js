@@ -24,6 +24,7 @@ const AutoComplete = () => {
       return (
         <div className="wmnds-col-1">
           <h4>{text}</h4>
+          {mode === 'bus' && <p>For example, X8 or 101</p>}
         </div>
       );
     };

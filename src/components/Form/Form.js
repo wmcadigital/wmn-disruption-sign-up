@@ -100,7 +100,7 @@ const Form = ({
             <div className="wmnds-col-1 wmnds-m-b-md">
               <button
                 type="button"
-                className={`wmnds-link ${s.asLink}`}
+                className="wmnds-btn wmnds-btn--link"
                 onClick={() =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
@@ -116,7 +116,7 @@ const Form = ({
             <div className="wmnds-col-1 wmnds-m-b-md">
               <button
                 type="button"
-                className={`wmnds-link ${s.asLink}`}
+                className="wmnds-btn wmnds-btn--link"
                 onClick={goBackOnRequestLinkStep}
               >
                 &lt; Back
