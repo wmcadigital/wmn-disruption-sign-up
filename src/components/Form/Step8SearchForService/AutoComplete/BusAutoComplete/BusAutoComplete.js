@@ -20,9 +20,15 @@ const BusAutoComplete = ({ closeAutoComplete }) => {
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
 
+  // Remove all spaces for the query so the user can still get results when query is formatted incorrectly
+  const formatQuery = (queryString) => {
+    if (!queryString) return '';
+    return queryString.replace(/\s/g, '').trim();
+  };
+
   // customHook used to fetch results based on query
   const { loading, errorInfo, results } = useAutoCompleteAPI(
-    `/bus/v1/service?q=${encodeURI(query && query.replaceAll(' ', '').trim())}`,
+    `/bus/v1/service?q=${encodeURI(formatQuery(query))}`,
     'bus',
     query
   );
