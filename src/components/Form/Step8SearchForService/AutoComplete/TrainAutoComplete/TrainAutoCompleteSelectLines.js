@@ -39,7 +39,7 @@ const TrainAutoCompleteSelectLines = ({
   // Run on change of select box
   const handleChange = (val) => {
     // If the selectedLine contains our line...
-    if (selectedLines.includes(val)) {
+    if (selectedLines.indexOf(val) > -1) {
       setSelectedLines((prev) => prev.filter((item) => item !== val)); // ...filter/remove it from the array
     } else {
       setSelectedLines((prev) => [...prev, val]); // Else, add it to the array
@@ -112,7 +112,7 @@ const TrainAutoCompleteSelectLines = ({
                 <div className="wmnds-fe-checkboxes__container wmnds-m-b-none">
                   {/* Right side for remove service button */}
                   <input
-                    checked={selectedLines.includes(line)}
+                    checked={selectedLines.indexOf(line) > -1}
                     value={line}
                     onChange={(e) => handleChange(e.target.value)}
                     className="wmnds-fe-checkboxes__input"

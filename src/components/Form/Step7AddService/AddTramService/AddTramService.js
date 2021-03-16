@@ -35,7 +35,7 @@ const AddTramService = () => {
 
   // Helper booleans
   const anyStopsSelected = TramLines && TramLines.length > 0;
-  const isFullLineSelected = selectableTramLineIds.some((lineId) => LineId.includes(lineId));
+  const isFullLineSelected = selectableTramLineIds.some((lineId) => LineId.indexOf(lineId) > -1);
 
   return (
     <>
