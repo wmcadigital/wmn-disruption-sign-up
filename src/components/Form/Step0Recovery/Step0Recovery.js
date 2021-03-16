@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+// State
+import { FormDataContext } from 'globalState/FormDataContext';
 // Import custom hooks
 import useSubmitLinkRecovery from 'components/Form/useSubmitLinkRecovery';
 import useStepLogic from 'components/Form/useStepLogic';
@@ -9,6 +11,7 @@ import Button from 'components/shared/Button/Button';
 import Message from 'components/shared/Message/Message';
 
 const Step0Recovery = ({ setFormSubmitStatus }) => {
+  const [, formDataDispatch] = useContext(FormDataContext);
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
   const { handleSubmit, isFetching, APIErrorMessage } = useSubmitLinkRecovery(setFormSubmitStatus);
@@ -23,6 +26,12 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
       message: `Enter an ${emailLabel.toLowerCase()} in the correct format`,
     },
   });
+
+  // Set the isRequestingRecovery param in globalstate
+  useEffect(() => {
+    formDataDispatch({ type: 'REACHED_RECOVERY', payload: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // run once
 
   // To show in case of the entered email is not registered.
   const ErrorMessage = (

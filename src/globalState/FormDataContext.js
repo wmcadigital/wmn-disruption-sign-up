@@ -30,6 +30,7 @@ export const FormDataProvider = (props) => {
     },
     formRef: '',
     hasReachedConfirmation: false,
+    isRequestingRecovery: false,
     mode: null,
   };
 
@@ -117,10 +118,18 @@ export const FormDataProvider = (props) => {
           formRef: action.payload,
         };
       }
+
       case 'REACHED_CONFIRMATION': {
         return {
           ...state,
           hasReachedConfirmation: action.payload,
+        };
+      }
+
+      case 'REACHED_RECOVERY': {
+        return {
+          ...state,
+          isRequestingRecovery: action.payload,
         };
       }
 
