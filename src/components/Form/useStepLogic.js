@@ -62,8 +62,13 @@ const useStepLogic = (formRef) => {
   };
 
   // Continue button
-  const continueButton = (
-    <Button btnClass="wmnds-btn wmnds-col-1 wmnds-m-t-md" type="submit" text="Continue" />
+  const continueButton = (isFetching) => (
+    <Button
+      btnClass="wmnds-btn wmnds-col-1 wmnds-col-sm-auto"
+      type="submit"
+      text="Continue"
+      isFetching={isFetching}
+    />
   );
 
   // If errors object has any keys and continue button is pressed then we should show generic error component

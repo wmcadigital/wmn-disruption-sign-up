@@ -69,7 +69,7 @@ const Step6EmailAlert = () => {
       </fieldset>
 
       {/* Continue button */}
-      {continueButton}
+      {continueButton()}
     </form>
   );
 };

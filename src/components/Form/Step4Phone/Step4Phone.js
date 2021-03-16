@@ -49,7 +49,7 @@ const Step4Phone = () => {
       </fieldset>
 
       {/* Continue button */}
-      {continueButton}
+      {continueButton()}
     </form>
   );
 };

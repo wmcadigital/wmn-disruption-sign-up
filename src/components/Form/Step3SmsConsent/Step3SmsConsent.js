@@ -151,7 +151,7 @@ const Step3SmsConsent = () => {
       </fieldset>
 
       {/* Continue button */}
-      {continueButton}
+      {continueButton()}
     </form>
   );
 };
