@@ -32,7 +32,7 @@ function Step9Confirm({ setFormSubmitStatus }) {
           <Step9ConsentForm />
         )}
         <Button
-          btnClass="wmnds-btn--start wmnds-m-t-lg"
+          btnClass="wmnds-btn--start wmnds-m-t-lg wmnds-col-1 wmnds-col-sm-auto"
           disabled={isFetching}
           iconRight="general-chevron-right"
           isFetching={isFetching}

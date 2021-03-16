@@ -35,7 +35,7 @@ function Step7AddService() {
       <div>
         {/* Subsection */}
         <SectionStepInfo section="Section 1 of 2" description="Services" />
-        <h2>Add a service</h2>
+        <h2 className="wmnds-fe-question">Add a service</h2>
         <p>We’ll send an automatic disruption alert for each service you add.</p>
 
         <AddBusService />

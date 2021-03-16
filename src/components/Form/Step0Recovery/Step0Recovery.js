@@ -71,7 +71,7 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>Request a link to manage your disruption alerts</h2>
+          <h2 className="wmnds-fe-question">Request a link to manage your disruption alerts</h2>
           <p>
             We will send you a link where you can manage your disruption alerts to the same email
             address you signed up with.
@@ -91,7 +91,7 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
 
       {/* Submit button */}
       <Button
-        btnClass="wmnds-btn--start"
+        btnClass="wmnds-btn--start wmnds-col-1 wmnds-col-sm-auto"
         disabled={isFetching}
         iconRight="general-chevron-right"
         isFetching={isFetching}

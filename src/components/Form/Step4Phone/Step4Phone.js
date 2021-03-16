@@ -35,7 +35,7 @@ const Step4Phone = () => {
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>What is your mobile phone number?</h2>
+          <h2 className="wmnds-fe-question">What is your mobile phone number?</h2>
           <p>We’ll automatically send disruption alerts to this number.</p>
         </legend>
 
@@ -49,7 +49,7 @@ const Step4Phone = () => {
       </fieldset>
 
       {/* Continue button */}
-      {continueButton}
+      {continueButton()}
     </form>
   );
 };
