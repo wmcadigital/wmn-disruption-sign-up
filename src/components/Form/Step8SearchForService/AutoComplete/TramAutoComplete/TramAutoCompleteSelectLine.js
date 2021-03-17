@@ -10,15 +10,15 @@ import s from '../ServiceAutocomplete.module.scss';
 const TramAutoCompleteSelectLine = ({ selectedLines, setSelectedLines }) => {
   const { selectableTramLineInfo } = useSelectableTramLines();
   // Filter out any non-tram lines
-  const selectedTramLines = selectedLines.filter((line) =>
-    selectableTramLineInfo.map((selectableLine) => selectableLine.id).includes(line)
+  const selectedTramLines = selectedLines.filter(
+    (line) => selectableTramLineInfo.map((selectableLine) => selectableLine.id).indexOf(line) > -1
   );
   const [checked, setChecked] = useState(selectedTramLines || []); // Local state to keep track of checked item
 
   const handleChange = (e) => {
     const id = e.target.value;
     setChecked((prevState) => {
-      if (!prevState.includes(id)) return [...prevState, id];
+      if (!prevState.indexOf(id) > -1) return [...prevState, id];
       return prevState.filter((checkedId) => checkedId !== id);
     });
   };
@@ -45,7 +45,7 @@ const TramAutoCompleteSelectLine = ({ selectedLines, setSelectedLines }) => {
               <div className="wmnds-fe-checkboxes__container wmnds-m-b-none">
                 {/* Right side for remove service button */}
                 <input
-                  checked={checked.includes(line.id)}
+                  checked={checked.indexOf(line.id) > -1}
                   value={line.id}
                   onChange={handleChange}
                   className="wmnds-fe-checkboxes__input"
