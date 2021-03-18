@@ -53,7 +53,7 @@ const Step6EmailAlert = () => {
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>{title}</h2>
+          <h2 className="wmnds-fe-question">{title}</h2>
           <p>{text}</p>
         </legend>
 
@@ -69,7 +69,7 @@ const Step6EmailAlert = () => {
       </fieldset>
 
       {/* Continue button */}
-      {continueButton}
+      {continueButton()}
     </form>
   );
 };

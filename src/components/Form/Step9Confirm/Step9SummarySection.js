@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
+// Hooks
+import useSelectableTramLines from 'components/Form/useSelectableTramLines';
 // Context
 import { FormDataContext } from 'globalState/FormDataContext';
 // Components
 import RemoveService from 'components/shared/RemoveService/RemoveService';
 import Table from 'components/shared/Table/Table';
-// Style
-import style from './Step9Confirm.module.scss';
 
 function Step9SummarySection() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
@@ -15,10 +15,12 @@ function Step9SummarySection() {
     Email,
     Phone,
     BusServices,
-    TramServices,
+    TramLines,
     Trains,
+    LineId,
     ExistingUser,
   } = formDataState.formData;
+  const { filterTramLineInfo } = useSelectableTramLines();
 
   const setStepInContext = (st) => {
     formDataDispatch({
@@ -42,7 +44,7 @@ function Step9SummarySection() {
     !ExistingUser ? (
       <button
         type="button"
-        className={`${style.asLink} wmnds-link`}
+        className="wmnds-btn wmnds-btn--link"
         onClick={() => {
           setStepInContext(1);
         }}
@@ -59,7 +61,7 @@ function Step9SummarySection() {
     !ExistingUser ? (
       <button
         type="button"
-        className={`${style.asLink} wmnds-link`}
+        className="wmnds-btn wmnds-btn--link"
         onClick={() => {
           setStepInContext(5);
         }}
@@ -76,7 +78,7 @@ function Step9SummarySection() {
     dataLine3.push(
       <button
         type="button"
-        className={`${style.asLink} wmnds-link`}
+        className="wmnds-btn wmnds-btn--link"
         onClick={() => {
           setStepInContext(4);
         }}
@@ -94,8 +96,8 @@ function Step9SummarySection() {
 
   return (
     <>
-      <div className={`wmnds-col-1 ${style.summary}`}>
-        <h2>{title}</h2>
+      <div className="wmnds-col-1">
+        <h2 className="wmnds-fe-question">{title}</h2>
         <Table
           title="Personal Details"
           classes=""
@@ -107,13 +109,11 @@ function Step9SummarySection() {
 
         {!ExistingUser && (
           <>
-            <div
-              className={`wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between ${style.serviceAdded}`}
-            >
+            <div className="wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between">
               <h3 className="wmnds-col-2-3">Services added</h3>
               <button
                 type="button"
-                className={`${style.asLink} wmnds-link`}
+                className="wmnds-btn wmnds-btn--link"
                 onClick={() => {
                   setStepInContext(7);
                 }}
@@ -141,20 +141,34 @@ function Step9SummarySection() {
             )}
 
             {/* Trams */}
-            {TramServices && TramServices.length > 0 && (
+            {((TramLines && TramLines.length > 0) || filterTramLineInfo(LineId).length > 0) && (
               <div className="wmnds-m-b-lg">
                 <h4>Trams</h4>
-                {TramServices.map((tramRoute) => {
-                  return (
-                    <RemoveService
-                      mode="tram"
-                      serviceNumber={tramRoute.serviceNumber}
-                      routeName={tramRoute.routeName}
-                      key={`${tramRoute.serviceNumber}`}
-                      showRemove={false}
-                    />
-                  );
-                })}
+                {/* Stop by stop */}
+                {TramLines.length > 0 &&
+                  TramLines.map((route) => {
+                    return (
+                      <RemoveService
+                        mode="tram"
+                        id={`${route.From.id}-${route.To.id}`}
+                        serviceNumber="MM1"
+                        routeName={`${route.From.name} to ${route.To.name}`}
+                        key={`${route.From.id}-${route.To.id}`}
+                        showRemove={false}
+                      />
+                    );
+                  })}
+                {/* Full line */}
+                {filterTramLineInfo(LineId).map((line) => (
+                  <RemoveService
+                    id={line.id}
+                    serviceNumber={line.serviceNumber}
+                    mode="tram"
+                    routeName={line.routeName}
+                    key={line.routeName}
+                    showRemove={false}
+                  />
+                ))}
               </div>
             )}
 
@@ -167,6 +181,7 @@ function Step9SummarySection() {
                     <RemoveService
                       mode="train"
                       serviceNumber={line}
+                      id={line}
                       key={line}
                       showRemove={false}
                     />

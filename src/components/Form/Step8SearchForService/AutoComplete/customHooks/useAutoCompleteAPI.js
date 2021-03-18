@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 // Import contexts
 
-const useAutoCompleteAPI = (apiPath, mode, query, to) => {
+const useAutoCompleteAPI = (apiPath, mode, query) => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false); // Set loading state for spinner
   const [errorInfo, setErrorInfo] = useState(); // Placeholder to set error messaging
@@ -23,25 +23,33 @@ const useAutoCompleteAPI = (apiPath, mode, query, to) => {
         })
         .then((response) => {
           setLoading(false); // Set loading state to false after data is received
+          const { data, metroStopSearch, services } = response.data; // destructure (unused vars will be undefined)
+          let newResults = [];
+          let message;
           // BUS
           if (mode === 'bus') {
-            setResults(response.data.services || []);
+            newResults = services || [];
+            message =
+              'Make sure that you enter the bus service number and try again. For example, X8 or 101.';
           }
           // TRAM
           else if (mode === 'tram') {
-            setResults(response.data.data || []);
+            newResults = metroStopSearch || [];
           }
           // TRAIN
           else if (mode === 'train') {
-            setResults(response.data.data || []);
+            newResults = data || [];
           }
 
-          if ((!response.data.data || !response.data.services) && mounted) {
+          // Set the new results
+          setResults(newResults);
+
+          if (!newResults.length && mounted) {
             // If there is no bus data and the component is mounted (must be mounted or we will be creating an event on unmounted error)...
             // if no bus data, set error
             setErrorInfo({
               title: 'No results found',
-              message: 'Make sure you are looking for the right service, and try again.',
+              message: message || 'Make sure you are looking for the right service, and try again.',
             });
           }
         })
@@ -65,7 +73,7 @@ const useAutoCompleteAPI = (apiPath, mode, query, to) => {
       mounted = false; // Set mounted back to false on unmount
       source.cancel(); // cancel the request
     };
-  }, [apiPath, mode, query, to]);
+  }, [apiPath, mode, query]);
 
   return { loading, errorInfo, results };
 };

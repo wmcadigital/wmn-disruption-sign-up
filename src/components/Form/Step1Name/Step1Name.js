@@ -29,7 +29,7 @@ const Step1Name = () => {
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>What is your name?</h2>
+          <h2 className="wmnds-fe-question">What is your name?</h2>
           <p>
             We’ll use this information to personalise email notifications so they are not marked as
             spam in your inbox.
@@ -53,7 +53,7 @@ const Step1Name = () => {
       </fieldset>
 
       {/* Continue button */}
-      {continueButton}
+      {continueButton()}
     </form>
   );
 };

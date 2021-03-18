@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+// State
+import { FormDataContext } from 'globalState/FormDataContext';
 // Import custom hooks
 import useSubmitLinkRecovery from 'components/Form/useSubmitLinkRecovery';
 import useStepLogic from 'components/Form/useStepLogic';
@@ -9,6 +11,7 @@ import Button from 'components/shared/Button/Button';
 import Message from 'components/shared/Message/Message';
 
 const Step0Recovery = ({ setFormSubmitStatus }) => {
+  const [, formDataDispatch] = useContext(FormDataContext);
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
   const { handleSubmit, isFetching, APIErrorMessage } = useSubmitLinkRecovery(setFormSubmitStatus);
@@ -23,6 +26,12 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
       message: `Enter an ${emailLabel.toLowerCase()} in the correct format`,
     },
   });
+
+  // Set the isRequestingRecovery param in globalstate
+  useEffect(() => {
+    formDataDispatch({ type: 'REACHED_RECOVERY', payload: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // run once
 
   // To show in case of the entered email is not registered.
   const ErrorMessage = (
@@ -62,7 +71,7 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
 
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
-          <h2>Request a link to manage your disruption alerts</h2>
+          <h2 className="wmnds-fe-question">Request a link to manage your disruption alerts</h2>
           <p>
             We will send you a link where you can manage your disruption alerts to the same email
             address you signed up with.
@@ -82,7 +91,7 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
 
       {/* Submit button */}
       <Button
-        btnClass="wmnds-btn--start"
+        btnClass="wmnds-btn--start wmnds-col-1 wmnds-col-sm-auto"
         disabled={isFetching}
         iconRight="general-chevron-right"
         isFetching={isFetching}

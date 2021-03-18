@@ -4,10 +4,10 @@
 @import '~assets/styles/mixins';
 
 .selectedItemBox {
+  position: relative;
+  width: 100%;
   padding: $size-sm;
   border: 1px solid get-color(primary);
-  width: 100%;
-  position: relative;
 }
 
 .selectedSummary {
@@ -17,17 +17,17 @@
 }
 
 .closeButton {
-  height: 22px;
-  width: calc(22px + (2 * #{$size-xs}));
-  padding: 0 $size-xs;
-  cursor: pointer;
-  border: 0;
-  margin: auto;
   position: absolute;
   top: 0;
   right: $size-sm;
   bottom: 0;
+  width: calc(22px + (2 * #{$size-xs}));
+  height: 22px;
+  margin: auto;
+  padding: 0 $size-xs;
+  border: 0;
   background: none;
+  cursor: pointer;
 }
 
 .closeIcon {

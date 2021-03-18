@@ -12,29 +12,29 @@ import BusAutoCompleteResult from './BusAutoCompleteResult';
 import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
 
-const BusAutoComplete = ({ mode, setMode }) => {
-  const { formDataState, setStep } = useStepLogic(); // get formDataState and setStep logic from customHook
+const BusAutoComplete = ({ closeAutoComplete }) => {
+  const { formDataState } = useStepLogic(); // get formDataState and setStep logic from customHook
   const [query, setQuery] = useState(); // placeholder for getting/setting query
   const BusServices = formDataState.formData.BusServices || []; // Get currently selected bus services
 
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
 
+  // Remove all spaces for the query so the user can still get results when query is formatted incorrectly
+  const formatQuery = (queryString) => {
+    if (!queryString) return '';
+    return queryString.replace(/\s/g, '').trim();
+  };
+
   // customHook used to fetch results based on query
   const { loading, errorInfo, results } = useAutoCompleteAPI(
-    `/bus/v1/service?q=${encodeURI(query)}`,
+    `/bus/v1/service?q=${encodeURI(formatQuery(query))}`,
     'bus',
     query
   );
 
   // Import handleKeyDown function from customHook (used by all modes)
   const { handleKeyDown } = useHandleAutoCompleteKeys(resultsList, debounceInput, results);
-
-  // Go back to prev step if cancel
-  const handleCancel = () => {
-    setMode(null);
-    setStep(formDataState.currentStep - 1);
-  };
 
   function compare(a, b) {
     // Use toUpperCase() to ignore character casing
@@ -95,8 +95,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
                       key={result.id}
                       result={result}
                       handleKeyDown={handleKeyDown}
-                      type={mode}
-                      handleCancel={handleCancel}
+                      handleCancel={closeAutoComplete}
                     />
                   );
                 })}
@@ -108,7 +107,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
         <Button
           btnClass="wmnds-btn wmnds-btn--primary wmnds-col-auto wmnds-col-md-1 wmnds-float-right"
           text="Cancel"
-          onClick={handleCancel}
+          onClick={closeAutoComplete}
         />
       </div>
     </div>
@@ -116,8 +115,7 @@ const BusAutoComplete = ({ mode, setMode }) => {
 };
 
 BusAutoComplete.propTypes = {
-  mode: PropTypes.string.isRequired,
-  setMode: PropTypes.func.isRequired,
+  closeAutoComplete: PropTypes.func.isRequired,
 };
 
 export default BusAutoComplete;

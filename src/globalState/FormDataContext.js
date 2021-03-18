@@ -25,11 +25,12 @@ export const FormDataProvider = (props) => {
       UserId: getSearchParam('user') || null,
       LineId: [],
       BusServices: [],
-      TramServices: [],
+      TramLines: [],
       Trains: [],
     },
     formRef: '',
     hasReachedConfirmation: false,
+    isRequestingRecovery: false,
     mode: null,
   };
 
@@ -45,6 +46,17 @@ export const FormDataProvider = (props) => {
         };
       }
 
+      // Remove a line id
+      case 'REMOVE_LINE': {
+        return {
+          ...state,
+          formData: {
+            ...state.formData,
+            LineId: state.formData.LineId.filter((lineId) => action.payload.lineId !== lineId),
+          },
+        };
+      }
+
       // Remove the bus route from form data
       case 'REMOVE_BUS': {
         return {
@@ -57,14 +69,16 @@ export const FormDataProvider = (props) => {
         };
       }
 
-      // Remove the bus route from form data
+      // Remove the tram route from form data
       case 'REMOVE_TRAM': {
         return {
           ...state,
           formData: {
             ...state.formData,
-            TramServices: state.formData.TramServices.filter((tram) => action.payload !== tram.id),
-            LineId: state.formData.LineId.filter((tramId) => +action.payload !== tramId),
+            TramLines: state.formData.TramLines.filter(
+              (line) =>
+                action.payload.From.id !== line.From.id || action.payload.To.id !== line.To.id
+            ),
           },
         };
       }
@@ -104,10 +118,18 @@ export const FormDataProvider = (props) => {
           formRef: action.payload,
         };
       }
+
       case 'REACHED_CONFIRMATION': {
         return {
           ...state,
           hasReachedConfirmation: action.payload,
+        };
+      }
+
+      case 'REACHED_RECOVERY': {
+        return {
+          ...state,
+          isRequestingRecovery: action.payload,
         };
       }
 
