@@ -37,7 +37,7 @@ const Step5Email = () => {
       // Try hitting email checking API
       await axios({
         url: '/personinfo',
-        baseURL: `${process.env.REACT_APP_API_HOST}api`,
+        baseURL: `${process.env.REACT_APP_API_HOST}/api`,
         method: 'post',
         data: JSON.stringify({ Email: value, sitecode: 'any text' }),
         headers: {
