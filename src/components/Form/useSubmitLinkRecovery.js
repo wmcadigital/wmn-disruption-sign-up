@@ -22,7 +22,7 @@ const useSubmitLinkRecovery = (setFormSubmitStatus) => {
       // Go hit the API with the data
       axios({
         url: '/personinfo',
-        baseURL: `${process.env.REACT_APP_API_HOST}api`,
+        baseURL: `${process.env.REACT_APP_API_HOST}/api`,
         method: 'post',
         data: JSON.stringify(dataToSend),
         headers: {
