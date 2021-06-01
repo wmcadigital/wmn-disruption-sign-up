@@ -25,7 +25,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "dompurify": "^2.2.6",
-    "logrocket": "^1.0.14",
+    "logrocket": "^1.2.2",
     "logrocket-react": "^4.0.1",
     "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
