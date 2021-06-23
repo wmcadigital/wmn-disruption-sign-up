@@ -27,6 +27,7 @@ export const FormDataProvider = (props) => {
       BusServices: [],
       TramLines: [],
       Trains: [],
+      RoadAreas: [],
     },
     formRef: '',
     hasReachedConfirmation: false,
@@ -92,6 +93,20 @@ export const FormDataProvider = (props) => {
           formData: {
             ...state.formData,
             Trains,
+          },
+        };
+      }
+
+      case 'REMOVE_ROAD': {
+        const { RoadAreas } = state.formData;
+
+        return {
+          ...state,
+          formData: {
+            ...state.formData,
+            RoadAreas: RoadAreas.filter((area) => {
+              return action.payload.lat !== area.lat || action.payload.lon !== area.lon;
+            }),
           },
         };
       }

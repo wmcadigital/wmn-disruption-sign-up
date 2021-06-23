@@ -18,6 +18,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     LineId,
     Trains,
     TramLines,
+    RoadAreas,
     EmailAlert,
     Phone,
     ExistingUser,
@@ -30,6 +31,14 @@ const useSubmitForm = (setFormSubmitStatus) => {
     englishNumber = `+44${Phone.substr(1)}`;
   }
 
+  // Convert road areas to correct shape for the api
+  const RoadLines = RoadAreas.map((area) => ({
+    name: area.address,
+    lat: area.lat,
+    lon: area.lon,
+    distance: area.radius * 1609.34,
+  }));
+
   // Map all destructured vals above to an object we will send to API
   const dataToSend = {
     Name: `${Firstname} ${LastName}`,
@@ -37,6 +46,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     LineId: LineId.length > 0 ? LineId : ['1001'],
     Trains,
     TramLines: TramLines.map((line) => ({ From: line.From.id, To: line.To.id })),
+    RoadLines,
     EmailDisabled: EmailAlert !== 'yes',
     MobileNumber: englishNumber || '',
     siteCode: ExistingUser ? UserId : '',
