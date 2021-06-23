@@ -1,7 +1,7 @@
 @import '~assets/styles/vars';
 @import '~assets/styles/mixins';
 
-.numberInput {
+.radiusInput {
   > * {
     float: left;
 
@@ -11,7 +11,7 @@
   }
 }
 
-.numberInputButton {
+.radiusInputButton {
   box-sizing: border-box;
   display: inline-block;
   position: relative;
@@ -35,7 +35,7 @@
   }
 }
 
-.numberInputInput {
+.radiusInputInput {
   width: 150px;
 
   // Hide spinner
