@@ -17,7 +17,7 @@ const RoadAutoCompleteMap = ({ lat, lon, radius }) => {
   }, [view]);
 
   return (
-    <div className={`${s.mapContainer}`}>
+    <div className={`wmnds-m-b-md ${s.mapContainer}`}>
       <div
         id="disruptions-map"
         className={`webmap disruptions-esri-map wmnds-m-t-md ${s.map}`}
