@@ -50,19 +50,18 @@ const RoadAutoComplete = ({ closeAutoComplete }) => {
         </div>
       )}
       <div className="wmnds-col-1 wmnds-col-md-2-5">
-        {area ? (
+        {area && (
           <Button
             btnClass="wmnds-btn wmnds-m-r-md wmnds-m-t-md"
             text="Continue"
             onClick={addRoadArea}
           />
-        ) : (
-          <Button
-            btnClass="wmnds-btn wmnds-btn--primary wmnds-m-t-md"
-            text="Cancel"
-            onClick={closeAutoComplete}
-          />
         )}
+        <Button
+          btnClass="wmnds-btn wmnds-btn--primary wmnds-m-t-md"
+          text="Cancel"
+          onClick={closeAutoComplete}
+        />
       </div>
     </>
   );
