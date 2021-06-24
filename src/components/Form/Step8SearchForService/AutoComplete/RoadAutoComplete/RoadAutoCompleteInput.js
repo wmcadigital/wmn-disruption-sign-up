@@ -18,7 +18,7 @@ const RoadAutoCompleteInput = ({ area, setRoadArea }) => {
 
   const removeSelectedAreas = (result) => {
     return !RoadAreas.some(
-      (roadArea) => roadArea.lat === result.lat && roadArea.lon === result.lon
+      (roadArea) => roadArea.lat === result.location.y && roadArea.lon === result.location.x
     );
   };
 
