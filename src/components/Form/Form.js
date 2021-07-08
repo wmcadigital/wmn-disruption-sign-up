@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useForm, FormContext } from 'react-hook-form';
 // Import contexts
@@ -89,6 +89,20 @@ const Form = ({
     setIsFormStarted(false);
   };
 
+  // Handle scrolling to the top of the summary page
+  const formRef = useRef();
+  const scrollToTopOfSummary = useCallback(() => {
+    const page = document.getElementsByClassName('wmnds-html')[0];
+    const pageOffset = page.scrollTop;
+    const formOffset = formRef.current.offsetTop;
+    if (formOffset >= pageOffset) return;
+    page.scrollTo(0, formOffset - 20);
+  }, []);
+
+  useEffect(() => {
+    if (currentStep === 9) scrollToTopOfSummary();
+  }, [currentStep, scrollToTopOfSummary]);
+
   // Run! Like go get some data from an API.
   return (
     <>
@@ -124,7 +138,10 @@ const Form = ({
             </div>
           )}
 
-          <div className={formSubmitStatus === null ? `${s.formWrapper} wmnds-p-lg ` : ''}>
+          <div
+            className={formSubmitStatus === null ? `${s.formWrapper} wmnds-p-lg ` : ''}
+            ref={formRef}
+          >
             {/* Start of form */}
             {currentStep === 0 && <Step0Recovery setFormSubmitStatus={setFormSubmitStatus} />}
             {currentStep === 1 && <Step1Name />}
