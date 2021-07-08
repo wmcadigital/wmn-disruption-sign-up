@@ -1,4 +1,4 @@
 # domain redirects
 https://disruption-sign-up.wmnetwork.co.uk/* https://disruption-sign-up.tfwm.org.uk/:splat 301!
 https://wmn-disruption-sign-up.netlify.app/* https://disruption-sign-up.tfwm.org.uk/:splat 301!
-https://disruption-sign-up.tfwm.org.uk/* https://www.tfwm.org.uk/404/:splat 404
+/* https://www.tfwm.org.uk/404/:splat 200
