@@ -7,10 +7,11 @@ import SectionStepInfo from '../../shared/SectionStepInfo/SectionStepInfo';
 import AddBusService from './AddBusService/AddBusService';
 import AddTramService from './AddTramService/AddTramService';
 import AddTrainService from './AddTrainService/AddTrainService';
+import AddRoadArea from './AddRoadArea/AddRoadArea';
 
 function Step7AddService() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
-  const { BusServices, TramLines, Trains, LineId } = formDataState.formData;
+  const { BusServices, TramLines, Trains, LineId, RoadAreas } = formDataState.formData;
 
   const getNextStep = (incrementAmount) => {
     formDataDispatch({
@@ -23,7 +24,8 @@ function Step7AddService() {
     (BusServices && BusServices.length > 0) ||
     (TramLines && TramLines.length > 0) ||
     (Trains && Trains.length > 0) ||
-    (LineId && LineId.length > 0);
+    (LineId && LineId.length > 0) ||
+    (RoadAreas && RoadAreas.length > 0);
 
   return (
     <form
@@ -43,6 +45,8 @@ function Step7AddService() {
         <AddTramService />
 
         <AddTrainService />
+
+        <AddRoadArea />
 
         {/* Continue button */}
         {anyServicesSelected && (

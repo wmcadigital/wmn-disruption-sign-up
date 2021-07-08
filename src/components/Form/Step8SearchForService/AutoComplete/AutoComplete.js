@@ -7,6 +7,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 import BusAutoComplete from './BusAutoComplete/BusAutoComplete';
 import TrainAutoComplete from './TrainAutoComplete/TrainAutoComplete';
 import TramAutoComplete from './TramAutoComplete/TramAutoComplete';
+import RoadAutoComplete from './RoadAutoComplete/RoadAutoComplete';
 
 const AutoComplete = () => {
   const { mode, setMode } = useFormData();
@@ -43,6 +44,9 @@ const AutoComplete = () => {
 
       case 'tram':
         return <TramAutoComplete closeAutoComplete={closeAutoComplete} />;
+
+      case 'road':
+        return <RoadAutoComplete closeAutoComplete={closeAutoComplete} />;
 
       default:
         return null;

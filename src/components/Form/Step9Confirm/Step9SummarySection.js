@@ -17,6 +17,7 @@ function Step9SummarySection() {
     BusServices,
     TramLines,
     Trains,
+    RoadAreas,
     LineId,
     ExistingUser,
   } = formDataState.formData;
@@ -183,6 +184,23 @@ function Step9SummarySection() {
                       serviceNumber={line}
                       id={line}
                       key={line}
+                      showRemove={false}
+                    />
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Roads */}
+            {RoadAreas && RoadAreas.length > 0 && (
+              <div className="wmnds-m-b-lg">
+                <h4>Roads</h4>
+                {RoadAreas.map((area) => {
+                  return (
+                    <RemoveService
+                      mode="road"
+                      routeName={`${area.address} + ${area.radius} miles`}
+                      key={`${area.lat}${area.lon}`}
                       showRemove={false}
                     />
                   );
