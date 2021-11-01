@@ -23,6 +23,8 @@ const useSubmitForm = (setFormSubmitStatus) => {
     Phone,
     ExistingUser,
     UserId,
+    QuietHours,
+    QuietDays,
   } = formDataState.formData;
 
   // Check if mobile phone has +44, if not, remove the 0 and add +44
@@ -39,6 +41,13 @@ const useSubmitForm = (setFormSubmitStatus) => {
     distance: area.radius * 1609.34,
   }));
 
+  // Convert date to correct shape for the api
+  const date = new Date().toISOString().slice(0, 10);
+  const QuietTimes = QuietHours.map((time) => ({
+    StartTime: `${date}T${time.startHour}:${time.startMinute}:00`,
+    EndTime: `${date}T${time.endHour}:${time.endMinute}:00`,
+  }));
+
   // Map all destructured vals above to an object we will send to API
   const dataToSend = {
     Name: `${Firstname} ${LastName}`,
@@ -50,6 +59,8 @@ const useSubmitForm = (setFormSubmitStatus) => {
     EmailDisabled: EmailAlert !== 'yes',
     MobileNumber: englishNumber || '',
     siteCode: ExistingUser ? UserId : '',
+    QuietDays,
+    QuietTimePeriods: QuietTimes,
   };
 
   const handleSubmit = async (event) => {
