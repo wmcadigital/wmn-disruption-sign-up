@@ -56,6 +56,7 @@ const Checkboxes = ({ name, label, checkboxes, fieldValidation, parentCallback }
               fieldValidation={fieldValidation}
               checked={checkedState[index]}
               onChange={() => handleOnChange(index)}
+              aria-label={name}
             />
           ))}
         </div>
