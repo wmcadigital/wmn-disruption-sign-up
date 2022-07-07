@@ -69,7 +69,12 @@ const Form = ({
     if (currentStep === 5 && SMSAlert === 'no') {
       stepToGoTo = 2;
     }
-
+    if (currentStep === 4) {
+      stepToGoTo = 2;
+    }
+    if (currentStep === 2 && SMSAlert === 'yes') {
+      stepToGoTo = 4;
+    }
     if (currentStep === 7 && SMSAlert === 'no') {
       stepToGoTo = 5;
     }

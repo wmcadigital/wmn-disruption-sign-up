@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 // Import custom hooks
 import useStepLogic from 'components/Form/useStepLogic';
 // Import components
@@ -10,18 +10,19 @@ import useFormData from '../useFormData';
 const StepDisruptionAlert = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
-
+  const [radioValue, setRadioValue] = useState();
   const radioButtons = [
     { text: 'Yes', value: 'yes' },
     { text: 'No', value: 'no' },
   ];
+  const setCurrentValue = (e) => {
+    setRadioValue(e.toLowerCase());
+  };
 
   // Add InsetText with extra info when selected option is "no"
   let extraInfo;
-  const selectedOption = document.querySelector(
-    'input.wmnds-fe-radios__input[name="DisruptionAlert"]:checked'
-  );
-  if (selectedOption && selectedOption.value === 'no') {
+
+  if (radioValue && radioValue === 'no') {
     extraInfo = (
       <InsetText
         classes="wmnds-m-b-lg wmnds-m-t-none"
@@ -51,7 +52,9 @@ const StepDisruptionAlert = () => {
         </legend>
         <Radios
           name="DisruptionAlert"
+          classes={extraInfo ? 'wmnds-m-b-sm' : ''}
           radios={radioButtons}
+          onChange={(e) => setCurrentValue(e.target.value)}
           fieldValidation={register({
             required: `Please select one option to proceed`,
           })}

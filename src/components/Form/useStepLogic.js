@@ -30,7 +30,7 @@ const useStepLogic = (formRef) => {
 
       if (formDataState.currentStep === 2) {
         // Step2: SMS alert?  Yes -> Step 3  No -> Step 5
-        setStep(getValues().SMSAlert === 'no' ? 5 : formDataState.currentStep + 1);
+        setStep(getValues().SMSAlert === 'no' ? 5 : formDataState.currentStep + 2);
       } else if (formDataState.currentStep === 5 && formDataState.formData.SMSAlert === 'no') {
         // If user opt out of SMS Alert (on step 2), ask for email (step 5) and automatically choose the email alerts (Step 5 -> 7)
         formDataDispatch({
