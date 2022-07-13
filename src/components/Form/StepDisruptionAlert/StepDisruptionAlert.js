@@ -7,11 +7,10 @@ import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 import InsetText from 'components/shared/InsetText/InsetText';
 import useFormData from '../useFormData';
 
-const Step6EmailAlert = () => {
+const StepDisruptionAlert = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
   const [radioValue, setRadioValue] = useState();
-
   const radioButtons = [
     { text: 'Yes', value: 'yes' },
     { text: 'No', value: 'no' },
@@ -19,34 +18,29 @@ const Step6EmailAlert = () => {
   const setCurrentValue = (e) => {
     setRadioValue(e.toLowerCase());
   };
+
   // Add InsetText with extra info when selected option is "no"
   let extraInfo;
+
   if (radioValue && radioValue === 'no') {
     extraInfo = (
       <InsetText
-        classes="wmnds-m-b-lg"
-        content="You can always sign up to email alerts later in the disruption alerts dashboard."
+        classes="wmnds-m-b-lg wmnds-m-t-none"
+        content="You can set quiet hours and days later in the disruption alerts dashboard."
       />
     );
   }
 
   // Check if it is an existing user already
   const { ExistingUser } = useFormData();
-  let title;
-  let text;
-  if (ExistingUser) {
-    title = 'Would you like to continue receiving email alerts?';
-    text =
-      'In addition to text message alerts, we’ll send automatic disruption alerts to your email address.';
-  } else {
-    title = 'Would you like to sign up to email alerts?';
-    text = 'You’ll receive automatic disruption alerts to your email address.';
-  }
+  const title = 'Do you want to choose when to receive disruption alerts?';
+  const text =
+    'You can set quiet hours and days so you only receive alerts when it’s best for you.';
 
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
       {/* Subsection */}
-      {!ExistingUser && <SectionStepInfo section="Section 1 of 2" description="About you" />}
+      {!ExistingUser && <SectionStepInfo section="Section 1 of 2" description="Services" />}
 
       {/* Show generic error message */}
       {showGenericError}
@@ -56,9 +50,8 @@ const Step6EmailAlert = () => {
           <h2 className="wmnds-fe-question">{title}</h2>
           <p>{text}</p>
         </legend>
-
         <Radios
-          name="EmailAlert"
+          name="DisruptionAlert"
           classes={extraInfo ? 'wmnds-m-b-sm' : ''}
           radios={radioButtons}
           onChange={(e) => setCurrentValue(e.target.value)}
@@ -66,7 +59,6 @@ const Step6EmailAlert = () => {
             required: `Please select one option to proceed`,
           })}
         />
-
         {extraInfo}
       </fieldset>
 
@@ -76,4 +68,4 @@ const Step6EmailAlert = () => {
   );
 };
 
-export default Step6EmailAlert;
+export default StepDisruptionAlert;

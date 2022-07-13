@@ -30,7 +30,7 @@ const useStepLogic = (formRef) => {
 
       if (formDataState.currentStep === 2) {
         // Step2: SMS alert?  Yes -> Step 3  No -> Step 5
-        setStep(getValues().SMSAlert === 'no' ? 5 : formDataState.currentStep + 1);
+        setStep(getValues().SMSAlert === 'no' ? 5 : formDataState.currentStep + 2);
       } else if (formDataState.currentStep === 5 && formDataState.formData.SMSAlert === 'no') {
         // If user opt out of SMS Alert (on step 2), ask for email (step 5) and automatically choose the email alerts (Step 5 -> 7)
         formDataDispatch({
@@ -38,20 +38,22 @@ const useStepLogic = (formRef) => {
           payload: { EmailAlert: 'yes' },
         });
 
-        setStep(formDataState.hasReachedConfirmation ? 9 : formDataState.currentStep + 2);
+        setStep(formDataState.hasReachedConfirmation ? 11 : formDataState.currentStep + 2);
+      } else if (formDataState.currentStep === 9 && getValues().DisruptionAlert === 'no') {
+        setStep(11);
       } else {
-        setStep(formDataState.hasReachedConfirmation ? 9 : formDataState.currentStep + 1);
+        setStep(formDataState.hasReachedConfirmation ? 11 : formDataState.currentStep + 1);
       }
 
       // EXISTING USERS: exceptions to the usual workflow
       if (formDataState.formData.ExistingUser) {
         if (formDataState.currentStep === 4) {
           // Step4: Phone  ->  Step 6: Keep receiving email alerts?
-          // Step4: Phone  -> Step 9: summary  (if using is editing the phone number)
-          setStep(formDataState.hasReachedConfirmation ? 9 : 6);
+          // Step4: Phone  -> Step 11: summary  (if using is editing the phone number)
+          setStep(formDataState.hasReachedConfirmation ? 11 : 6);
         } else if (formDataState.currentStep === 6) {
-          // Step6: Keep receiving email alerts?  ->  Step 9: Summary
-          setStep(9);
+          // Step6: Keep receiving email alerts?  ->  Step 11: Summary
+          setStep(11);
         }
       }
     }

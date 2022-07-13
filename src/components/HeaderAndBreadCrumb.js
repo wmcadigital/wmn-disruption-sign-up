@@ -11,7 +11,7 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
             {/* <!-- Logo --> */}
             <a
               className="wmnds-header__logo-link"
-              href="//wmnetwork.co.uk"
+              href="//tfwm.org.uk"
               title="West Midlands Network Home"
             >
               <img
@@ -47,7 +47,7 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
             <p className="wmnds-banner-container__text">
               This is a new service - your{' '}
               <a
-                href="https://forms.office.com/Pages/ResponsePage.aspx?id=RetZCK7xCk6e-ubWa7tnLz45Weo_RTVDpYxVYcrD8wxUMzI4UlRVRVFMV002VU9FWllFTDM5QjlVWS4u"
+                href="https://forms.office.com/Pages/ResponsePage.aspx?id=RetZCK7xCk6e-ubWa7tnL51Hn3Md47tLqr_OlQdqFgtUMTE0NURDUkE2NExFWDlJTVhTQUxGTEdSWC4u"
                 title="Service feedback survey"
                 target="_blank"
                 className="wmnds-link"

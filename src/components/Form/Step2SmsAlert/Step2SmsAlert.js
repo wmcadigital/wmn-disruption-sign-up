@@ -15,19 +15,6 @@ const Step2SmsAlert = () => {
     { text: 'No', value: 'no' },
   ];
 
-  const selectedOption = document.querySelector(
-    'input.wmnds-fe-radios__input[name="SMSAlert"]:checked'
-  );
-  let extraInfo;
-  if (selectedOption && selectedOption.value === 'no') {
-    extraInfo = (
-      <InsetText
-        classes="wmnds-m-b-lg"
-        content="You can also sign up to the text message service disruptions trial later in the disruption alerts dashboard."
-      />
-    );
-  }
-
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">
       {/* Subsection */}
@@ -39,20 +26,23 @@ const Step2SmsAlert = () => {
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
           <h2 className="wmnds-fe-question">
-            Would you like to sign up to a trial to receive text message alerts for disruptions?
+            Do you want to recieve text message alerts for disruptions?
           </h2>
           <p>We’ll automatically send text message alerts straight to your mobile phone.</p>
+          <InsetText
+            classes="wmnds-m-b-lg"
+            content="You can choose quiet hours or days. We won’t send you text or email alerts during those times."
+          />
         </legend>
 
         <Radios
           name="SMSAlert"
-          classes={extraInfo ? 'wmnds-m-b-sm' : ''}
+          classes="wmnds-m-b-sm"
           radios={radioButtons}
           fieldValidation={register({
             required: `Please select one option to proceed`,
           })}
         />
-        {extraInfo}
       </fieldset>
 
       {/* Continue button */}

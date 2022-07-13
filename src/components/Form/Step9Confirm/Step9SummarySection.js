@@ -6,6 +6,7 @@ import { FormDataContext } from 'globalState/FormDataContext';
 // Components
 import RemoveService from 'components/shared/RemoveService/RemoveService';
 import Table from 'components/shared/Table/Table';
+import HoursMinutes from '../../shared/HoursMinutes/HoursMinutes';
 
 function Step9SummarySection() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
@@ -20,6 +21,8 @@ function Step9SummarySection() {
     RoadAreas,
     LineId,
     ExistingUser,
+    QuietHours,
+    QuietDays,
   } = formDataState.formData;
   const { filterTramLineInfo } = useSelectableTramLines();
 
@@ -210,6 +213,51 @@ function Step9SummarySection() {
           </>
         )}
 
+        {!ExistingUser && QuietHours.length > 0 && (
+          <>
+            <div className="wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between">
+              <h3 className="wmnds-col-2-3">Daily quiet hours</h3>
+              <button
+                type="button"
+                className="wmnds-btn wmnds-btn--link"
+                onClick={() => {
+                  setStepInContext(10);
+                }}
+              >
+                Change
+              </button>
+            </div>
+            You will not receive alerts between
+            <HoursMinutes times={QuietHours} />.
+          </>
+        )}
+        {!ExistingUser && QuietDays.length > 0 && (
+          <>
+            <div className="wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between">
+              <h3 className="wmnds-col-2-3">Quiet days</h3>
+              <button
+                type="button"
+                className="wmnds-btn wmnds-btn--link"
+                onClick={() => {
+                  setStepInContext(10);
+                }}
+              >
+                Change
+              </button>
+            </div>
+            <p className="wmnds-col-2-3">
+              You will not receive alerts on
+              {QuietDays.length > 1 ? (
+                <span>
+                  <strong> {QuietDays.slice(0, -1).join(', ')}</strong> and{' '}
+                </span>
+              ) : (
+                ` `
+              )}
+              <strong>{QuietDays[QuietDays.length - 1]}</strong>.
+            </p>
+          </>
+        )}
         {ExistingUser && (
           <div className="wmnds-m-b-lg wmnds-m-t-xl">
             <h3 className="wmnds-col-1-3">Your services</h3>

@@ -7,7 +7,7 @@ import { FormDataContext } from 'globalState/FormDataContext';
 
 const { sanitize } = dompurify;
 
-const Radio = ({ name, fieldValidation, text, value }) => {
+const Radio = ({ name, fieldValidation, text, value, onChange }) => {
   const [formDataState] = useContext(FormDataContext); // Get the state of form data from FormDataContext
 
   return (
@@ -25,6 +25,7 @@ const Radio = ({ name, fieldValidation, text, value }) => {
           ref={fieldValidation}
           value={value}
           defaultChecked={formDataState.formData[name] === value}
+          onChange={onChange}
         />
         <span className="wmnds-fe-radios__checkmark" />
       </label>
@@ -36,12 +37,14 @@ const Radio = ({ name, fieldValidation, text, value }) => {
 Radio.propTypes = {
   name: PropTypes.string.isRequired,
   fieldValidation: PropTypes.func,
+  onChange: PropTypes.func,
   text: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };
 
 Radio.defaultProps = {
   fieldValidation: null,
+  onChange: null,
 };
 
 export default Radio;

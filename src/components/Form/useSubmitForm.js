@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { useFormContext } from 'react-hook-form';
@@ -23,6 +24,8 @@ const useSubmitForm = (setFormSubmitStatus) => {
     Phone,
     ExistingUser,
     UserId,
+    QuietHours,
+    QuietDays,
   } = formDataState.formData;
 
   // Check if mobile phone has +44, if not, remove the 0 and add +44
@@ -39,6 +42,52 @@ const useSubmitForm = (setFormSubmitStatus) => {
     distance: area.radius * 1609.34,
   }));
 
+  const convertH2M = (timeInHour) => {
+    const timeParts = timeInHour.split(':');
+    return Number(timeParts[0]) * 60 + Number(timeParts[1]);
+  };
+  // Convert date to correct shape for the api
+  const QuietTimes = QuietHours.map((time) => ({
+    StartTime: convertH2M(`${time.startHour}:${time.startMinute}`),
+    EndTime: convertH2M(`${time.endHour}:${time.endMinute}`),
+  }));
+
+  const format = (n) => {
+    // eslint-disable-next-line no-bitwise
+    return `${`0${(n / 60) ^ 0}`.slice(-2)}:${`0${n % 60}`.slice(-2)}`;
+  };
+
+  const merge = (arr) => {
+    const arrFiltered = (r) => {
+      return r.EndTime > r.StartTime;
+    };
+    const arrSorted = arr.filter(arrFiltered);
+    const result = arrSorted.sort((a, b) => {
+      return a.StartTime - b.StartTime;
+    });
+    let i = 0;
+
+    while (i < result.length - 1) {
+      const current = result[i];
+      const next = result[i + 1];
+
+      // check if there is an overlapping
+      if (current.EndTime >= next.StartTime) {
+        current.EndTime = Math.max(current.EndTime, next.EndTime);
+        // remove next
+        result.splice(i + 1, 1);
+      } else {
+        // move to next
+        i++;
+      }
+    }
+    return result;
+  };
+  const results = merge(QuietTimes).map((i) => [format(i.StartTime), format(i.EndTime)]);
+  const QuietTimesFiltered = results.map((time) => ({
+    StartTime: time[0],
+    EndTime: time[1],
+  }));
   // Map all destructured vals above to an object we will send to API
   const dataToSend = {
     Name: `${Firstname} ${LastName}`,
@@ -50,6 +99,8 @@ const useSubmitForm = (setFormSubmitStatus) => {
     EmailDisabled: EmailAlert !== 'yes',
     MobileNumber: englishNumber || '',
     siteCode: ExistingUser ? UserId : '',
+    QuietDays: QuietDays.map((v) => ({ day: v })),
+    QuietTimePeriods: QuietTimesFiltered,
   };
 
   const handleSubmit = async (event) => {

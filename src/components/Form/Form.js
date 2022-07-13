@@ -16,6 +16,8 @@ import Step6EmailAlert from './Step6EmailAlert/Step6EmailAlert';
 import Step7AddService from './Step7AddService/Step7AddService';
 import Step8SearchForService from './Step8SearchForService/Step8SearchForService';
 import Step9Confirm from './Step9Confirm/Step9Confirm';
+import StepDisruptionAlert from './StepDisruptionAlert/StepDisruptionAlert';
+import StepQuietHours from './StepQuietHours/StepQuietHours';
 import SubmitSuccess from './Step10SubmitConfirmation/Success';
 import SubmitError from './Step10SubmitConfirmation/Error';
 // Custom Hooks
@@ -49,15 +51,15 @@ const Form = ({
   useTrackFormAbandonment(currentStep, formSubmitStatus);
 
   // Show debug options for below (this should be deleted on release)
-  const debugStepOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  const debugStepOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
   let stepToGoTo;
 
   if (!ExistingUser) {
-    // NEW USERS: Show back button if the step is between 1 or 9
+    // NEW USERS: Show back button if the step is between 1 or 11
     if (
       currentStep > 1 &&
-      currentStep < 9 &&
+      currentStep < 11 &&
       !(currentStep === 5 && SMSAlert === 'no') &&
       !(currentStep === 7 && SMSAlert === 'no')
     ) {
@@ -67,13 +69,18 @@ const Form = ({
     if (currentStep === 5 && SMSAlert === 'no') {
       stepToGoTo = 2;
     }
-
+    if (currentStep === 4) {
+      stepToGoTo = 2;
+    }
+    if (currentStep === 2 && SMSAlert === 'yes') {
+      stepToGoTo = 4;
+    }
     if (currentStep === 7 && SMSAlert === 'no') {
       stepToGoTo = 5;
     }
   } else {
     /* EXISTING USERS: Show back button if the step is 4 or 6. Step 3 has no back button */
-    if (currentStep > 3 && currentStep < 9 && currentStep !== 6) {
+    if (currentStep > 3 && currentStep < 11 && currentStep !== 6) {
       stepToGoTo = currentStep - 1;
     }
 
@@ -100,7 +107,7 @@ const Form = ({
   }, []);
 
   useEffect(() => {
-    if (currentStep === 9) scrollToTopOfSummary();
+    if (currentStep === 11) scrollToTopOfSummary();
   }, [currentStep, scrollToTopOfSummary]);
 
   // Run! Like go get some data from an API.
@@ -118,7 +125,7 @@ const Form = ({
                 onClick={() =>
                   formDataDispatch({
                     type: 'UPDATE_STEP',
-                    payload: hasReachedConfirmation ? 9 : stepToGoTo,
+                    payload: hasReachedConfirmation ? 11 : stepToGoTo,
                   })
                 }
               >
@@ -152,10 +159,12 @@ const Form = ({
             {currentStep === 6 && <Step6EmailAlert />}
             {currentStep === 7 && <Step7AddService />}
             {currentStep === 8 && <Step8SearchForService />}
-            {currentStep === 9 && <Step9Confirm setFormSubmitStatus={setFormSubmitStatus} />}
+            {currentStep === 9 && <StepDisruptionAlert />}
+            {currentStep === 10 && <StepQuietHours />}
+            {currentStep === 11 && <Step9Confirm setFormSubmitStatus={setFormSubmitStatus} />}
             {/* for testing only */}
-            {currentStep === 10 && <SubmitSuccess />}
-            {currentStep === 11 && <SubmitError />}
+            {currentStep === 12 && <SubmitSuccess />}
+            {currentStep === 13 && <SubmitError />}
           </div>
         </div>
         {/* If in development based on envs then show form debugging */}
