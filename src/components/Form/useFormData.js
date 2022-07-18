@@ -18,9 +18,12 @@ const useFormData = () => {
     Phone,
     BusServices,
     TramServices,
+    QuietHours,
+    QuietDays,
     ExistingUser,
     SMSAlert,
     EmailAlert,
+    DisruptionAlert,
     SMSTerms,
   } = formDataState.formData;
   return {
@@ -30,6 +33,8 @@ const useFormData = () => {
     Phone,
     BusServices,
     TramServices,
+    QuietHours,
+    QuietDays,
     ExistingUser,
     formDataState,
     formDataDispatch,
@@ -37,6 +42,7 @@ const useFormData = () => {
     setMode,
     SMSAlert,
     EmailAlert,
+    DisruptionAlert,
     SMSTerms,
   };
 };

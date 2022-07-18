@@ -26,7 +26,7 @@ function Breadcrumb() {
             className="wmnds-breadcrumb__link wmnds-breadcrumb__link--current"
             aria-current="page"
           >
-            Sign up to email alerts about disruption
+            Sign up to alerts about disruption
           </a>
         </li>
       </ol>

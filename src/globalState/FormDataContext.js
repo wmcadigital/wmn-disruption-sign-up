@@ -28,6 +28,8 @@ export const FormDataProvider = (props) => {
       TramLines: [],
       Trains: [],
       RoadAreas: [],
+      QuietHours: [],
+      QuietDays: [],
     },
     formRef: '',
     hasReachedConfirmation: false,
@@ -110,7 +112,16 @@ export const FormDataProvider = (props) => {
           },
         };
       }
-
+      // Remove the quite hours from form data
+      case 'REMOVE_QUIET_HOURS': {
+        return {
+          ...state,
+          formData: {
+            ...state.formData,
+            QuietHours: state.formData.QuietHours.filter((hours) => action.payload !== hours.id),
+          },
+        };
+      }
       // Update service mode
       case 'UPDATE_MODE': {
         return {
