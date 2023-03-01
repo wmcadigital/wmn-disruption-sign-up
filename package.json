@@ -24,7 +24,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
-    "dompurify": "^2.2.6",
+    "dompurify": "^3.0.0",
     "esri-loader": "^3.1.0",
     "logrocket": "^1.0.14",
     "logrocket-react": "^4.0.1",
