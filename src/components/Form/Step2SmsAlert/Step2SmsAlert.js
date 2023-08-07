@@ -26,7 +26,7 @@ const Step2SmsAlert = () => {
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
           <h2 className="wmnds-fe-question">
-            Do you want to recieve text message alerts for disruptions?
+            Do you want to receive text message alerts for disruptions?
           </h2>
           <p>We’ll automatically send text message alerts straight to your mobile phone.</p>
           <InsetText
