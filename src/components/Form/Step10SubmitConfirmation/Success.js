@@ -78,19 +78,6 @@ function Success() {
             To unsubscribe from all disruption alerts, please select the ‘Unsubscribe from alerts’
             option in the disruption alerts dashboard.
           </p>
-
-          <p>
-            <a
-              href="https://forms.office.com/Pages/ResponsePage.aspx?id=RetZCK7xCk6e-ubWa7tnL51Hn3Md47tLqr_OlQdqFgtUMTE0NURDUkE2NExFWDlJTVhTQUxGTEdSWC4u"
-              title="Service feedback survey"
-              target="_blank"
-              className="wmds-link"
-              rel="noopener noreferrer"
-            >
-              What did you think of this service?
-            </a>{' '}
-            (takes 30 seconds)
-          </p>
         </div>
       </div>
     </div>
