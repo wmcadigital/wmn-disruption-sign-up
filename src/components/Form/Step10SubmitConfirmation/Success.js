@@ -8,6 +8,7 @@ function Success() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   const { isRequestingRecovery } = formDataState;
   const { Phone, SMSAlert, EmailAlert } = formDataState.formData;
+  const { Phone, SMSAlert, EmailAlert } = formDataState.formData;
 
   const alignCenter = {
     textAlign: 'center',
@@ -25,6 +26,7 @@ function Success() {
       'Visit the link in the email to manage your disruption alerts.',
       'You can now manage your services and communication preferences. You can access the page at any time by visiting the link in your email.',
     ];
+  } else if (Phone && SMSAlert === 'yes' && EmailAlert === 'yes') {
   } else if (Phone && SMSAlert === 'yes' && EmailAlert === 'yes') {
     /* Text messages AND Email */
     message = 'You have successfully signed up to text message and email alerts';
