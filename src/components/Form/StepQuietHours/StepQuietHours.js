@@ -14,7 +14,7 @@ const StepQuietHours = () => {
   // Add InsetText with extra info when selected option is "no"
   let extraInfo;
   const selectedOption = document.querySelector(
-    'input.wmnds-fe-radios__input[name="EmailAlert"]:checked'
+    'input.wmnds-fe-radios__input[name="EmailAlert"]:checked',
   );
   if (selectedOption && selectedOption.value === 'no') {
     extraInfo = (
@@ -27,7 +27,7 @@ const StepQuietHours = () => {
 
   // Check if it is an existing user already
   const { ExistingUser } = useFormData();
-  const title = 'Choose when you recieve disruption alerts';
+  const title = 'Choose when you receive disruption alerts';
   const text =
     'You can set quiet hours and days so you only receive alerts when it’s best for you.';
 

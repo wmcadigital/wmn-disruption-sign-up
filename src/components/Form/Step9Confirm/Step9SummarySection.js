@@ -55,7 +55,7 @@ function Step9SummarySection() {
       >
         Change
       </button>
-    ) : null
+    ) : null,
   );
 
   const dataLine2 = [];
@@ -72,7 +72,7 @@ function Step9SummarySection() {
       >
         Change
       </button>
-    ) : null
+    ) : null,
   );
 
   const dataLine3 = [];
@@ -88,7 +88,7 @@ function Step9SummarySection() {
         }}
       >
         Change
-      </button>
+      </button>,
     );
   }
   /* End of Table Data */

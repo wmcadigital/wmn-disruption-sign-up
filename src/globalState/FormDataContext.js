@@ -80,7 +80,7 @@ export const FormDataProvider = (props) => {
             ...state.formData,
             TramLines: state.formData.TramLines.filter(
               (line) =>
-                action.payload.From.id !== line.From.id || action.payload.To.id !== line.To.id
+                action.payload.From.id !== line.From.id || action.payload.To.id !== line.To.id,
             ),
           },
         };

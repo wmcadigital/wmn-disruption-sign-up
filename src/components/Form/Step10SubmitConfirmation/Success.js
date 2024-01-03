@@ -8,6 +8,7 @@ function Success() {
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   const { isRequestingRecovery } = formDataState;
   const { Phone, SMSAlert, EmailAlert } = formDataState.formData;
+  const { Phone, SMSAlert, EmailAlert } = formDataState.formData;
 
   const alignCenter = {
     textAlign: 'center',
@@ -25,6 +26,7 @@ function Success() {
       'Visit the link in the email to manage your disruption alerts.',
       'You can now manage your services and communication preferences. You can access the page at any time by visiting the link in your email.',
     ];
+  } else if (Phone && SMSAlert === 'yes' && EmailAlert === 'yes') {
   } else if (Phone && SMSAlert === 'yes' && EmailAlert === 'yes') {
     /* Text messages AND Email */
     message = 'You have successfully signed up to text message and email alerts';
@@ -77,19 +79,6 @@ function Success() {
           <p>
             To unsubscribe from all disruption alerts, please select the ‘Unsubscribe from alerts’
             option in the disruption alerts dashboard.
-          </p>
-
-          <p>
-            <a
-              href="https://forms.office.com/Pages/ResponsePage.aspx?id=RetZCK7xCk6e-ubWa7tnL51Hn3Md47tLqr_OlQdqFgtUMTE0NURDUkE2NExFWDlJTVhTQUxGTEdSWC4u"
-              title="Service feedback survey"
-              target="_blank"
-              className="wmds-link"
-              rel="noopener noreferrer"
-            >
-              What did you think of this service?
-            </a>{' '}
-            (takes 30 seconds)
           </p>
         </div>
       </div>
