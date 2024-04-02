@@ -14,7 +14,7 @@ const StepQuietHours = () => {
   // Add InsetText with extra info when selected option is "no"
   let extraInfo;
   const selectedOption = document.querySelector(
-    'input.wmnds-fe-radios__input[name="EmailAlert"]:checked',
+    'input.wmnds-fe-radios__input[name="EmailAlert"]:checked'
   );
   if (selectedOption && selectedOption.value === 'no') {
     extraInfo = (

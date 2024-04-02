@@ -31,7 +31,7 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
         </div>
       </header>
 
-      <div className="wmnds-container">
+      {/* <div className="wmnds-container">
         <div className="wmnds-banner-container">
           <div className="wmnds-col-1">
             <div className="wmnds-banner-container__phase-wrapper">
@@ -59,7 +59,7 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* <!-- Breadcrumb --> */}
       {/* Only show breadcrumbs if the form isn't started or we are on success/error page (formSubmitStatus) */}

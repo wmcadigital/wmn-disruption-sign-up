@@ -148,9 +148,9 @@ const TrainAutoCompleteSelectLines = ({
 
 TrainAutoCompleteSelectLines.propTypes = {
   formDataDispatch: PropTypes.func.isRequired,
-  formDataState: PropTypes.objectOf(PropTypes.any).isRequired,
+  formDataState: PropTypes.objectOf(PropTypes).isRequired,
   closeAutoComlplete: PropTypes.func.isRequired,
-  trainStations: PropTypes.objectOf(PropTypes.any).isRequired,
+  trainStations: PropTypes.objectOf(PropTypes).isRequired,
 };
 
 export default TrainAutoCompleteSelectLines;

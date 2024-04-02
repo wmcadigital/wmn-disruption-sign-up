@@ -33,15 +33,10 @@ const Step2SmsAlert = () => {
             classes="wmnds-m-b-lg"
             content="You can choose quiet hours or days. We won’t send you text or email alerts during those times."
           />
-          <InsetText
-            classes="wmnds-m-b-lg"
-            content="You can choose quiet hours or days. We won’t send you text or email alerts during those times."
-          />
         </legend>
 
         <Radios
           name="SMSAlert"
-          classes="wmnds-m-b-sm"
           classes="wmnds-m-b-sm"
           radios={radioButtons}
           fieldValidation={register({

@@ -18,7 +18,8 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
   // Labels used on inputs and for validation
   const emailLabel = 'Email address';
   // Logic used to validate the email field
-  const emailRegex = /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches email regex on server
+  const emailRegex =
+    /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches email regex on server
   const emailValidation = register({
     required: `${emailLabel} is required`,
     pattern: {

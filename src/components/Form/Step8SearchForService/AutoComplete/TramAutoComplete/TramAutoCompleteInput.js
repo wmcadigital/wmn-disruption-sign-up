@@ -78,7 +78,7 @@ const TramAutoComplete = ({ stop, setStop }) => {
 
 // PropTypes
 TramAutoComplete.propTypes = {
-  stop: PropTypes.objectOf(PropTypes.any),
+  stop: PropTypes.objectOf(PropTypes),
   setStop: PropTypes.func.isRequired,
 };
 

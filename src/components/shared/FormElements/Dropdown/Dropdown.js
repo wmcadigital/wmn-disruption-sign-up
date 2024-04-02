@@ -36,7 +36,7 @@ const Dropdown = ({
             />
           )}
           <label className="wmnds-fe-label" htmlFor={name}>
-            {hint}
+            {label} {hint}
           </label>
           <select
             className="wmnds-fe-dropdown__select"

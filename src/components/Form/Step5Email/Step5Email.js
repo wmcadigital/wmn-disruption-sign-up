@@ -12,9 +12,8 @@ import useFormData from '../useFormData';
 
 const Step5Email = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const { register, handleSubmit, showGenericError, continueButton, setStep } = useStepLogic(
-    formRef
-  ); // Custom hook for handling continue button (validation, errors etc)
+  const { register, handleSubmit, showGenericError, continueButton, setStep } =
+    useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
   const [checkingEmail, setcheckingEmail] = useState(false);
 
@@ -26,11 +25,13 @@ const Step5Email = () => {
   // Labels used on inputs and for validation
   const emailLabel = 'Email address';
   // Logic used to validate the email field
-  const emailRegex = /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches email regex on server
+  const emailRegex =
+    /^[\w!#$%&amp;'*+\-/=?^_`{|}~]+(\.[\w!#$%&amp;'*+\-/=?^_`{|}~]+)*@((([-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; // Matches email regex on server
   // To show in case of the entered email is not registered.
 
   // Function to check if email address has already registered
   const checkEmailAddress = async (value) => {
+    console.log(value);
     setcheckingEmail(true); // Set checking email to true so continue button shows loading spinner
 
     try {

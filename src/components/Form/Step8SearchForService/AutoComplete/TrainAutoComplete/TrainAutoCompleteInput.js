@@ -78,7 +78,7 @@ const TrainAutoComplete = ({ station, setStation }) => {
 
 // PropTypes
 TrainAutoComplete.propTypes = {
-  station: PropTypes.objectOf(PropTypes.any),
+  station: PropTypes.objectOf(PropTypes),
   setStation: PropTypes.func.isRequired,
 };
 

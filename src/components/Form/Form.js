@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { useForm, FormContext } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 // Import contexts
 import { FormDataContext } from 'globalState/FormDataContext';
 // Helper
@@ -115,7 +115,7 @@ const Form = ({
     <>
       {/* pass all methods into the context */}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <FormContext {...methods}>
+      <FormProvider {...methods}>
         <div className="wmnds-col-1 wmnds-col-md-2-3">
           {stepToGoTo && (
             <div className="wmnds-col-1 wmnds-m-b-md">
@@ -205,7 +205,7 @@ const Form = ({
             </div>
           </div>
         )}
-      </FormContext>
+      </FormProvider>
     </>
   );
 };

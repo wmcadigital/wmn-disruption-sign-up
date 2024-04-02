@@ -18,7 +18,7 @@ const Checkboxes = ({ name, label, checkboxes, fieldValidation, parentCallback }
 
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item,
+      index === position ? !item : item
     );
     setCheckedState(updatedCheckedState);
     const daysSelected = updatedCheckedState.map((currentState, index) => {

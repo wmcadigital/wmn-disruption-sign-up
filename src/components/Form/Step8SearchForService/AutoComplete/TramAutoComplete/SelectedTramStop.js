@@ -26,7 +26,7 @@ const SelectedTramStop = ({ stop, clearStop }) => {
 
 // PropTypes
 SelectedTramStop.propTypes = {
-  stop: PropTypes.objectOf(PropTypes.any).isRequired,
+  stop: PropTypes.objectOf(PropTypes).isRequired,
   clearStop: PropTypes.func.isRequired,
 };
 

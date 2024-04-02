@@ -26,7 +26,7 @@ const SelectedTrainStation = ({ station, clearStation }) => {
 
 // PropTypes
 SelectedTrainStation.propTypes = {
-  station: PropTypes.objectOf(PropTypes.any).isRequired,
+  station: PropTypes.objectOf(PropTypes).isRequired,
   clearStation: PropTypes.func.isRequired,
 };
 

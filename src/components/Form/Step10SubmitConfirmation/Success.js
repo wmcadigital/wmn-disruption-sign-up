@@ -4,15 +4,9 @@ import InsetText from 'components/shared/InsetText/InsetText';
 import { FormDataContext } from '../../../globalState/FormDataContext';
 
 function Success() {
-  // eslint-disable-next-line no-unused-vars
-  const [formDataState, formDataDispatch] = useContext(FormDataContext);
+  const [formDataState] = useContext(FormDataContext);
   const { isRequestingRecovery } = formDataState;
   const { Phone, SMSAlert, EmailAlert } = formDataState.formData;
-  const { Phone, SMSAlert, EmailAlert } = formDataState.formData;
-
-  const alignCenter = {
-    textAlign: 'center',
-  };
 
   let message;
   let steps;
@@ -26,7 +20,6 @@ function Success() {
       'Visit the link in the email to manage your disruption alerts.',
       'You can now manage your services and communication preferences. You can access the page at any time by visiting the link in your email.',
     ];
-  } else if (Phone && SMSAlert === 'yes' && EmailAlert === 'yes') {
   } else if (Phone && SMSAlert === 'yes' && EmailAlert === 'yes') {
     /* Text messages AND Email */
     message = 'You have successfully signed up to text message and email alerts';
@@ -61,7 +54,7 @@ function Success() {
           <h1>{title}</h1>
         </div>
         <div className="wmnds-col-1 wmnds-m-b-xl">
-          <div style={alignCenter} className="wmnds-msg-summary wmnds-msg-summary--success-fill ">
+          <div className="wmnds-msg-summary wmnds-msg-summary--success-fill ">
             <div className="wmnds-msg-summary__header">
               <h3 className="wmnds-msg-summary__title">{message}</h3>
             </div>
