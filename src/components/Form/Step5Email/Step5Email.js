@@ -31,7 +31,6 @@ const Step5Email = () => {
 
   // Function to check if email address has already registered
   const checkEmailAddress = async (value) => {
-    console.log(value);
     setcheckingEmail(true); // Set checking email to true so continue button shows loading spinner
 
     try {
