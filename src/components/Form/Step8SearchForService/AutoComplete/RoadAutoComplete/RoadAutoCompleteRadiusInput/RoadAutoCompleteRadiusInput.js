@@ -8,7 +8,7 @@ const minRadius = 1;
 const maxRadius = 10;
 const clampRadius = (value) => Math.min(Math.max(value, minRadius), maxRadius);
 
-const RoadAutoCompleteRadiusInput = ({ radius, setRadius }) => {
+function RoadAutoCompleteRadiusInput({ radius, setRadius }) {
   const updateRadius = (value) => setRadius(clampRadius(value));
   const incrementRadius = () => updateRadius(radius + 1);
   const decrementRadius = () => updateRadius(radius - 1);
@@ -45,7 +45,7 @@ const RoadAutoCompleteRadiusInput = ({ radius, setRadius }) => {
       </div>
     </div>
   );
-};
+}
 
 RoadAutoCompleteRadiusInput.propTypes = {
   radius: PropTypes.number.isRequired,

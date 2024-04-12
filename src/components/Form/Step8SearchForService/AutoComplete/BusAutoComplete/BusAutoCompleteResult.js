@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FormDataContext } from 'globalState/FormDataContext';
 
-const BusAutoCompleteResult = (props) => {
+function BusAutoCompleteResult(props) {
   const [formState, formDataDispatch] = useContext(FormDataContext); // Get state and dispatch of form
   const { result, handleKeyDown, handleCancel } = props || {};
   // Destructure fields from result
@@ -51,6 +51,6 @@ const BusAutoCompleteResult = (props) => {
       </div>
     </li>
   );
-};
+}
 
 export default BusAutoCompleteResult;

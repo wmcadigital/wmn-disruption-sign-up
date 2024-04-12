@@ -4,7 +4,7 @@ import Button from 'components/shared/Button/Button';
 import RemoveService from 'components/shared/RemoveService/RemoveService';
 import useStepLogic from 'components/Form/useStepLogic';
 
-const AddRoadService = () => {
+function AddRoadService() {
   const { setStep, formDataState, formDataDispatch } = useStepLogic();
   const { RoadAreas } = formDataState.formData;
 
@@ -49,6 +49,6 @@ const AddRoadService = () => {
       )}
     </>
   );
-};
+}
 
 export default AddRoadService;

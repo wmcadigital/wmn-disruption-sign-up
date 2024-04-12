@@ -25,13 +25,13 @@ import useTrackFormAbandonment from './useTrackFormAbandonment';
 // Import styling
 import s from './Form.module.scss';
 
-const Form = ({
+function Form({
   formSubmitStatus,
   setFormSubmitStatus,
   isRecoverLinkPressed,
   setIsFormStarted,
   setIsRecoverLinkPressed,
-}) => {
+}) {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
   const { currentStep, hasReachedConfirmation } = formDataState; // Destructure step from state
   const { ExistingUser, SMSAlert } = formDataState.formData;
@@ -208,7 +208,7 @@ const Form = ({
       </FormProvider>
     </>
   );
-};
+}
 
 Form.propTypes = {
   formSubmitStatus: PropTypes.bool,

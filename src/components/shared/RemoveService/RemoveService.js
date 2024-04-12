@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import style from './RemoveService.module.scss';
 import Button from '../Button/Button';
 
-const RemoveService = ({ serviceNumber, routeName, onClick, showRemove, mode }) => {
+function RemoveService({ serviceNumber, routeName, onClick, showRemove, mode }) {
   const removeBtnText = (() => {
     switch (mode) {
       case 'train':
@@ -61,7 +61,7 @@ const RemoveService = ({ serviceNumber, routeName, onClick, showRemove, mode }) 
       <hr className="wmnds-col-1 wmnds-m-t-md wmnds-m-b-md" />
     </>
   );
-};
+}
 
 RemoveService.propTypes = {
   onClick: PropTypes.func,

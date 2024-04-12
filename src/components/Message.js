@@ -5,7 +5,7 @@ import Icon from './shared/Icon/Icon';
 
 const { sanitize } = dompurify;
 
-const Message = ({ type, title, message }) => {
+function Message({ type, title, message }) {
   let iconName;
   switch (type) {
     case 'error':
@@ -30,7 +30,7 @@ const Message = ({ type, title, message }) => {
       />
     </div>
   );
-};
+}
 
 Message.propTypes = {
   type: PropTypes.string.isRequired,

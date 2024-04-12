@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Icon from 'components/shared/Icon/Icon';
 import s from '../ServiceAutocomplete.module.scss';
 
-const SelectedTrainStation = ({ station, clearStation }) => {
+function SelectedTrainStation({ station, clearStation }) {
   return (
     <div className="wmnds-col-1 wmnds-col-md-3-5 wmnds-col-lg-4-5">
       {/* Close disruption box */}
@@ -22,7 +22,7 @@ const SelectedTrainStation = ({ station, clearStation }) => {
       </div>
     </div>
   );
-};
+}
 
 // PropTypes
 SelectedTrainStation.propTypes = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const HoursMinutes = ({ times }) => {
+function HoursMinutes({ times }) {
   return times.map((time, i) => {
     let last = false;
     if (times.length - 1 === i) {
@@ -16,7 +16,7 @@ const HoursMinutes = ({ times }) => {
       </span>
     );
   });
-};
+}
 HoursMinutes.propTypes = {
   times: PropTypes.oneOfType([PropTypes.shape, PropTypes.array]).isRequired,
 };

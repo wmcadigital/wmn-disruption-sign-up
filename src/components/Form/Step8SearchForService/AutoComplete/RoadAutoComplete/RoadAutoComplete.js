@@ -8,7 +8,7 @@ import RoadAutoCompleteInput from './RoadAutoCompleteInput';
 import RoadAutoCompleteRadiusInput from './RoadAutoCompleteRadiusInput/RoadAutoCompleteRadiusInput';
 import RoadAutoCompleteMap from './RoadAutoCompleteMap/RoadAutoCompleteMap';
 
-const RoadAutoComplete = ({ closeAutoComplete }) => {
+function RoadAutoComplete({ closeAutoComplete }) {
   const { formDataState, formDataDispatch } = useStepLogic();
   const [area, setArea] = useState(null);
 
@@ -65,7 +65,7 @@ const RoadAutoComplete = ({ closeAutoComplete }) => {
       </div>
     </>
   );
-};
+}
 
 RoadAutoComplete.propTypes = {
   closeAutoComplete: PropTypes.func.isRequired,

@@ -5,7 +5,7 @@ import Button from 'components/shared/Button/Button';
 import RemoveService from 'components/shared/RemoveService/RemoveService';
 import useStepLogic from 'components/Form/useStepLogic';
 
-const AddBusService = () => {
+function AddBusService() {
   const { setStep, formDataState, formDataDispatch } = useStepLogic();
 
   const { BusServices } = formDataState.formData;
@@ -52,6 +52,6 @@ const AddBusService = () => {
       )}
     </>
   );
-};
+}
 
 export default AddBusService;

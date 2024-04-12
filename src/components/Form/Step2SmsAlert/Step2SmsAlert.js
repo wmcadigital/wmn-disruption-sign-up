@@ -6,7 +6,7 @@ import Radios from 'components/shared/FormElements/Radios/Radios';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 import InsetText from 'components/shared/InsetText/InsetText';
 
-const Step2SmsAlert = () => {
+function Step2SmsAlert() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
@@ -49,6 +49,6 @@ const Step2SmsAlert = () => {
       {continueButton()}
     </form>
   );
-};
+}
 
 export default Step2SmsAlert;

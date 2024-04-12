@@ -6,9 +6,10 @@ import useStepLogic from 'components/Form/useStepLogic';
 import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 
-const Step1Name = () => {
+function Step1Name() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
-  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
+
+  const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(); // Custom hook for handling continue button (validation, errors etc)
 
   // Labels used on inputs and for validation
   const fNameLabel = 'First name';
@@ -16,7 +17,7 @@ const Step1Name = () => {
 
   // Logic used to validate fields
   const fieldValidation = (name) => {
-    return register({ required: `${name} is required` });
+    return { ...register(name, { required: true }) };
   };
 
   return (
@@ -41,14 +42,14 @@ const Step1Name = () => {
           name="Firstname"
           label={fNameLabel}
           autocomplete="given-name"
-          fieldValidation={fieldValidation(fNameLabel)}
+          fieldValidation={fieldValidation('Firstname')}
         />
         <Input
           className="wmnds-col-1 wmnds-col-lg-3-4"
           name="LastName"
           label={lNameLabel}
           autocomplete="family-name"
-          fieldValidation={fieldValidation(lNameLabel)}
+          fieldValidation={fieldValidation('LastName')}
         />
       </fieldset>
 
@@ -56,6 +57,6 @@ const Step1Name = () => {
       {continueButton()}
     </form>
   );
-};
+}
 
 export default Step1Name;

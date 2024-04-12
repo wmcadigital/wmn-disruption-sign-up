@@ -10,7 +10,7 @@ import Input from 'components/shared/FormElements/Input/Input';
 import Button from 'components/shared/Button/Button';
 import Message from 'components/shared/Message/Message';
 
-const Step0Recovery = ({ setFormSubmitStatus }) => {
+function Step0Recovery({ setFormSubmitStatus }) {
   const [, formDataDispatch] = useContext(FormDataContext);
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
@@ -101,7 +101,7 @@ const Step0Recovery = ({ setFormSubmitStatus }) => {
       />
     </form>
   );
-};
+}
 
 Step0Recovery.propTypes = {
   setFormSubmitStatus: PropTypes.func.isRequired,

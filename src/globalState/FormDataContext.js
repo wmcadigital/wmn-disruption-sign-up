@@ -3,7 +3,7 @@ import { getSearchParam } from 'helpers/URLSearchParams';
 
 export const FormDataContext = createContext();
 
-export const FormDataProvider = (props) => {
+export function FormDataProvider(props) {
   const { children } = props || {};
 
   let FirstName = null;
@@ -80,7 +80,7 @@ export const FormDataProvider = (props) => {
             ...state.formData,
             TramLines: state.formData.TramLines.filter(
               (line) =>
-                action.payload.From.id !== line.From.id || action.payload.To.id !== line.To.id
+                action.payload.From.id !== line.From.id || action.payload.To.id !== line.To.id,
             ),
           },
         };
@@ -170,8 +170,9 @@ export const FormDataProvider = (props) => {
 
   // Pass state and dispatch in context and make accessible to children it wraps
   return (
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <FormDataContext.Provider value={[formState, formDispatch]}>
       {children}
     </FormDataContext.Provider>
   );
-};
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from '../Icon/Icon';
 
-const GenericError = () => {
+function GenericError() {
   return (
     <div className="wmnds-msg-summary wmnds-msg-summary--error wmnds-m-b-lg">
       <div className="wmnds-msg-summary__header">
@@ -12,6 +12,6 @@ const GenericError = () => {
       <div className="wmnds-msg-summary__info">Please check your answers again.</div>
     </div>
   );
-};
+}
 
 export default GenericError;
