@@ -11,7 +11,7 @@
   },
   "copyright": "WMCA",
   "scripts": {
-    "start": "react-app-rewired --openssl-legacy-provider start",
+    "start": "react-app-rewired start",
     "lint:styles": "sass-lint '**/*.scss'",
     "update-packages": "ncu",
     "build": "react-app-rewired build",
@@ -19,47 +19,46 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@sentry/react": "^6.2.1",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.8.3",
-    "axios": "^0.21.1",
-    "dompurify": "^2.2.6",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@sentry/react": "^7.110.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "axios": "^1.6.8",
+    "dompurify": "^3.1.0",
     "esri-loader": "^3.1.0",
-    "logrocket": "^1.0.14",
-    "logrocket-react": "^4.0.1",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-app-polyfill": "^2.0.0",
-    "react-debounce-input": "^3.2.5",
-    "react-dom": "^17.0.1",
-    "react-hook-form": "^6.15.7",
-    "react-scripts": "4.0.3",
-    "sass": "^1.58.3"
+    "logrocket": "^8.1.0",
+    "logrocket-react": "^6.0.3",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-app-polyfill": "^3.0.0",
+    "react-debounce-input": "^3.3.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.3",
+    "react-scripts": "5.0.1",
+    "sass": "^1.75.0"
   },
   "devDependencies": {
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jam3": "^0.2.3",
-    "eslint-plugin-prettier": "^3.3.1",
-    "npm-check-updates": "^11.2.1",
-    "prettier": "^2.2.1",
-    "react-app-rewired": "^2.1.8",
+    "eslint-plugin-prettier": "^5.1.3",
+    "npm-check-updates": "^16.14.18",
+    "prettier": "^3.2.5",
+    "react-app-rewired": "^2.2.1",
     "sass-lint": "^1.13.1",
-    "sass-lint-webpack": "^1.0.3"
+    "sass-lint-webpack": "^1.0.4"
   },
   "browserslist": {
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all",
-      "ie 11"
+      "not op_mini all"
     ],
     "development": [
       ">0.2%",
       "not dead",
-      "not op_mini all",
-      "ie 11"
+      "not op_mini all"
     ]
   },
   "sasslintConfig": ".sass-lint.yml"
