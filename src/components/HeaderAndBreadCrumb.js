@@ -17,7 +17,7 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
               <img
                 className="wmnds-header__logo"
                 alt="Transport for West Midlands logo"
-                src="assets/img/logo.svg"
+                src="https://unpkg.com/wmn-design-system@2.2.0/build/img/logo.svg"
               />
             </a>
           </div>
