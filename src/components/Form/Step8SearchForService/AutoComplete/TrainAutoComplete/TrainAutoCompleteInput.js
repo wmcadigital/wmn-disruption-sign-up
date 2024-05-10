@@ -19,7 +19,7 @@ const TrainAutoComplete = ({ station, setStation }) => {
   const { loading, errorInfo, results } = useAutoCompleteAPI(
     `/rail/v2/station?q=${encodeURI(query)}`,
     'train',
-    query,
+    query
   );
   // Import handleKeyDown function from customHook (used by all modes)
   const { handleKeyDown } = useHandleAutoCompleteKeys(resultsList, debounceInput, results);
