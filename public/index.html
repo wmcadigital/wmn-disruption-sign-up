@@ -1,156 +1,124 @@
 <!DOCTYPE html>
 <html lang="en" class="wmnds-html">
-  <head>
-    <meta charset="utf-8" />
 
-    <title>%REACT_APP_TITLE% - Transport West Midlands</title>
-    <meta name="description" content="%REACT_APP_DESCRIPTION%" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="utf-8" />
 
-    <!-- Favicons -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/favicon-16x16.png"
-    />
-    <link
-      rel="manifest"
-      href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/site.webmanifest"
-    />
-    <link
-      rel="mask-icon"
-      href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/safari-pinned-tab.svg"
-      color="#3c1053"
-    />
-    <link
-      rel="shortcut icon"
-      href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/favicon.ico"
-    />
-    <meta name="msapplication-TileColor" content="#3c1053" />
-    <meta
-      name="msapplication-config"
-      content="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/browserconfig.xml"
-    />
-    <meta name="theme-color" content="#3c1053" />
+  <title>%REACT_APP_TITLE% - Transport West Midlands</title>
+  <meta name="description" content="%REACT_APP_DESCRIPTION%" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- SEO Metadata  -->
-    <meta name="title" content="%REACT_APP_TITLE%" />
-    <meta name="description" content="%REACT_APP_DESCRIPTION%" />
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/favicon-16x16.png" />
+  <link rel="manifest"
+    href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/site.webmanifest" />
+  <link rel="mask-icon"
+    href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/safari-pinned-tab.svg"
+    color="#3c1053" />
+  <link rel="shortcut icon"
+    href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/favicon.ico" />
+  <meta name="msapplication-TileColor" content="#3c1053" />
+  <meta name="msapplication-config"
+    content="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/favicons/browserconfig.xml" />
+  <meta name="theme-color" content="#3c1053" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="%PUBLIC_URL%" />
-    <meta property="og:title" content="%REACT_APP_TITLE%" />
-    <meta property="og:description" content="%REACT_APP_DESCRIPTION%" />
-    <meta
-      property="og:image"
-      content="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/wmn-share.png"
-    />
+  <!-- SEO Metadata  -->
+  <meta name="title" content="%REACT_APP_TITLE%" />
+  <meta name="description" content="%REACT_APP_DESCRIPTION%" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="%PUBLIC_URL%" />
-    <meta property="twitter:title" content="%REACT_APP_TITLE%" />
-    <meta property="twitter:description" content="%REACT_APP_DESCRIPTION%" />
-    <meta
-      property="twitter:image"
-      content="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/wmn-share.png"
-    />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="%PUBLIC_URL%" />
+  <meta property="og:title" content="%REACT_APP_TITLE%" />
+  <meta property="og:description" content="%REACT_APP_DESCRIPTION%" />
+  <meta property="og:image"
+    content="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/wmn-share.png" />
 
-    <!-- WMN design system CSS -->
-    <link
-      rel="stylesheet"
-      href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/css/wmnds.min.css"
-    />
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="%PUBLIC_URL%" />
+  <meta property="twitter:title" content="%REACT_APP_TITLE%" />
+  <meta property="twitter:description" content="%REACT_APP_DESCRIPTION%" />
+  <meta property="twitter:image"
+    content="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/wmn-share.png" />
 
-    <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-          'gtm.start': new Date().getTime(),
-          event: 'gtm.js',
-        });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-NVSWZS');
-    </script>
-    <!-- End Google Tag Manager -->
-  </head>
+  <!-- design system CSS -->
+  <link rel="stylesheet" href="assets/css/wmnds.min.css" />
 
-  <body>
-    <!-- Style for template -->
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #f3f2f1;
-      }
-      .wmnds-header--mega-menu {display: none}
-    </style>
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js',
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NVSWZS');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-NVSWZS"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+<body>
+  <!-- Style for template -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f3f2f1;
+    }
 
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <!-- Header -->
-    <!-- Skip to content link -->
-    <a
-      href="#wmnds-main-content"
-      title="Skip to main content"
-      target="_self"
-      class="wmnds-link wmnds-header__skip-link"
-      >Skip to main content</a
-    >
-    <!-- Main header section -->
-    <!-- Start app here -->
-    <div id="root"></div>
+    .wmnds-header--mega-menu {
+      display: none!important;
+    }
+  </style>
 
-    <!-- Footer -->
-    <script src="https://cloudcdn.wmca.org.uk/tfwmassets/js/header-footer.min.js"></script>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVSWZS" height="0" width="0"
+      style="display: none; visibility: hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-    <!-- End footer -->
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <!-- Header -->
+  <!-- Skip to content link -->
+  <a href="#wmnds-main-content" title="Skip to main content" target="_self"
+    class="wmnds-link wmnds-header__skip-link">Skip to main content</a>
+  <!-- Main header section -->
+  <!-- Start app here -->
+  <div id="root"></div>
 
-    <!-- Ajax SVG in, SVGS are referenced in app (Icon component) -->
-    <!-- Ajax SVGs from WMN Design System -->
-    <script async>
-      const ajax = new XMLHttpRequest();
-      ajax.open(
-        'GET',
-        '//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/img/wmnds-icons.min.svg',
-        true
-      );
-      ajax.send();
-      ajax.onload = function () {
-        const div = document.createElement('div');
-        div.style.display = 'none';
-        div.innerHTML = ajax.responseText;
-        document.body.insertBefore(div, document.body.childNodes[0]);
-      };
-    </script>
-  </body>
+  <!-- Footer -->
+  <script src="https://cloudcdn.wmca.org.uk/tfwmassets/js/header-footer.min.js"></script>
+
+  <!-- End footer -->
+
+  <!-- Ajax SVG in, SVGS are referenced in app (Icon component) -->
+  <!-- Ajax SVGs from WMN Design System -->
+  <script async>
+    const ajax = new XMLHttpRequest();
+    ajax.open(
+      'GET',
+      'assets/img/wmnds-icons.min.svg',
+      true
+    );
+    ajax.send();
+    ajax.onload = function () {
+      const div = document.createElement('div');
+      div.style.display = 'none';
+      div.innerHTML = ajax.responseText;
+      document.body.insertBefore(div, document.body.childNodes[0]);
+    };
+  </script>
+</body>
+
 </html>

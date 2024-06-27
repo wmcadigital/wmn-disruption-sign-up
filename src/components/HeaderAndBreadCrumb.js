@@ -12,12 +12,12 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
             <a
               className="wmnds-header__logo-link"
               href="//tfwm.org.uk"
-              title="West Midlands Network Home"
+              title="Transport for West Midlands Home"
             >
               <img
                 className="wmnds-header__logo"
-                alt="West Midlands Network logo"
-                src="//wmnetwork.netlify.com/img/logo.svg"
+                alt="Transport for West Midlands logo"
+                src="https://unpkg.com/wmn-design-system@2.2.0/build/img/logo.svg"
               />
             </a>
           </div>
@@ -30,36 +30,6 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
           )}
         </div>
       </header>
-
-      {/* <div className="wmnds-container">
-        <div className="wmnds-banner-container">
-          <div className="wmnds-col-1">
-            <div className="wmnds-banner-container__phase-wrapper">
-              <a
-                href="/"
-                target="_self"
-                className="wmnds-phase-indicator"
-                title="Beta homepage of West Midlands Network"
-              >
-                Beta
-              </a>
-            </div>
-            <p className="wmnds-banner-container__text">
-              This is a new service - your{' '}
-              <a
-                href="https://forms.office.com/Pages/ResponsePage.aspx?id=RetZCK7xCk6e-ubWa7tnL51Hn3Md47tLqr_OlQdqFgtUMTE0NURDUkE2NExFWDlJTVhTQUxGTEdSWC4u"
-                title="Service feedback survey"
-                target="_blank"
-                className="wmnds-link"
-                rel="noopener noreferrer"
-              >
-                feedback{' '}
-              </a>
-              will help us to improve it.
-            </p>
-          </div>
-        </div>
-      </div> */}
 
       {/* <!-- Breadcrumb --> */}
       {/* Only show breadcrumbs if the form isn't started or we are on success/error page (formSubmitStatus) */}
