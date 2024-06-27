@@ -6,7 +6,7 @@ import Input from 'components/shared/FormElements/Input/Input';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 import useFormData from '../useFormData';
 
-const Step4Phone = () => {
+function Step4Phone() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
@@ -52,6 +52,6 @@ const Step4Phone = () => {
       {continueButton()}
     </form>
   );
-};
+}
 
 export default Step4Phone;

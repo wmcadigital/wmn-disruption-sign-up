@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TramAutoCompleteResult = (props) => {
+function TramAutoCompleteResult(props) {
   const { result, handleKeyDown, setStop } = props || {};
   // Destructure fields from result
   const { atcoCode, name } = result;
@@ -25,6 +25,6 @@ const TramAutoCompleteResult = (props) => {
       <strong className="wmnds-col-1">{name}</strong>
     </li>
   );
-};
+}
 
 export default TramAutoCompleteResult;

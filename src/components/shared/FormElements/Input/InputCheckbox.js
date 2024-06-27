@@ -11,7 +11,7 @@ import Icon from '../../Icon/Icon';
 
 const { sanitize } = dompurify;
 
-const InputCheckbox = ({ fieldValidation, name, labelValue, labelElement, classes }) => {
+function InputCheckbox({ fieldValidation, name, labelValue, labelElement, classes }) {
   const [formDataState] = useContext(FormDataContext); // Get the state of form data from FormDataContext
   const { errors } = useFormContext();
   // Set input to render below
@@ -49,7 +49,7 @@ const InputCheckbox = ({ fieldValidation, name, labelValue, labelElement, classe
       </label>
     </div>
   );
-};
+}
 
 InputCheckbox.propTypes = {
   labelValue: PropTypes.string,

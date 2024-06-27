@@ -7,7 +7,7 @@ import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 import InsetText from 'components/shared/InsetText/InsetText';
 import useFormData from '../useFormData';
 
-const StepDisruptionAlert = () => {
+function StepDisruptionAlert() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
   const [radioValue, setRadioValue] = useState();
@@ -66,6 +66,6 @@ const StepDisruptionAlert = () => {
       {continueButton()}
     </form>
   );
-};
+}
 
 export default StepDisruptionAlert;

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
+function HeaderAndBreadcrumb({ isFormStarted, formSubmitStatus }) {
   return (
     <>
       <header className="wmnds-header wmnds-header--mobile-app">
@@ -73,7 +73,7 @@ const HeaderAndBreadcrumb = ({ isFormStarted, formSubmitStatus }) => {
       {/* <!-- End Breadcrumb --> */}
     </>
   );
-};
+}
 
 HeaderAndBreadcrumb.propTypes = {
   isFormStarted: PropTypes.bool.isRequired,

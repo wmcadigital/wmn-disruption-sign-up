@@ -12,13 +12,13 @@ import SelectedRoadArea from './SelectedRoadArea';
 import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
 
-const RoadAutoCompleteInput = ({ area, setRoadArea }) => {
+function RoadAutoCompleteInput({ area, setRoadArea }) {
   const { formDataState } = useStepLogic();
   const RoadAreas = formDataState.RoadAreas || [];
 
   const removeSelectedAreas = (result) => {
     return !RoadAreas.some(
-      (roadArea) => roadArea.lat === result.location.y && roadArea.lon === result.location.x
+      (roadArea) => roadArea.lat === result.location.y && roadArea.lon === result.location.x,
     );
   };
 
@@ -28,10 +28,10 @@ const RoadAutoCompleteInput = ({ area, setRoadArea }) => {
 
   const { loading, errorInfo, results } = useAutoCompleteAPI(
     `/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=${encodeURI(
-      query
+      query,
     )}`,
     'road',
-    query
+    query,
   );
 
   const { handleKeyDown } = useHandleAutoCompleteKeys(resultsList, debounceInput, results);
@@ -42,7 +42,7 @@ const RoadAutoCompleteInput = ({ area, setRoadArea }) => {
   };
 
   return (
-    <>
+    <div>
       {area ? (
         <SelectedRoadArea area={area} clearArea={clearArea} />
       ) : (
@@ -90,9 +90,9 @@ const RoadAutoCompleteInput = ({ area, setRoadArea }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
-};
+}
 
 RoadAutoCompleteInput.defaultProps = {
   area: null,

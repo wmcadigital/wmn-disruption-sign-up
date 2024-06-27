@@ -7,12 +7,12 @@ import Button from 'components/shared/Button/Button';
 // Style
 import s from '../ServiceAutocomplete.module.scss';
 
-const TrainAutoCompleteSelectLines = ({
+function TrainAutoCompleteSelectLines({
   formDataState,
   formDataDispatch,
   closeAutoComlplete,
   trainStations,
-}) => {
+}) {
   const lineIds = formDataState.formData?.Trains[0]?.LineIds || []; // Get the selected lines to what has already been selected or empty array
   const [selectedLines, setSelectedLines] = useState(lineIds); // Set state to lineIds var above
   const originalSelectedLines = lineIds; // This is used so we can store the original value and compare if the user changes anything (used to show continue/cancel button below)
@@ -145,13 +145,13 @@ const TrainAutoCompleteSelectLines = ({
       )}
     </div>
   );
-};
+}
 
 TrainAutoCompleteSelectLines.propTypes = {
   formDataDispatch: PropTypes.func.isRequired,
-  formDataState: PropTypes.objectOf(PropTypes.any).isRequired,
+  formDataState: PropTypes.objectOf(PropTypes).isRequired,
   closeAutoComlplete: PropTypes.func.isRequired,
-  trainStations: PropTypes.objectOf(PropTypes.any).isRequired,
+  trainStations: PropTypes.objectOf(PropTypes).isRequired,
 };
 
 export default TrainAutoCompleteSelectLines;

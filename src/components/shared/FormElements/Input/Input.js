@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import dompurify from 'dompurify';
 // Import contexts
-import { useFormContext } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { FormDataContext } from 'globalState/FormDataContext';
 
 const { sanitize } = dompurify;
 
-const Input = ({
+function Input({
   autocomplete,
   className,
   fieldValidation,
@@ -17,24 +17,28 @@ const Input = ({
   spellcheck,
   type,
   APIerrors,
-}) => {
+}) {
   const [formDataState] = useContext(FormDataContext); // Get the state of form data from FormDataContext
-  const { errors } = useFormContext();
+  // const { errors } = useFormContext();
+  const {
+    formState: { errors },
+  } = useForm();
+  console.log(fieldValidation);
+  console.log(formDataState);
+  console.log(errors);
   // Set input to render below
   const input = (
-    <>
-      <input
-        autoComplete={autocomplete}
-        className={`wmnds-fe-input ${errors[name] || APIerrors ? 'wmnds-fe-input--error' : ''}`}
-        defaultValue={formDataState.formData[name]}
-        id={name}
-        inputMode={inputmode}
-        name={name}
-        ref={fieldValidation}
-        spellCheck={spellcheck}
-        type={type}
-      />
-    </>
+    <input
+      autoComplete={autocomplete}
+      className={`wmnds-fe-input ${errors[name] || APIerrors ? 'wmnds-fe-input--error' : ''}`}
+      defaultValue={formDataState.formData[name]}
+      id={name}
+      inputMode={inputmode}
+      name={name}
+      ref={fieldValidation}
+      spellCheck={spellcheck}
+      type={type}
+    />
   );
 
   return (
@@ -64,7 +68,7 @@ const Input = ({
       {className ? <div className={className}>{input}</div> : input}
     </div>
   );
-};
+}
 
 Input.propTypes = {
   autocomplete: PropTypes.string,

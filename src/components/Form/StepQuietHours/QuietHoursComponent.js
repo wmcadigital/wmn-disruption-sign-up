@@ -8,7 +8,7 @@ import Dropdown from 'components/shared/FormElements/Dropdown/Dropdown';
 // Import styling
 import s from './QuietHoursComponent.module.scss';
 
-const QuietHoursComponent = ({ name, quietHours }) => {
+function QuietHoursComponent({ name, quietHours }) {
   const { formDataState, formDataDispatch } = useStepLogic();
   const { QuietHours } = formDataState.formData;
   const [hoursArray] = useState({
@@ -65,55 +65,53 @@ const QuietHoursComponent = ({ name, quietHours }) => {
   const hours = times().map((i) => ({ ...i, value: i, text: i }));
   const minutes = minute().map((i) => ({ ...i, value: i, text: i }));
   return (
-    <>
-      <div className="wmnds-grid wmnds-grid--justify-between wmnds-grid--align-center">
-        <div className="wmnds-col-md-2-2">
-          <div>
-            <h5 className="wmnds-fe-label wmnds-m-none">Start</h5>
-            <Dropdown
-              parent={name}
-              name="startHour"
-              options={hours}
-              defaultValue={currentHours[0].startHour}
-              onChange={onSelectedChange}
-            />
-            <Dropdown
-              parent={name}
-              name="startMinute"
-              options={minutes}
-              defaultValue={currentHours[0].startMinute}
-              onChange={onSelectedChange}
-            />
-          </div>
+    <div className="wmnds-grid wmnds-grid--justify-between wmnds-grid--align-center">
+      <div className="wmnds-col-md-2-2">
+        <div>
+          <h5 className="wmnds-fe-label wmnds-m-none">Start</h5>
+          <Dropdown
+            parent={name}
+            name="startHour"
+            options={hours}
+            defaultValue={currentHours[0].startHour}
+            onChange={onSelectedChange}
+          />
+          <Dropdown
+            parent={name}
+            name="startMinute"
+            options={minutes}
+            defaultValue={currentHours[0].startMinute}
+            onChange={onSelectedChange}
+          />
         </div>
-        <div className="wmnds-col-md-1-2">
-          <div>
-            <h5 className="wmnds-fe-label wmnds-m-none">End</h5>
-            <Dropdown
-              parent={name}
-              name="endHour"
-              options={hours}
-              defaultValue={currentHours[0].endHour}
-              onChange={onSelectedChange}
-            />
-            <Dropdown
-              parent={name}
-              name="endMinute"
-              options={minutes}
-              defaultValue={currentHours[0].endMinute}
-              onChange={onSelectedChange}
-            />
-          </div>
-        </div>
-        <Button
-          btnClass={`${s.button} wmnds-btn--destructive wmnds-col-md-2-1`}
-          iconRight="general-trash"
-          onClick={() => handleRemoveHours(name)}
-        />
       </div>
-    </>
+      <div className="wmnds-col-md-1-2">
+        <div>
+          <h5 className="wmnds-fe-label wmnds-m-none">End</h5>
+          <Dropdown
+            parent={name}
+            name="endHour"
+            options={hours}
+            defaultValue={currentHours[0].endHour}
+            onChange={onSelectedChange}
+          />
+          <Dropdown
+            parent={name}
+            name="endMinute"
+            options={minutes}
+            defaultValue={currentHours[0].endMinute}
+            onChange={onSelectedChange}
+          />
+        </div>
+      </div>
+      <Button
+        btnClass={`${s.button} wmnds-btn--destructive wmnds-col-md-2-1`}
+        iconRight="general-trash"
+        onClick={() => handleRemoveHours(name)}
+      />
+    </div>
   );
-};
+}
 QuietHoursComponent.propTypes = {
   name: PropTypes.string,
   quietHours: PropTypes.oneOfType([PropTypes.shape, PropTypes.object]).isRequired,

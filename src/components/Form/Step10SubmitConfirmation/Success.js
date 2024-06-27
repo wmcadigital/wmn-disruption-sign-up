@@ -4,14 +4,9 @@ import InsetText from 'components/shared/InsetText/InsetText';
 import { FormDataContext } from '../../../globalState/FormDataContext';
 
 function Success() {
-  // eslint-disable-next-line no-unused-vars
-  const [formDataState, formDataDispatch] = useContext(FormDataContext);
+  const [formDataState] = useContext(FormDataContext);
   const { isRequestingRecovery } = formDataState;
   const { Phone, SMSAlert, EmailAlert } = formDataState.formData;
-
-  const alignCenter = {
-    textAlign: 'center',
-  };
 
   let message;
   let steps;
@@ -59,7 +54,7 @@ function Success() {
           <h1>{title}</h1>
         </div>
         <div className="wmnds-col-1 wmnds-m-b-xl">
-          <div style={alignCenter} className="wmnds-msg-summary wmnds-msg-summary--success-fill ">
+          <div className="wmnds-msg-summary wmnds-msg-summary--success-fill ">
             <div className="wmnds-msg-summary__header">
               <h3 className="wmnds-msg-summary__title">{message}</h3>
             </div>

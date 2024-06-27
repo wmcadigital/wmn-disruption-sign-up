@@ -11,7 +11,7 @@ import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
 import SelectedTramStop from './SelectedTramStop';
 
-const TramAutoComplete = ({ stop, setStop }) => {
+function TramAutoComplete({ stop, setStop }) {
   const [query, setQuery] = useState(); // placeholder for getting/setting query
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
@@ -19,13 +19,13 @@ const TramAutoComplete = ({ stop, setStop }) => {
   const { loading, errorInfo, results } = useAutoCompleteAPI(
     `/metro/v2/stop?q=${encodeURI(query)}`,
     'tram',
-    query
+    query,
   );
   // Import handleKeyDown function from customHook (used by all modes)
   const { handleKeyDown } = useHandleAutoCompleteKeys(resultsList, debounceInput, results);
 
   return (
-    <>
+    <div>
       {stop && stop?.id ? (
         <SelectedTramStop stop={stop} clearStop={() => setStop(null)} />
       ) : (
@@ -73,13 +73,13 @@ const TramAutoComplete = ({ stop, setStop }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
-};
+}
 
 // PropTypes
 TramAutoComplete.propTypes = {
-  stop: PropTypes.objectOf(PropTypes.any),
+  stop: PropTypes.objectOf(PropTypes),
   setStop: PropTypes.func.isRequired,
 };
 

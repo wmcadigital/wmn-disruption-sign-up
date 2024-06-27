@@ -12,7 +12,7 @@ import BusAutoCompleteResult from './BusAutoCompleteResult';
 import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
 
-const BusAutoComplete = ({ closeAutoComplete }) => {
+function BusAutoComplete({ closeAutoComplete }) {
   const { formDataState } = useStepLogic(); // get formDataState and setStep logic from customHook
   const [query, setQuery] = useState(); // placeholder for getting/setting query
   const BusServices = formDataState.formData.BusServices || []; // Get currently selected bus services
@@ -30,7 +30,7 @@ const BusAutoComplete = ({ closeAutoComplete }) => {
   const { loading, errorInfo, results } = useAutoCompleteAPI(
     `/api/lineinfo?q=${encodeURI(formatQuery(query))}`,
     'bus',
-    query
+    query,
   );
 
   // Import handleKeyDown function from customHook (used by all modes)
@@ -112,7 +112,7 @@ const BusAutoComplete = ({ closeAutoComplete }) => {
       </div>
     </div>
   );
-};
+}
 
 BusAutoComplete.propTypes = {
   closeAutoComplete: PropTypes.func.isRequired,

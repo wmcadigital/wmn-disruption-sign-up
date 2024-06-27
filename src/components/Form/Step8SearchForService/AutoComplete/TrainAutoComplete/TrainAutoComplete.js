@@ -7,7 +7,7 @@ import Button from 'components/shared/Button/Button';
 import TrainAutoCompleteInput from './TrainAutoCompleteInput';
 import TrainAutoCompleteSelectLines from './TrainAutoCompleteSelectLines';
 
-const TrainAutoComplete = ({ closeAutoComplete }) => {
+function TrainAutoComplete({ closeAutoComplete }) {
   const { formDataState, formDataDispatch } = useStepLogic();
   const [trainStations, setStations] = useState({ From: null, To: null });
 
@@ -24,7 +24,7 @@ const TrainAutoComplete = ({ closeAutoComplete }) => {
   const bothStationsSelected = trainStations.From?.name && trainStations.To?.name;
 
   return (
-    <>
+    <div>
       {bothStationsSelected ? (
         <TrainAutoCompleteSelectLines
           closeAutoComlplete={closeAutoComplete}
@@ -51,9 +51,9 @@ const TrainAutoComplete = ({ closeAutoComplete }) => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
-};
+}
 
 TrainAutoComplete.propTypes = {
   closeAutoComplete: PropTypes.func.isRequired,

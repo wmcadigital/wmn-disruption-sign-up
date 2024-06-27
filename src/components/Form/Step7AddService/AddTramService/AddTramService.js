@@ -6,7 +6,7 @@ import useStepLogic from 'components/Form/useStepLogic';
 import Button from 'components/shared/Button/Button';
 import RemoveService from 'components/shared/RemoveService/RemoveService';
 
-const AddTramService = () => {
+function AddTramService() {
   const { formDataState, formDataDispatch, setStep } = useStepLogic();
   const { selectableTramLineIds, filterTramLineInfo } = useSelectableTramLines();
   const { TramLines, LineId } = formDataState.formData;
@@ -87,6 +87,6 @@ const AddTramService = () => {
       )}
     </>
   );
-};
+}
 
 export default AddTramService;

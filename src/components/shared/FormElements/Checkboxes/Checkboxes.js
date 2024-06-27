@@ -9,7 +9,7 @@ import Checkbox from './Checkbox/Checkbox';
 
 const { sanitize } = dompurify;
 
-const Checkboxes = ({ name, label, checkboxes, fieldValidation, parentCallback }) => {
+function Checkboxes({ name, label, checkboxes, fieldValidation, parentCallback }) {
   const { errors } = useFormContext();
   const { formDataState } = useStepLogic();
   const { QuietDays } = formDataState.formData;
@@ -18,7 +18,7 @@ const Checkboxes = ({ name, label, checkboxes, fieldValidation, parentCallback }
 
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
+      index === position ? !item : item,
     );
     setCheckedState(updatedCheckedState);
     const daysSelected = updatedCheckedState.map((currentState, index) => {
@@ -63,7 +63,7 @@ const Checkboxes = ({ name, label, checkboxes, fieldValidation, parentCallback }
       </fieldset>
     </div>
   );
-};
+}
 
 // PropTypes
 Checkboxes.propTypes = {

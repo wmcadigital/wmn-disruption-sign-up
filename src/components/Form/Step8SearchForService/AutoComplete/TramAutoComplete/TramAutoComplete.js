@@ -8,7 +8,7 @@ import WarningText from 'components/shared/WarningText/WarningText';
 import TramAutoCompleteInput from './TramAutoCompleteInput';
 import TramAutoCompleteSelectLine from './TramAutoCompleteSelectLine';
 
-const TramAutoComplete = ({ closeAutoComplete }) => {
+function TramAutoComplete({ closeAutoComplete }) {
   const { formDataState, formDataDispatch } = useStepLogic();
   const [tramStops, setTramStops] = useState({ From: null, To: null });
   const [selectedLines, setSelectedLines] = useState([]);
@@ -101,7 +101,7 @@ const TramAutoComplete = ({ closeAutoComplete }) => {
       )}
     </>
   );
-};
+}
 
 TramAutoComplete.propTypes = {
   closeAutoComplete: PropTypes.func.isRequired,

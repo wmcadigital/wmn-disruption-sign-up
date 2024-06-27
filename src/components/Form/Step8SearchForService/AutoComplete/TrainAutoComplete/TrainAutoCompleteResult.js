@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TrainAutoCompleteResult = (props) => {
+function TrainAutoCompleteResult(props) {
   const { result, handleKeyDown, setStation } = props || {};
   // Destructure fields from result
   const { id, name, lines } = result;
@@ -25,6 +25,6 @@ const TrainAutoCompleteResult = (props) => {
       <strong className="wmnds-col-1">{name}</strong>
     </li>
   );
-};
+}
 
 export default TrainAutoCompleteResult;

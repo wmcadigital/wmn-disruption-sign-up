@@ -7,11 +7,11 @@ import useSelectableTramLines from 'components/Form/useSelectableTramLines';
 import Icon from 'components/shared/Icon/Icon';
 import s from '../ServiceAutocomplete.module.scss';
 
-const TramAutoCompleteSelectLine = ({ selectedLines, setSelectedLines }) => {
+function TramAutoCompleteSelectLine({ selectedLines, setSelectedLines }) {
   const { selectableTramLineInfo } = useSelectableTramLines();
   // Filter out any non-tram lines
   const selectedTramLines = selectedLines.filter(
-    (line) => selectableTramLineInfo.map((selectableLine) => selectableLine.id).indexOf(line) > -1
+    (line) => selectableTramLineInfo.map((selectableLine) => selectableLine.id).indexOf(line) > -1,
   );
   const [checked, setChecked] = useState(selectedTramLines || []); // Local state to keep track of checked item
 
@@ -63,7 +63,7 @@ const TramAutoCompleteSelectLine = ({ selectedLines, setSelectedLines }) => {
       </fieldset>
     </div>
   );
-};
+}
 
 TramAutoCompleteSelectLine.propTypes = {
   selectedLines: PropTypes.arrayOf(PropTypes.string).isRequired,

@@ -6,7 +6,7 @@ import Radios from 'components/shared/FormElements/Radios/Radios';
 import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 import InsetText from 'components/shared/InsetText/InsetText';
 
-const Step2SmsAlert = () => {
+function Step2SmsAlert() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
@@ -26,7 +26,7 @@ const Step2SmsAlert = () => {
       <fieldset className="wmnds-fe-fieldset wmnds-col-1">
         <legend className="wmnds-fe-fieldset__legend">
           <h2 className="wmnds-fe-question">
-            Do you want to recieve text message alerts for disruptions?
+            Do you want to receive text message alerts for disruptions?
           </h2>
           <p>We’ll automatically send text message alerts straight to your mobile phone.</p>
           <InsetText
@@ -49,6 +49,6 @@ const Step2SmsAlert = () => {
       {continueButton()}
     </form>
   );
-};
+}
 
 export default Step2SmsAlert;
