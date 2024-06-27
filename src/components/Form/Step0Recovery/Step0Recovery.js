@@ -31,7 +31,6 @@ function Step0Recovery({ setFormSubmitStatus }) {
   // Set the isRequestingRecovery param in globalstate
   useEffect(() => {
     formDataDispatch({ type: 'REACHED_RECOVERY', payload: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // run once
 
   // To show in case of the entered email is not registered.
