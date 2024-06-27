@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/shared/Icon/Icon';
 
-const Message = ({ type, title, message, className, hasCloseButton }) => {
+function Message({ type, title, message, className, hasCloseButton }) {
   let iconName;
   switch (type) {
     case 'error':
@@ -25,7 +25,7 @@ const Message = ({ type, title, message, className, hasCloseButton }) => {
   const closeMessage = (e) => {
     e.preventDefault();
     e.target.parentNode.parentNode.parentNode.parentNode.querySelector(
-      '.wmnds-msg-summary'
+      '.wmnds-msg-summary',
     ).style.display = 'none';
   };
 
@@ -49,7 +49,7 @@ const Message = ({ type, title, message, className, hasCloseButton }) => {
       <div className="wmnds-msg-summary__info">{message}</div>
     </div>
   );
-};
+}
 
 Message.propTypes = {
   className: PropTypes.string,

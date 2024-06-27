@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/shared/Icon/Icon';
 
-const Button = ({
+function Button({
   btnClass,
   disabled,
   iconLeft,
@@ -14,7 +14,7 @@ const Button = ({
   text,
   title,
   type,
-}) => {
+}) {
   return (
     // eslint-disable-next-line react/button-has-type
     <button
@@ -50,7 +50,7 @@ const Button = ({
       )}
     </button>
   );
-};
+}
 
 // Set props
 Button.propTypes = {

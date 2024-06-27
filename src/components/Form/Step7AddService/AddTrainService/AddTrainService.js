@@ -4,7 +4,7 @@ import Button from 'components/shared/Button/Button';
 import RemoveService from 'components/shared/RemoveService/RemoveService';
 import useStepLogic from 'components/Form/useStepLogic';
 
-const AddTrainService = () => {
+function AddTrainService() {
   const { setStep, formDataState, formDataDispatch } = useStepLogic();
   const { Trains } = formDataState.formData;
 
@@ -57,6 +57,6 @@ const AddTrainService = () => {
       )}
     </>
   );
-};
+}
 
 export default AddTrainService;

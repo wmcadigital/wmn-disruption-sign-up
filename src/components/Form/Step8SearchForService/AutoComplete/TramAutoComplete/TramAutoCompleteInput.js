@@ -11,7 +11,7 @@ import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
 import SelectedTramStop from './SelectedTramStop';
 
-const TramAutoComplete = ({ stop, setStop }) => {
+function TramAutoComplete({ stop, setStop }) {
   const [query, setQuery] = useState(); // placeholder for getting/setting query
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
@@ -25,7 +25,7 @@ const TramAutoComplete = ({ stop, setStop }) => {
   const { handleKeyDown } = useHandleAutoCompleteKeys(resultsList, debounceInput, results);
 
   return (
-    <>
+    <div>
       {stop && stop?.id ? (
         <SelectedTramStop stop={stop} clearStop={() => setStop(null)} />
       ) : (
@@ -73,9 +73,9 @@ const TramAutoComplete = ({ stop, setStop }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
-};
+}
 
 // PropTypes
 TramAutoComplete.propTypes = {

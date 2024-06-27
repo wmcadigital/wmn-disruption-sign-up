@@ -7,7 +7,7 @@ import WarningText from 'components/shared/WarningText/WarningText';
 import useStepLogic from 'components/Form/useStepLogic';
 import useFormData from '../useFormData';
 
-const Step3SmsConsent = () => {
+function Step3SmsConsent() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
 
@@ -154,6 +154,6 @@ const Step3SmsConsent = () => {
       {continueButton()}
     </form>
   );
-};
+}
 
 export default Step3SmsConsent;

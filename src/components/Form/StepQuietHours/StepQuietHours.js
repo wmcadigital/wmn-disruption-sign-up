@@ -8,7 +8,7 @@ import useFormData from '../useFormData';
 import AddQuietHours from './AddQuietHours';
 import AddQuietDays from './AddQuietDays';
 
-const StepQuietHours = () => {
+function StepQuietHours() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
   // Add InsetText with extra info when selected option is "no"
@@ -53,6 +53,6 @@ const StepQuietHours = () => {
       {continueButton()}
     </form>
   );
-};
+}
 
 export default StepQuietHours;

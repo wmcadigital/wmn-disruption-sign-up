@@ -5,7 +5,7 @@ import { setSearchParam } from 'helpers/URLSearchParams';
 import Icon from './shared/Icon/Icon';
 import Button from './shared/Button/Button';
 
-const Intro = ({ setIsFormStarted, goToRecoverLinkStep }) => {
+function Intro({ setIsFormStarted, goToRecoverLinkStep }) {
   const handleClick = () => {
     setIsFormStarted(true);
   };
@@ -48,7 +48,7 @@ const Intro = ({ setIsFormStarted, goToRecoverLinkStep }) => {
       </p>
     </div>
   );
-};
+}
 Intro.propTypes = {
   setIsFormStarted: PropTypes.func.isRequired,
   goToRecoverLinkStep: PropTypes.func.isRequired,

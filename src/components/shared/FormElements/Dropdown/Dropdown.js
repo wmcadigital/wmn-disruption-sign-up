@@ -8,7 +8,7 @@ import s from './Dropdown.module.scss';
 
 const { sanitize } = dompurify;
 
-const Dropdown = ({ name, hint, parent, error, options, defaultValue, onChange, onBlur }) => {
+function Dropdown({ name, hint, parent, label, error, options, defaultValue, onChange, onBlur }) {
   const { formDataState } = useStepLogic();
   const defaultSelectValue = defaultValue || formDataState.formData.QuietHours[parent]; // cast to acceptable types for a select element
 
@@ -46,7 +46,7 @@ const Dropdown = ({ name, hint, parent, error, options, defaultValue, onChange, 
       </fieldset>
     </div>
   );
-};
+}
 
 // Set props
 Dropdown.propTypes = {
@@ -54,6 +54,7 @@ Dropdown.propTypes = {
   parent: PropTypes.string,
   hint: PropTypes.string,
   error: PropTypes.string,
+  label: PropTypes.string,
   defaultValue: PropTypes.string,
   options: PropTypes.PropTypes.oneOfType([PropTypes.shape, PropTypes.array]).isRequired,
   onChange: PropTypes.func.isRequired,
@@ -65,6 +66,7 @@ Dropdown.defaultProps = {
   parent: '',
   hint: '',
   error: '',
+  label: null,
   defaultValue: '',
   onBlur: () => {},
 };

@@ -9,7 +9,7 @@ import TrainAutoComplete from './TrainAutoComplete/TrainAutoComplete';
 import TramAutoComplete from './TramAutoComplete/TramAutoComplete';
 import RoadAutoComplete from './RoadAutoComplete/RoadAutoComplete';
 
-const AutoComplete = () => {
+function AutoComplete() {
   const { mode, setMode } = useFormData();
   const { formDataState, setStep } = useStepLogic();
 
@@ -55,6 +55,6 @@ const AutoComplete = () => {
 
   // Render the correct component based on logic in switch statement above
   return <>{autoCompleteToShow()}</>;
-};
+}
 
 export default AutoComplete;

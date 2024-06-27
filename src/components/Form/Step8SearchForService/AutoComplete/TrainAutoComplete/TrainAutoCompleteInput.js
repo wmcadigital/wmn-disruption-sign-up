@@ -11,7 +11,7 @@ import useAutoCompleteAPI from '../customHooks/useAutoCompleteAPI';
 import useHandleAutoCompleteKeys from '../customHooks/useHandleAutoCompleteKeys';
 import SelectedTrainStation from './SelectedTrainStation';
 
-const TrainAutoComplete = ({ station, setStation }) => {
+function TrainAutoComplete({ station, setStation }) {
   const [query, setQuery] = useState(); // placeholder for getting/setting query
   const resultsList = useRef(null);
   const debounceInput = useRef(null);
@@ -25,7 +25,7 @@ const TrainAutoComplete = ({ station, setStation }) => {
   const { handleKeyDown } = useHandleAutoCompleteKeys(resultsList, debounceInput, results);
 
   return (
-    <>
+    <div>
       {station && station?.id ? (
         <SelectedTrainStation station={station} clearStation={() => setStation(null)} />
       ) : (
@@ -73,9 +73,9 @@ const TrainAutoComplete = ({ station, setStation }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
-};
+}
 
 // PropTypes
 TrainAutoComplete.propTypes = {

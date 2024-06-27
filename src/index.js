@@ -3,7 +3,7 @@ import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 // React
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 // LogRocket
 import LogRocket from 'logrocket';
 import setupLogRocketReact from 'logrocket-react';
@@ -64,11 +64,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/shared/Icon/Icon';
 
-const WarningText = ({ type, message, className }) => {
+function WarningText({ type, message, className }) {
   let iconName;
   switch (type) {
     case 'error':
@@ -28,7 +28,7 @@ const WarningText = ({ type, message, className }) => {
       {message}
     </div>
   );
-};
+}
 
 WarningText.propTypes = {
   className: PropTypes.string,

@@ -7,7 +7,7 @@ import SectionStepInfo from 'components/shared/SectionStepInfo/SectionStepInfo';
 import InsetText from 'components/shared/InsetText/InsetText';
 import useFormData from '../useFormData';
 
-const Step6EmailAlert = () => {
+function Step6EmailAlert() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register, handleSubmit, showGenericError, continueButton } = useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
   const [radioValue, setRadioValue] = useState();
@@ -74,6 +74,6 @@ const Step6EmailAlert = () => {
       {continueButton()}
     </form>
   );
-};
+}
 
 export default Step6EmailAlert;

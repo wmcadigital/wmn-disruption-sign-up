@@ -5,7 +5,7 @@ import Button from 'components/shared/Button/Button';
 import Checkboxes from 'components/shared/FormElements/Checkboxes/Checkboxes';
 import useStepLogic from 'components/Form/useStepLogic';
 
-const AddQuietDays = () => {
+function AddQuietDays() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { formDataState, formDataDispatch } = useStepLogic(formRef);
   const [showDays, setShowDays] = useState(false);
@@ -105,6 +105,6 @@ const AddQuietDays = () => {
       <hr className="wmnds-col-1 wmnds-m-t-md wmnds-m-b-md" />
     </>
   );
-};
+}
 
 export default AddQuietDays;

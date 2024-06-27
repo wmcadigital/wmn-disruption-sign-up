@@ -55,7 +55,7 @@ function Step9SummarySection() {
       >
         Change
       </button>
-    ) : null
+    ) : null,
   );
 
   const dataLine2 = [];
@@ -72,7 +72,7 @@ function Step9SummarySection() {
       >
         Change
       </button>
-    ) : null
+    ) : null,
   );
 
   const dataLine3 = [];
@@ -88,7 +88,7 @@ function Step9SummarySection() {
         }}
       >
         Change
-      </button>
+      </button>,
     );
   }
   /* End of Table Data */
@@ -99,177 +99,175 @@ function Step9SummarySection() {
   }
 
   return (
-    <>
-      <div className="wmnds-col-1">
-        <h2 className="wmnds-fe-question">{title}</h2>
-        <Table
-          title="Personal Details"
-          classes=""
-          cellClasses={['', '', 'wmnds-text-align-right wmnds-p-r-none']}
-          headers={[]}
-          values={data}
-          data-private
-        />
+    <div className="wmnds-col-1">
+      <h2 className="wmnds-fe-question">{title}</h2>
+      <Table
+        title="Personal Details"
+        classes=""
+        cellClasses={['', '', 'wmnds-text-align-right wmnds-p-r-none']}
+        headers={[]}
+        values={data}
+        data-private
+      />
 
-        {!ExistingUser && (
-          <>
-            <div className="wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between">
-              <h3 className="wmnds-col-2-3">Services added</h3>
-              <button
-                type="button"
-                className="wmnds-btn wmnds-btn--link"
-                onClick={() => {
-                  setStepInContext(7);
-                }}
-              >
-                Change
-              </button>
-            </div>
+      {!ExistingUser && (
+        <>
+          <div className="wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between">
+            <h3 className="wmnds-col-2-3">Services added</h3>
+            <button
+              type="button"
+              className="wmnds-btn wmnds-btn--link"
+              onClick={() => {
+                setStepInContext(7);
+              }}
+            >
+              Change
+            </button>
+          </div>
 
-            {/* Buses */}
-            {BusServices && BusServices.length > 0 && (
-              <div className="wmnds-m-b-lg">
-                <h4>Buses</h4>
-                {BusServices.map((busRoute) => {
-                  return (
-                    <RemoveService
-                      mode="bus"
-                      serviceNumber={busRoute.serviceNumber}
-                      routeName={busRoute.routeName}
-                      key={`${busRoute.id}`}
-                      showRemove={false}
-                    />
-                  );
-                })}
-              </div>
-            )}
-
-            {/* Trams */}
-            {((TramLines && TramLines.length > 0) || filterTramLineInfo(LineId).length > 0) && (
-              <div className="wmnds-m-b-lg">
-                <h4>Trams</h4>
-                {/* Stop by stop */}
-                {TramLines.length > 0 &&
-                  TramLines.map((route) => {
-                    return (
-                      <RemoveService
-                        mode="tram"
-                        id={`${route.From.id}-${route.To.id}`}
-                        serviceNumber="MM1"
-                        routeName={`${route.From.name} to ${route.To.name}`}
-                        key={`${route.From.id}-${route.To.id}`}
-                        showRemove={false}
-                      />
-                    );
-                  })}
-                {/* Full line */}
-                {filterTramLineInfo(LineId).map((line) => (
+          {/* Buses */}
+          {BusServices && BusServices.length > 0 && (
+            <div className="wmnds-m-b-lg">
+              <h4>Buses</h4>
+              {BusServices.map((busRoute) => {
+                return (
                   <RemoveService
-                    id={line.id}
-                    serviceNumber={line.serviceNumber}
-                    mode="tram"
-                    routeName={line.routeName}
-                    key={line.routeName}
+                    mode="bus"
+                    serviceNumber={busRoute.serviceNumber}
+                    routeName={busRoute.routeName}
+                    key={`${busRoute.id}`}
                     showRemove={false}
                   />
-                ))}
-              </div>
-            )}
+                );
+              })}
+            </div>
+          )}
 
-            {/* Trains */}
-            {Trains && Trains.length > 0 && (
-              <div className="wmnds-m-b-lg">
-                <h4>Trains</h4>
-                {Trains[0].LineIds.map((line) => {
+          {/* Trams */}
+          {((TramLines && TramLines.length > 0) || filterTramLineInfo(LineId).length > 0) && (
+            <div className="wmnds-m-b-lg">
+              <h4>Trams</h4>
+              {/* Stop by stop */}
+              {TramLines.length > 0 &&
+                TramLines.map((route) => {
                   return (
                     <RemoveService
-                      mode="train"
-                      serviceNumber={line}
-                      id={line}
-                      key={line}
+                      mode="tram"
+                      id={`${route.From.id}-${route.To.id}`}
+                      serviceNumber="MM1"
+                      routeName={`${route.From.name} to ${route.To.name}`}
+                      key={`${route.From.id}-${route.To.id}`}
                       showRemove={false}
                     />
                   );
                 })}
-              </div>
-            )}
-
-            {/* Roads */}
-            {RoadAreas && RoadAreas.length > 0 && (
-              <div className="wmnds-m-b-lg">
-                <h4>Roads</h4>
-                {RoadAreas.map((area) => {
-                  return (
-                    <RemoveService
-                      mode="road"
-                      routeName={`${area.address} + ${area.radius} miles`}
-                      key={`${area.lat}${area.lon}`}
-                      showRemove={false}
-                    />
-                  );
-                })}
-              </div>
-            )}
-          </>
-        )}
-
-        {!ExistingUser && QuietHours.length > 0 && (
-          <>
-            <div className="wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between">
-              <h3 className="wmnds-col-2-3">Daily quiet hours</h3>
-              <button
-                type="button"
-                className="wmnds-btn wmnds-btn--link"
-                onClick={() => {
-                  setStepInContext(10);
-                }}
-              >
-                Change
-              </button>
+              {/* Full line */}
+              {filterTramLineInfo(LineId).map((line) => (
+                <RemoveService
+                  id={line.id}
+                  serviceNumber={line.serviceNumber}
+                  mode="tram"
+                  routeName={line.routeName}
+                  key={line.routeName}
+                  showRemove={false}
+                />
+              ))}
             </div>
-            You will not receive alerts between
-            <HoursMinutes times={QuietHours} />.
-          </>
-        )}
-        {!ExistingUser && QuietDays.length > 0 && (
-          <>
-            <div className="wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between">
-              <h3 className="wmnds-col-2-3">Quiet days</h3>
-              <button
-                type="button"
-                className="wmnds-btn wmnds-btn--link"
-                onClick={() => {
-                  setStepInContext(10);
-                }}
-              >
-                Change
-              </button>
+          )}
+
+          {/* Trains */}
+          {Trains && Trains.length > 0 && (
+            <div className="wmnds-m-b-lg">
+              <h4>Trains</h4>
+              {Trains[0].LineIds.map((line) => {
+                return (
+                  <RemoveService
+                    mode="train"
+                    serviceNumber={line}
+                    id={line}
+                    key={line}
+                    showRemove={false}
+                  />
+                );
+              })}
             </div>
-            <p className="wmnds-col-2-3">
-              You will not receive alerts on
-              {QuietDays.length > 1 ? (
-                <span>
-                  <strong> {QuietDays.slice(0, -1).join(', ')}</strong> and{' '}
-                </span>
-              ) : (
-                ` `
-              )}
-              <strong>{QuietDays[QuietDays.length - 1]}</strong>.
-            </p>
-          </>
-        )}
-        {ExistingUser && (
-          <div className="wmnds-m-b-lg wmnds-m-t-xl">
-            <h3 className="wmnds-col-1-3">Your services</h3>
-            <p>
-              You’ll receive text message alerts for the service disruptions you are currently
-              subscribed to.
-            </p>
-            <p>You can add or remove your services in the disruption alerts dashboard.</p>
+          )}
+
+          {/* Roads */}
+          {RoadAreas && RoadAreas.length > 0 && (
+            <div className="wmnds-m-b-lg">
+              <h4>Roads</h4>
+              {RoadAreas.map((area) => {
+                return (
+                  <RemoveService
+                    mode="road"
+                    routeName={`${area.address} + ${area.radius} miles`}
+                    key={`${area.lat}${area.lon}`}
+                    showRemove={false}
+                  />
+                );
+              })}
+            </div>
+          )}
+        </>
+      )}
+
+      {!ExistingUser && QuietHours.length > 0 && (
+        <>
+          <div className="wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between">
+            <h3 className="wmnds-col-2-3">Daily quiet hours</h3>
+            <button
+              type="button"
+              className="wmnds-btn wmnds-btn--link"
+              onClick={() => {
+                setStepInContext(10);
+              }}
+            >
+              Change
+            </button>
           </div>
-        )}
-      </div>
-    </>
+          You will not receive alerts between
+          <HoursMinutes times={QuietHours} />.
+        </>
+      )}
+      {!ExistingUser && QuietDays.length > 0 && (
+        <>
+          <div className="wmnds-m-b-lg wmnds-m-t-xl wmnds-grid wmnds-grid--justify-between">
+            <h3 className="wmnds-col-2-3">Quiet days</h3>
+            <button
+              type="button"
+              className="wmnds-btn wmnds-btn--link"
+              onClick={() => {
+                setStepInContext(10);
+              }}
+            >
+              Change
+            </button>
+          </div>
+          <p className="wmnds-col-2-3">
+            You will not receive alerts on
+            {QuietDays.length > 1 ? (
+              <span>
+                <strong> {QuietDays.slice(0, -1).join(', ')}</strong> and{' '}
+              </span>
+            ) : (
+              ` `
+            )}
+            <strong>{QuietDays[QuietDays.length - 1]}</strong>.
+          </p>
+        </>
+      )}
+      {ExistingUser && (
+        <div className="wmnds-m-b-lg wmnds-m-t-xl">
+          <h3 className="wmnds-col-1-3">Your services</h3>
+          <p>
+            You’ll receive text message alerts for the service disruptions you are currently
+            subscribed to.
+          </p>
+          <p>You can add or remove your services in the disruption alerts dashboard.</p>
+        </div>
+      )}
+    </div>
   );
 }
 

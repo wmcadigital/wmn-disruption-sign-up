@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RoadAutoCompleteResult = (props) => {
+function RoadAutoCompleteResult(props) {
   const { result, handleKeyDown, setRoadArea } = props || {};
   // Destructure fields from result
   const { address, location } = result;
@@ -30,6 +30,6 @@ const RoadAutoCompleteResult = (props) => {
       </div>
     </li>
   );
-};
+}
 
 export default RoadAutoCompleteResult;

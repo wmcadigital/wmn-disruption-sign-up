@@ -73,8 +73,11 @@ const useStepLogic = (formRef) => {
     />
   );
 
+  console.log(errors);
+
   // If errors object has any keys and continue button is pressed then we should show generic error component
-  const showGenericError = Object.keys(errors).length > 0 && isContinuePressed && <GenericError />;
+  // const showGenericError = Object?.keys(errors).length > 0 && isContinuePressed && <GenericError />;
+  const showGenericError = isContinuePressed && <GenericError />;
 
   return {
     setStep,

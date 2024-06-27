@@ -10,7 +10,7 @@ import { setSearchParam } from 'helpers/URLSearchParams';
 import useStepLogic from 'components/Form/useStepLogic';
 import useFormData from '../useFormData';
 
-const Step5Email = () => {
+function Step5Email() {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
   const { register, handleSubmit, showGenericError, continueButton, setStep } =
     useStepLogic(formRef); // Custom hook for handling continue button (validation, errors etc)
@@ -75,6 +75,7 @@ const Step5Email = () => {
       value: emailRegex,
       message: `Enter an ${emailLabel.toLowerCase()} in the correct format`,
     },
+    // eslint-disable-next-line react/no-unstable-nested-components
     validate: async (value) => (await checkEmailAddress(value)) || ErrorMessage, // Check if email exists, if false is returned (email exists), then pipe/show error message
   });
 
@@ -128,6 +129,6 @@ const Step5Email = () => {
       {continueButton(checkingEmail)}
     </form>
   );
-};
+}
 
 export default Step5Email;

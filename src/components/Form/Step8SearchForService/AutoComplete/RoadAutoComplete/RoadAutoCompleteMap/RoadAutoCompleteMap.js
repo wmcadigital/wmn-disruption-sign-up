@@ -5,7 +5,7 @@ import useCreateMapView from './customHooks/useCreateMapView';
 import useDrawRoadArea from './customHooks/useDrawRoadArea';
 import s from './RoadAutoCompleteMap.module.scss';
 
-const RoadAutoCompleteMap = ({ lat, lon, radius }) => {
+function RoadAutoCompleteMap({ lat, lon, radius }) {
   const mapRef = useRef(null);
   const view = useCreateMapView(mapRef);
   useDrawRoadArea(view, { lat, lon, radius });
@@ -26,7 +26,7 @@ const RoadAutoCompleteMap = ({ lat, lon, radius }) => {
       />
     </div>
   );
-};
+}
 
 RoadAutoCompleteMap.propTypes = {
   lat: PropTypes.number.isRequired,
