@@ -13,7 +13,7 @@ function Step9Confirm({ setFormSubmitStatus }) {
   // Get handleSubmit fn and isFetching from custom hook which handles submitting data to API (this is used in the last step[4])
   const { handleSubmit, isFetching, APIErrorMessage } = useSubmitForm(setFormSubmitStatus);
   useEffect(() => {
-    if (formDataState.currentStep === 9) {
+    if (formDataState.currentStep === 8) {
       formDataDispatch({
         type: 'REACHED_CONFIRMATION',
         payload: true,
@@ -37,11 +37,7 @@ function Step9Confirm({ setFormSubmitStatus }) {
           iconRight="general-chevron-right"
           isFetching={isFetching}
           type="submit"
-          text={
-            formDataState.formData.ExistingUser
-              ? 'Sign up to text message alerts'
-              : 'Sign up to disruption alerts'
-          }
+          text="Sign up to disruption alerts"
         />
       </div>
     </form>

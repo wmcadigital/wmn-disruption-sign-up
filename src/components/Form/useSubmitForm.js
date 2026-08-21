@@ -21,18 +21,11 @@ const useSubmitForm = (setFormSubmitStatus) => {
     TramLines,
     RoadAreas,
     EmailAlert,
-    Phone,
     ExistingUser,
     UserId,
     QuietHours,
     QuietDays,
   } = formDataState.formData;
-
-  // Check if mobile phone has +44, if not, remove the 0 and add +44
-  let englishNumber = Phone;
-  if (Phone && Phone.substr(0, 1) === '0') {
-    englishNumber = `+44${Phone.substr(1)}`;
-  }
 
   // Convert road areas to correct shape for the api
   const RoadLines = RoadAreas.map((area) => ({
@@ -97,7 +90,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
     TramLines: TramLines.map((line) => ({ From: line.From.id, To: line.To.id })),
     RoadLines,
     EmailDisabled: EmailAlert !== 'yes',
-    MobileNumber: englishNumber || '',
+    MobileNumber: '',
     siteCode: ExistingUser ? UserId : '',
     QuietDays: QuietDays.map((v) => ({ day: v })),
     QuietTimePeriods: QuietTimesFiltered,
@@ -130,9 +123,7 @@ const useSubmitForm = (setFormSubmitStatus) => {
             formDataDispatch({ type: 'ADD_FORM_REF', payload }); // Update form state with the form ref received from server
 
             // Create an event label with the users contact preferences and if they are a newUser or existing
-            const eventLabel = `newUser: ${!ExistingUser}, email: ${
-              EmailAlert === 'yes'
-            }, sms: ${!!Phone}`;
+            const eventLabel = `newUser: ${!ExistingUser}, email: ${EmailAlert === 'yes'}`;
             // Log event to analytics/tag manager
             window.dataLayer.push({
               event: 'formAbandonment',
