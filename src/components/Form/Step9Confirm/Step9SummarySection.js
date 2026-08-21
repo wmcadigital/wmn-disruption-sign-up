@@ -14,7 +14,6 @@ function Step9SummarySection() {
     Firstname,
     LastName,
     Email,
-    Phone,
     BusServices,
     TramLines,
     Trains,
@@ -33,12 +32,7 @@ function Step9SummarySection() {
     });
   };
 
-  let title;
-  if (ExistingUser) {
-    title = 'Check your preferences before signing up to the text message service disruption trial';
-  } else {
-    title = 'Check your preferences before signing up to disruption alerts';
-  }
+  const title = 'Check your preferences before signing up to disruption alerts';
 
   /* Table Data */
   const dataLine1 = [];
@@ -67,36 +61,16 @@ function Step9SummarySection() {
         type="button"
         className="wmnds-btn wmnds-btn--link"
         onClick={() => {
-          setStepInContext(5);
+          setStepInContext(2);
         }}
       >
         Change
       </button>
     ) : null
   );
-
-  const dataLine3 = [];
-  if (Phone) {
-    dataLine3.push(<span>Mobile phone number</span>);
-    dataLine3.push(<span>{Phone}</span>);
-    dataLine3.push(
-      <button
-        type="button"
-        className="wmnds-btn wmnds-btn--link"
-        onClick={() => {
-          setStepInContext(4);
-        }}
-      >
-        Change
-      </button>
-    );
-  }
   /* End of Table Data */
 
   const data = [dataLine1, dataLine2];
-  if (Phone) {
-    data.push(dataLine3);
-  }
 
   return (
     <>
@@ -119,7 +93,7 @@ function Step9SummarySection() {
                 type="button"
                 className="wmnds-btn wmnds-btn--link"
                 onClick={() => {
-                  setStepInContext(7);
+                  setStepInContext(4);
                 }}
               >
                 Change
@@ -221,7 +195,7 @@ function Step9SummarySection() {
                 type="button"
                 className="wmnds-btn wmnds-btn--link"
                 onClick={() => {
-                  setStepInContext(10);
+                  setStepInContext(7);
                 }}
               >
                 Change
@@ -239,7 +213,7 @@ function Step9SummarySection() {
                 type="button"
                 className="wmnds-btn wmnds-btn--link"
                 onClick={() => {
-                  setStepInContext(10);
+                  setStepInContext(7);
                 }}
               >
                 Change
@@ -262,8 +236,8 @@ function Step9SummarySection() {
           <div className="wmnds-m-b-lg wmnds-m-t-xl">
             <h3 className="wmnds-col-1-3">Your services</h3>
             <p>
-              You’ll receive text message alerts for the service disruptions you are currently
-              subscribed to.
+              You’ll receive email alerts for the service disruptions you are currently subscribed
+              to.
             </p>
             <p>You can add or remove your services in the disruption alerts dashboard.</p>
           </div>

@@ -7,7 +7,7 @@ function Success() {
   // eslint-disable-next-line no-unused-vars
   const [formDataState, formDataDispatch] = useContext(FormDataContext);
   const { isRequestingRecovery } = formDataState;
-  const { Phone, SMSAlert, EmailAlert } = formDataState.formData;
+  const { EmailAlert } = formDataState.formData;
 
   const alignCenter = {
     textAlign: 'center',
@@ -25,26 +25,8 @@ function Success() {
       'Visit the link in the email to manage your disruption alerts.',
       'You can now manage your services and communication preferences. You can access the page at any time by visiting the link in your email.',
     ];
-  } else if (Phone && SMSAlert === 'yes' && EmailAlert === 'yes') {
-    /* Text messages AND Email */
-    message = 'You have successfully signed up to text message and email alerts';
-    steps = [
-      'We’ll send you an email asking to confirm your subscription.',
-      'When you confirm your subscription, we’ll send a PIN code via text message. The PIN code can take up to 5 minutes to arrive.',
-      'Visit the link in the confirmation email to access your disruption alert dashboard. Enter the PIN code sent to you via text message.',
-      'Once you have confirmed your mobile phone number, you’ll receive disruption alerts to your mobile phone.',
-    ];
-  } else if (Phone && SMSAlert === 'yes') {
-    /* Text messages */
-    message = 'You have successfully signed up to text message alerts';
-    steps = [
-      'We’ll send you an email asking to confirm your subscription for text message alerts.',
-      'When you confirm your subscription, we’ll send a PIN code via text message. The PIN code can take up to 5 minutes to arrive.',
-      'Visit the link in the confirmation email to access your disruption alert dashboard. Enter the PIN code sent to you via text message.',
-      'Once you have confirmed your mobile phone number, you’ll receive disruption alerts to your mobile phone.',
-    ];
-  } else if (EmailAlert === 'yes' && !Phone) {
-    /* Emails only */
+  } else if (EmailAlert === 'yes') {
+    /* Emails */
     message = 'You have successfully signed up to email alerts';
     steps = [
       'We’ll send you an email asking to confirm your subscription.',

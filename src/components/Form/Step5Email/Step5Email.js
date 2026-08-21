@@ -8,7 +8,6 @@ import Button from 'components/shared/Button/Button';
 import { setSearchParam } from 'helpers/URLSearchParams';
 // Import custom hooks
 import useStepLogic from 'components/Form/useStepLogic';
-import useFormData from '../useFormData';
 
 const Step5Email = () => {
   const formRef = useRef(); // Used so we can keep track of the form DOM element
@@ -48,8 +47,10 @@ const Step5Email = () => {
       return false; // If successful (email found on system already) return false so our validation pipes to the error message
     } catch (error) {
       // eslint-disable-next-line no-console
-      if (error.response.status !== 400) console.error({ error }); // log any errors, if not an error 400 (error 400 means the email address hasn't been registered yet - so it's technically a success)
-      setcheckingEmail(false); // Set checking to false to remove loading spinner from continue button
+      if (!error.response || error.response.status !== 400)
+        // log any errors, if not an error 400 (error 400 means the email address hasn't been registered yet - so it's technically a success). No response at all means a network error (API unreachable), so we also allow the user to continue
+        // console.error({ error });
+        setcheckingEmail(false); // Set checking to false to remove loading spinner from continue button
       return true; // If successful (email NOT found on system already) return true so our validation doesn't pipe to the error message
     }
   };
@@ -79,26 +80,15 @@ const Step5Email = () => {
   });
 
   // Check if user is in the trial
-  const { SMSAlert } = useFormData();
-  let text;
-  if (SMSAlert) {
-    text = (
+  const text = (
+    <>
+      <p>We’ll automatically send disruption alerts to this address.</p>
       <p>
-        We need your email address so you can confirm your subscription and manage your alert
+        We also need your email address so you can confirm your subscription and manage your alert
         preferences.
       </p>
-    );
-  } else {
-    text = (
-      <>
-        <p>We’ll automatically send disruption alerts to this address.</p>
-        <p>
-          We also need your email address so you can confirm your subscription and manage your alert
-          preferences.
-        </p>
-      </>
-    );
-  }
+    </>
+  );
 
   return (
     <form onSubmit={handleSubmit} ref={formRef} autoComplete="on">

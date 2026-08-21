@@ -15,22 +15,18 @@ const useFormData = () => {
     Firstname,
     LastName,
     Email,
-    Phone,
     BusServices,
     TramServices,
     QuietHours,
     QuietDays,
     ExistingUser,
-    SMSAlert,
     EmailAlert,
     DisruptionAlert,
-    SMSTerms,
   } = formDataState.formData;
   return {
     Firstname,
     LastName,
     Email,
-    Phone,
     BusServices,
     TramServices,
     QuietHours,
@@ -40,10 +36,8 @@ const useFormData = () => {
     formDataDispatch,
     mode,
     setMode,
-    SMSAlert,
     EmailAlert,
     DisruptionAlert,
-    SMSTerms,
   };
 };
 

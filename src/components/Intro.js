@@ -20,7 +20,7 @@ const Intro = ({ setIsFormStarted, goToRecoverLinkStep }) => {
       <h1>Sign up to service disruptions alerts</h1>
       <h2>Use this service to:</h2>
       <ul>
-        <li>Sign up to automatic email and text message disruption alerts</li>
+        <li>Sign up to automatic email disruption alerts</li>
         <li>
           You&apos;ll get an alert every time there is a disruption to your bus, tram or train
           service

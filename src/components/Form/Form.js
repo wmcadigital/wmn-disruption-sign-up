@@ -8,9 +8,6 @@ import { getSearchParam, delSearchParam } from 'helpers/URLSearchParams';
 // Import components
 import Step0Recovery from './Step0Recovery/Step0Recovery';
 import Step1Name from './Step1Name/Step1Name';
-import Step2SmsAlert from './Step2SmsAlert/Step2SmsAlert';
-import Step3SmsConsent from './Step3SmsConsent/Step3SmsConsent';
-import Step4Phone from './Step4Phone/Step4Phone';
 import Step5Email from './Step5Email/Step5Email';
 import Step6EmailAlert from './Step6EmailAlert/Step6EmailAlert';
 import Step7AddService from './Step7AddService/Step7AddService';
@@ -34,7 +31,7 @@ const Form = ({
 }) => {
   const [formDataState, formDataDispatch] = useContext(FormDataContext); // Get the state/dispatch of form data from FormDataContext
   const { currentStep, hasReachedConfirmation } = formDataState; // Destructure step from state
-  const { ExistingUser, SMSAlert } = formDataState.formData;
+  const { ExistingUser } = formDataState.formData;
   const methods = useForm({
     mode: 'onBlur',
   }); // Trigger validation onBlur events (config for react hook form lib)
@@ -51,42 +48,14 @@ const Form = ({
   useTrackFormAbandonment(currentStep, formSubmitStatus);
 
   // Show debug options for below (this should be deleted on release)
-  const debugStepOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  const debugStepOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   let stepToGoTo;
 
   if (!ExistingUser) {
-    // NEW USERS: Show back button if the step is between 1 or 11
-    if (
-      currentStep > 1 &&
-      currentStep < 11 &&
-      !(currentStep === 5 && SMSAlert === 'no') &&
-      !(currentStep === 7 && SMSAlert === 'no')
-    ) {
+    // NEW USERS: Show back button if the step is between 2 and 7
+    if (currentStep > 1 && currentStep < 8) {
       stepToGoTo = currentStep - 1;
-    }
-
-    if (currentStep === 5 && SMSAlert === 'no') {
-      stepToGoTo = 2;
-    }
-    if (currentStep === 4) {
-      stepToGoTo = 2;
-    }
-    if (currentStep === 2 && SMSAlert === 'yes') {
-      stepToGoTo = 4;
-    }
-    if (currentStep === 7 && SMSAlert === 'no') {
-      stepToGoTo = 5;
-    }
-  } else {
-    /* EXISTING USERS: Show back button if the step is 4 or 6. Step 3 has no back button */
-    if (currentStep > 3 && currentStep < 11 && currentStep !== 6) {
-      stepToGoTo = currentStep - 1;
-    }
-
-    /* Exception: on click back button (on step 6) -> step 4 */
-    if (currentStep === 6) {
-      stepToGoTo = 4;
     }
   }
 
@@ -107,7 +76,7 @@ const Form = ({
   }, []);
 
   useEffect(() => {
-    if (currentStep === 11) scrollToTopOfSummary();
+    if (currentStep === 8) scrollToTopOfSummary();
   }, [currentStep, scrollToTopOfSummary]);
 
   // Run! Like go get some data from an API.
@@ -152,19 +121,16 @@ const Form = ({
             {/* Start of form */}
             {currentStep === 0 && <Step0Recovery setFormSubmitStatus={setFormSubmitStatus} />}
             {currentStep === 1 && <Step1Name />}
-            {currentStep === 2 && <Step2SmsAlert />}
-            {currentStep === 3 && <Step3SmsConsent />}
-            {currentStep === 4 && <Step4Phone />}
-            {currentStep === 5 && <Step5Email />}
-            {currentStep === 6 && <Step6EmailAlert />}
-            {currentStep === 7 && <Step7AddService />}
-            {currentStep === 8 && <Step8SearchForService />}
-            {currentStep === 9 && <StepDisruptionAlert />}
-            {currentStep === 10 && <StepQuietHours />}
-            {currentStep === 11 && <Step9Confirm setFormSubmitStatus={setFormSubmitStatus} />}
+            {currentStep === 2 && <Step5Email />}
+            {currentStep === 3 && <Step6EmailAlert />}
+            {currentStep === 4 && <Step7AddService />}
+            {currentStep === 5 && <Step8SearchForService />}
+            {currentStep === 6 && <StepDisruptionAlert />}
+            {currentStep === 7 && <StepQuietHours />}
+            {currentStep === 8 && <Step9Confirm setFormSubmitStatus={setFormSubmitStatus} />}
             {/* for testing only */}
-            {currentStep === 12 && <SubmitSuccess />}
-            {currentStep === 13 && <SubmitError />}
+            {currentStep === 9 && <SubmitSuccess />}
+            {currentStep === 10 && <SubmitError />}
           </div>
         </div>
         {/* If in development based on envs then show form debugging */}

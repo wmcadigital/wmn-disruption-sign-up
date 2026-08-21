@@ -36,8 +36,7 @@ const Step6EmailAlert = () => {
   let text;
   if (ExistingUser) {
     title = 'Would you like to continue receiving email alerts?';
-    text =
-      'In addition to text message alerts, we’ll send automatic disruption alerts to your email address.';
+    text = 'We’ll send automatic disruption alerts to your email address.';
   } else {
     title = 'Would you like to sign up to email alerts?';
     text = 'You’ll receive automatic disruption alerts to your email address.';
