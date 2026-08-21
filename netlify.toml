@@ -4,12 +4,14 @@ package = "@netlify/plugin-sitemap"
 # Uncomment the below when due to go live to public
 # Some other things will need to be set up within Sentry.
 # If you've not done this, then ask for help.
-[[plugins]]
-package = "@sentry/netlify-build-plugin"
-
-[plugins.inputs]
-  sentryOrg = "wmca-digital"
-  sentryProject = "wmn-disruption-signup"
+# Requires: GitHub repo integration in Sentry (wmca-digital org) and a
+# SENTRY_AUTH_TOKEN env var in Netlify, otherwise deploys fail on 'set commits'.
+# [[plugins]]
+# package = "@sentry/netlify-build-plugin"
+#
+# [plugins.inputs]
+#   sentryOrg = "wmca-digital"
+#   sentryProject = "wmn-disruption-signup"
 
 # Use staging for branch deploys for next-release
 # So that dummy data from testing does not enter live DB
