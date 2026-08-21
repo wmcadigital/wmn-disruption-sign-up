@@ -49,8 +49,8 @@ const Step5Email = () => {
       // eslint-disable-next-line no-console
       if (!error.response || error.response.status !== 400)
         // log any errors, if not an error 400 (error 400 means the email address hasn't been registered yet - so it's technically a success). No response at all means a network error (API unreachable), so we also allow the user to continue
-        console.error({ error });
-      setcheckingEmail(false); // Set checking to false to remove loading spinner from continue button
+        // console.error({ error });
+        setcheckingEmail(false); // Set checking to false to remove loading spinner from continue button
       return true; // If successful (email NOT found on system already) return true so our validation doesn't pipe to the error message
     }
   };
